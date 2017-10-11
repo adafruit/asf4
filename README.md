@@ -1,5 +1,4 @@
-# asf4
-Microchip/Atmel ASF4 code libraries
+# asf4 - Microchip/Atmel ASF4 Code Libraries
 
 http://start.atmel.com is the way to access the ASF4 code libraries from Microchip. It is a code selection tool: you specify the libraries you need and some parameters, and then you download a package of code for your selected chip and application.
 
