@@ -105,7 +105,7 @@ struct usbd_descriptors {
 /** Describes the USB device core descriptors. */
 struct usbdc_descriptors {
 	struct usbd_descriptors *ls_fs;
-#if CONF_USBD_HS_SP
+#ifdef CONF_USBD_HS_SP
 	struct usbd_descriptors *hs;
 #endif
 };

@@ -171,7 +171,7 @@ __attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int32_t __REVSH(in
 #define __BKPT(value)                       __breakpoint(value)
 
 
-#if       (__CORTEX_M >= 0x03) || (__CORTEX_SC >= 300)
+#if       (__CORTEX_M >= 0x03) || (defined(__CORTEX_SC) && __CORTEX_SC >= 300)
 
 /** \brief  Reverse bit order of value
 
@@ -538,7 +538,7 @@ __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __ROR(uint32_t op1, 
 #define __BKPT(value)                       __ASM volatile ("bkpt "#value)
 
 
-#if       (__CORTEX_M >= 0x03) || (__CORTEX_SC >= 300)
+#if       (__CORTEX_M >= 0x03) || (defined(__CORTEX_SC) && __CORTEX_SC >= 300)
 
 /** \brief  Reverse bit order of value
 

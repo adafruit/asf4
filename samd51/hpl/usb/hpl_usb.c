@@ -299,14 +299,14 @@ static uint32_t _usb_ep0_cache[_usb_align_up(CONF_USB_EP0_CACHE) / 4];
 /** Endpoint cache buffer for OUT transactions (none-control) or SETUP/IN/OUT
  *  transactions (control). */
 #if CONF_USB_EP1_CACHE && CONF_USB_D_MAX_EP_N >= 1
-static uint32_t _usb_ep1_cache[_usb_align_up(CONF_USB_EP1_CACHE) / 4];
+uint32_t _usb_ep1_cache[_usb_align_up(CONF_USB_EP1_CACHE) / 4];
 #else
 #define _usb_ep1_cache NULL
 #endif
 
 /** Endpoint cache buffer for IN transactions (none-control). */
 #if CONF_USB_EP1_I_CACHE && CONF_USB_D_MAX_EP_N >= 1
-static uint32_t _usb_ep1_i_cache[_usb_align_up(CONF_USB_EP1_I_CACHE) / 4];
+uint32_t _usb_ep1_i_cache[_usb_align_up(CONF_USB_EP1_I_CACHE) / 4];
 #else
 #define _usb_ep1_i_cache NULL
 #endif
