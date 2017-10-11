@@ -16,7 +16,7 @@ Branch `master` contains the code as downloaded. It should be updated periodical
 Branch `master-bugfixes` is a branch from `master` that contains bugfixes needed by potentially all users of ASF4.
 
 ## Project Branches
-These branches contain enhancements for specific Adafruit projects and families of products.
+These branches contain enhancements for specific Adafruit projects and families of products. A project would typically use a git submodule that points to commits in its project branch.
 
 * `circuitpython` - Changes needed for https://github.com/adafruit/circuitpython
 
