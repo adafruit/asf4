@@ -164,7 +164,7 @@ static inline void _usb_d_dev_wait_clk_rdy(const uint8_t clk_src)
  *  \param[in] s Buffer size, in number of bytes.
  *  \return \c true If the buffer is in RAM.
  */
-#define _IN_RAM(a, s) ((0x20000000 <= (uint32_t)(a)) && (((uint32_t)(a) + (s)) < 0x20008000))
+#define _IN_RAM(a, s) ((0x20000000 <= (uint32_t)(a)) && (((uint32_t)(a) + (s)) < 0x20040000))
 
 /** Check if the address should be placed in RAM. */
 #define _usb_is_addr4dma(addr, size) _IN_RAM((addr), (size))
