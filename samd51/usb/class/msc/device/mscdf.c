@@ -166,12 +166,14 @@ static void mscdf_request_sense(int32_t err_codes)
 		mscdf_sense_data.sense_flag_key = SCSI_SK_NOT_READY;
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_MEDIUM_NOT_PRESENT);
 		break;
-
+	case ERR_ABORTED:
+		mscdf_sense_data.sense_flag_key = SCSI_SK_UNIT_ATTENTION;
+		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_MEDIUM_NOT_PRESENT);
+		break;	
 	case ERR_BUSY:
 		mscdf_sense_data.sense_flag_key = SCSI_SK_UNIT_ATTENTION;
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_NOT_READY_TO_READY_CHANGE);
 		break;
-
 	case ERR_DENIED:
 		mscdf_sense_data.sense_flag_key = SCSI_SK_DATA_PROTECT;
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_WRITE_PROTECTED);
@@ -309,6 +311,8 @@ static bool mscdf_cb_ep_bulk_in(const uint8_t ep, const enum usb_xfer_code rc, c
 	}
 }
 
+static const uint8_t ms6_buf[] = {0,0,0,0};
+
 /**
  * \brief Callback invoked when bulk OUT data received
  * \param[in] ep Endpoint number
@@ -344,8 +348,12 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
 				pcsw->bCSWStatus        = USB_CSW_STATUS_PASS;
 				pcsw->dCSWDataResidue   = 0;
-				return usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 36, false);
-
+				return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 36, false);
+			case SPC_MODE_SENSE6:
+				_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
+				pcsw->bCSWStatus = USB_CSW_STATUS_PASS;
+				pcsw->dCSWDataResidue = pcbw->dCBWDataTransferLength - sizeof(ms6_buf);
+				return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, (uint8_t*)ms6_buf, sizeof(ms6_buf), true);
 			case SBC_READ_CAPACITY10:
 				if (NULL != mscdf_get_disk_capacity) {
 					pbuf = mscdf_get_disk_capacity(pcbw->bCBWLUN);
@@ -356,10 +364,11 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 					    = (uint32_t)(pbuf[4] << 24) + (uint32_t)(pbuf[5] << 16) + (uint32_t)(pbuf[6] << 8) + pbuf[7];
 					pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
 					pcsw->dCSWDataResidue = 0;
-					return usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false);
+					return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false);
 				} else {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
 					mscdf_request_sense(ERR_NOT_FOUND);
+					pcsw->dCSWDataResidue = 0;
 					return mscdf_terminate_in();
 				}
 
@@ -369,7 +378,8 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 
 			case SPC_PREVENT_ALLOW_MEDIUM_REMOVAL:
 				if (0x00 == pcbw->CDB[4]) {
-					pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
+					// UNlocking is ok, but locking will fall through to unsupported op below
+					pcsw->bCSWStatus = USB_CSW_STATUS_PASS;
 					pcsw->dCSWDataResidue = 0;
 					return mscdf_send_csw();
 				}
@@ -384,6 +394,7 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 							pcsw->dCSWDataResidue = 0;
 						} else {
 							pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
+							pcsw->dCSWDataResidue = 0;
 							mscdf_request_sense(ret);
 						}
 					} else {
@@ -411,10 +422,12 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 						pcsw->dCSWDataResidue = 0;
 					} else {
 						pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
+						pcsw->dCSWDataResidue = 0;
 						mscdf_request_sense(ret);
 					}
 				} else {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
+					pcsw->dCSWDataResidue = 0;
 					mscdf_request_sense(ERR_NOT_FOUND);
 				}
 				return mscdf_send_csw();
@@ -725,7 +738,7 @@ int32_t mscdf_xfer_blocks(bool rd, uint8_t *blk_addr, uint32_t blk_cnt)
 				 * All the data have been written into disk.
 				 */
 				mscdf_csw.bCSWStatus = USB_CSW_STATUS_PASS;
-				return mscdf_send_csw();
+				return mscdf_send_csw()?ERR_NONE:ERR_FAILURE;
 			} else {
 				return ERR_INVALID_ARG;
 			}
@@ -739,8 +752,7 @@ int32_t mscdf_xfer_blocks(bool rd, uint8_t *blk_addr, uint32_t blk_cnt)
 				ep = _mscdf_funcd.func_ep_out;
 			}
 			_mscdf_funcd.xfer_busy = true;
-			usbdc_xfer(ep, blk_addr, _mscdf_funcd.xfer_tot_bytes, false);
-			return ERR_NONE;
+			return usbdc_xfer(ep, blk_addr, _mscdf_funcd.xfer_tot_bytes, false);
 		}
 	}
 }
