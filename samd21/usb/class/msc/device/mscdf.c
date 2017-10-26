@@ -152,11 +152,6 @@ static void mscdf_request_sense(int32_t err_codes)
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_MEDIUM_NOT_PRESENT);
 		break;
 
-	case ERR_ABORTED:
-		mscdf_sense_data.sense_flag_key = SCSI_SK_UNIT_ATTENTION;
-		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_MEDIUM_NOT_PRESENT);
-		break;
-
 	case ERR_BUSY:
 		mscdf_sense_data.sense_flag_key = SCSI_SK_UNIT_ATTENTION;
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_NOT_READY_TO_READY_CHANGE);
@@ -330,7 +325,7 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				}
 				if (pbuf == NULL) {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
-					mscdf_request_sense(ERR_ABORTED);
+					mscdf_request_sense(ERR_NOT_FOUND);
 					return mscdf_terminate_in();
 				} else {
 					_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
