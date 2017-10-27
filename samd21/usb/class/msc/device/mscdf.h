@@ -52,7 +52,8 @@ enum mscdf_cb_type {
 	MSCDF_CB_START_WRITE_DISK,
 	MSCDF_CB_EJECT_DISK,
 	MSCDF_CB_TEST_DISK_READY,
-	MSCDF_CB_XFER_BLOCKS_DONE
+	MSCDF_CB_XFER_BLOCKS_DONE,
+	MSCDF_CB_IS_WRITABLE
 };
 
 /** MSC Inquiry Disk Callback. */
@@ -60,6 +61,9 @@ typedef uint8_t *(*mscdf_inquiry_disk_t)(uint8_t);
 
 /** MSC Get Disk Capacity Callback. */
 typedef uint8_t *(*mscdf_get_disk_capacity_t)(uint8_t);
+
+/** MSC Is Writeable Callback. */
+typedef int32_t (*mscdf_is_writeable_t)(uint8_t);
 
 /** MSC Read Data From Disk Callback. */
 typedef int32_t (*mscdf_start_read_disk_t)(uint8_t, uint32_t, uint32_t);

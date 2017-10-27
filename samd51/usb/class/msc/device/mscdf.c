@@ -84,6 +84,7 @@ static struct mscdf_func_data _mscdf_funcd;
  */
 static mscdf_inquiry_disk_t      mscdf_inquiry_disk      = NULL;
 static mscdf_get_disk_capacity_t mscdf_get_disk_capacity = NULL;
+static mscdf_is_writeable_t      mscdf_is_writeable      = NULL;
 static mscdf_eject_disk_t        mscdf_eject_disk        = NULL;
 static mscdf_start_read_disk_t   mscdf_read_disk         = NULL;
 static mscdf_start_write_disk_t  mscdf_write_disk        = NULL;
@@ -99,6 +100,9 @@ static struct usb_msc_csw mscdf_csw = {USB_CSW_SIGNATURE, 0, 0, 0};
 COMPILER_ALIGNED(4)
 static struct scsi_request_sense_data mscdf_sense_data
     = {SCSI_SENSE_CURRENT, 0x00, 0x00, {0x00, 0x00, 0x00, 0x00}, 0x0A};
+
+COMPILER_ALIGNED(4)
+static struct scsi_mode_sense6_data mscdf_sense6_data = {0, 0, false, 0, 0};
 
 /**
  * \brief USB MSC wait Command Block
@@ -313,6 +317,9 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 		return mscdf_wait_cbw();
 	}
 
+	// This PDF by Seagate is a great reference:
+	// https://www.seagate.com/files/staticfiles/support/docs/manual/Interface%20manuals/100293068j.pdf
+
 	if (_mscdf_funcd.xfer_stage == MSCDF_CMD_STAGE) {
 		if (pcbw->dCBWSignature == USB_CBW_SIGNATURE) {
 			pcsw->dCSWTag         = pcbw->dCBWTag;
@@ -392,6 +399,27 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				                  (uint8_t *)&mscdf_sense_data,
 				                  sizeof(struct scsi_request_sense_data),
 				                  false);
+
+			case SPC_MODE_SENSE6:
+				ret = ERR_NONE;
+				pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
+				pcsw->dCSWDataResidue = 0;
+				if (NULL != mscdf_is_writeable) {
+					ret = mscdf_is_writeable(pcbw->bCBWLUN);
+				}
+				mscdf_sense6_data.write_protected = false;
+				if (ret == ERR_DENIED) {
+					mscdf_sense6_data.write_protected = true;
+				} else if (ret != ERR_NONE) {
+					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
+					mscdf_request_sense(ret);
+					return mscdf_terminate_in();
+				}
+				_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
+				return usbdc_xfer(_mscdf_funcd.func_ep_in,
+					              (uint8_t *)&mscdf_sense6_data,
+					              sizeof(struct scsi_mode_sense6_data),
+					              false);
 
 			case SPC_TEST_UNIT_READY:
 				if (NULL != mscdf_test_disk_ready) {
@@ -663,6 +691,9 @@ int32_t mscdf_register_callback(enum mscdf_cb_type cb_type, FUNC_PTR func)
 		break;
 	case MSCDF_CB_GET_DISK_CAPACITY:
 		mscdf_get_disk_capacity = (mscdf_get_disk_capacity_t)func;
+		break;
+	case MSCDF_CB_IS_WRITABLE:
+		mscdf_is_writeable = (mscdf_is_writeable_t)func;
 		break;
 	case MSCDF_CB_EJECT_DISK:
 		mscdf_eject_disk = (mscdf_eject_disk_t)func;
