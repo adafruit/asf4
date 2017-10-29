@@ -62,8 +62,8 @@ typedef uint8_t *(*mscdf_inquiry_disk_t)(uint8_t);
 /** MSC Get Disk Capacity Callback. */
 typedef uint8_t *(*mscdf_get_disk_capacity_t)(uint8_t);
 
-/** MSC Is Writeable Callback. */
-typedef int32_t (*mscdf_is_writeable_t)(uint8_t);
+/** MSC Is Writable Callback. */
+typedef int32_t (*mscdf_is_writable_t)(uint8_t);
 
 /** MSC Read Data From Disk Callback. */
 typedef int32_t (*mscdf_start_read_disk_t)(uint8_t, uint32_t, uint32_t);

@@ -84,7 +84,7 @@ static struct mscdf_func_data _mscdf_funcd;
  */
 static mscdf_inquiry_disk_t      mscdf_inquiry_disk      = NULL;
 static mscdf_get_disk_capacity_t mscdf_get_disk_capacity = NULL;
-static mscdf_is_writeable_t      mscdf_is_writeable      = NULL;
+static mscdf_is_writable_t      mscdf_is_writable      = NULL;
 static mscdf_eject_disk_t        mscdf_eject_disk        = NULL;
 static mscdf_start_read_disk_t   mscdf_read_disk         = NULL;
 static mscdf_start_write_disk_t  mscdf_write_disk        = NULL;
@@ -404,8 +404,8 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				ret = ERR_NONE;
 				pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
 				pcsw->dCSWDataResidue = 0;
-				if (NULL != mscdf_is_writeable) {
-					ret = mscdf_is_writeable(pcbw->bCBWLUN);
+				if (NULL != mscdf_is_writable) {
+					ret = mscdf_is_writable(pcbw->bCBWLUN);
 				}
 				mscdf_sense6_data.write_protected = false;
 				if (ret == ERR_DENIED) {
@@ -693,7 +693,7 @@ int32_t mscdf_register_callback(enum mscdf_cb_type cb_type, FUNC_PTR func)
 		mscdf_get_disk_capacity = (mscdf_get_disk_capacity_t)func;
 		break;
 	case MSCDF_CB_IS_WRITABLE:
-		mscdf_is_writeable = (mscdf_is_writeable_t)func;
+		mscdf_is_writable = (mscdf_is_writable_t)func;
 		break;
 	case MSCDF_CB_EJECT_DISK:
 		mscdf_eject_disk = (mscdf_eject_disk_t)func;
