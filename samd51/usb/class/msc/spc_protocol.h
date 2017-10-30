@@ -174,6 +174,16 @@ struct scsi_request_sense_data {
 	uint8_t SenseKeySpec[3];
 };
 
+// This is only a Mode parameter header(6). Section 5.3.3, table 361 from the
+// Samsung PDF.
+struct scsi_mode_sense6_data {
+	uint8_t mode_data_length;
+	uint8_t medium_type;
+	bool write_protected : 1;
+	uint8_t reserved : 7;
+	uint8_t block_descriptor_length;
+};
+
 COMPILER_PACK_RESET()
 
 /**< Vital Product Data page codes */
