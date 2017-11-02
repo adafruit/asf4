@@ -3,7 +3,7 @@
  *
  * \brief SAM MTB
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -111,211 +111,6 @@ static inline void hri_mtb_write_CLAIM_reg(const void *const hw, hri_mtb_claimse
 static inline void hri_mtb_clear_CLAIM_reg(const void *const hw, hri_mtb_claimset_reg_t mask)
 {
 	((Mtb *)hw)->CLAIMCLR.reg = mask;
-}
-
-static inline void hri_mtb_set_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->POSITION.reg |= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_position_reg_t hri_mtb_get_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Mtb *)hw)->POSITION.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_mtb_write_POSITION_reg(const void *const hw, hri_mtb_position_reg_t data)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->POSITION.reg = data;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_clear_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->POSITION.reg &= ~mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_toggle_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->POSITION.reg ^= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_position_reg_t hri_mtb_read_POSITION_reg(const void *const hw)
-{
-	return ((Mtb *)hw)->POSITION.reg;
-}
-
-static inline void hri_mtb_set_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->MASTER.reg |= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_master_reg_t hri_mtb_get_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Mtb *)hw)->MASTER.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_mtb_write_MASTER_reg(const void *const hw, hri_mtb_master_reg_t data)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->MASTER.reg = data;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_clear_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->MASTER.reg &= ~mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_toggle_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->MASTER.reg ^= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_master_reg_t hri_mtb_read_MASTER_reg(const void *const hw)
-{
-	return ((Mtb *)hw)->MASTER.reg;
-}
-
-static inline void hri_mtb_set_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->FLOW.reg |= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_flow_reg_t hri_mtb_get_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Mtb *)hw)->FLOW.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_mtb_write_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t data)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->FLOW.reg = data;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_clear_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->FLOW.reg &= ~mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_toggle_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->FLOW.reg ^= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_flow_reg_t hri_mtb_read_FLOW_reg(const void *const hw)
-{
-	return ((Mtb *)hw)->FLOW.reg;
-}
-
-static inline void hri_mtb_set_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->ITCTRL.reg |= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_itctrl_reg_t hri_mtb_get_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Mtb *)hw)->ITCTRL.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_mtb_write_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t data)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->ITCTRL.reg = data;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_clear_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->ITCTRL.reg &= ~mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_toggle_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->ITCTRL.reg ^= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_itctrl_reg_t hri_mtb_read_ITCTRL_reg(const void *const hw)
-{
-	return ((Mtb *)hw)->ITCTRL.reg;
-}
-
-static inline void hri_mtb_set_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->LOCKACCESS.reg |= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_lockaccess_reg_t hri_mtb_get_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Mtb *)hw)->LOCKACCESS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_mtb_write_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t data)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->LOCKACCESS.reg = data;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_clear_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->LOCKACCESS.reg &= ~mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mtb_toggle_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
-{
-	MTB_CRITICAL_SECTION_ENTER();
-	((Mtb *)hw)->LOCKACCESS.reg ^= mask;
-	MTB_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_mtb_lockaccess_reg_t hri_mtb_read_LOCKACCESS_reg(const void *const hw)
-{
-	return ((Mtb *)hw)->LOCKACCESS.reg;
 }
 
 static inline hri_mtb_base_reg_t hri_mtb_get_BASE_reg(const void *const hw, hri_mtb_base_reg_t mask)
@@ -550,6 +345,211 @@ static inline hri_mtb_cid3_reg_t hri_mtb_get_CID3_reg(const void *const hw, hri_
 static inline hri_mtb_cid3_reg_t hri_mtb_read_CID3_reg(const void *const hw)
 {
 	return ((Mtb *)hw)->CID3.reg;
+}
+
+static inline void hri_mtb_set_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->POSITION.reg |= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_position_reg_t hri_mtb_get_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Mtb *)hw)->POSITION.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_mtb_write_POSITION_reg(const void *const hw, hri_mtb_position_reg_t data)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->POSITION.reg = data;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_clear_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->POSITION.reg &= ~mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_toggle_POSITION_reg(const void *const hw, hri_mtb_position_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->POSITION.reg ^= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_position_reg_t hri_mtb_read_POSITION_reg(const void *const hw)
+{
+	return ((Mtb *)hw)->POSITION.reg;
+}
+
+static inline void hri_mtb_set_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->MASTER.reg |= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_master_reg_t hri_mtb_get_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Mtb *)hw)->MASTER.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_mtb_write_MASTER_reg(const void *const hw, hri_mtb_master_reg_t data)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->MASTER.reg = data;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_clear_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->MASTER.reg &= ~mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_toggle_MASTER_reg(const void *const hw, hri_mtb_master_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->MASTER.reg ^= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_master_reg_t hri_mtb_read_MASTER_reg(const void *const hw)
+{
+	return ((Mtb *)hw)->MASTER.reg;
+}
+
+static inline void hri_mtb_set_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->FLOW.reg |= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_flow_reg_t hri_mtb_get_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Mtb *)hw)->FLOW.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_mtb_write_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t data)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->FLOW.reg = data;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_clear_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->FLOW.reg &= ~mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_toggle_FLOW_reg(const void *const hw, hri_mtb_flow_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->FLOW.reg ^= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_flow_reg_t hri_mtb_read_FLOW_reg(const void *const hw)
+{
+	return ((Mtb *)hw)->FLOW.reg;
+}
+
+static inline void hri_mtb_set_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->ITCTRL.reg |= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_itctrl_reg_t hri_mtb_get_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Mtb *)hw)->ITCTRL.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_mtb_write_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t data)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->ITCTRL.reg = data;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_clear_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->ITCTRL.reg &= ~mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_toggle_ITCTRL_reg(const void *const hw, hri_mtb_itctrl_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->ITCTRL.reg ^= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_itctrl_reg_t hri_mtb_read_ITCTRL_reg(const void *const hw)
+{
+	return ((Mtb *)hw)->ITCTRL.reg;
+}
+
+static inline void hri_mtb_set_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->LOCKACCESS.reg |= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_lockaccess_reg_t hri_mtb_get_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Mtb *)hw)->LOCKACCESS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_mtb_write_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t data)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->LOCKACCESS.reg = data;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_clear_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->LOCKACCESS.reg &= ~mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_mtb_toggle_LOCKACCESS_reg(const void *const hw, hri_mtb_lockaccess_reg_t mask)
+{
+	MTB_CRITICAL_SECTION_ENTER();
+	((Mtb *)hw)->LOCKACCESS.reg ^= mask;
+	MTB_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_mtb_lockaccess_reg_t hri_mtb_read_LOCKACCESS_reg(const void *const hw)
+{
+	return ((Mtb *)hw)->LOCKACCESS.reg;
 }
 
 #ifdef __cplusplus

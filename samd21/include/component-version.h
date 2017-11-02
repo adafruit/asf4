@@ -44,7 +44,7 @@
 // The build number does not refer to the component, but to the build number
 // of the device pack that provides the component.
 //
-#define BUILD_NUMBER 276
+#define BUILD_NUMBER 280
 
 //
 // The COMPONENT_VERSION_STRING is a string (enclosed in ") that can be used for logging or embedding.
@@ -59,7 +59,7 @@
 //     "%Y-%m-%d %H:%M:%S"
 //
 //
-#define COMPONENT_DATE_STRING "2017-02-07 19:08:26"
+#define COMPONENT_DATE_STRING "2017-09-26 10:43:07"
 
 #endif/* #ifndef _COMPONENT_VERSION_H_INCLUDED */
 

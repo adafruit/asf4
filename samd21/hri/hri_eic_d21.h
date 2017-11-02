@@ -3,7 +3,7 @@
  *
  * \brief SAM EIC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -78,6 +78,372 @@ static inline void hri_eic_wait_for_sync(const void *const hw)
 static inline bool hri_eic_is_syncing(const void *const hw)
 {
 	return ((const Eic *)hw)->STATUS.bit.SYNCBUSY;
+}
+
+static inline bool hri_eic_get_NMIFLAG_NMI_bit(const void *const hw)
+{
+	return (((Eic *)hw)->NMIFLAG.reg & EIC_NMIFLAG_NMI) >> EIC_NMIFLAG_NMI_Pos;
+}
+
+static inline void hri_eic_clear_NMIFLAG_NMI_bit(const void *const hw)
+{
+	((Eic *)hw)->NMIFLAG.reg = EIC_NMIFLAG_NMI;
+}
+
+static inline hri_eic_nmiflag_reg_t hri_eic_get_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Eic *)hw)->NMIFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_eic_nmiflag_reg_t hri_eic_read_NMIFLAG_reg(const void *const hw)
+{
+	return ((Eic *)hw)->NMIFLAG.reg;
+}
+
+static inline void hri_eic_clear_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
+{
+	((Eic *)hw)->NMIFLAG.reg = mask;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT0_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT0) >> EIC_INTFLAG_EXTINT0_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT0_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT0;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT1_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT1) >> EIC_INTFLAG_EXTINT1_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT1_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT1;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT2_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT2) >> EIC_INTFLAG_EXTINT2_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT2_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT2;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT3_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT3) >> EIC_INTFLAG_EXTINT3_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT3_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT3;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT4_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT4) >> EIC_INTFLAG_EXTINT4_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT4_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT4;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT5_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT5) >> EIC_INTFLAG_EXTINT5_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT5_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT5;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT6_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT6) >> EIC_INTFLAG_EXTINT6_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT6_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT6;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT7_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT7) >> EIC_INTFLAG_EXTINT7_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT7_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT7;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT8_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT8) >> EIC_INTFLAG_EXTINT8_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT8_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT8;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT9_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT9) >> EIC_INTFLAG_EXTINT9_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT9_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT9;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT10_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT10) >> EIC_INTFLAG_EXTINT10_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT10_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT10;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT11_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT11) >> EIC_INTFLAG_EXTINT11_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT11_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT11;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT12_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT12) >> EIC_INTFLAG_EXTINT12_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT12_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT12;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT13_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT13) >> EIC_INTFLAG_EXTINT13_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT13_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT13;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT14_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT14) >> EIC_INTFLAG_EXTINT14_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT14_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT14;
+}
+
+static inline bool hri_eic_get_INTFLAG_EXTINT15_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT15) >> EIC_INTFLAG_EXTINT15_Pos;
+}
+
+static inline void hri_eic_clear_INTFLAG_EXTINT15_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT15;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT0_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT0) >> EIC_INTFLAG_EXTINT0_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT0_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT0;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT1_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT1) >> EIC_INTFLAG_EXTINT1_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT1_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT1;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT2_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT2) >> EIC_INTFLAG_EXTINT2_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT2_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT2;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT3_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT3) >> EIC_INTFLAG_EXTINT3_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT3_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT3;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT4_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT4) >> EIC_INTFLAG_EXTINT4_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT4_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT4;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT5_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT5) >> EIC_INTFLAG_EXTINT5_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT5_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT5;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT6_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT6) >> EIC_INTFLAG_EXTINT6_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT6_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT6;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT7_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT7) >> EIC_INTFLAG_EXTINT7_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT7_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT7;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT8_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT8) >> EIC_INTFLAG_EXTINT8_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT8_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT8;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT9_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT9) >> EIC_INTFLAG_EXTINT9_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT9_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT9;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT10_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT10) >> EIC_INTFLAG_EXTINT10_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT10_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT10;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT11_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT11) >> EIC_INTFLAG_EXTINT11_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT11_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT11;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT12_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT12) >> EIC_INTFLAG_EXTINT12_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT12_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT12;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT13_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT13) >> EIC_INTFLAG_EXTINT13_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT13_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT13;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT14_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT14) >> EIC_INTFLAG_EXTINT14_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT14_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT14;
+}
+
+static inline bool hri_eic_get_interrupt_EXTINT15_bit(const void *const hw)
+{
+	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT15) >> EIC_INTFLAG_EXTINT15_Pos;
+}
+
+static inline void hri_eic_clear_interrupt_EXTINT15_bit(const void *const hw)
+{
+	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT15;
+}
+
+static inline hri_eic_intflag_reg_t hri_eic_get_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Eic *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_eic_intflag_reg_t hri_eic_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Eic *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_eic_clear_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+{
+	((Eic *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_eic_set_INTEN_EXTINT0_bit(const void *const hw)
@@ -493,370 +859,22 @@ static inline void hri_eic_clear_INTEN_reg(const void *const hw, hri_eic_intense
 	((Eic *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_eic_get_NMIFLAG_NMI_bit(const void *const hw)
+static inline bool hri_eic_get_STATUS_SYNCBUSY_bit(const void *const hw)
 {
-	return (((Eic *)hw)->NMIFLAG.reg & EIC_NMIFLAG_NMI) >> EIC_NMIFLAG_NMI_Pos;
+	return (((Eic *)hw)->STATUS.reg & EIC_STATUS_SYNCBUSY) >> EIC_STATUS_SYNCBUSY_Pos;
 }
 
-static inline void hri_eic_clear_NMIFLAG_NMI_bit(const void *const hw)
-{
-	((Eic *)hw)->NMIFLAG.reg = EIC_NMIFLAG_NMI;
-}
-
-static inline hri_eic_nmiflag_reg_t hri_eic_get_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
+static inline hri_eic_status_reg_t hri_eic_get_STATUS_reg(const void *const hw, hri_eic_status_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Eic *)hw)->NMIFLAG.reg;
+	tmp = ((Eic *)hw)->STATUS.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_eic_nmiflag_reg_t hri_eic_read_NMIFLAG_reg(const void *const hw)
+static inline hri_eic_status_reg_t hri_eic_read_STATUS_reg(const void *const hw)
 {
-	return ((Eic *)hw)->NMIFLAG.reg;
-}
-
-static inline void hri_eic_clear_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
-{
-	((Eic *)hw)->NMIFLAG.reg = mask;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT0_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT0) >> EIC_INTFLAG_EXTINT0_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT0_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT0;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT1_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT1) >> EIC_INTFLAG_EXTINT1_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT1_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT1;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT2_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT2) >> EIC_INTFLAG_EXTINT2_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT2_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT2;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT3_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT3) >> EIC_INTFLAG_EXTINT3_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT3_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT3;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT4_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT4) >> EIC_INTFLAG_EXTINT4_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT4_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT4;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT5_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT5) >> EIC_INTFLAG_EXTINT5_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT5_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT5;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT6_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT6) >> EIC_INTFLAG_EXTINT6_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT6_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT6;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT7_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT7) >> EIC_INTFLAG_EXTINT7_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT7_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT7;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT8_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT8) >> EIC_INTFLAG_EXTINT8_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT8_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT8;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT9_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT9) >> EIC_INTFLAG_EXTINT9_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT9_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT9;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT10_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT10) >> EIC_INTFLAG_EXTINT10_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT10_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT10;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT11_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT11) >> EIC_INTFLAG_EXTINT11_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT11_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT11;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT12_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT12) >> EIC_INTFLAG_EXTINT12_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT12_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT12;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT13_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT13) >> EIC_INTFLAG_EXTINT13_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT13_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT13;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT14_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT14) >> EIC_INTFLAG_EXTINT14_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT14_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT14;
-}
-
-static inline bool hri_eic_get_INTFLAG_EXTINT15_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT15) >> EIC_INTFLAG_EXTINT15_Pos;
-}
-
-static inline void hri_eic_clear_INTFLAG_EXTINT15_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT15;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT0_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT0) >> EIC_INTFLAG_EXTINT0_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT0_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT0;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT1_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT1) >> EIC_INTFLAG_EXTINT1_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT1_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT1;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT2_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT2) >> EIC_INTFLAG_EXTINT2_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT2_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT2;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT3_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT3) >> EIC_INTFLAG_EXTINT3_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT3_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT3;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT4_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT4) >> EIC_INTFLAG_EXTINT4_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT4_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT4;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT5_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT5) >> EIC_INTFLAG_EXTINT5_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT5_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT5;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT6_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT6) >> EIC_INTFLAG_EXTINT6_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT6_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT6;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT7_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT7) >> EIC_INTFLAG_EXTINT7_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT7_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT7;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT8_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT8) >> EIC_INTFLAG_EXTINT8_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT8_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT8;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT9_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT9) >> EIC_INTFLAG_EXTINT9_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT9_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT9;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT10_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT10) >> EIC_INTFLAG_EXTINT10_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT10_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT10;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT11_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT11) >> EIC_INTFLAG_EXTINT11_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT11_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT11;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT12_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT12) >> EIC_INTFLAG_EXTINT12_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT12_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT12;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT13_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT13) >> EIC_INTFLAG_EXTINT13_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT13_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT13;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT14_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT14) >> EIC_INTFLAG_EXTINT14_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT14_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT14;
-}
-
-static inline bool hri_eic_get_interrupt_EXTINT15_bit(const void *const hw)
-{
-	return (((Eic *)hw)->INTFLAG.reg & EIC_INTFLAG_EXTINT15) >> EIC_INTFLAG_EXTINT15_Pos;
-}
-
-static inline void hri_eic_clear_interrupt_EXTINT15_bit(const void *const hw)
-{
-	((Eic *)hw)->INTFLAG.reg = EIC_INTFLAG_EXTINT15;
-}
-
-static inline hri_eic_intflag_reg_t hri_eic_get_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Eic *)hw)->INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_eic_intflag_reg_t hri_eic_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Eic *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_eic_clear_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
-{
-	((Eic *)hw)->INTFLAG.reg = mask;
+	return ((Eic *)hw)->STATUS.reg;
 }
 
 static inline void hri_eic_set_CTRL_SWRST_bit(const void *const hw)
@@ -924,6 +942,7 @@ static inline void hri_eic_toggle_CTRL_ENABLE_bit(const void *const hw)
 static inline void hri_eic_set_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t mask)
 {
 	EIC_CRITICAL_SECTION_ENTER();
+	hri_eic_wait_for_sync(hw);
 	((Eic *)hw)->CTRL.reg |= mask;
 	EIC_CRITICAL_SECTION_LEAVE();
 }
@@ -931,6 +950,7 @@ static inline void hri_eic_set_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t
 static inline hri_eic_ctrl_reg_t hri_eic_get_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t mask)
 {
 	uint8_t tmp;
+	hri_eic_wait_for_sync(hw);
 	tmp = ((Eic *)hw)->CTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -939,6 +959,7 @@ static inline hri_eic_ctrl_reg_t hri_eic_get_CTRL_reg(const void *const hw, hri_
 static inline void hri_eic_write_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t data)
 {
 	EIC_CRITICAL_SECTION_ENTER();
+	hri_eic_wait_for_sync(hw);
 	((Eic *)hw)->CTRL.reg = data;
 	EIC_CRITICAL_SECTION_LEAVE();
 }
@@ -946,6 +967,7 @@ static inline void hri_eic_write_CTRL_reg(const void *const hw, hri_eic_ctrl_reg
 static inline void hri_eic_clear_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t mask)
 {
 	EIC_CRITICAL_SECTION_ENTER();
+	hri_eic_wait_for_sync(hw);
 	((Eic *)hw)->CTRL.reg &= ~mask;
 	EIC_CRITICAL_SECTION_LEAVE();
 }
@@ -953,12 +975,14 @@ static inline void hri_eic_clear_CTRL_reg(const void *const hw, hri_eic_ctrl_reg
 static inline void hri_eic_toggle_CTRL_reg(const void *const hw, hri_eic_ctrl_reg_t mask)
 {
 	EIC_CRITICAL_SECTION_ENTER();
+	hri_eic_wait_for_sync(hw);
 	((Eic *)hw)->CTRL.reg ^= mask;
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_eic_ctrl_reg_t hri_eic_read_CTRL_reg(const void *const hw)
 {
+	hri_eic_wait_for_sync(hw);
 	return ((Eic *)hw)->CTRL.reg;
 }
 
@@ -3205,24 +3229,6 @@ static inline void hri_eic_toggle_CONFIG_reg(const void *const hw, uint8_t index
 static inline hri_eic_config_reg_t hri_eic_read_CONFIG_reg(const void *const hw, uint8_t index)
 {
 	return ((Eic *)hw)->CONFIG[index].reg;
-}
-
-static inline bool hri_eic_get_STATUS_SYNCBUSY_bit(const void *const hw)
-{
-	return (((Eic *)hw)->STATUS.reg & EIC_STATUS_SYNCBUSY) >> EIC_STATUS_SYNCBUSY_Pos;
-}
-
-static inline hri_eic_status_reg_t hri_eic_get_STATUS_reg(const void *const hw, hri_eic_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Eic *)hw)->STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_eic_status_reg_t hri_eic_read_STATUS_reg(const void *const hw)
-{
-	return ((Eic *)hw)->STATUS.reg;
 }
 
 #ifdef __cplusplus

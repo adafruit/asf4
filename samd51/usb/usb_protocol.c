@@ -6,7 +6,7 @@
  * This file contains the USB definitions and data structures provided by the
  * USB 2.0 specification.
  *
- * Copyright (C) 2015 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015-2017 Atmel Corporation. All rights reserved.
  *
  * \page License
  *
@@ -113,6 +113,27 @@ uint8_t *usb_find_cfg_desc(uint8_t *desc, uint8_t *eof, uint8_t cfg_value)
 	while (desc < eof) {
 		_desc_len_check();
 		if (desc[1] != USB_DT_CONFIG) {
+			break;
+		}
+		if (desc[5] == cfg_value) {
+			return desc;
+		}
+		desc = usb_cfg_desc_next(desc);
+	}
+	return NULL;
+}
+
+uint8_t *usb_find_othspdcfg_desc(uint8_t *desc, uint8_t *eof, uint8_t cfg_value)
+{
+	_param_error_check(desc && eof && (desc < eof));
+
+	desc = usb_find_desc(desc, eof, USB_DT_OTHER_SPEED_CONFIG);
+	if (!desc) {
+		return NULL;
+	}
+	while (desc < eof) {
+		_desc_len_check();
+		if (desc[1] != USB_DT_OTHER_SPEED_CONFIG) {
 			break;
 		}
 		if (desc[5] == cfg_value) {

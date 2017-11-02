@@ -2145,7 +2145,6 @@ static int32_t _spi_sync_enable(void *const hw)
 static int32_t _spi_async_enable(void *const hw)
 {
 	_spi_sync_enable(hw);
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
 	uint8_t irq = _sercom_get_irq_num(hw);
 	for (uint32_t i = 0; i < 4; i++) {
 		NVIC_EnableIRQ((IRQn_Type)irq++);

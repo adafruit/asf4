@@ -40,7 +40,7 @@
 #define USBDF_COMPOSITE_DESC_H_
 
 #include "usb_protocol.h"
-#include "usbd_composite_config.h"
+#include "usbd_config.h"
 
 #if CONF_USB_COMPOSITE_CDC_ACM_EN == 1
 #define CONF_CDC_ACM_IFC_LEN 66
@@ -67,12 +67,37 @@
 	        CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_EPADDR, 2, CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_MAXPKSZ, 0x00), \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
 	        CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_EPADDR, 2, CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ, 0x00),
+#define CONF_CDC_ACM_IFC_DESC_HS                                                                                       \
+	USB_IAD_DESC_BYTES(                                                                                                \
+	    CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x02, CDC_CLASS_DEVICE, CDC_SUBCLASS_ACM, CDC_PROTOCOL_V25TER, 0x00)  \
+	,                                                                                                                  \
+	    USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM,                                                  \
+	                         0x00,                                                                                     \
+	                         0x01,                                                                                     \
+	                         CDC_CLASS_DEVICE,                                                                         \
+	                         CDC_SUBCLASS_ACM,                                                                         \
+	                         CDC_PROTOCOL_V25TER,                                                                      \
+	                         0x00),                                                                                    \
+	    USB_CDC_HDR_DESC_BYTES(0x1001), USB_CDC_CALL_MGMT_DESC_BYTES(0x01, 0x00), USB_CDC_ACM_DESC_BYTES(0x02),        \
+	    USB_CDC_UNION_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x01),                                       \
+	    USB_ENDP_DESC_BYTES(                                                                                           \
+	        CONF_USB_COMPOSITE_CDC_ACM_COMM_INT_EPADDR, 3, CONF_USB_COMPOSITE_CDC_ACM_COMM_INT_MAXPKSZ, 10),           \
+	    USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_DATA_BIFCNUM, 0x00, 2, 0x0A, 0x00, 0x00, 0x00),                \
+	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_EPADDR,                                            \
+	                        2,                                                                                         \
+	                        CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_MAXPKSZ_HS,                                        \
+	                        0x00),                                                                                     \
+	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_EPADDR,                                             \
+	                        2,                                                                                         \
+	                        CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ_HS,                                         \
+	                        0x00),
 #else
 #define CONF_CDC_ACM_IFC_LEN 0
 #define CONF_CDC_ACM_IFC_NUM 0
 #define CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM -2
 #define CONF_USB_COMPOSITE_CDC_ACM_DATA_BIFCNUM -1
 #define CONF_CDC_ACM_IFC_DESC
+#define CONF_CDC_ACM_IFC_DESC_HS
 #endif
 
 #if CONF_USB_COMPOSITE_HID_MOUSE_EN == 1
@@ -135,11 +160,16 @@
 	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00)                           \
 	, USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ, 0),         \
 	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ, 0),
+#define CONF_MSC_IFC_DESC_HS                                                                                           \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00)                           \
+	, USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS, 0),      \
+	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS, 0),
 #else
 #define CONF_MSC_IFC_LEN 0
 #define CONF_MSC_IFC_NUM 0
 #define CONF_USB_COMPOSITE_MSC_BIFCNUM CONF_USB_COMPOSITE_HID_GENERIC_BIFCNUM
 #define CONF_MSC_IFC_DESC
+#define CONF_MSC_IFC_DESC_HS
 #endif
 
 #define CONF_USB_COMPOSITE_TOTAL_LEN                                                                                   \
@@ -165,6 +195,10 @@
 	                   CONF_USB_COMPOSITE_ISERIALNUM,                                                                  \
 	                   CONF_USB_COMPOSITE_BNUMCONFIG)
 
+#define COMPOSITE_DEV_QUAL_DESC                                                                                        \
+	USB_DEV_QUAL_DESC_BYTES(                                                                                           \
+	    CONF_USB_COMPOSITE_BCDUSB, 0xEF, 0x02, 0x01, CONF_USB_COMPOSITE_BMAXPKSZ0, CONF_USB_COMPOSITE_BNUMCONFIG)
+
 #define COMPOSITE_CFG_DESC                                                                                             \
 	USB_CONFIG_DESC_BYTES(CONF_USB_COMPOSITE_TOTAL_LEN,                                                                \
 	                      CONF_USB_COMPOSITE_IFC_NUM,                                                                  \
@@ -173,6 +207,14 @@
 	                      CONF_USB_COMPOSITE_BMATTRI,                                                                  \
 	                      CONF_USB_COMPOSITE_BMAXPOWER)
 
+#define COMPOSITE_OTH_SPD_CFG_DESC                                                                                     \
+	USB_OTH_SPD_CFG_DESC_BYTES(CONF_USB_COMPOSITE_TOTAL_LEN,                                                           \
+	                           CONF_USB_COMPOSITE_IFC_NUM,                                                             \
+	                           CONF_USB_COMPOSITE_BCONFIGVAL,                                                          \
+	                           CONF_USB_COMPOSITE_ICONFIG,                                                             \
+	                           CONF_USB_COMPOSITE_BMATTRI,                                                             \
+	                           CONF_USB_COMPOSITE_BMAXPOWER)
+
 #define COMPOSITE_IFACE_DESCES                                                                                         \
 	CONF_CDC_ACM_IFC_DESC                                                                                              \
 	CONF_HID_MOUSE_IFC_DESC                                                                                            \
@@ -180,9 +222,28 @@
 	CONF_HID_GENERIC_IFC_DESC                                                                                          \
 	CONF_MSC_IFC_DESC
 
+#define COMPOSITE_IFACE_DESCES_HS                                                                                      \
+	CONF_CDC_ACM_IFC_DESC_HS                                                                                           \
+	CONF_HID_MOUSE_IFC_DESC                                                                                            \
+	CONF_HID_KEYBOARD_IFC_DESC                                                                                         \
+	CONF_HID_GENERIC_IFC_DESC                                                                                          \
+	CONF_MSC_IFC_DESC_HS
+
+#define COMPOSITE_STR_DESCESS                                                                                          \
+	CONF_USB_COMPOSITE_LANGID_DESC                                                                                     \
+	CONF_USB_COMPOSITE_IMANUFACT_STR_DESC                                                                              \
+	CONF_USB_COMPOSITE_IPRODUCT_STR_DESC                                                                               \
+	CONF_USB_COMPOSITE_ISERIALNUM_STR_DESC                                                                             \
+	CONF_USB_COMPOSITE_ICONFIG_STR_DESC
+
 /** USB Device descriptors and configuration descriptors */
-#define COMPOSITE_DESCES_LS_FS                                                                                         \
-	COMPOSITE_DEV_DESC, COMPOSITE_CFG_DESC, COMPOSITE_IFACE_DESCES CONF_USB_COMPOSITE_LANGUAGE_ID_STR_DESC,            \
-	    CONF_USB_COMPOSITE_MANUFACTOR_STR_DESC, CONF_USB_COMPOSITE_PRODUCT_STR_DESC
+#define COMPOSITE_DESCES_LS_FS COMPOSITE_DEV_DESC, COMPOSITE_CFG_DESC, COMPOSITE_IFACE_DESCES COMPOSITE_STR_DESCESS
+
+#define COMPOSITE_HS_DESCES_LS_FS                                                                                      \
+	COMPOSITE_DEV_DESC, COMPOSITE_DEV_QUAL_DESC, COMPOSITE_CFG_DESC,                                                   \
+	    COMPOSITE_IFACE_DESCES COMPOSITE_OTH_SPD_CFG_DESC, COMPOSITE_IFACE_DESCES_HS COMPOSITE_STR_DESCESS
+
+#define COMPOSITE_HS_DESCES_HS                                                                                         \
+	COMPOSITE_CFG_DESC, COMPOSITE_IFACE_DESCES_HS COMPOSITE_OTH_SPD_CFG_DESC, COMPOSITE_IFACE_DESCES
 
 #endif /* USBDF_COMPOSITE_DESC_H_ */

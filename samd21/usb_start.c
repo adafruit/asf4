@@ -8,14 +8,28 @@
 #include "atmel_start.h"
 #include "usb_start.h"
 
+/* Max LUN number */
 #define CONF_USB_MSC_MAX_LUN 0
 
+#if CONF_USBD_HS_SP
 static uint8_t multi_desc_bytes[] = {
     /* Device descriptors and Configuration descriptors list. */
-    COMPOSITE_DESCES_LS_FS,
-};
+    COMPOSITE_HS_DESCES_LS_FS};
+static uint8_t multi_desc_bytes_hs[] = {
+    /* Device descriptors and Configuration descriptors list. */
+    COMPOSITE_HS_DESCES_HS};
+#else
+static uint8_t multi_desc_bytes[] = {
+    /* Device descriptors and Configuration descriptors list. */
+    COMPOSITE_DESCES_LS_FS};
+#endif
 
-static struct usbd_descriptors multi_desc = {multi_desc_bytes, multi_desc_bytes + sizeof(multi_desc_bytes)};
+static struct usbd_descriptors multi_desc[] = {{multi_desc_bytes, multi_desc_bytes + sizeof(multi_desc_bytes)}
+#if CONF_USBD_HS_SP
+                                               ,
+                                               {multi_desc_bytes_hs, multi_desc_bytes_hs + sizeof(multi_desc_bytes_hs)}
+#endif
+};
 
 /** Ctrl endpoint buffer */
 static uint8_t ctrl_buffer[64];
@@ -42,7 +56,7 @@ void composite_device_init(void)
 
 void composite_device_start(void)
 {
-	usbdc_start(&multi_desc);
+	usbdc_start(multi_desc);
 	usbdc_attach();
 }
 

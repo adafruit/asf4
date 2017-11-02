@@ -100,9 +100,10 @@ struct tc_configuration {
 	hri_tc_ctrla_reg_t   ctrl_a;
 	hri_tc_evctrl_reg_t  event_ctrl;
 	hri_tc_dbgctrl_reg_t dbg_ctrl;
-	hri_tc_per_reg_t     per;
-	hri_tc_cc32_reg_t    cc0;
-	hri_tc_cc32_reg_t    cc1;
+
+	hri_tc_per_reg_t  per;
+	hri_tc_cc32_reg_t cc0;
+	hri_tc_cc32_reg_t cc1;
 };
 
 /**
@@ -164,8 +165,8 @@ int32_t _pwm_init(struct _pwm_device *const device, void *const hw)
 		hri_tccount32_write_CC_reg(hw, 0, _tcs[i].cc0);
 		hri_tccount32_write_CC_reg(hw, 1, _tcs[i].cc1);
 	} else if ((_tcs[i].ctrl_a & TC_CTRLA_MODE_Msk) == TC_CTRLA_MODE_COUNT16) {
-		hri_tccount16_write_CC_reg(hw, 0, (hri_tc_count16_reg_t)_tcs[i].cc0);
-		hri_tccount16_write_CC_reg(hw, 1, (hri_tc_count16_reg_t)_tcs[i].cc1);
+		hri_tccount16_write_CC_reg(hw, 0, (uint16_t)_tcs[i].cc0);
+		hri_tccount16_write_CC_reg(hw, 1, (uint16_t)_tcs[i].cc1);
 	} else {
 		/* 8-bit resolution is not accepted by duty cycle control */
 		return -1;

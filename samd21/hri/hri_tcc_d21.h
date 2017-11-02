@@ -3,7 +3,7 @@
  *
  * \brief SAM TCC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -90,6 +90,898 @@ static inline void hri_tcc_wait_for_sync(const void *const hw, hri_tcc_syncbusy_
 static inline bool hri_tcc_is_syncing(const void *const hw, hri_tcc_syncbusy_reg_t reg)
 {
 	return ((Tcc *)hw)->SYNCBUSY.reg & reg;
+}
+
+static inline bool hri_tcc_get_INTFLAG_OVF_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_OVF) >> TCC_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_OVF_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_OVF;
+}
+
+static inline bool hri_tcc_get_INTFLAG_TRG_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_TRG) >> TCC_INTFLAG_TRG_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_TRG_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_TRG;
+}
+
+static inline bool hri_tcc_get_INTFLAG_CNT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_CNT) >> TCC_INTFLAG_CNT_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_CNT_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_CNT;
+}
+
+static inline bool hri_tcc_get_INTFLAG_ERR_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_ERR) >> TCC_INTFLAG_ERR_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_ERR_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_ERR;
+}
+
+static inline bool hri_tcc_get_INTFLAG_DFS_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_DFS) >> TCC_INTFLAG_DFS_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_DFS_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_DFS;
+}
+
+static inline bool hri_tcc_get_INTFLAG_FAULTA_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTA) >> TCC_INTFLAG_FAULTA_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_FAULTA_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTA;
+}
+
+static inline bool hri_tcc_get_INTFLAG_FAULTB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTB) >> TCC_INTFLAG_FAULTB_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_FAULTB_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTB;
+}
+
+static inline bool hri_tcc_get_INTFLAG_FAULT0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT0) >> TCC_INTFLAG_FAULT0_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_FAULT0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT0;
+}
+
+static inline bool hri_tcc_get_INTFLAG_FAULT1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT1) >> TCC_INTFLAG_FAULT1_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_FAULT1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT1;
+}
+
+static inline bool hri_tcc_get_INTFLAG_MC0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC0) >> TCC_INTFLAG_MC0_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_MC0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC0;
+}
+
+static inline bool hri_tcc_get_INTFLAG_MC1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC1) >> TCC_INTFLAG_MC1_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_MC1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC1;
+}
+
+static inline bool hri_tcc_get_INTFLAG_MC2_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC2) >> TCC_INTFLAG_MC2_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_MC2_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC2;
+}
+
+static inline bool hri_tcc_get_INTFLAG_MC3_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC3) >> TCC_INTFLAG_MC3_Pos;
+}
+
+static inline void hri_tcc_clear_INTFLAG_MC3_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC3;
+}
+
+static inline bool hri_tcc_get_interrupt_OVF_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_OVF) >> TCC_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_OVF_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_OVF;
+}
+
+static inline bool hri_tcc_get_interrupt_TRG_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_TRG) >> TCC_INTFLAG_TRG_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_TRG_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_TRG;
+}
+
+static inline bool hri_tcc_get_interrupt_CNT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_CNT) >> TCC_INTFLAG_CNT_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_CNT_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_CNT;
+}
+
+static inline bool hri_tcc_get_interrupt_ERR_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_ERR) >> TCC_INTFLAG_ERR_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_ERR_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_ERR;
+}
+
+static inline bool hri_tcc_get_interrupt_DFS_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_DFS) >> TCC_INTFLAG_DFS_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_DFS_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_DFS;
+}
+
+static inline bool hri_tcc_get_interrupt_FAULTA_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTA) >> TCC_INTFLAG_FAULTA_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_FAULTA_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTA;
+}
+
+static inline bool hri_tcc_get_interrupt_FAULTB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTB) >> TCC_INTFLAG_FAULTB_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_FAULTB_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTB;
+}
+
+static inline bool hri_tcc_get_interrupt_FAULT0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT0) >> TCC_INTFLAG_FAULT0_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_FAULT0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT0;
+}
+
+static inline bool hri_tcc_get_interrupt_FAULT1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT1) >> TCC_INTFLAG_FAULT1_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_FAULT1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT1;
+}
+
+static inline bool hri_tcc_get_interrupt_MC0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC0) >> TCC_INTFLAG_MC0_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_MC0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC0;
+}
+
+static inline bool hri_tcc_get_interrupt_MC1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC1) >> TCC_INTFLAG_MC1_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_MC1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC1;
+}
+
+static inline bool hri_tcc_get_interrupt_MC2_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC2) >> TCC_INTFLAG_MC2_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_MC2_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC2;
+}
+
+static inline bool hri_tcc_get_interrupt_MC3_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC3) >> TCC_INTFLAG_MC3_Pos;
+}
+
+static inline void hri_tcc_clear_interrupt_MC3_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC3;
+}
+
+static inline hri_tcc_intflag_reg_t hri_tcc_get_INTFLAG_reg(const void *const hw, hri_tcc_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Tcc *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_tcc_intflag_reg_t hri_tcc_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Tcc *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_tcc_clear_INTFLAG_reg(const void *const hw, hri_tcc_intflag_reg_t mask)
+{
+	((Tcc *)hw)->INTFLAG.reg = mask;
+}
+
+static inline void hri_tcc_set_CTRLB_DIR_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_DIR;
+}
+
+static inline bool hri_tcc_get_CTRLB_DIR_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_DIR) >> TCC_CTRLBSET_DIR_Pos;
+}
+
+static inline void hri_tcc_write_CTRLB_DIR_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_DIR;
+	} else {
+		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_DIR;
+	}
+}
+
+static inline void hri_tcc_clear_CTRLB_DIR_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_DIR;
+}
+
+static inline void hri_tcc_set_CTRLB_LUPD_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_LUPD;
+}
+
+static inline bool hri_tcc_get_CTRLB_LUPD_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_LUPD) >> TCC_CTRLBSET_LUPD_Pos;
+}
+
+static inline void hri_tcc_write_CTRLB_LUPD_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_LUPD;
+	} else {
+		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_LUPD;
+	}
+}
+
+static inline void hri_tcc_clear_CTRLB_LUPD_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_LUPD;
+}
+
+static inline void hri_tcc_set_CTRLB_ONESHOT_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_ONESHOT;
+}
+
+static inline bool hri_tcc_get_CTRLB_ONESHOT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_ONESHOT) >> TCC_CTRLBSET_ONESHOT_Pos;
+}
+
+static inline void hri_tcc_write_CTRLB_ONESHOT_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_ONESHOT;
+	} else {
+		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_ONESHOT;
+	}
+}
+
+static inline void hri_tcc_clear_CTRLB_ONESHOT_bit(const void *const hw)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_ONESHOT;
+}
+
+static inline void hri_tcc_set_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_IDXCMD(mask);
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Tcc *)hw)->CTRLBSET.reg;
+	tmp = (tmp & TCC_CTRLBSET_IDXCMD(mask)) >> TCC_CTRLBSET_IDXCMD_Pos;
+	return tmp;
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_IDXCMD_bf(const void *const hw)
+{
+	uint8_t tmp;
+	tmp = ((Tcc *)hw)->CTRLBSET.reg;
+	tmp = (tmp & TCC_CTRLBSET_IDXCMD_Msk) >> TCC_CTRLBSET_IDXCMD_Pos;
+	return tmp;
+}
+
+static inline void hri_tcc_write_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t data)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_IDXCMD(data);
+	((Tcc *)hw)->CTRLBCLR.reg = ~TCC_CTRLBSET_IDXCMD(data);
+}
+
+static inline void hri_tcc_clear_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_IDXCMD(mask);
+}
+
+static inline void hri_tcc_set_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_CMD(mask);
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Tcc *)hw)->CTRLBSET.reg;
+	tmp = (tmp & TCC_CTRLBSET_CMD(mask)) >> TCC_CTRLBSET_CMD_Pos;
+	return tmp;
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_CMD_bf(const void *const hw)
+{
+	uint8_t tmp;
+	tmp = ((Tcc *)hw)->CTRLBSET.reg;
+	tmp = (tmp & TCC_CTRLBSET_CMD_Msk) >> TCC_CTRLBSET_CMD_Pos;
+	return tmp;
+}
+
+static inline void hri_tcc_write_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t data)
+{
+	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_CMD(data);
+	((Tcc *)hw)->CTRLBCLR.reg = ~TCC_CTRLBSET_CMD(data);
+}
+
+static inline void hri_tcc_clear_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_CMD(mask);
+}
+
+static inline void hri_tcc_set_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBSET.reg = mask;
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Tcc *)hw)->CTRLBSET.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_reg(const void *const hw)
+{
+	return ((Tcc *)hw)->CTRLBSET.reg;
+}
+
+static inline void hri_tcc_write_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t data)
+{
+	((Tcc *)hw)->CTRLBSET.reg = data;
+	((Tcc *)hw)->CTRLBCLR.reg = ~data;
+}
+
+static inline void hri_tcc_clear_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
+{
+	((Tcc *)hw)->CTRLBCLR.reg = mask;
+}
+
+static inline void hri_tcc_set_INTEN_OVF_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_OVF;
+}
+
+static inline bool hri_tcc_get_INTEN_OVF_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_OVF) >> TCC_INTENSET_OVF_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_OVF_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_OVF;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_OVF;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_OVF_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_OVF;
+}
+
+static inline void hri_tcc_set_INTEN_TRG_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_TRG;
+}
+
+static inline bool hri_tcc_get_INTEN_TRG_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_TRG) >> TCC_INTENSET_TRG_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_TRG_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_TRG;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_TRG;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_TRG_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_TRG;
+}
+
+static inline void hri_tcc_set_INTEN_CNT_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_CNT;
+}
+
+static inline bool hri_tcc_get_INTEN_CNT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_CNT) >> TCC_INTENSET_CNT_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_CNT_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_CNT;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_CNT;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_CNT_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_CNT;
+}
+
+static inline void hri_tcc_set_INTEN_ERR_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_ERR;
+}
+
+static inline bool hri_tcc_get_INTEN_ERR_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_ERR) >> TCC_INTENSET_ERR_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_ERR_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_ERR;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_ERR;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_ERR_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_ERR;
+}
+
+static inline void hri_tcc_set_INTEN_DFS_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_DFS;
+}
+
+static inline bool hri_tcc_get_INTEN_DFS_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_DFS) >> TCC_INTENSET_DFS_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_DFS_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_DFS;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_DFS;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_DFS_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_DFS;
+}
+
+static inline void hri_tcc_set_INTEN_FAULTA_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTA;
+}
+
+static inline bool hri_tcc_get_INTEN_FAULTA_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULTA) >> TCC_INTENSET_FAULTA_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_FAULTA_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTA;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTA;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_FAULTA_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTA;
+}
+
+static inline void hri_tcc_set_INTEN_FAULTB_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTB;
+}
+
+static inline bool hri_tcc_get_INTEN_FAULTB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULTB) >> TCC_INTENSET_FAULTB_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_FAULTB_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTB;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTB;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_FAULTB_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTB;
+}
+
+static inline void hri_tcc_set_INTEN_FAULT0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT0;
+}
+
+static inline bool hri_tcc_get_INTEN_FAULT0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULT0) >> TCC_INTENSET_FAULT0_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_FAULT0_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT0;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT0;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_FAULT0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT0;
+}
+
+static inline void hri_tcc_set_INTEN_FAULT1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT1;
+}
+
+static inline bool hri_tcc_get_INTEN_FAULT1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULT1) >> TCC_INTENSET_FAULT1_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_FAULT1_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT1;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT1;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_FAULT1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT1;
+}
+
+static inline void hri_tcc_set_INTEN_MC0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC0;
+}
+
+static inline bool hri_tcc_get_INTEN_MC0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC0) >> TCC_INTENSET_MC0_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_MC0_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC0;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC0;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_MC0_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC0;
+}
+
+static inline void hri_tcc_set_INTEN_MC1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC1;
+}
+
+static inline bool hri_tcc_get_INTEN_MC1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC1) >> TCC_INTENSET_MC1_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_MC1_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC1;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC1;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_MC1_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC1;
+}
+
+static inline void hri_tcc_set_INTEN_MC2_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC2;
+}
+
+static inline bool hri_tcc_get_INTEN_MC2_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC2) >> TCC_INTENSET_MC2_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_MC2_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC2;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC2;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_MC2_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC2;
+}
+
+static inline void hri_tcc_set_INTEN_MC3_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC3;
+}
+
+static inline bool hri_tcc_get_INTEN_MC3_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC3) >> TCC_INTENSET_MC3_Pos;
+}
+
+static inline void hri_tcc_write_INTEN_MC3_bit(const void *const hw, bool value)
+{
+	if (value == 0x0) {
+		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC3;
+	} else {
+		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC3;
+	}
+}
+
+static inline void hri_tcc_clear_INTEN_MC3_bit(const void *const hw)
+{
+	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC3;
+}
+
+static inline void hri_tcc_set_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
+{
+	((Tcc *)hw)->INTENSET.reg = mask;
+}
+
+static inline hri_tcc_intenset_reg_t hri_tcc_get_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Tcc *)hw)->INTENSET.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_tcc_intenset_reg_t hri_tcc_read_INTEN_reg(const void *const hw)
+{
+	return ((Tcc *)hw)->INTENSET.reg;
+}
+
+static inline void hri_tcc_write_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t data)
+{
+	((Tcc *)hw)->INTENSET.reg = data;
+	((Tcc *)hw)->INTENCLR.reg = ~data;
+}
+
+static inline void hri_tcc_clear_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
+{
+	((Tcc *)hw)->INTENCLR.reg = mask;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_SWRST_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_SWRST) >> TCC_SYNCBUSY_SWRST_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_ENABLE_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_ENABLE) >> TCC_SYNCBUSY_ENABLE_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CTRLB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CTRLB) >> TCC_SYNCBUSY_CTRLB_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_STATUS_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_STATUS) >> TCC_SYNCBUSY_STATUS_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_COUNT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_COUNT) >> TCC_SYNCBUSY_COUNT_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_PATT_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PATT) >> TCC_SYNCBUSY_PATT_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_WAVE_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_WAVE) >> TCC_SYNCBUSY_WAVE_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_PER_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PER) >> TCC_SYNCBUSY_PER_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CC0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC0) >> TCC_SYNCBUSY_CC0_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CC1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC1) >> TCC_SYNCBUSY_CC1_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CC2_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC2) >> TCC_SYNCBUSY_CC2_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CC3_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC3) >> TCC_SYNCBUSY_CC3_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_PATTB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PATTB) >> TCC_SYNCBUSY_PATTB_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_WAVEB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_WAVEB) >> TCC_SYNCBUSY_WAVEB_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_PERB_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PERB) >> TCC_SYNCBUSY_PERB_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CCB0_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB0) >> TCC_SYNCBUSY_CCB0_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CCB1_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB1) >> TCC_SYNCBUSY_CCB1_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CCB2_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB2) >> TCC_SYNCBUSY_CCB2_Pos;
+}
+
+static inline bool hri_tcc_get_SYNCBUSY_CCB3_bit(const void *const hw)
+{
+	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB3) >> TCC_SYNCBUSY_CCB3_Pos;
+}
+
+static inline hri_tcc_syncbusy_reg_t hri_tcc_get_SYNCBUSY_reg(const void *const hw, hri_tcc_syncbusy_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Tcc *)hw)->SYNCBUSY.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_tcc_syncbusy_reg_t hri_tcc_read_SYNCBUSY_reg(const void *const hw)
+{
+	return ((Tcc *)hw)->SYNCBUSY.reg;
 }
 
 static inline void hri_tcc_set_COUNT_DITH4_COUNT_bf(const void *const hw, hri_tcc_count_reg_t mask)
@@ -287,6 +1179,7 @@ static inline hri_tcc_count_reg_t hri_tcc_read_COUNT_COUNT_bf(const void *const 
 static inline void hri_tcc_set_COUNT_DITH4_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -294,6 +1187,7 @@ static inline void hri_tcc_set_COUNT_DITH4_reg(const void *const hw, hri_tcc_cou
 static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH4_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -302,6 +1196,7 @@ static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH4_reg(const void *const 
 static inline void hri_tcc_write_COUNT_DITH4_reg(const void *const hw, hri_tcc_count_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -309,6 +1204,7 @@ static inline void hri_tcc_write_COUNT_DITH4_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_clear_COUNT_DITH4_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -316,18 +1212,21 @@ static inline void hri_tcc_clear_COUNT_DITH4_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_toggle_COUNT_DITH4_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_count_reg_t hri_tcc_read_COUNT_DITH4_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->COUNT.reg;
 }
 
 static inline void hri_tcc_set_COUNT_DITH5_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -335,6 +1234,7 @@ static inline void hri_tcc_set_COUNT_DITH5_reg(const void *const hw, hri_tcc_cou
 static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH5_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -343,6 +1243,7 @@ static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH5_reg(const void *const 
 static inline void hri_tcc_write_COUNT_DITH5_reg(const void *const hw, hri_tcc_count_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -350,6 +1251,7 @@ static inline void hri_tcc_write_COUNT_DITH5_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_clear_COUNT_DITH5_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -357,18 +1259,21 @@ static inline void hri_tcc_clear_COUNT_DITH5_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_toggle_COUNT_DITH5_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_count_reg_t hri_tcc_read_COUNT_DITH5_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->COUNT.reg;
 }
 
 static inline void hri_tcc_set_COUNT_DITH6_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -376,6 +1281,7 @@ static inline void hri_tcc_set_COUNT_DITH6_reg(const void *const hw, hri_tcc_cou
 static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH6_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -384,6 +1290,7 @@ static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_DITH6_reg(const void *const 
 static inline void hri_tcc_write_COUNT_DITH6_reg(const void *const hw, hri_tcc_count_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -391,6 +1298,7 @@ static inline void hri_tcc_write_COUNT_DITH6_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_clear_COUNT_DITH6_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -398,18 +1306,21 @@ static inline void hri_tcc_clear_COUNT_DITH6_reg(const void *const hw, hri_tcc_c
 static inline void hri_tcc_toggle_COUNT_DITH6_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_count_reg_t hri_tcc_read_COUNT_DITH6_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->COUNT.reg;
 }
 
 static inline void hri_tcc_set_COUNT_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -417,6 +1328,7 @@ static inline void hri_tcc_set_COUNT_reg(const void *const hw, hri_tcc_count_reg
 static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -425,6 +1337,7 @@ static inline hri_tcc_count_reg_t hri_tcc_get_COUNT_reg(const void *const hw, hr
 static inline void hri_tcc_write_COUNT_reg(const void *const hw, hri_tcc_count_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -432,6 +1345,7 @@ static inline void hri_tcc_write_COUNT_reg(const void *const hw, hri_tcc_count_r
 static inline void hri_tcc_clear_COUNT_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -439,12 +1353,14 @@ static inline void hri_tcc_clear_COUNT_reg(const void *const hw, hri_tcc_count_r
 static inline void hri_tcc_toggle_COUNT_reg(const void *const hw, hri_tcc_count_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->COUNT.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_count_reg_t hri_tcc_read_COUNT_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->COUNT.reg;
 }
 
@@ -787,6 +1703,7 @@ static inline hri_tcc_per_reg_t hri_tcc_read_PER_PER_bf(const void *const hw)
 static inline void hri_tcc_set_PER_DITH4_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -794,6 +1711,7 @@ static inline void hri_tcc_set_PER_DITH4_reg(const void *const hw, hri_tcc_per_r
 static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH4_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->PER.reg;
 	tmp &= mask;
 	return tmp;
@@ -802,6 +1720,7 @@ static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH4_reg(const void *const hw, 
 static inline void hri_tcc_write_PER_DITH4_reg(const void *const hw, hri_tcc_per_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -809,6 +1728,7 @@ static inline void hri_tcc_write_PER_DITH4_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_clear_PER_DITH4_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -816,18 +1736,21 @@ static inline void hri_tcc_clear_PER_DITH4_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_toggle_PER_DITH4_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_per_reg_t hri_tcc_read_PER_DITH4_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->PER.reg;
 }
 
 static inline void hri_tcc_set_PER_DITH5_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -835,6 +1758,7 @@ static inline void hri_tcc_set_PER_DITH5_reg(const void *const hw, hri_tcc_per_r
 static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH5_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->PER.reg;
 	tmp &= mask;
 	return tmp;
@@ -843,6 +1767,7 @@ static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH5_reg(const void *const hw, 
 static inline void hri_tcc_write_PER_DITH5_reg(const void *const hw, hri_tcc_per_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -850,6 +1775,7 @@ static inline void hri_tcc_write_PER_DITH5_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_clear_PER_DITH5_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -857,18 +1783,21 @@ static inline void hri_tcc_clear_PER_DITH5_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_toggle_PER_DITH5_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_per_reg_t hri_tcc_read_PER_DITH5_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->PER.reg;
 }
 
 static inline void hri_tcc_set_PER_DITH6_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -876,6 +1805,7 @@ static inline void hri_tcc_set_PER_DITH6_reg(const void *const hw, hri_tcc_per_r
 static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH6_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->PER.reg;
 	tmp &= mask;
 	return tmp;
@@ -884,6 +1814,7 @@ static inline hri_tcc_per_reg_t hri_tcc_get_PER_DITH6_reg(const void *const hw, 
 static inline void hri_tcc_write_PER_DITH6_reg(const void *const hw, hri_tcc_per_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -891,6 +1822,7 @@ static inline void hri_tcc_write_PER_DITH6_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_clear_PER_DITH6_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -898,18 +1830,21 @@ static inline void hri_tcc_clear_PER_DITH6_reg(const void *const hw, hri_tcc_per
 static inline void hri_tcc_toggle_PER_DITH6_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_per_reg_t hri_tcc_read_PER_DITH6_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->PER.reg;
 }
 
 static inline void hri_tcc_set_PER_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -917,6 +1852,7 @@ static inline void hri_tcc_set_PER_reg(const void *const hw, hri_tcc_per_reg_t m
 static inline hri_tcc_per_reg_t hri_tcc_get_PER_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->PER.reg;
 	tmp &= mask;
 	return tmp;
@@ -925,6 +1861,7 @@ static inline hri_tcc_per_reg_t hri_tcc_get_PER_reg(const void *const hw, hri_tc
 static inline void hri_tcc_write_PER_reg(const void *const hw, hri_tcc_per_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -932,6 +1869,7 @@ static inline void hri_tcc_write_PER_reg(const void *const hw, hri_tcc_per_reg_t
 static inline void hri_tcc_clear_PER_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -939,12 +1877,14 @@ static inline void hri_tcc_clear_PER_reg(const void *const hw, hri_tcc_per_reg_t
 static inline void hri_tcc_toggle_PER_reg(const void *const hw, hri_tcc_per_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PER.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_per_reg_t hri_tcc_read_PER_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->PER.reg;
 }
 
@@ -2457,790 +3397,6 @@ static inline hri_tcc_ccb_reg_t hri_tcc_read_CCB_reg(const void *const hw, uint8
 	return ((Tcc *)hw)->CCB[index].reg;
 }
 
-static inline void hri_tcc_set_CTRLB_DIR_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_DIR;
-}
-
-static inline bool hri_tcc_get_CTRLB_DIR_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_DIR) >> TCC_CTRLBSET_DIR_Pos;
-}
-
-static inline void hri_tcc_write_CTRLB_DIR_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_DIR;
-	} else {
-		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_DIR;
-	}
-}
-
-static inline void hri_tcc_clear_CTRLB_DIR_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_DIR;
-}
-
-static inline void hri_tcc_set_CTRLB_LUPD_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_LUPD;
-}
-
-static inline bool hri_tcc_get_CTRLB_LUPD_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_LUPD) >> TCC_CTRLBSET_LUPD_Pos;
-}
-
-static inline void hri_tcc_write_CTRLB_LUPD_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_LUPD;
-	} else {
-		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_LUPD;
-	}
-}
-
-static inline void hri_tcc_clear_CTRLB_LUPD_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_LUPD;
-}
-
-static inline void hri_tcc_set_CTRLB_ONESHOT_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_ONESHOT;
-}
-
-static inline bool hri_tcc_get_CTRLB_ONESHOT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->CTRLBSET.reg & TCC_CTRLBSET_ONESHOT) >> TCC_CTRLBSET_ONESHOT_Pos;
-}
-
-static inline void hri_tcc_write_CTRLB_ONESHOT_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_ONESHOT;
-	} else {
-		((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_ONESHOT;
-	}
-}
-
-static inline void hri_tcc_clear_CTRLB_ONESHOT_bit(const void *const hw)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_ONESHOT;
-}
-
-static inline void hri_tcc_set_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_IDXCMD(mask);
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Tcc *)hw)->CTRLBSET.reg;
-	tmp = (tmp & TCC_CTRLBSET_IDXCMD(mask)) >> TCC_CTRLBSET_IDXCMD_Pos;
-	return tmp;
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_IDXCMD_bf(const void *const hw)
-{
-	uint8_t tmp;
-	tmp = ((Tcc *)hw)->CTRLBSET.reg;
-	tmp = (tmp & TCC_CTRLBSET_IDXCMD_Msk) >> TCC_CTRLBSET_IDXCMD_Pos;
-	return tmp;
-}
-
-static inline void hri_tcc_write_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t data)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_IDXCMD(data);
-	((Tcc *)hw)->CTRLBCLR.reg = ~TCC_CTRLBSET_IDXCMD(data);
-}
-
-static inline void hri_tcc_clear_CTRLB_IDXCMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_IDXCMD(mask);
-}
-
-static inline void hri_tcc_set_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_CMD(mask);
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Tcc *)hw)->CTRLBSET.reg;
-	tmp = (tmp & TCC_CTRLBSET_CMD(mask)) >> TCC_CTRLBSET_CMD_Pos;
-	return tmp;
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_CMD_bf(const void *const hw)
-{
-	uint8_t tmp;
-	tmp = ((Tcc *)hw)->CTRLBSET.reg;
-	tmp = (tmp & TCC_CTRLBSET_CMD_Msk) >> TCC_CTRLBSET_CMD_Pos;
-	return tmp;
-}
-
-static inline void hri_tcc_write_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t data)
-{
-	((Tcc *)hw)->CTRLBSET.reg = TCC_CTRLBSET_CMD(data);
-	((Tcc *)hw)->CTRLBCLR.reg = ~TCC_CTRLBSET_CMD(data);
-}
-
-static inline void hri_tcc_clear_CTRLB_CMD_bf(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = TCC_CTRLBSET_CMD(mask);
-}
-
-static inline void hri_tcc_set_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBSET.reg = mask;
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_get_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Tcc *)hw)->CTRLBSET.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_tcc_ctrlbset_reg_t hri_tcc_read_CTRLB_reg(const void *const hw)
-{
-	return ((Tcc *)hw)->CTRLBSET.reg;
-}
-
-static inline void hri_tcc_write_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t data)
-{
-	((Tcc *)hw)->CTRLBSET.reg = data;
-	((Tcc *)hw)->CTRLBCLR.reg = ~data;
-}
-
-static inline void hri_tcc_clear_CTRLB_reg(const void *const hw, hri_tcc_ctrlbset_reg_t mask)
-{
-	((Tcc *)hw)->CTRLBCLR.reg = mask;
-}
-
-static inline void hri_tcc_set_INTEN_OVF_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_OVF;
-}
-
-static inline bool hri_tcc_get_INTEN_OVF_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_OVF) >> TCC_INTENSET_OVF_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_OVF_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_OVF;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_OVF;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_OVF_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_OVF;
-}
-
-static inline void hri_tcc_set_INTEN_TRG_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_TRG;
-}
-
-static inline bool hri_tcc_get_INTEN_TRG_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_TRG) >> TCC_INTENSET_TRG_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_TRG_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_TRG;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_TRG;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_TRG_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_TRG;
-}
-
-static inline void hri_tcc_set_INTEN_CNT_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_CNT;
-}
-
-static inline bool hri_tcc_get_INTEN_CNT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_CNT) >> TCC_INTENSET_CNT_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_CNT_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_CNT;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_CNT;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_CNT_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_CNT;
-}
-
-static inline void hri_tcc_set_INTEN_ERR_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_ERR;
-}
-
-static inline bool hri_tcc_get_INTEN_ERR_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_ERR) >> TCC_INTENSET_ERR_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_ERR_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_ERR;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_ERR;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_ERR_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_ERR;
-}
-
-static inline void hri_tcc_set_INTEN_DFS_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_DFS;
-}
-
-static inline bool hri_tcc_get_INTEN_DFS_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_DFS) >> TCC_INTENSET_DFS_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_DFS_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_DFS;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_DFS;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_DFS_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_DFS;
-}
-
-static inline void hri_tcc_set_INTEN_FAULTA_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTA;
-}
-
-static inline bool hri_tcc_get_INTEN_FAULTA_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULTA) >> TCC_INTENSET_FAULTA_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_FAULTA_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTA;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTA;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_FAULTA_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTA;
-}
-
-static inline void hri_tcc_set_INTEN_FAULTB_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTB;
-}
-
-static inline bool hri_tcc_get_INTEN_FAULTB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULTB) >> TCC_INTENSET_FAULTB_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_FAULTB_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTB;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULTB;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_FAULTB_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULTB;
-}
-
-static inline void hri_tcc_set_INTEN_FAULT0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT0;
-}
-
-static inline bool hri_tcc_get_INTEN_FAULT0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULT0) >> TCC_INTENSET_FAULT0_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_FAULT0_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT0;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT0;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_FAULT0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT0;
-}
-
-static inline void hri_tcc_set_INTEN_FAULT1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT1;
-}
-
-static inline bool hri_tcc_get_INTEN_FAULT1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_FAULT1) >> TCC_INTENSET_FAULT1_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_FAULT1_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT1;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_FAULT1;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_FAULT1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_FAULT1;
-}
-
-static inline void hri_tcc_set_INTEN_MC0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC0;
-}
-
-static inline bool hri_tcc_get_INTEN_MC0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC0) >> TCC_INTENSET_MC0_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_MC0_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC0;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC0;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_MC0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC0;
-}
-
-static inline void hri_tcc_set_INTEN_MC1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC1;
-}
-
-static inline bool hri_tcc_get_INTEN_MC1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC1) >> TCC_INTENSET_MC1_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_MC1_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC1;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC1;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_MC1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC1;
-}
-
-static inline void hri_tcc_set_INTEN_MC2_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC2;
-}
-
-static inline bool hri_tcc_get_INTEN_MC2_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC2) >> TCC_INTENSET_MC2_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_MC2_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC2;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC2;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_MC2_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC2;
-}
-
-static inline void hri_tcc_set_INTEN_MC3_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC3;
-}
-
-static inline bool hri_tcc_get_INTEN_MC3_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTENSET.reg & TCC_INTENSET_MC3) >> TCC_INTENSET_MC3_Pos;
-}
-
-static inline void hri_tcc_write_INTEN_MC3_bit(const void *const hw, bool value)
-{
-	if (value == 0x0) {
-		((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC3;
-	} else {
-		((Tcc *)hw)->INTENSET.reg = TCC_INTENSET_MC3;
-	}
-}
-
-static inline void hri_tcc_clear_INTEN_MC3_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTENCLR.reg = TCC_INTENSET_MC3;
-}
-
-static inline void hri_tcc_set_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
-{
-	((Tcc *)hw)->INTENSET.reg = mask;
-}
-
-static inline hri_tcc_intenset_reg_t hri_tcc_get_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Tcc *)hw)->INTENSET.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_tcc_intenset_reg_t hri_tcc_read_INTEN_reg(const void *const hw)
-{
-	return ((Tcc *)hw)->INTENSET.reg;
-}
-
-static inline void hri_tcc_write_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t data)
-{
-	((Tcc *)hw)->INTENSET.reg = data;
-	((Tcc *)hw)->INTENCLR.reg = ~data;
-}
-
-static inline void hri_tcc_clear_INTEN_reg(const void *const hw, hri_tcc_intenset_reg_t mask)
-{
-	((Tcc *)hw)->INTENCLR.reg = mask;
-}
-
-static inline bool hri_tcc_get_INTFLAG_OVF_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_OVF) >> TCC_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_OVF_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_OVF;
-}
-
-static inline bool hri_tcc_get_INTFLAG_TRG_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_TRG) >> TCC_INTFLAG_TRG_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_TRG_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_TRG;
-}
-
-static inline bool hri_tcc_get_INTFLAG_CNT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_CNT) >> TCC_INTFLAG_CNT_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_CNT_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_CNT;
-}
-
-static inline bool hri_tcc_get_INTFLAG_ERR_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_ERR) >> TCC_INTFLAG_ERR_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_ERR_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_ERR;
-}
-
-static inline bool hri_tcc_get_INTFLAG_DFS_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_DFS) >> TCC_INTFLAG_DFS_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_DFS_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_DFS;
-}
-
-static inline bool hri_tcc_get_INTFLAG_FAULTA_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTA) >> TCC_INTFLAG_FAULTA_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_FAULTA_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTA;
-}
-
-static inline bool hri_tcc_get_INTFLAG_FAULTB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTB) >> TCC_INTFLAG_FAULTB_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_FAULTB_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTB;
-}
-
-static inline bool hri_tcc_get_INTFLAG_FAULT0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT0) >> TCC_INTFLAG_FAULT0_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_FAULT0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT0;
-}
-
-static inline bool hri_tcc_get_INTFLAG_FAULT1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT1) >> TCC_INTFLAG_FAULT1_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_FAULT1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT1;
-}
-
-static inline bool hri_tcc_get_INTFLAG_MC0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC0) >> TCC_INTFLAG_MC0_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_MC0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC0;
-}
-
-static inline bool hri_tcc_get_INTFLAG_MC1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC1) >> TCC_INTFLAG_MC1_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_MC1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC1;
-}
-
-static inline bool hri_tcc_get_INTFLAG_MC2_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC2) >> TCC_INTFLAG_MC2_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_MC2_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC2;
-}
-
-static inline bool hri_tcc_get_INTFLAG_MC3_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC3) >> TCC_INTFLAG_MC3_Pos;
-}
-
-static inline void hri_tcc_clear_INTFLAG_MC3_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC3;
-}
-
-static inline bool hri_tcc_get_interrupt_OVF_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_OVF) >> TCC_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_OVF_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_OVF;
-}
-
-static inline bool hri_tcc_get_interrupt_TRG_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_TRG) >> TCC_INTFLAG_TRG_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_TRG_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_TRG;
-}
-
-static inline bool hri_tcc_get_interrupt_CNT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_CNT) >> TCC_INTFLAG_CNT_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_CNT_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_CNT;
-}
-
-static inline bool hri_tcc_get_interrupt_ERR_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_ERR) >> TCC_INTFLAG_ERR_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_ERR_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_ERR;
-}
-
-static inline bool hri_tcc_get_interrupt_DFS_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_DFS) >> TCC_INTFLAG_DFS_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_DFS_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_DFS;
-}
-
-static inline bool hri_tcc_get_interrupt_FAULTA_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTA) >> TCC_INTFLAG_FAULTA_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_FAULTA_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTA;
-}
-
-static inline bool hri_tcc_get_interrupt_FAULTB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULTB) >> TCC_INTFLAG_FAULTB_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_FAULTB_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULTB;
-}
-
-static inline bool hri_tcc_get_interrupt_FAULT0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT0) >> TCC_INTFLAG_FAULT0_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_FAULT0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT0;
-}
-
-static inline bool hri_tcc_get_interrupt_FAULT1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_FAULT1) >> TCC_INTFLAG_FAULT1_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_FAULT1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_FAULT1;
-}
-
-static inline bool hri_tcc_get_interrupt_MC0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC0) >> TCC_INTFLAG_MC0_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_MC0_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC0;
-}
-
-static inline bool hri_tcc_get_interrupt_MC1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC1) >> TCC_INTFLAG_MC1_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_MC1_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC1;
-}
-
-static inline bool hri_tcc_get_interrupt_MC2_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC2) >> TCC_INTFLAG_MC2_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_MC2_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC2;
-}
-
-static inline bool hri_tcc_get_interrupt_MC3_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->INTFLAG.reg & TCC_INTFLAG_MC3) >> TCC_INTFLAG_MC3_Pos;
-}
-
-static inline void hri_tcc_clear_interrupt_MC3_bit(const void *const hw)
-{
-	((Tcc *)hw)->INTFLAG.reg = TCC_INTFLAG_MC3;
-}
-
-static inline hri_tcc_intflag_reg_t hri_tcc_get_INTFLAG_reg(const void *const hw, hri_tcc_intflag_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Tcc *)hw)->INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_tcc_intflag_reg_t hri_tcc_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Tcc *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_tcc_clear_INTFLAG_reg(const void *const hw, hri_tcc_intflag_reg_t mask)
-{
-	((Tcc *)hw)->INTFLAG.reg = mask;
-}
-
 static inline void hri_tcc_set_CTRLA_SWRST_bit(const void *const hw)
 {
 	TCC_CRITICAL_SECTION_ENTER();
@@ -3726,6 +3882,7 @@ static inline hri_tcc_ctrla_reg_t hri_tcc_read_CTRLA_PRESCSYNC_bf(const void *co
 static inline void hri_tcc_set_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	((Tcc *)hw)->CTRLA.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -3733,6 +3890,7 @@ static inline void hri_tcc_set_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg
 static inline hri_tcc_ctrla_reg_t hri_tcc_get_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	tmp = ((Tcc *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -3741,6 +3899,7 @@ static inline hri_tcc_ctrla_reg_t hri_tcc_get_CTRLA_reg(const void *const hw, hr
 static inline void hri_tcc_write_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	((Tcc *)hw)->CTRLA.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -3748,6 +3907,7 @@ static inline void hri_tcc_write_CTRLA_reg(const void *const hw, hri_tcc_ctrla_r
 static inline void hri_tcc_clear_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	((Tcc *)hw)->CTRLA.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -3755,12 +3915,14 @@ static inline void hri_tcc_clear_CTRLA_reg(const void *const hw, hri_tcc_ctrla_r
 static inline void hri_tcc_toggle_CTRLA_reg(const void *const hw, hri_tcc_ctrla_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	((Tcc *)hw)->CTRLA.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_ctrla_reg_t hri_tcc_read_CTRLA_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_SWRST | TCC_SYNCBUSY_ENABLE);
 	return ((Tcc *)hw)->CTRLA.reg;
 }
 
@@ -7813,6 +7975,7 @@ static inline void hri_tcc_toggle_PATT_PGV7_bit(const void *const hw)
 static inline void hri_tcc_set_PATT_reg(const void *const hw, hri_tcc_patt_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PATT.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -7820,6 +7983,7 @@ static inline void hri_tcc_set_PATT_reg(const void *const hw, hri_tcc_patt_reg_t
 static inline hri_tcc_patt_reg_t hri_tcc_get_PATT_reg(const void *const hw, hri_tcc_patt_reg_t mask)
 {
 	uint16_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->PATT.reg;
 	tmp &= mask;
 	return tmp;
@@ -7828,6 +7992,7 @@ static inline hri_tcc_patt_reg_t hri_tcc_get_PATT_reg(const void *const hw, hri_
 static inline void hri_tcc_write_PATT_reg(const void *const hw, hri_tcc_patt_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PATT.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -7835,6 +8000,7 @@ static inline void hri_tcc_write_PATT_reg(const void *const hw, hri_tcc_patt_reg
 static inline void hri_tcc_clear_PATT_reg(const void *const hw, hri_tcc_patt_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PATT.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -7842,12 +8008,14 @@ static inline void hri_tcc_clear_PATT_reg(const void *const hw, hri_tcc_patt_reg
 static inline void hri_tcc_toggle_PATT_reg(const void *const hw, hri_tcc_patt_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->PATT.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_patt_reg_t hri_tcc_read_PATT_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->PATT.reg;
 }
 
@@ -8530,6 +8698,7 @@ static inline hri_tcc_wave_reg_t hri_tcc_read_WAVE_RAMP_bf(const void *const hw)
 static inline void hri_tcc_set_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->WAVE.reg |= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -8537,6 +8706,7 @@ static inline void hri_tcc_set_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t
 static inline hri_tcc_wave_reg_t hri_tcc_get_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t mask)
 {
 	uint32_t tmp;
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	tmp = ((Tcc *)hw)->WAVE.reg;
 	tmp &= mask;
 	return tmp;
@@ -8545,6 +8715,7 @@ static inline hri_tcc_wave_reg_t hri_tcc_get_WAVE_reg(const void *const hw, hri_
 static inline void hri_tcc_write_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t data)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->WAVE.reg = data;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -8552,6 +8723,7 @@ static inline void hri_tcc_write_WAVE_reg(const void *const hw, hri_tcc_wave_reg
 static inline void hri_tcc_clear_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->WAVE.reg &= ~mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
@@ -8559,12 +8731,14 @@ static inline void hri_tcc_clear_WAVE_reg(const void *const hw, hri_tcc_wave_reg
 static inline void hri_tcc_toggle_WAVE_reg(const void *const hw, hri_tcc_wave_reg_t mask)
 {
 	TCC_CRITICAL_SECTION_ENTER();
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	((Tcc *)hw)->WAVE.reg ^= mask;
 	TCC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_tcc_wave_reg_t hri_tcc_read_WAVE_reg(const void *const hw)
 {
+	hri_tcc_wait_for_sync(hw, TCC_SYNCBUSY_MASK);
 	return ((Tcc *)hw)->WAVE.reg;
 }
 
@@ -9904,114 +10078,6 @@ static inline void hri_tcc_toggle_WAVEB_reg(const void *const hw, hri_tcc_waveb_
 static inline hri_tcc_waveb_reg_t hri_tcc_read_WAVEB_reg(const void *const hw)
 {
 	return ((Tcc *)hw)->WAVEB.reg;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_SWRST_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_SWRST) >> TCC_SYNCBUSY_SWRST_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_ENABLE_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_ENABLE) >> TCC_SYNCBUSY_ENABLE_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CTRLB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CTRLB) >> TCC_SYNCBUSY_CTRLB_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_STATUS_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_STATUS) >> TCC_SYNCBUSY_STATUS_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_COUNT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_COUNT) >> TCC_SYNCBUSY_COUNT_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_PATT_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PATT) >> TCC_SYNCBUSY_PATT_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_WAVE_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_WAVE) >> TCC_SYNCBUSY_WAVE_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_PER_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PER) >> TCC_SYNCBUSY_PER_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CC0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC0) >> TCC_SYNCBUSY_CC0_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CC1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC1) >> TCC_SYNCBUSY_CC1_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CC2_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC2) >> TCC_SYNCBUSY_CC2_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CC3_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CC3) >> TCC_SYNCBUSY_CC3_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_PATTB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PATTB) >> TCC_SYNCBUSY_PATTB_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_WAVEB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_WAVEB) >> TCC_SYNCBUSY_WAVEB_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_PERB_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_PERB) >> TCC_SYNCBUSY_PERB_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CCB0_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB0) >> TCC_SYNCBUSY_CCB0_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CCB1_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB1) >> TCC_SYNCBUSY_CCB1_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CCB2_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB2) >> TCC_SYNCBUSY_CCB2_Pos;
-}
-
-static inline bool hri_tcc_get_SYNCBUSY_CCB3_bit(const void *const hw)
-{
-	return (((Tcc *)hw)->SYNCBUSY.reg & TCC_SYNCBUSY_CCB3) >> TCC_SYNCBUSY_CCB3_Pos;
-}
-
-static inline hri_tcc_syncbusy_reg_t hri_tcc_get_SYNCBUSY_reg(const void *const hw, hri_tcc_syncbusy_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Tcc *)hw)->SYNCBUSY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_tcc_syncbusy_reg_t hri_tcc_read_SYNCBUSY_reg(const void *const hw)
-{
-	return ((Tcc *)hw)->SYNCBUSY.reg;
 }
 
 static inline bool hri_tcc_get_STATUS_STOP_bit(const void *const hw)

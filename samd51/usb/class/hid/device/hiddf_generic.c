@@ -3,7 +3,7 @@
  *
  * \brief USB Device Stack HID Generic Function Implementation.
  *
- * Copyright (C) 2015 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015 - 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -48,16 +48,20 @@
 
 /** USB Device HID Generic Function Specific Data */
 struct hiddf_generic_func_data {
+	/** HID Descriptor */
+	uint8_t *hid_desc;
+	/** HID Device Generic Report Descriptor */
+	const uint8_t *report_desc;
+	/** HID Device Generic Report Descriptor Length */
+	uint32_t report_desc_len;
 	/** HID Device Generic Interface information */
 	uint8_t func_iface;
 	/** HID Device Generic IN Endpoint */
 	uint8_t func_ep_in;
 	/** HID Device Generic OUT Endpoint */
 	uint8_t func_ep_out;
-	/** HID Device Generic Report Descriptor */
-	const uint8_t *report_desc;
-	/** HID Device Generic Report Descriptor Length */
-	uint32_t report_desc_len;
+	/** HID Device Generic protocol */
+	uint8_t protocol;
 	/** HID Device Generic Enable Flag */
 	bool enabled;
 };
@@ -105,6 +109,9 @@ static int32_t hid_generic_enable(struct usbdf_driver *drv, struct usbd_descript
 		return ERR_NOT_FOUND;
 	}
 
+	// Install HID descriptor
+	_hiddf_generic_funcd.hid_desc = usb_find_desc(usb_desc_next(desc->sod), desc->eod, USB_DT_HID);
+
 	// Install endpoints
 	for (i = 0; i < 2; i++) {
 		ep        = usb_find_ep_desc(usb_desc_next(desc->sod), desc->eod);
@@ -129,7 +136,8 @@ static int32_t hid_generic_enable(struct usbdf_driver *drv, struct usbd_descript
 	}
 
 	// Installed
-	_hiddf_generic_funcd.enabled = true;
+	_hiddf_generic_funcd.protocol = 1;
+	_hiddf_generic_funcd.enabled  = true;
 	return ERR_NONE;
 }
 
@@ -203,6 +211,8 @@ static int32_t hid_generic_ctrl(struct usbdf_driver *drv, enum usbdf_control ctr
 static int32_t hid_generic_get_desc(uint8_t ep, struct usb_req *req)
 {
 	switch (req->wValue >> 8) {
+	case USB_DT_HID:
+		return usbdc_xfer(ep, _hiddf_generic_funcd.hid_desc, _hiddf_generic_funcd.hid_desc[0], false);
 	case USB_DT_HID_REPORT:
 		return usbdc_xfer(ep, (uint8_t *)_hiddf_generic_funcd.report_desc, _hiddf_generic_funcd.report_desc_len, false);
 	default:
@@ -231,7 +241,13 @@ static int32_t hid_generic_req(uint8_t ep, struct usb_req *req, enum usb_ctrl_st
 			if (req->bmRequestType & USB_EP_DIR_IN) {
 				return ERR_INVALID_ARG;
 			} else {
-				if (USB_REQ_HID_SET_REPORT == req->bRequest) {
+				switch (req->bRequest) {
+				case 0x03: /* Get Protocol */
+					return usbdc_xfer(ep, &_hiddf_generic_funcd.protocol, 1, 0);
+				case 0x0B: /* Set Protocol */
+					_hiddf_generic_funcd.protocol = req->wValue;
+					return usbdc_xfer(ep, NULL, 0, 0);
+				case USB_REQ_HID_SET_REPORT:
 					if (USB_SETUP_STAGE == stage) {
 						return usbdc_xfer(ep, ctrl_buf, len, false);
 					} else {
@@ -240,8 +256,8 @@ static int32_t hid_generic_req(uint8_t ep, struct usb_req *req, enum usb_ctrl_st
 						}
 						return ERR_NONE;
 					}
-				} else {
-					return usbdc_xfer(0, NULL, 0, 0);
+				default:
+					return ERR_INVALID_ARG;
 				}
 			}
 		} else {

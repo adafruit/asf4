@@ -207,7 +207,7 @@ int32_t _dma_get_channel_resource(struct _dma_resource **resource, const uint8_t
 /**
  * \internal DMAC interrupt handler
  */
-void DMAC_Handler(void)
+static inline void _dmac_handler(void)
 {
 	uint8_t               channel      = hri_dmac_read_INTPEND_ID_bf(DMAC);
 	struct _dma_resource *tmp_resource = &_resources[channel];
@@ -221,6 +221,14 @@ void DMAC_Handler(void)
 		hri_dmac_clear_CHINTFLAG_TCMPL_bit(DMAC);
 		tmp_resource->dma_cb.transfer_done(tmp_resource);
 	}
+}
+
+/**
+ * \brief DMAC interrupt handler
+ */
+void DMAC_Handler(void)
+{
+	_dmac_handler();
 }
 
 #endif /* CONF_DMAC_ENABLE */
