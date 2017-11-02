@@ -731,27 +731,6 @@ void _adc_async_set_irq_state(struct _adc_async_device *const device, const uint
 }
 
 /**
- * \internal ADC interrupt handler
- *
- * \param[in] p The pointer to interrupt parameter
- */
-static void _adc_interrupt_handler(struct _adc_async_device *device)
-{
-	void *const hw = device->hw;
-
-	if (hri_adc_get_interrupt_RESRDY_bit(hw)) {
-		hri_adc_clear_interrupt_RESRDY_bit(hw);
-		device->adc_async_ch_cb.convert_done(device, 0, hri_adc_read_RESULT_reg(hw));
-	} else if (hri_adc_get_interrupt_OVERRUN_bit(hw)) {
-		hri_adc_clear_interrupt_OVERRUN_bit(hw);
-		device->adc_async_cb.error_cb(device, 0);
-	} else if (hri_adc_get_interrupt_WINMON_bit(hw)) {
-		hri_adc_clear_interrupt_WINMON_bit(hw);
-		device->adc_async_cb.window_cb(device, 0);
-	}
-}
-
-/**
  * \brief Retrieve ADC sync helper functions
  */
 void *_adc_get_adc_sync(void)

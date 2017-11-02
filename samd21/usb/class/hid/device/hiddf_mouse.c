@@ -3,7 +3,7 @@
  *
  * \brief USB Device Stack HID Mouse Function Implementation.
  *
- * Copyright (C) 2015 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015 - 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -49,6 +49,8 @@
 
 /** USB Device HID Mouse Function Specific Data */
 struct hiddf_mouse_func_data {
+	/* HID descriptor */
+	uint8_t *hid_desc;
 	/* HID Device Mouse Report */
 	union {
 		/** Interpreted by bytes. */
@@ -68,6 +70,8 @@ struct hiddf_mouse_func_data {
 	uint8_t func_iface;
 	/** HID Device Mouse IN Endpoint */
 	uint8_t func_ep_in;
+	/** HID Device Mouse protocol */
+	uint8_t protocol;
 	/** HID Device Mouse Enable Flag */
 	bool enabled;
 };
@@ -143,6 +147,9 @@ static int32_t hid_mouse_enable(struct usbdf_driver *drv, struct usbd_descriptor
 		return ERR_NOT_FOUND;
 	}
 
+	// Install HID descriptor
+	_hiddf_mouse_funcd.hid_desc = usb_find_desc(usb_desc_next(desc->sod), desc->eod, USB_DT_HID);
+
 	// Install endpoints
 	ep        = usb_find_ep_desc(usb_desc_next(desc->sod), desc->eod);
 	desc->sod = ep;
@@ -163,7 +170,8 @@ static int32_t hid_mouse_enable(struct usbdf_driver *drv, struct usbd_descriptor
 		return ERR_NOT_FOUND;
 	}
 	// Installed
-	_hiddf_mouse_funcd.enabled = true;
+	_hiddf_mouse_funcd.protocol = 1;
+	_hiddf_mouse_funcd.enabled  = true;
 	return ERR_NONE;
 }
 
@@ -232,6 +240,8 @@ static int32_t hid_mouse_ctrl(struct usbdf_driver *drv, enum usbdf_control ctrl,
 static int32_t hid_mouse_get_desc(uint8_t ep, struct usb_req *req)
 {
 	switch (req->wValue >> 8) {
+	case USB_DT_HID:
+		return usbdc_xfer(ep, _hiddf_mouse_funcd.hid_desc, _hiddf_mouse_funcd.hid_desc[0], false);
 	case USB_DT_HID_REPORT:
 		return usbdc_xfer(ep, (uint8_t *)mouse_report_desc, MOUSE_REPORT_DESC_LEN, false);
 	default:
@@ -254,10 +264,14 @@ static int32_t hid_mouse_req(uint8_t ep, struct usb_req *req, enum usb_ctrl_stag
 			return ERR_NOT_FOUND;
 		}
 		if (req->wIndex == _hiddf_mouse_funcd.func_iface) {
-			if (req->bmRequestType & USB_EP_DIR_IN) {
+			switch (req->bRequest) {
+			case 0x03: /* Get Protocol */
+				return usbdc_xfer(ep, &_hiddf_mouse_funcd.protocol, 1, 0);
+			case 0x0B: /* Set Protocol */
+				_hiddf_mouse_funcd.protocol = req->wValue;
+				return usbdc_xfer(ep, NULL, 0, 0);
+			default:
 				return ERR_INVALID_ARG;
-			} else {
-				return usbdc_xfer(0, NULL, 0, 0);
 			}
 		} else {
 			return ERR_NOT_FOUND;

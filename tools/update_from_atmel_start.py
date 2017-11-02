@@ -14,7 +14,7 @@ if not subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], universa
 # Change .gitignore if you change these dir names.
 DOWNLOADED_ZIP_DIR = 'downloaded-zip'
 DOWNLOADED_DIR = 'downloaded'
-    
+
 for chip in ['samd21', 'samd51']:
     r = None
     os.makedirs(DOWNLOADED_ZIP_DIR, exist_ok=True)
@@ -25,7 +25,7 @@ for chip in ['samd21', 'samd51']:
         print("Downloading", filename, "...")
         with open('tools/' + chip + '.json', 'r') as project_json:
             headers = {'content-type': 'text/plain'}
-            r = requests.post('http://start.atmel.com/api/v1/generate/?format=atzip&compilers=[make]&file_name_base=My%20Project', headers=headers, data=project_json)
+            r = requests.post('http://start.atmel.com/api/v1/generate/?format=atzip&compilers=[atmel_studio,make]&file_name_base=My%20Project', headers=headers, data=project_json)
         if not r.ok:
             # Double check that the JSON is minified. If it's not, you'll get a 404.
             print(r.text)
@@ -56,6 +56,3 @@ for chip in ['samd21', 'samd51']:
 
     print("Updating",chip,"from",downloaded_chip_dir)
     subprocess.run(['rsync', '-r', '--delete', downloaded_chip_dir + '/', chip], check=True)
-
-    
-

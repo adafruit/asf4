@@ -3,7 +3,7 @@
  *
  * \brief SAM EVSYS
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -65,6 +65,504 @@ typedef uint32_t hri_evsys_chstatus_reg_t;
 typedef uint32_t hri_evsys_intenset_reg_t;
 typedef uint32_t hri_evsys_intflag_reg_t;
 typedef uint8_t  hri_evsys_ctrl_reg_t;
+
+static inline bool hri_evsys_get_INTFLAG_OVR0_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR0) >> EVSYS_INTFLAG_OVR0_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR0_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR0;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR1_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR1) >> EVSYS_INTFLAG_OVR1_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR1_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR1;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR2_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR2) >> EVSYS_INTFLAG_OVR2_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR2_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR2;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR3_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR3) >> EVSYS_INTFLAG_OVR3_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR3_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR3;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR4_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR4) >> EVSYS_INTFLAG_OVR4_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR4_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR4;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR5_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR5) >> EVSYS_INTFLAG_OVR5_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR5_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR5;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR6_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR6) >> EVSYS_INTFLAG_OVR6_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR6_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR6;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR7_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR7) >> EVSYS_INTFLAG_OVR7_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR7_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR7;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD0_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD0) >> EVSYS_INTFLAG_EVD0_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD0_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD0;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD1_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD1) >> EVSYS_INTFLAG_EVD1_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD1_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD1;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD2_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD2) >> EVSYS_INTFLAG_EVD2_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD2_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD2;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD3_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD3) >> EVSYS_INTFLAG_EVD3_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD3_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD3;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD4_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD4) >> EVSYS_INTFLAG_EVD4_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD4_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD4;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD5_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD5) >> EVSYS_INTFLAG_EVD5_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD5_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD5;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD6_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD6) >> EVSYS_INTFLAG_EVD6_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD6_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD6;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD7_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD7) >> EVSYS_INTFLAG_EVD7_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD7_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD7;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR8_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR8) >> EVSYS_INTFLAG_OVR8_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR8_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR8;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR9_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR9) >> EVSYS_INTFLAG_OVR9_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR9_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR9;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR10_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR10) >> EVSYS_INTFLAG_OVR10_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR10_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR10;
+}
+
+static inline bool hri_evsys_get_INTFLAG_OVR11_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR11) >> EVSYS_INTFLAG_OVR11_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_OVR11_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR11;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD8_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD8) >> EVSYS_INTFLAG_EVD8_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD8_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD8;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD9_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD9) >> EVSYS_INTFLAG_EVD9_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD9_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD9;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD10_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD10) >> EVSYS_INTFLAG_EVD10_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD10_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD10;
+}
+
+static inline bool hri_evsys_get_INTFLAG_EVD11_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD11) >> EVSYS_INTFLAG_EVD11_Pos;
+}
+
+static inline void hri_evsys_clear_INTFLAG_EVD11_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD11;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR0_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR0) >> EVSYS_INTFLAG_OVR0_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR0_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR0;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR1_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR1) >> EVSYS_INTFLAG_OVR1_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR1_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR1;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR2_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR2) >> EVSYS_INTFLAG_OVR2_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR2_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR2;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR3_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR3) >> EVSYS_INTFLAG_OVR3_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR3_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR3;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR4_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR4) >> EVSYS_INTFLAG_OVR4_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR4_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR4;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR5_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR5) >> EVSYS_INTFLAG_OVR5_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR5_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR5;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR6_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR6) >> EVSYS_INTFLAG_OVR6_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR6_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR6;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR7_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR7) >> EVSYS_INTFLAG_OVR7_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR7_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR7;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD0_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD0) >> EVSYS_INTFLAG_EVD0_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD0_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD0;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD1_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD1) >> EVSYS_INTFLAG_EVD1_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD1_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD1;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD2_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD2) >> EVSYS_INTFLAG_EVD2_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD2_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD2;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD3_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD3) >> EVSYS_INTFLAG_EVD3_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD3_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD3;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD4_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD4) >> EVSYS_INTFLAG_EVD4_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD4_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD4;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD5_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD5) >> EVSYS_INTFLAG_EVD5_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD5_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD5;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD6_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD6) >> EVSYS_INTFLAG_EVD6_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD6_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD6;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD7_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD7) >> EVSYS_INTFLAG_EVD7_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD7_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD7;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR8_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR8) >> EVSYS_INTFLAG_OVR8_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR8_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR8;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR9_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR9) >> EVSYS_INTFLAG_OVR9_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR9_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR9;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR10_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR10) >> EVSYS_INTFLAG_OVR10_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR10_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR10;
+}
+
+static inline bool hri_evsys_get_interrupt_OVR11_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR11) >> EVSYS_INTFLAG_OVR11_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_OVR11_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR11;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD8_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD8) >> EVSYS_INTFLAG_EVD8_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD8_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD8;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD9_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD9) >> EVSYS_INTFLAG_EVD9_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD9_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD9;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD10_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD10) >> EVSYS_INTFLAG_EVD10_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD10_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD10;
+}
+
+static inline bool hri_evsys_get_interrupt_EVD11_bit(const void *const hw)
+{
+	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD11) >> EVSYS_INTFLAG_EVD11_Pos;
+}
+
+static inline void hri_evsys_clear_interrupt_EVD11_bit(const void *const hw)
+{
+	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD11;
+}
+
+static inline hri_evsys_intflag_reg_t hri_evsys_get_INTFLAG_reg(const void *const hw, hri_evsys_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Evsys *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_evsys_intflag_reg_t hri_evsys_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Evsys *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_evsys_clear_INTFLAG_reg(const void *const hw, hri_evsys_intflag_reg_t mask)
+{
+	((Evsys *)hw)->INTFLAG.reg = mask;
+}
 
 static inline void hri_evsys_set_INTEN_OVR0_bit(const void *const hw)
 {
@@ -671,509 +1169,137 @@ static inline void hri_evsys_clear_INTEN_reg(const void *const hw, hri_evsys_int
 	((Evsys *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR0_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY0_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR0) >> EVSYS_INTFLAG_OVR0_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY0) >> EVSYS_CHSTATUS_USRRDY0_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR0_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY1_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR0;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY1) >> EVSYS_CHSTATUS_USRRDY1_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR1_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY2_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR1) >> EVSYS_INTFLAG_OVR1_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY2) >> EVSYS_CHSTATUS_USRRDY2_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR1_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY3_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR1;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY3) >> EVSYS_CHSTATUS_USRRDY3_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR2_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY4_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR2) >> EVSYS_INTFLAG_OVR2_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY4) >> EVSYS_CHSTATUS_USRRDY4_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR2_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY5_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR2;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY5) >> EVSYS_CHSTATUS_USRRDY5_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR3_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY6_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR3) >> EVSYS_INTFLAG_OVR3_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY6) >> EVSYS_CHSTATUS_USRRDY6_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR3_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY7_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR3;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY7) >> EVSYS_CHSTATUS_USRRDY7_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR4_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY0_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR4) >> EVSYS_INTFLAG_OVR4_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY0) >> EVSYS_CHSTATUS_CHBUSY0_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR4_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY1_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR4;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY1) >> EVSYS_CHSTATUS_CHBUSY1_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR5_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY2_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR5) >> EVSYS_INTFLAG_OVR5_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY2) >> EVSYS_CHSTATUS_CHBUSY2_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR5_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY3_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR5;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY3) >> EVSYS_CHSTATUS_CHBUSY3_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR6_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY4_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR6) >> EVSYS_INTFLAG_OVR6_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY4) >> EVSYS_CHSTATUS_CHBUSY4_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR6_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY5_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR6;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY5) >> EVSYS_CHSTATUS_CHBUSY5_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_OVR7_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY6_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR7) >> EVSYS_INTFLAG_OVR7_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY6) >> EVSYS_CHSTATUS_CHBUSY6_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_OVR7_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY7_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR7;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY7) >> EVSYS_CHSTATUS_CHBUSY7_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_EVD0_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY8_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD0) >> EVSYS_INTFLAG_EVD0_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY8) >> EVSYS_CHSTATUS_USRRDY8_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_EVD0_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY9_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD0;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY9) >> EVSYS_CHSTATUS_USRRDY9_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_EVD1_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY10_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD1) >> EVSYS_INTFLAG_EVD1_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY10) >> EVSYS_CHSTATUS_USRRDY10_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_EVD1_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_USRRDY11_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD1;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY11) >> EVSYS_CHSTATUS_USRRDY11_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_EVD2_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY8_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD2) >> EVSYS_INTFLAG_EVD2_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY8) >> EVSYS_CHSTATUS_CHBUSY8_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_EVD2_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY9_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD2;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY9) >> EVSYS_CHSTATUS_CHBUSY9_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_EVD3_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY10_bit(const void *const hw)
 {
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD3) >> EVSYS_INTFLAG_EVD3_Pos;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY10) >> EVSYS_CHSTATUS_CHBUSY10_Pos;
 }
 
-static inline void hri_evsys_clear_INTFLAG_EVD3_bit(const void *const hw)
+static inline bool hri_evsys_get_CHSTATUS_CHBUSY11_bit(const void *const hw)
 {
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD3;
+	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY11) >> EVSYS_CHSTATUS_CHBUSY11_Pos;
 }
 
-static inline bool hri_evsys_get_INTFLAG_EVD4_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD4) >> EVSYS_INTFLAG_EVD4_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD4_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD4;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD5_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD5) >> EVSYS_INTFLAG_EVD5_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD5_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD5;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD6_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD6) >> EVSYS_INTFLAG_EVD6_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD6_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD6;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD7_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD7) >> EVSYS_INTFLAG_EVD7_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD7_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD7;
-}
-
-static inline bool hri_evsys_get_INTFLAG_OVR8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR8) >> EVSYS_INTFLAG_OVR8_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_OVR8_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR8;
-}
-
-static inline bool hri_evsys_get_INTFLAG_OVR9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR9) >> EVSYS_INTFLAG_OVR9_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_OVR9_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR9;
-}
-
-static inline bool hri_evsys_get_INTFLAG_OVR10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR10) >> EVSYS_INTFLAG_OVR10_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_OVR10_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR10;
-}
-
-static inline bool hri_evsys_get_INTFLAG_OVR11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR11) >> EVSYS_INTFLAG_OVR11_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_OVR11_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR11;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD8) >> EVSYS_INTFLAG_EVD8_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD8_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD8;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD9) >> EVSYS_INTFLAG_EVD9_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD9_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD9;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD10) >> EVSYS_INTFLAG_EVD10_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD10_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD10;
-}
-
-static inline bool hri_evsys_get_INTFLAG_EVD11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD11) >> EVSYS_INTFLAG_EVD11_Pos;
-}
-
-static inline void hri_evsys_clear_INTFLAG_EVD11_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD11;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR0_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR0) >> EVSYS_INTFLAG_OVR0_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR0_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR0;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR1_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR1) >> EVSYS_INTFLAG_OVR1_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR1_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR1;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR2_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR2) >> EVSYS_INTFLAG_OVR2_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR2_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR2;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR3_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR3) >> EVSYS_INTFLAG_OVR3_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR3_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR3;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR4_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR4) >> EVSYS_INTFLAG_OVR4_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR4_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR4;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR5_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR5) >> EVSYS_INTFLAG_OVR5_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR5_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR5;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR6_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR6) >> EVSYS_INTFLAG_OVR6_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR6_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR6;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR7_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR7) >> EVSYS_INTFLAG_OVR7_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR7_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR7;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD0_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD0) >> EVSYS_INTFLAG_EVD0_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD0_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD0;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD1_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD1) >> EVSYS_INTFLAG_EVD1_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD1_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD1;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD2_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD2) >> EVSYS_INTFLAG_EVD2_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD2_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD2;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD3_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD3) >> EVSYS_INTFLAG_EVD3_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD3_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD3;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD4_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD4) >> EVSYS_INTFLAG_EVD4_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD4_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD4;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD5_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD5) >> EVSYS_INTFLAG_EVD5_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD5_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD5;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD6_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD6) >> EVSYS_INTFLAG_EVD6_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD6_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD6;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD7_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD7) >> EVSYS_INTFLAG_EVD7_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD7_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD7;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR8) >> EVSYS_INTFLAG_OVR8_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR8_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR8;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR9) >> EVSYS_INTFLAG_OVR9_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR9_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR9;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR10) >> EVSYS_INTFLAG_OVR10_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR10_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR10;
-}
-
-static inline bool hri_evsys_get_interrupt_OVR11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_OVR11) >> EVSYS_INTFLAG_OVR11_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_OVR11_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_OVR11;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD8) >> EVSYS_INTFLAG_EVD8_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD8_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD8;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD9) >> EVSYS_INTFLAG_EVD9_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD9_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD9;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD10) >> EVSYS_INTFLAG_EVD10_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD10_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD10;
-}
-
-static inline bool hri_evsys_get_interrupt_EVD11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->INTFLAG.reg & EVSYS_INTFLAG_EVD11) >> EVSYS_INTFLAG_EVD11_Pos;
-}
-
-static inline void hri_evsys_clear_interrupt_EVD11_bit(const void *const hw)
-{
-	((Evsys *)hw)->INTFLAG.reg = EVSYS_INTFLAG_EVD11;
-}
-
-static inline hri_evsys_intflag_reg_t hri_evsys_get_INTFLAG_reg(const void *const hw, hri_evsys_intflag_reg_t mask)
+static inline hri_evsys_chstatus_reg_t hri_evsys_get_CHSTATUS_reg(const void *const hw, hri_evsys_chstatus_reg_t mask)
 {
 	uint32_t tmp;
-	tmp = ((Evsys *)hw)->INTFLAG.reg;
+	tmp = ((Evsys *)hw)->CHSTATUS.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_evsys_intflag_reg_t hri_evsys_read_INTFLAG_reg(const void *const hw)
+static inline hri_evsys_chstatus_reg_t hri_evsys_read_CHSTATUS_reg(const void *const hw)
 {
-	return ((Evsys *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_evsys_clear_INTFLAG_reg(const void *const hw, hri_evsys_intflag_reg_t mask)
-{
-	((Evsys *)hw)->INTFLAG.reg = mask;
-}
-
-static inline void hri_evsys_write_CTRL_reg(const void *const hw, hri_evsys_ctrl_reg_t data)
-{
-	EVSYS_CRITICAL_SECTION_ENTER();
-	((Evsys *)hw)->CTRL.reg = data;
-	EVSYS_CRITICAL_SECTION_LEAVE();
+	return ((Evsys *)hw)->CHSTATUS.reg;
 }
 
 static inline void hri_evsys_set_CHANNEL_SWEVT_bit(const void *const hw)
@@ -1588,137 +1714,11 @@ static inline hri_evsys_user_reg_t hri_evsys_read_USER_reg(const void *const hw)
 	return ((Evsys *)hw)->USER.reg;
 }
 
-static inline bool hri_evsys_get_CHSTATUS_USRRDY0_bit(const void *const hw)
+static inline void hri_evsys_write_CTRL_reg(const void *const hw, hri_evsys_ctrl_reg_t data)
 {
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY0) >> EVSYS_CHSTATUS_USRRDY0_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY1_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY1) >> EVSYS_CHSTATUS_USRRDY1_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY2_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY2) >> EVSYS_CHSTATUS_USRRDY2_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY3_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY3) >> EVSYS_CHSTATUS_USRRDY3_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY4_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY4) >> EVSYS_CHSTATUS_USRRDY4_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY5_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY5) >> EVSYS_CHSTATUS_USRRDY5_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY6_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY6) >> EVSYS_CHSTATUS_USRRDY6_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY7_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY7) >> EVSYS_CHSTATUS_USRRDY7_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY0_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY0) >> EVSYS_CHSTATUS_CHBUSY0_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY1_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY1) >> EVSYS_CHSTATUS_CHBUSY1_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY2_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY2) >> EVSYS_CHSTATUS_CHBUSY2_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY3_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY3) >> EVSYS_CHSTATUS_CHBUSY3_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY4_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY4) >> EVSYS_CHSTATUS_CHBUSY4_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY5_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY5) >> EVSYS_CHSTATUS_CHBUSY5_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY6_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY6) >> EVSYS_CHSTATUS_CHBUSY6_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY7_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY7) >> EVSYS_CHSTATUS_CHBUSY7_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY8) >> EVSYS_CHSTATUS_USRRDY8_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY9) >> EVSYS_CHSTATUS_USRRDY9_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY10) >> EVSYS_CHSTATUS_USRRDY10_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_USRRDY11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_USRRDY11) >> EVSYS_CHSTATUS_USRRDY11_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY8_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY8) >> EVSYS_CHSTATUS_CHBUSY8_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY9_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY9) >> EVSYS_CHSTATUS_CHBUSY9_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY10_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY10) >> EVSYS_CHSTATUS_CHBUSY10_Pos;
-}
-
-static inline bool hri_evsys_get_CHSTATUS_CHBUSY11_bit(const void *const hw)
-{
-	return (((Evsys *)hw)->CHSTATUS.reg & EVSYS_CHSTATUS_CHBUSY11) >> EVSYS_CHSTATUS_CHBUSY11_Pos;
-}
-
-static inline hri_evsys_chstatus_reg_t hri_evsys_get_CHSTATUS_reg(const void *const hw, hri_evsys_chstatus_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Evsys *)hw)->CHSTATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_evsys_chstatus_reg_t hri_evsys_read_CHSTATUS_reg(const void *const hw)
-{
-	return ((Evsys *)hw)->CHSTATUS.reg;
+	EVSYS_CRITICAL_SECTION_ENTER();
+	((Evsys *)hw)->CTRL.reg = data;
+	EVSYS_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus

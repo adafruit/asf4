@@ -3,7 +3,7 @@
  *
  * \brief SAM DAC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -77,6 +77,84 @@ static inline void hri_dac_wait_for_sync(const void *const hw)
 static inline bool hri_dac_is_syncing(const void *const hw)
 {
 	return ((const Dac *)hw)->STATUS.bit.SYNCBUSY;
+}
+
+static inline bool hri_dac_get_INTFLAG_UNDERRUN_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_UNDERRUN) >> DAC_INTFLAG_UNDERRUN_Pos;
+}
+
+static inline void hri_dac_clear_INTFLAG_UNDERRUN_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_UNDERRUN;
+}
+
+static inline bool hri_dac_get_INTFLAG_EMPTY_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_EMPTY) >> DAC_INTFLAG_EMPTY_Pos;
+}
+
+static inline void hri_dac_clear_INTFLAG_EMPTY_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_EMPTY;
+}
+
+static inline bool hri_dac_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_SYNCRDY) >> DAC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_dac_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_dac_get_interrupt_UNDERRUN_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_UNDERRUN) >> DAC_INTFLAG_UNDERRUN_Pos;
+}
+
+static inline void hri_dac_clear_interrupt_UNDERRUN_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_UNDERRUN;
+}
+
+static inline bool hri_dac_get_interrupt_EMPTY_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_EMPTY) >> DAC_INTFLAG_EMPTY_Pos;
+}
+
+static inline void hri_dac_clear_interrupt_EMPTY_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_EMPTY;
+}
+
+static inline bool hri_dac_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_SYNCRDY) >> DAC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_dac_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_SYNCRDY;
+}
+
+static inline hri_dac_intflag_reg_t hri_dac_get_INTFLAG_reg(const void *const hw, hri_dac_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Dac *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_dac_intflag_reg_t hri_dac_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Dac *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_dac_clear_INTFLAG_reg(const void *const hw, hri_dac_intflag_reg_t mask)
+{
+	((Dac *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_dac_set_INTEN_UNDERRUN_bit(const void *const hw)
@@ -180,82 +258,25 @@ static inline void hri_dac_clear_INTEN_reg(const void *const hw, hri_dac_intense
 	((Dac *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_dac_get_INTFLAG_UNDERRUN_bit(const void *const hw)
+static inline bool hri_dac_get_STATUS_SYNCBUSY_bit(const void *const hw)
 {
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_UNDERRUN) >> DAC_INTFLAG_UNDERRUN_Pos;
+	hri_dac_wait_for_sync(hw);
+	return (((Dac *)hw)->STATUS.reg & DAC_STATUS_SYNCBUSY) >> DAC_STATUS_SYNCBUSY_Pos;
 }
 
-static inline void hri_dac_clear_INTFLAG_UNDERRUN_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_UNDERRUN;
-}
-
-static inline bool hri_dac_get_INTFLAG_EMPTY_bit(const void *const hw)
-{
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_EMPTY) >> DAC_INTFLAG_EMPTY_Pos;
-}
-
-static inline void hri_dac_clear_INTFLAG_EMPTY_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_EMPTY;
-}
-
-static inline bool hri_dac_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_SYNCRDY) >> DAC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_dac_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_dac_get_interrupt_UNDERRUN_bit(const void *const hw)
-{
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_UNDERRUN) >> DAC_INTFLAG_UNDERRUN_Pos;
-}
-
-static inline void hri_dac_clear_interrupt_UNDERRUN_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_UNDERRUN;
-}
-
-static inline bool hri_dac_get_interrupt_EMPTY_bit(const void *const hw)
-{
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_EMPTY) >> DAC_INTFLAG_EMPTY_Pos;
-}
-
-static inline void hri_dac_clear_interrupt_EMPTY_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_EMPTY;
-}
-
-static inline bool hri_dac_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Dac *)hw)->INTFLAG.reg & DAC_INTFLAG_SYNCRDY) >> DAC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_dac_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Dac *)hw)->INTFLAG.reg = DAC_INTFLAG_SYNCRDY;
-}
-
-static inline hri_dac_intflag_reg_t hri_dac_get_INTFLAG_reg(const void *const hw, hri_dac_intflag_reg_t mask)
+static inline hri_dac_status_reg_t hri_dac_get_STATUS_reg(const void *const hw, hri_dac_status_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Dac *)hw)->INTFLAG.reg;
+	hri_dac_wait_for_sync(hw);
+	tmp = ((Dac *)hw)->STATUS.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_dac_intflag_reg_t hri_dac_read_INTFLAG_reg(const void *const hw)
+static inline hri_dac_status_reg_t hri_dac_read_STATUS_reg(const void *const hw)
 {
-	return ((Dac *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_dac_clear_INTFLAG_reg(const void *const hw, hri_dac_intflag_reg_t mask)
-{
-	((Dac *)hw)->INTFLAG.reg = mask;
+	hri_dac_wait_for_sync(hw);
+	return ((Dac *)hw)->STATUS.reg;
 }
 
 static inline void hri_dac_set_CTRLA_SWRST_bit(const void *const hw)
@@ -368,6 +389,7 @@ static inline void hri_dac_toggle_CTRLA_RUNSTDBY_bit(const void *const hw)
 static inline void hri_dac_set_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->CTRLA.reg |= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -375,6 +397,7 @@ static inline void hri_dac_set_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg
 static inline hri_dac_ctrla_reg_t hri_dac_get_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_dac_wait_for_sync(hw);
 	tmp = ((Dac *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -383,6 +406,7 @@ static inline hri_dac_ctrla_reg_t hri_dac_get_CTRLA_reg(const void *const hw, hr
 static inline void hri_dac_write_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg_t data)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->CTRLA.reg = data;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -390,6 +414,7 @@ static inline void hri_dac_write_CTRLA_reg(const void *const hw, hri_dac_ctrla_r
 static inline void hri_dac_clear_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->CTRLA.reg &= ~mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -397,12 +422,14 @@ static inline void hri_dac_clear_CTRLA_reg(const void *const hw, hri_dac_ctrla_r
 static inline void hri_dac_toggle_CTRLA_reg(const void *const hw, hri_dac_ctrla_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->CTRLA.reg ^= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_dac_ctrla_reg_t hri_dac_read_CTRLA_reg(const void *const hw)
 {
+	hri_dac_wait_for_sync(hw);
 	return ((Dac *)hw)->CTRLA.reg;
 }
 
@@ -873,6 +900,7 @@ static inline hri_dac_data_reg_t hri_dac_read_DATA_DATA_bf(const void *const hw)
 static inline void hri_dac_set_DATA_reg(const void *const hw, hri_dac_data_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATA.reg |= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -880,6 +908,7 @@ static inline void hri_dac_set_DATA_reg(const void *const hw, hri_dac_data_reg_t
 static inline hri_dac_data_reg_t hri_dac_get_DATA_reg(const void *const hw, hri_dac_data_reg_t mask)
 {
 	uint16_t tmp;
+	hri_dac_wait_for_sync(hw);
 	tmp = ((Dac *)hw)->DATA.reg;
 	tmp &= mask;
 	return tmp;
@@ -888,6 +917,7 @@ static inline hri_dac_data_reg_t hri_dac_get_DATA_reg(const void *const hw, hri_
 static inline void hri_dac_write_DATA_reg(const void *const hw, hri_dac_data_reg_t data)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATA.reg = data;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -895,6 +925,7 @@ static inline void hri_dac_write_DATA_reg(const void *const hw, hri_dac_data_reg
 static inline void hri_dac_clear_DATA_reg(const void *const hw, hri_dac_data_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATA.reg &= ~mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -902,12 +933,14 @@ static inline void hri_dac_clear_DATA_reg(const void *const hw, hri_dac_data_reg
 static inline void hri_dac_toggle_DATA_reg(const void *const hw, hri_dac_data_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATA.reg ^= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_dac_data_reg_t hri_dac_read_DATA_reg(const void *const hw)
 {
+	hri_dac_wait_for_sync(hw);
 	return ((Dac *)hw)->DATA.reg;
 }
 
@@ -968,6 +1001,7 @@ static inline hri_dac_databuf_reg_t hri_dac_read_DATABUF_DATABUF_bf(const void *
 static inline void hri_dac_set_DATABUF_reg(const void *const hw, hri_dac_databuf_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATABUF.reg |= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -975,6 +1009,7 @@ static inline void hri_dac_set_DATABUF_reg(const void *const hw, hri_dac_databuf
 static inline hri_dac_databuf_reg_t hri_dac_get_DATABUF_reg(const void *const hw, hri_dac_databuf_reg_t mask)
 {
 	uint16_t tmp;
+	hri_dac_wait_for_sync(hw);
 	tmp = ((Dac *)hw)->DATABUF.reg;
 	tmp &= mask;
 	return tmp;
@@ -983,6 +1018,7 @@ static inline hri_dac_databuf_reg_t hri_dac_get_DATABUF_reg(const void *const hw
 static inline void hri_dac_write_DATABUF_reg(const void *const hw, hri_dac_databuf_reg_t data)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATABUF.reg = data;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -990,6 +1026,7 @@ static inline void hri_dac_write_DATABUF_reg(const void *const hw, hri_dac_datab
 static inline void hri_dac_clear_DATABUF_reg(const void *const hw, hri_dac_databuf_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATABUF.reg &= ~mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
@@ -997,32 +1034,15 @@ static inline void hri_dac_clear_DATABUF_reg(const void *const hw, hri_dac_datab
 static inline void hri_dac_toggle_DATABUF_reg(const void *const hw, hri_dac_databuf_reg_t mask)
 {
 	DAC_CRITICAL_SECTION_ENTER();
+	hri_dac_wait_for_sync(hw);
 	((Dac *)hw)->DATABUF.reg ^= mask;
 	DAC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_dac_databuf_reg_t hri_dac_read_DATABUF_reg(const void *const hw)
 {
-	return ((Dac *)hw)->DATABUF.reg;
-}
-
-static inline bool hri_dac_get_STATUS_SYNCBUSY_bit(const void *const hw)
-{
 	hri_dac_wait_for_sync(hw);
-	return (((Dac *)hw)->STATUS.reg & DAC_STATUS_SYNCBUSY) >> DAC_STATUS_SYNCBUSY_Pos;
-}
-
-static inline hri_dac_status_reg_t hri_dac_get_STATUS_reg(const void *const hw, hri_dac_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Dac *)hw)->STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_dac_status_reg_t hri_dac_read_STATUS_reg(const void *const hw)
-{
-	return ((Dac *)hw)->STATUS.reg;
+	return ((Dac *)hw)->DATABUF.reg;
 }
 
 #ifdef __cplusplus
