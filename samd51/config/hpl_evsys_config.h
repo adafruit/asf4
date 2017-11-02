@@ -5836,6 +5836,7 @@
 #ifndef CONF_CHANNEL_0
 #define CONF_CHANNEL_0 0
 #endif
+
 //</h>
 
 // <h> PORT events
@@ -5998,6 +5999,7 @@
 #ifndef CONF_CHANNEL_4
 #define CONF_CHANNEL_4 0
 #endif
+
 //</h>
 
 // <h> DMAC events
@@ -6320,6 +6322,7 @@
 #ifndef CONF_CHANNEL_12
 #define CONF_CHANNEL_12 0
 #endif
+
 //</h>
 
 // <h> Reserved
@@ -6338,6 +6341,7 @@
 #ifndef CONF_CHANNEL_16
 #define CONF_CHANNEL_16 0
 #endif
+
 //</h>
 
 // <h> TCC events
@@ -7420,6 +7424,7 @@
 #ifndef CONF_CHANNEL_43
 #define CONF_CHANNEL_43 0
 #endif
+
 //</h>
 
 // <h> TC events
@@ -7742,6 +7747,7 @@
 #ifndef CONF_CHANNEL_51
 #define CONF_CHANNEL_51 0
 #endif
+
 //</h>
 
 // <h> PDEC events
@@ -7864,6 +7870,7 @@
 #ifndef CONF_CHANNEL_54
 #define CONF_CHANNEL_54 0
 #endif
+
 //</h>
 
 // <h> ADC events
@@ -8026,6 +8033,7 @@
 #ifndef CONF_CHANNEL_58
 #define CONF_CHANNEL_58 0
 #endif
+
 //</h>
 
 // <h> AC events
@@ -8108,6 +8116,7 @@
 #ifndef CONF_CHANNEL_60
 #define CONF_CHANNEL_60 0
 #endif
+
 //</h>
 
 // <h> DAC events
@@ -8190,6 +8199,7 @@
 #ifndef CONF_CHANNEL_62
 #define CONF_CHANNEL_62 0
 #endif
+
 //</h>
 
 // <h> CCL events
@@ -8352,6 +8362,7 @@
 #ifndef CONF_CHANNEL_66
 #define CONF_CHANNEL_66 0
 #endif
+
 //</h>
 
 // <<< end of configuration section >>>

@@ -3,7 +3,7 @@
  *
  * \brief SAM AC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -80,6 +80,84 @@ static inline void hri_ac_wait_for_sync(const void *const hw)
 static inline bool hri_ac_is_syncing(const void *const hw)
 {
 	return ((const Ac *)hw)->STATUSB.bit.SYNCBUSY;
+}
+
+static inline bool hri_ac_get_INTFLAG_COMP0_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP0) >> AC_INTFLAG_COMP0_Pos;
+}
+
+static inline void hri_ac_clear_INTFLAG_COMP0_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP0;
+}
+
+static inline bool hri_ac_get_INTFLAG_COMP1_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP1) >> AC_INTFLAG_COMP1_Pos;
+}
+
+static inline void hri_ac_clear_INTFLAG_COMP1_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP1;
+}
+
+static inline bool hri_ac_get_INTFLAG_WIN0_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_WIN0) >> AC_INTFLAG_WIN0_Pos;
+}
+
+static inline void hri_ac_clear_INTFLAG_WIN0_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_WIN0;
+}
+
+static inline bool hri_ac_get_interrupt_COMP0_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP0) >> AC_INTFLAG_COMP0_Pos;
+}
+
+static inline void hri_ac_clear_interrupt_COMP0_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP0;
+}
+
+static inline bool hri_ac_get_interrupt_COMP1_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP1) >> AC_INTFLAG_COMP1_Pos;
+}
+
+static inline void hri_ac_clear_interrupt_COMP1_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP1;
+}
+
+static inline bool hri_ac_get_interrupt_WIN0_bit(const void *const hw)
+{
+	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_WIN0) >> AC_INTFLAG_WIN0_Pos;
+}
+
+static inline void hri_ac_clear_interrupt_WIN0_bit(const void *const hw)
+{
+	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_WIN0;
+}
+
+static inline hri_ac_intflag_reg_t hri_ac_get_INTFLAG_reg(const void *const hw, hri_ac_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Ac *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_ac_intflag_reg_t hri_ac_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Ac *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_ac_clear_INTFLAG_reg(const void *const hw, hri_ac_intflag_reg_t mask)
+{
+	((Ac *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_ac_set_INTEN_COMP0_bit(const void *const hw)
@@ -183,89 +261,98 @@ static inline void hri_ac_clear_INTEN_reg(const void *const hw, hri_ac_intenset_
 	((Ac *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_ac_get_INTFLAG_COMP0_bit(const void *const hw)
+static inline bool hri_ac_get_STATUSA_STATE0_bit(const void *const hw)
 {
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP0) >> AC_INTFLAG_COMP0_Pos;
+	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_STATE0) >> AC_STATUSA_STATE0_Pos;
 }
 
-static inline void hri_ac_clear_INTFLAG_COMP0_bit(const void *const hw)
+static inline bool hri_ac_get_STATUSA_STATE1_bit(const void *const hw)
 {
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP0;
+	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_STATE1) >> AC_STATUSA_STATE1_Pos;
 }
 
-static inline bool hri_ac_get_INTFLAG_COMP1_bit(const void *const hw)
+static inline hri_ac_statusa_reg_t hri_ac_get_STATUSA_WSTATE0_bf(const void *const hw, hri_ac_statusa_reg_t mask)
 {
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP1) >> AC_INTFLAG_COMP1_Pos;
+	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_WSTATE0(mask)) >> AC_STATUSA_WSTATE0_Pos;
 }
 
-static inline void hri_ac_clear_INTFLAG_COMP1_bit(const void *const hw)
+static inline hri_ac_statusa_reg_t hri_ac_read_STATUSA_WSTATE0_bf(const void *const hw)
 {
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP1;
+	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_WSTATE0_Msk) >> AC_STATUSA_WSTATE0_Pos;
 }
 
-static inline bool hri_ac_get_INTFLAG_WIN0_bit(const void *const hw)
-{
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_WIN0) >> AC_INTFLAG_WIN0_Pos;
-}
-
-static inline void hri_ac_clear_INTFLAG_WIN0_bit(const void *const hw)
-{
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_WIN0;
-}
-
-static inline bool hri_ac_get_interrupt_COMP0_bit(const void *const hw)
-{
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP0) >> AC_INTFLAG_COMP0_Pos;
-}
-
-static inline void hri_ac_clear_interrupt_COMP0_bit(const void *const hw)
-{
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP0;
-}
-
-static inline bool hri_ac_get_interrupt_COMP1_bit(const void *const hw)
-{
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_COMP1) >> AC_INTFLAG_COMP1_Pos;
-}
-
-static inline void hri_ac_clear_interrupt_COMP1_bit(const void *const hw)
-{
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_COMP1;
-}
-
-static inline bool hri_ac_get_interrupt_WIN0_bit(const void *const hw)
-{
-	return (((Ac *)hw)->INTFLAG.reg & AC_INTFLAG_WIN0) >> AC_INTFLAG_WIN0_Pos;
-}
-
-static inline void hri_ac_clear_interrupt_WIN0_bit(const void *const hw)
-{
-	((Ac *)hw)->INTFLAG.reg = AC_INTFLAG_WIN0;
-}
-
-static inline hri_ac_intflag_reg_t hri_ac_get_INTFLAG_reg(const void *const hw, hri_ac_intflag_reg_t mask)
+static inline hri_ac_statusa_reg_t hri_ac_get_STATUSA_reg(const void *const hw, hri_ac_statusa_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Ac *)hw)->INTFLAG.reg;
+	tmp = ((Ac *)hw)->STATUSA.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_ac_intflag_reg_t hri_ac_read_INTFLAG_reg(const void *const hw)
+static inline hri_ac_statusa_reg_t hri_ac_read_STATUSA_reg(const void *const hw)
 {
-	return ((Ac *)hw)->INTFLAG.reg;
+	return ((Ac *)hw)->STATUSA.reg;
 }
 
-static inline void hri_ac_clear_INTFLAG_reg(const void *const hw, hri_ac_intflag_reg_t mask)
+static inline bool hri_ac_get_STATUSB_READY0_bit(const void *const hw)
 {
-	((Ac *)hw)->INTFLAG.reg = mask;
+	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_READY0) >> AC_STATUSB_READY0_Pos;
 }
 
-static inline void hri_ac_write_CTRLB_reg(const void *const hw, hri_ac_ctrlb_reg_t data)
+static inline bool hri_ac_get_STATUSB_READY1_bit(const void *const hw)
 {
-	AC_CRITICAL_SECTION_ENTER();
-	((Ac *)hw)->CTRLB.reg = data;
-	AC_CRITICAL_SECTION_LEAVE();
+	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_READY1) >> AC_STATUSB_READY1_Pos;
+}
+
+static inline bool hri_ac_get_STATUSB_SYNCBUSY_bit(const void *const hw)
+{
+	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_SYNCBUSY) >> AC_STATUSB_SYNCBUSY_Pos;
+}
+
+static inline hri_ac_statusb_reg_t hri_ac_get_STATUSB_reg(const void *const hw, hri_ac_statusb_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Ac *)hw)->STATUSB.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_ac_statusb_reg_t hri_ac_read_STATUSB_reg(const void *const hw)
+{
+	return ((Ac *)hw)->STATUSB.reg;
+}
+
+static inline bool hri_ac_get_STATUSC_STATE0_bit(const void *const hw)
+{
+	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_STATE0) >> AC_STATUSC_STATE0_Pos;
+}
+
+static inline bool hri_ac_get_STATUSC_STATE1_bit(const void *const hw)
+{
+	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_STATE1) >> AC_STATUSC_STATE1_Pos;
+}
+
+static inline hri_ac_statusc_reg_t hri_ac_get_STATUSC_WSTATE0_bf(const void *const hw, hri_ac_statusc_reg_t mask)
+{
+	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_WSTATE0(mask)) >> AC_STATUSC_WSTATE0_Pos;
+}
+
+static inline hri_ac_statusc_reg_t hri_ac_read_STATUSC_WSTATE0_bf(const void *const hw)
+{
+	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_WSTATE0_Msk) >> AC_STATUSC_WSTATE0_Pos;
+}
+
+static inline hri_ac_statusc_reg_t hri_ac_get_STATUSC_reg(const void *const hw, hri_ac_statusc_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Ac *)hw)->STATUSC.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_ac_statusc_reg_t hri_ac_read_STATUSC_reg(const void *const hw)
+{
+	return ((Ac *)hw)->STATUSC.reg;
 }
 
 static inline void hri_ac_set_CTRLA_SWRST_bit(const void *const hw)
@@ -423,6 +510,7 @@ static inline void hri_ac_toggle_CTRLA_LPMUX_bit(const void *const hw)
 static inline void hri_ac_set_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->CTRLA.reg |= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -430,6 +518,7 @@ static inline void hri_ac_set_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t
 static inline hri_ac_ctrla_reg_t hri_ac_get_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_ac_wait_for_sync(hw);
 	tmp = ((Ac *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -438,6 +527,7 @@ static inline hri_ac_ctrla_reg_t hri_ac_get_CTRLA_reg(const void *const hw, hri_
 static inline void hri_ac_write_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t data)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->CTRLA.reg = data;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -445,6 +535,7 @@ static inline void hri_ac_write_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg
 static inline void hri_ac_clear_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->CTRLA.reg &= ~mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -452,12 +543,14 @@ static inline void hri_ac_clear_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg
 static inline void hri_ac_toggle_CTRLA_reg(const void *const hw, hri_ac_ctrla_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->CTRLA.reg ^= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_ac_ctrla_reg_t hri_ac_read_CTRLA_reg(const void *const hw)
 {
+	hri_ac_wait_for_sync(hw);
 	return ((Ac *)hw)->CTRLA.reg;
 }
 
@@ -804,6 +897,7 @@ static inline hri_ac_winctrl_reg_t hri_ac_read_WINCTRL_WINTSEL0_bf(const void *c
 static inline void hri_ac_set_WINCTRL_reg(const void *const hw, hri_ac_winctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->WINCTRL.reg |= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -811,6 +905,7 @@ static inline void hri_ac_set_WINCTRL_reg(const void *const hw, hri_ac_winctrl_r
 static inline hri_ac_winctrl_reg_t hri_ac_get_WINCTRL_reg(const void *const hw, hri_ac_winctrl_reg_t mask)
 {
 	uint8_t tmp;
+	hri_ac_wait_for_sync(hw);
 	tmp = ((Ac *)hw)->WINCTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -819,6 +914,7 @@ static inline hri_ac_winctrl_reg_t hri_ac_get_WINCTRL_reg(const void *const hw, 
 static inline void hri_ac_write_WINCTRL_reg(const void *const hw, hri_ac_winctrl_reg_t data)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->WINCTRL.reg = data;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -826,6 +922,7 @@ static inline void hri_ac_write_WINCTRL_reg(const void *const hw, hri_ac_winctrl
 static inline void hri_ac_clear_WINCTRL_reg(const void *const hw, hri_ac_winctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->WINCTRL.reg &= ~mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -833,12 +930,14 @@ static inline void hri_ac_clear_WINCTRL_reg(const void *const hw, hri_ac_winctrl
 static inline void hri_ac_toggle_WINCTRL_reg(const void *const hw, hri_ac_winctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->WINCTRL.reg ^= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_ac_winctrl_reg_t hri_ac_read_WINCTRL_reg(const void *const hw)
 {
+	hri_ac_wait_for_sync(hw);
 	return ((Ac *)hw)->WINCTRL.reg;
 }
 
@@ -1355,6 +1454,7 @@ static inline hri_ac_compctrl_reg_t hri_ac_read_COMPCTRL_FLEN_bf(const void *con
 static inline void hri_ac_set_COMPCTRL_reg(const void *const hw, uint8_t index, hri_ac_compctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->COMPCTRL[index].reg |= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -1363,6 +1463,7 @@ static inline hri_ac_compctrl_reg_t hri_ac_get_COMPCTRL_reg(const void *const hw
                                                             hri_ac_compctrl_reg_t mask)
 {
 	uint32_t tmp;
+	hri_ac_wait_for_sync(hw);
 	tmp = ((Ac *)hw)->COMPCTRL[index].reg;
 	tmp &= mask;
 	return tmp;
@@ -1371,6 +1472,7 @@ static inline hri_ac_compctrl_reg_t hri_ac_get_COMPCTRL_reg(const void *const hw
 static inline void hri_ac_write_COMPCTRL_reg(const void *const hw, uint8_t index, hri_ac_compctrl_reg_t data)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->COMPCTRL[index].reg = data;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -1378,6 +1480,7 @@ static inline void hri_ac_write_COMPCTRL_reg(const void *const hw, uint8_t index
 static inline void hri_ac_clear_COMPCTRL_reg(const void *const hw, uint8_t index, hri_ac_compctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->COMPCTRL[index].reg &= ~mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
@@ -1385,12 +1488,14 @@ static inline void hri_ac_clear_COMPCTRL_reg(const void *const hw, uint8_t index
 static inline void hri_ac_toggle_COMPCTRL_reg(const void *const hw, uint8_t index, hri_ac_compctrl_reg_t mask)
 {
 	AC_CRITICAL_SECTION_ENTER();
+	hri_ac_wait_for_sync(hw);
 	((Ac *)hw)->COMPCTRL[index].reg ^= mask;
 	AC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_ac_compctrl_reg_t hri_ac_read_COMPCTRL_reg(const void *const hw, uint8_t index)
 {
+	hri_ac_wait_for_sync(hw);
 	return ((Ac *)hw)->COMPCTRL[index].reg;
 }
 
@@ -1484,98 +1589,11 @@ static inline hri_ac_scaler_reg_t hri_ac_read_SCALER_reg(const void *const hw, u
 	return ((Ac *)hw)->SCALER[index].reg;
 }
 
-static inline bool hri_ac_get_STATUSA_STATE0_bit(const void *const hw)
+static inline void hri_ac_write_CTRLB_reg(const void *const hw, hri_ac_ctrlb_reg_t data)
 {
-	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_STATE0) >> AC_STATUSA_STATE0_Pos;
-}
-
-static inline bool hri_ac_get_STATUSA_STATE1_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_STATE1) >> AC_STATUSA_STATE1_Pos;
-}
-
-static inline hri_ac_statusa_reg_t hri_ac_get_STATUSA_WSTATE0_bf(const void *const hw, hri_ac_statusa_reg_t mask)
-{
-	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_WSTATE0(mask)) >> AC_STATUSA_WSTATE0_Pos;
-}
-
-static inline hri_ac_statusa_reg_t hri_ac_read_STATUSA_WSTATE0_bf(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSA.reg & AC_STATUSA_WSTATE0_Msk) >> AC_STATUSA_WSTATE0_Pos;
-}
-
-static inline hri_ac_statusa_reg_t hri_ac_get_STATUSA_reg(const void *const hw, hri_ac_statusa_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Ac *)hw)->STATUSA.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_ac_statusa_reg_t hri_ac_read_STATUSA_reg(const void *const hw)
-{
-	return ((Ac *)hw)->STATUSA.reg;
-}
-
-static inline bool hri_ac_get_STATUSB_READY0_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_READY0) >> AC_STATUSB_READY0_Pos;
-}
-
-static inline bool hri_ac_get_STATUSB_READY1_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_READY1) >> AC_STATUSB_READY1_Pos;
-}
-
-static inline bool hri_ac_get_STATUSB_SYNCBUSY_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSB.reg & AC_STATUSB_SYNCBUSY) >> AC_STATUSB_SYNCBUSY_Pos;
-}
-
-static inline hri_ac_statusb_reg_t hri_ac_get_STATUSB_reg(const void *const hw, hri_ac_statusb_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Ac *)hw)->STATUSB.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_ac_statusb_reg_t hri_ac_read_STATUSB_reg(const void *const hw)
-{
-	return ((Ac *)hw)->STATUSB.reg;
-}
-
-static inline bool hri_ac_get_STATUSC_STATE0_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_STATE0) >> AC_STATUSC_STATE0_Pos;
-}
-
-static inline bool hri_ac_get_STATUSC_STATE1_bit(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_STATE1) >> AC_STATUSC_STATE1_Pos;
-}
-
-static inline hri_ac_statusc_reg_t hri_ac_get_STATUSC_WSTATE0_bf(const void *const hw, hri_ac_statusc_reg_t mask)
-{
-	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_WSTATE0(mask)) >> AC_STATUSC_WSTATE0_Pos;
-}
-
-static inline hri_ac_statusc_reg_t hri_ac_read_STATUSC_WSTATE0_bf(const void *const hw)
-{
-	return (((Ac *)hw)->STATUSC.reg & AC_STATUSC_WSTATE0_Msk) >> AC_STATUSC_WSTATE0_Pos;
-}
-
-static inline hri_ac_statusc_reg_t hri_ac_get_STATUSC_reg(const void *const hw, hri_ac_statusc_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Ac *)hw)->STATUSC.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_ac_statusc_reg_t hri_ac_read_STATUSC_reg(const void *const hw)
-{
-	return ((Ac *)hw)->STATUSC.reg;
+	AC_CRITICAL_SECTION_ENTER();
+	((Ac *)hw)->CTRLB.reg = data;
+	AC_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus

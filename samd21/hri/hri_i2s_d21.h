@@ -3,7 +3,7 @@
  *
  * \brief SAM I2S
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -76,6 +76,184 @@ static inline void hri_i2s_wait_for_sync(const void *const hw, hri_i2s_syncbusy_
 static inline bool hri_i2s_is_syncing(const void *const hw, hri_i2s_syncbusy_reg_t reg)
 {
 	return ((I2s *)hw)->SYNCBUSY.reg & reg;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXOR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXOR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXOR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXOR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXUR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXUR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXUR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXUR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
+}
+
+static inline bool hri_i2s_get_interrupt_RXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+}
+
+static inline bool hri_i2s_get_interrupt_RXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+}
+
+static inline bool hri_i2s_get_interrupt_RXOR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXOR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+}
+
+static inline bool hri_i2s_get_interrupt_RXOR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXOR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+}
+
+static inline bool hri_i2s_get_interrupt_TXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
+}
+
+static inline bool hri_i2s_get_interrupt_TXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
+}
+
+static inline bool hri_i2s_get_interrupt_TXUR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXUR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
+}
+
+static inline bool hri_i2s_get_interrupt_TXUR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXUR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
+}
+
+static inline hri_i2s_intflag_reg_t hri_i2s_get_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((I2s *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_i2s_intflag_reg_t hri_i2s_read_INTFLAG_reg(const void *const hw)
+{
+	return ((I2s *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_i2s_clear_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+{
+	((I2s *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_i2s_set_INTEN_RXRDY0_bit(const void *const hw)
@@ -299,182 +477,57 @@ static inline void hri_i2s_clear_INTEN_reg(const void *const hw, hri_i2s_intense
 	((I2s *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXRDY0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_SWRST_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SWRST) >> I2S_SYNCBUSY_SWRST_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXRDY0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_ENABLE_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_ENABLE) >> I2S_SYNCBUSY_ENABLE_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXRDY1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_CKEN0_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN0) >> I2S_SYNCBUSY_CKEN0_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXRDY1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_CKEN1_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN1) >> I2S_SYNCBUSY_CKEN1_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXOR0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_SEREN0_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SEREN0) >> I2S_SYNCBUSY_SEREN0_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXOR0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_SEREN1_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SEREN1) >> I2S_SYNCBUSY_SEREN1_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXOR1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_DATA0_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_DATA0) >> I2S_SYNCBUSY_DATA0_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXOR1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_DATA1_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_DATA1) >> I2S_SYNCBUSY_DATA1_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_TXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXUR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXUR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXUR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXUR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
-}
-
-static inline bool hri_i2s_get_interrupt_RXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
-}
-
-static inline bool hri_i2s_get_interrupt_RXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
-}
-
-static inline bool hri_i2s_get_interrupt_RXOR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXOR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
-}
-
-static inline bool hri_i2s_get_interrupt_RXOR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXOR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
-}
-
-static inline bool hri_i2s_get_interrupt_TXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
-}
-
-static inline bool hri_i2s_get_interrupt_TXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
-}
-
-static inline bool hri_i2s_get_interrupt_TXUR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXUR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
-}
-
-static inline bool hri_i2s_get_interrupt_TXUR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXUR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
-}
-
-static inline hri_i2s_intflag_reg_t hri_i2s_get_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+static inline hri_i2s_syncbusy_reg_t hri_i2s_get_SYNCBUSY_reg(const void *const hw, hri_i2s_syncbusy_reg_t mask)
 {
 	uint16_t tmp;
-	tmp = ((I2s *)hw)->INTFLAG.reg;
+	tmp = ((I2s *)hw)->SYNCBUSY.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_i2s_intflag_reg_t hri_i2s_read_INTFLAG_reg(const void *const hw)
+static inline hri_i2s_syncbusy_reg_t hri_i2s_read_SYNCBUSY_reg(const void *const hw)
 {
-	return ((I2s *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_i2s_clear_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
-{
-	((I2s *)hw)->INTFLAG.reg = mask;
+	return ((I2s *)hw)->SYNCBUSY.reg;
 }
 
 static inline void hri_i2s_set_CTRLA_SWRST_bit(const void *const hw)
@@ -797,6 +850,10 @@ static inline void hri_i2s_toggle_CTRLA_SEREN1_bit(const void *const hw)
 static inline void hri_i2s_set_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	((I2s *)hw)->CTRLA.reg |= mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -804,6 +861,10 @@ static inline void hri_i2s_set_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg
 static inline hri_i2s_ctrla_reg_t hri_i2s_get_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -812,6 +873,10 @@ static inline hri_i2s_ctrla_reg_t hri_i2s_get_CTRLA_reg(const void *const hw, hr
 static inline void hri_i2s_write_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t data)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	((I2s *)hw)->CTRLA.reg = data;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -819,6 +884,10 @@ static inline void hri_i2s_write_CTRLA_reg(const void *const hw, hri_i2s_ctrla_r
 static inline void hri_i2s_clear_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	((I2s *)hw)->CTRLA.reg &= ~mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -826,12 +895,20 @@ static inline void hri_i2s_clear_CTRLA_reg(const void *const hw, hri_i2s_ctrla_r
 static inline void hri_i2s_toggle_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	((I2s *)hw)->CTRLA.reg ^= mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_i2s_ctrla_reg_t hri_i2s_read_CTRLA_reg(const void *const hw)
 {
+	hri_i2s_wait_for_sync(hw,
+	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
+	                          | I2S_SYNCBUSY_SEREN0
+	                          | I2S_SYNCBUSY_SEREN1);
 	return ((I2s *)hw)->CTRLA.reg;
 }
 
@@ -2417,6 +2494,7 @@ static inline hri_i2s_data_reg_t hri_i2s_read_DATA_DATA_bf(const void *const hw,
 static inline void hri_i2s_set_DATA_reg(const void *const hw, uint8_t index, hri_i2s_data_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	((I2s *)hw)->DATA[index].reg |= mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -2424,6 +2502,7 @@ static inline void hri_i2s_set_DATA_reg(const void *const hw, uint8_t index, hri
 static inline hri_i2s_data_reg_t hri_i2s_get_DATA_reg(const void *const hw, uint8_t index, hri_i2s_data_reg_t mask)
 {
 	uint32_t tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	tmp = ((I2s *)hw)->DATA[index].reg;
 	tmp &= mask;
 	return tmp;
@@ -2432,6 +2511,7 @@ static inline hri_i2s_data_reg_t hri_i2s_get_DATA_reg(const void *const hw, uint
 static inline void hri_i2s_write_DATA_reg(const void *const hw, uint8_t index, hri_i2s_data_reg_t data)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	((I2s *)hw)->DATA[index].reg = data;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -2439,6 +2519,7 @@ static inline void hri_i2s_write_DATA_reg(const void *const hw, uint8_t index, h
 static inline void hri_i2s_clear_DATA_reg(const void *const hw, uint8_t index, hri_i2s_data_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	((I2s *)hw)->DATA[index].reg &= ~mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
@@ -2446,66 +2527,15 @@ static inline void hri_i2s_clear_DATA_reg(const void *const hw, uint8_t index, h
 static inline void hri_i2s_toggle_DATA_reg(const void *const hw, uint8_t index, hri_i2s_data_reg_t mask)
 {
 	I2S_CRITICAL_SECTION_ENTER();
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	((I2s *)hw)->DATA[index].reg ^= mask;
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_i2s_data_reg_t hri_i2s_read_DATA_reg(const void *const hw, uint8_t index)
 {
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	return ((I2s *)hw)->DATA[index].reg;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_SWRST_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SWRST) >> I2S_SYNCBUSY_SWRST_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_ENABLE_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_ENABLE) >> I2S_SYNCBUSY_ENABLE_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_CKEN0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN0) >> I2S_SYNCBUSY_CKEN0_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_CKEN1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN1) >> I2S_SYNCBUSY_CKEN1_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_SEREN0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SEREN0) >> I2S_SYNCBUSY_SEREN0_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_SEREN1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SEREN1) >> I2S_SYNCBUSY_SEREN1_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_DATA0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_DATA0) >> I2S_SYNCBUSY_DATA0_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_DATA1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_DATA1) >> I2S_SYNCBUSY_DATA1_Pos;
-}
-
-static inline hri_i2s_syncbusy_reg_t hri_i2s_get_SYNCBUSY_reg(const void *const hw, hri_i2s_syncbusy_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((I2s *)hw)->SYNCBUSY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_i2s_syncbusy_reg_t hri_i2s_read_SYNCBUSY_reg(const void *const hw)
-{
-	return ((I2s *)hw)->SYNCBUSY.reg;
 }
 
 #ifdef __cplusplus

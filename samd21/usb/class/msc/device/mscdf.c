@@ -569,6 +569,9 @@ static int32_t mscdf_set_req(uint8_t ep, struct usb_req *req)
 	(void)ep;
 	switch (req->bRequest) {
 	case USB_REQ_MSC_BULK_RESET:
+		if (req->wValue != 0 || req->wLength != 0) {
+			return ERR_INVALID_ARG;
+		}
 		_mscdf_funcd.xfer_stage = MSCDF_CMD_STAGE;
 		usb_d_ep_halt(_mscdf_funcd.func_ep_in, USB_EP_HALT_SET);
 		usb_d_ep_halt(_mscdf_funcd.func_ep_out, USB_EP_HALT_SET);
@@ -595,6 +598,11 @@ static int32_t mscdf_get_req(uint8_t ep, struct usb_req *req, enum usb_ctrl_stag
 
 	switch (req->bRequest) {
 	case USB_REQ_MSC_GET_MAX_LUN:
+		if (req->wValue != 0 || len == 0) {
+			return ERR_INVALID_ARG;
+		} else if (len > 1) {
+			len = 1;
+		}
 		return usbdc_xfer(ep, &_mscdf_funcd.func_max_lun, len, false);
 	default:
 		return ERR_INVALID_ARG;

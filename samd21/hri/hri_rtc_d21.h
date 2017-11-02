@@ -3,7 +3,7 @@
  *
  * \brief SAM RTC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -1053,6 +1053,85 @@ static inline hri_rtcmode2_mask_reg_t hri_rtcmode2_read_MASK_reg(const void *con
 	return ((Rtc *)hw)->MODE2.Mode2Alarm[submodule_index].MASK.reg;
 }
 
+static inline bool hri_rtcmode2_get_INTFLAG_ALARM0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_ALARM0) >> RTC_MODE2_INTFLAG_ALARM0_Pos;
+}
+
+static inline void hri_rtcmode2_clear_INTFLAG_ALARM0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
+}
+
+static inline bool hri_rtcmode2_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_SYNCRDY) >> RTC_MODE2_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode2_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode2_get_INTFLAG_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_OVF) >> RTC_MODE2_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode2_clear_INTFLAG_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_OVF;
+}
+
+static inline bool hri_rtcmode2_get_interrupt_ALARM0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_ALARM0) >> RTC_MODE2_INTFLAG_ALARM0_Pos;
+}
+
+static inline void hri_rtcmode2_clear_interrupt_ALARM0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
+}
+
+static inline bool hri_rtcmode2_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_SYNCRDY) >> RTC_MODE2_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode2_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode2_get_interrupt_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_OVF) >> RTC_MODE2_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode2_clear_interrupt_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_OVF;
+}
+
+static inline hri_rtcmode2_intflag_reg_t hri_rtcmode2_get_INTFLAG_reg(const void *const          hw,
+                                                                      hri_rtcmode2_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Rtc *)hw)->MODE2.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_rtcmode2_intflag_reg_t hri_rtcmode2_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Rtc *)hw)->MODE2.INTFLAG.reg;
+}
+
+static inline void hri_rtcmode2_clear_INTFLAG_reg(const void *const hw, hri_rtcmode2_intflag_reg_t mask)
+{
+	((Rtc *)hw)->MODE2.INTFLAG.reg = mask;
+}
+
 static inline void hri_rtcmode2_set_INTEN_ALARM0_bit(const void *const hw)
 {
 	((Rtc *)hw)->MODE2.INTENSET.reg = RTC_MODE2_INTENSET_ALARM0;
@@ -1153,85 +1232,6 @@ static inline void hri_rtcmode2_write_INTEN_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode2_clear_INTEN_reg(const void *const hw, hri_rtcmode2_intenset_reg_t mask)
 {
 	((Rtc *)hw)->MODE2.INTENCLR.reg = mask;
-}
-
-static inline bool hri_rtcmode2_get_INTFLAG_ALARM0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_ALARM0) >> RTC_MODE2_INTFLAG_ALARM0_Pos;
-}
-
-static inline void hri_rtcmode2_clear_INTFLAG_ALARM0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
-}
-
-static inline bool hri_rtcmode2_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_SYNCRDY) >> RTC_MODE2_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode2_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode2_get_INTFLAG_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_OVF) >> RTC_MODE2_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode2_clear_INTFLAG_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_OVF;
-}
-
-static inline bool hri_rtcmode2_get_interrupt_ALARM0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_ALARM0) >> RTC_MODE2_INTFLAG_ALARM0_Pos;
-}
-
-static inline void hri_rtcmode2_clear_interrupt_ALARM0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_ALARM0;
-}
-
-static inline bool hri_rtcmode2_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_SYNCRDY) >> RTC_MODE2_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode2_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode2_get_interrupt_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE2.INTFLAG.reg & RTC_MODE2_INTFLAG_OVF) >> RTC_MODE2_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode2_clear_interrupt_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = RTC_MODE2_INTFLAG_OVF;
-}
-
-static inline hri_rtcmode2_intflag_reg_t hri_rtcmode2_get_INTFLAG_reg(const void *const          hw,
-                                                                      hri_rtcmode2_intflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Rtc *)hw)->MODE2.INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_rtcmode2_intflag_reg_t hri_rtcmode2_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Rtc *)hw)->MODE2.INTFLAG.reg;
-}
-
-static inline void hri_rtcmode2_clear_INTFLAG_reg(const void *const hw, hri_rtcmode2_intflag_reg_t mask)
-{
-	((Rtc *)hw)->MODE2.INTFLAG.reg = mask;
 }
 
 static inline void hri_rtcmode2_set_CTRL_SWRST_bit(const void *const hw)
@@ -1498,6 +1498,7 @@ static inline hri_rtcmode2_ctrl_reg_t hri_rtcmode2_read_CTRL_PRESCALER_bf(const 
 static inline void hri_rtcmode2_set_CTRL_reg(const void *const hw, hri_rtcmode2_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CTRL.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -1505,6 +1506,7 @@ static inline void hri_rtcmode2_set_CTRL_reg(const void *const hw, hri_rtcmode2_
 static inline hri_rtcmode2_ctrl_reg_t hri_rtcmode2_get_CTRL_reg(const void *const hw, hri_rtcmode2_ctrl_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode2_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE2.CTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -1513,6 +1515,7 @@ static inline hri_rtcmode2_ctrl_reg_t hri_rtcmode2_get_CTRL_reg(const void *cons
 static inline void hri_rtcmode2_write_CTRL_reg(const void *const hw, hri_rtcmode2_ctrl_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CTRL.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -1520,6 +1523,7 @@ static inline void hri_rtcmode2_write_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode2_clear_CTRL_reg(const void *const hw, hri_rtcmode2_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CTRL.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -1527,12 +1531,14 @@ static inline void hri_rtcmode2_clear_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode2_toggle_CTRL_reg(const void *const hw, hri_rtcmode2_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CTRL.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode2_ctrl_reg_t hri_rtcmode2_read_CTRL_reg(const void *const hw)
 {
+	hri_rtcmode2_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE2.CTRL.reg;
 }
 
@@ -2334,6 +2340,7 @@ static inline hri_rtcmode2_freqcorr_reg_t hri_rtcmode2_read_FREQCORR_VALUE_bf(co
 static inline void hri_rtcmode2_set_FREQCORR_reg(const void *const hw, hri_rtcmode2_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.FREQCORR.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2342,6 +2349,7 @@ static inline hri_rtcmode2_freqcorr_reg_t hri_rtcmode2_get_FREQCORR_reg(const vo
                                                                         hri_rtcmode2_freqcorr_reg_t mask)
 {
 	uint8_t tmp;
+	hri_rtcmode2_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE2.FREQCORR.reg;
 	tmp &= mask;
 	return tmp;
@@ -2350,6 +2358,7 @@ static inline hri_rtcmode2_freqcorr_reg_t hri_rtcmode2_get_FREQCORR_reg(const vo
 static inline void hri_rtcmode2_write_FREQCORR_reg(const void *const hw, hri_rtcmode2_freqcorr_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.FREQCORR.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2357,6 +2366,7 @@ static inline void hri_rtcmode2_write_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode2_clear_FREQCORR_reg(const void *const hw, hri_rtcmode2_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.FREQCORR.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2364,12 +2374,14 @@ static inline void hri_rtcmode2_clear_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode2_toggle_FREQCORR_reg(const void *const hw, hri_rtcmode2_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.FREQCORR.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode2_freqcorr_reg_t hri_rtcmode2_read_FREQCORR_reg(const void *const hw)
 {
+	hri_rtcmode2_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE2.FREQCORR.reg;
 }
 
@@ -2706,6 +2718,7 @@ static inline hri_rtcmode2_clock_reg_t hri_rtcmode2_read_CLOCK_YEAR_bf(const voi
 static inline void hri_rtcmode2_set_CLOCK_reg(const void *const hw, hri_rtcmode2_clock_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CLOCK.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2713,6 +2726,7 @@ static inline void hri_rtcmode2_set_CLOCK_reg(const void *const hw, hri_rtcmode2
 static inline hri_rtcmode2_clock_reg_t hri_rtcmode2_get_CLOCK_reg(const void *const hw, hri_rtcmode2_clock_reg_t mask)
 {
 	uint32_t tmp;
+	hri_rtcmode2_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE2.CLOCK.reg;
 	tmp &= mask;
 	return tmp;
@@ -2721,6 +2735,7 @@ static inline hri_rtcmode2_clock_reg_t hri_rtcmode2_get_CLOCK_reg(const void *co
 static inline void hri_rtcmode2_write_CLOCK_reg(const void *const hw, hri_rtcmode2_clock_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CLOCK.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2728,6 +2743,7 @@ static inline void hri_rtcmode2_write_CLOCK_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode2_clear_CLOCK_reg(const void *const hw, hri_rtcmode2_clock_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CLOCK.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -2735,12 +2751,14 @@ static inline void hri_rtcmode2_clear_CLOCK_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode2_toggle_CLOCK_reg(const void *const hw, hri_rtcmode2_clock_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode2_wait_for_sync(hw);
 	((Rtc *)hw)->MODE2.CLOCK.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode2_clock_reg_t hri_rtcmode2_read_CLOCK_reg(const void *const hw)
 {
+	hri_rtcmode2_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE2.CLOCK.reg;
 }
 
@@ -2775,6 +2793,85 @@ static inline void hri_rtcmode2_clear_STATUS_reg(const void *const hw, hri_rtcmo
 static inline hri_rtcmode2_status_reg_t hri_rtcmode2_read_STATUS_reg(const void *const hw)
 {
 	return ((Rtc *)hw)->MODE2.STATUS.reg;
+}
+
+static inline bool hri_rtcmode0_get_INTFLAG_CMP0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_CMP0) >> RTC_MODE0_INTFLAG_CMP0_Pos;
+}
+
+static inline void hri_rtcmode0_clear_INTFLAG_CMP0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_CMP0;
+}
+
+static inline bool hri_rtcmode0_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_SYNCRDY) >> RTC_MODE0_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode0_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode0_get_INTFLAG_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_OVF) >> RTC_MODE0_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode0_clear_INTFLAG_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_OVF;
+}
+
+static inline bool hri_rtcmode0_get_interrupt_CMP0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_CMP0) >> RTC_MODE0_INTFLAG_CMP0_Pos;
+}
+
+static inline void hri_rtcmode0_clear_interrupt_CMP0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_CMP0;
+}
+
+static inline bool hri_rtcmode0_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_SYNCRDY) >> RTC_MODE0_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode0_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode0_get_interrupt_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_OVF) >> RTC_MODE0_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode0_clear_interrupt_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_OVF;
+}
+
+static inline hri_rtcmode0_intflag_reg_t hri_rtcmode0_get_INTFLAG_reg(const void *const          hw,
+                                                                      hri_rtcmode0_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Rtc *)hw)->MODE0.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_rtcmode0_intflag_reg_t hri_rtcmode0_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Rtc *)hw)->MODE0.INTFLAG.reg;
+}
+
+static inline void hri_rtcmode0_clear_INTFLAG_reg(const void *const hw, hri_rtcmode0_intflag_reg_t mask)
+{
+	((Rtc *)hw)->MODE0.INTFLAG.reg = mask;
 }
 
 static inline void hri_rtcmode0_set_INTEN_CMP0_bit(const void *const hw)
@@ -2877,85 +2974,6 @@ static inline void hri_rtcmode0_write_INTEN_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode0_clear_INTEN_reg(const void *const hw, hri_rtcmode0_intenset_reg_t mask)
 {
 	((Rtc *)hw)->MODE0.INTENCLR.reg = mask;
-}
-
-static inline bool hri_rtcmode0_get_INTFLAG_CMP0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_CMP0) >> RTC_MODE0_INTFLAG_CMP0_Pos;
-}
-
-static inline void hri_rtcmode0_clear_INTFLAG_CMP0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_CMP0;
-}
-
-static inline bool hri_rtcmode0_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_SYNCRDY) >> RTC_MODE0_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode0_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode0_get_INTFLAG_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_OVF) >> RTC_MODE0_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode0_clear_INTFLAG_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_OVF;
-}
-
-static inline bool hri_rtcmode0_get_interrupt_CMP0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_CMP0) >> RTC_MODE0_INTFLAG_CMP0_Pos;
-}
-
-static inline void hri_rtcmode0_clear_interrupt_CMP0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_CMP0;
-}
-
-static inline bool hri_rtcmode0_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_SYNCRDY) >> RTC_MODE0_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode0_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode0_get_interrupt_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE0.INTFLAG.reg & RTC_MODE0_INTFLAG_OVF) >> RTC_MODE0_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode0_clear_interrupt_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = RTC_MODE0_INTFLAG_OVF;
-}
-
-static inline hri_rtcmode0_intflag_reg_t hri_rtcmode0_get_INTFLAG_reg(const void *const          hw,
-                                                                      hri_rtcmode0_intflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Rtc *)hw)->MODE0.INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_rtcmode0_intflag_reg_t hri_rtcmode0_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Rtc *)hw)->MODE0.INTFLAG.reg;
-}
-
-static inline void hri_rtcmode0_clear_INTFLAG_reg(const void *const hw, hri_rtcmode0_intflag_reg_t mask)
-{
-	((Rtc *)hw)->MODE0.INTFLAG.reg = mask;
 }
 
 static inline void hri_rtcmode0_set_CTRL_SWRST_bit(const void *const hw)
@@ -3177,6 +3195,7 @@ static inline hri_rtcmode0_ctrl_reg_t hri_rtcmode0_read_CTRL_PRESCALER_bf(const 
 static inline void hri_rtcmode0_set_CTRL_reg(const void *const hw, hri_rtcmode0_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.CTRL.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -3184,6 +3203,7 @@ static inline void hri_rtcmode0_set_CTRL_reg(const void *const hw, hri_rtcmode0_
 static inline hri_rtcmode0_ctrl_reg_t hri_rtcmode0_get_CTRL_reg(const void *const hw, hri_rtcmode0_ctrl_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode0_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE0.CTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -3192,6 +3212,7 @@ static inline hri_rtcmode0_ctrl_reg_t hri_rtcmode0_get_CTRL_reg(const void *cons
 static inline void hri_rtcmode0_write_CTRL_reg(const void *const hw, hri_rtcmode0_ctrl_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.CTRL.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -3199,6 +3220,7 @@ static inline void hri_rtcmode0_write_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode0_clear_CTRL_reg(const void *const hw, hri_rtcmode0_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.CTRL.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -3206,12 +3228,14 @@ static inline void hri_rtcmode0_clear_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode0_toggle_CTRL_reg(const void *const hw, hri_rtcmode0_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.CTRL.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode0_ctrl_reg_t hri_rtcmode0_read_CTRL_reg(const void *const hw)
 {
+	hri_rtcmode0_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE0.CTRL.reg;
 }
 
@@ -4013,6 +4037,7 @@ static inline hri_rtcmode0_freqcorr_reg_t hri_rtcmode0_read_FREQCORR_VALUE_bf(co
 static inline void hri_rtcmode0_set_FREQCORR_reg(const void *const hw, hri_rtcmode0_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.FREQCORR.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4021,6 +4046,7 @@ static inline hri_rtcmode0_freqcorr_reg_t hri_rtcmode0_get_FREQCORR_reg(const vo
                                                                         hri_rtcmode0_freqcorr_reg_t mask)
 {
 	uint8_t tmp;
+	hri_rtcmode0_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE0.FREQCORR.reg;
 	tmp &= mask;
 	return tmp;
@@ -4029,6 +4055,7 @@ static inline hri_rtcmode0_freqcorr_reg_t hri_rtcmode0_get_FREQCORR_reg(const vo
 static inline void hri_rtcmode0_write_FREQCORR_reg(const void *const hw, hri_rtcmode0_freqcorr_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.FREQCORR.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4036,6 +4063,7 @@ static inline void hri_rtcmode0_write_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode0_clear_FREQCORR_reg(const void *const hw, hri_rtcmode0_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.FREQCORR.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4043,12 +4071,14 @@ static inline void hri_rtcmode0_clear_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode0_toggle_FREQCORR_reg(const void *const hw, hri_rtcmode0_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.FREQCORR.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode0_freqcorr_reg_t hri_rtcmode0_read_FREQCORR_reg(const void *const hw)
 {
+	hri_rtcmode0_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE0.FREQCORR.reg;
 }
 
@@ -4110,6 +4140,7 @@ static inline hri_rtcmode0_count_reg_t hri_rtcmode0_read_COUNT_COUNT_bf(const vo
 static inline void hri_rtcmode0_set_COUNT_reg(const void *const hw, hri_rtcmode0_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COUNT.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4117,6 +4148,7 @@ static inline void hri_rtcmode0_set_COUNT_reg(const void *const hw, hri_rtcmode0
 static inline hri_rtcmode0_count_reg_t hri_rtcmode0_get_COUNT_reg(const void *const hw, hri_rtcmode0_count_reg_t mask)
 {
 	uint32_t tmp;
+	hri_rtcmode0_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE0.COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -4125,6 +4157,7 @@ static inline hri_rtcmode0_count_reg_t hri_rtcmode0_get_COUNT_reg(const void *co
 static inline void hri_rtcmode0_write_COUNT_reg(const void *const hw, hri_rtcmode0_count_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COUNT.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4132,6 +4165,7 @@ static inline void hri_rtcmode0_write_COUNT_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode0_clear_COUNT_reg(const void *const hw, hri_rtcmode0_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COUNT.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4139,12 +4173,14 @@ static inline void hri_rtcmode0_clear_COUNT_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode0_toggle_COUNT_reg(const void *const hw, hri_rtcmode0_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COUNT.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode0_count_reg_t hri_rtcmode0_read_COUNT_reg(const void *const hw)
 {
+	hri_rtcmode0_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE0.COUNT.reg;
 }
 
@@ -4206,6 +4242,7 @@ static inline hri_rtcmode0_comp_reg_t hri_rtcmode0_read_COMP_COMP_bf(const void 
 static inline void hri_rtcmode0_set_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode0_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COMP[index].reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4214,6 +4251,7 @@ static inline hri_rtcmode0_comp_reg_t hri_rtcmode0_get_COMP_reg(const void *cons
                                                                 hri_rtcmode0_comp_reg_t mask)
 {
 	uint32_t tmp;
+	hri_rtcmode0_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE0.COMP[index].reg;
 	tmp &= mask;
 	return tmp;
@@ -4222,6 +4260,7 @@ static inline hri_rtcmode0_comp_reg_t hri_rtcmode0_get_COMP_reg(const void *cons
 static inline void hri_rtcmode0_write_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode0_comp_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COMP[index].reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4229,6 +4268,7 @@ static inline void hri_rtcmode0_write_COMP_reg(const void *const hw, uint8_t ind
 static inline void hri_rtcmode0_clear_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode0_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COMP[index].reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4236,12 +4276,14 @@ static inline void hri_rtcmode0_clear_COMP_reg(const void *const hw, uint8_t ind
 static inline void hri_rtcmode0_toggle_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode0_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode0_wait_for_sync(hw);
 	((Rtc *)hw)->MODE0.COMP[index].reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode0_comp_reg_t hri_rtcmode0_read_COMP_reg(const void *const hw, uint8_t index)
 {
+	hri_rtcmode0_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE0.COMP[index].reg;
 }
 
@@ -4276,6 +4318,105 @@ static inline void hri_rtcmode0_clear_STATUS_reg(const void *const hw, hri_rtcmo
 static inline hri_rtcmode0_status_reg_t hri_rtcmode0_read_STATUS_reg(const void *const hw)
 {
 	return ((Rtc *)hw)->MODE0.STATUS.reg;
+}
+
+static inline bool hri_rtcmode1_get_INTFLAG_CMP0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP0) >> RTC_MODE1_INTFLAG_CMP0_Pos;
+}
+
+static inline void hri_rtcmode1_clear_INTFLAG_CMP0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP0;
+}
+
+static inline bool hri_rtcmode1_get_INTFLAG_CMP1_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP1) >> RTC_MODE1_INTFLAG_CMP1_Pos;
+}
+
+static inline void hri_rtcmode1_clear_INTFLAG_CMP1_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP1;
+}
+
+static inline bool hri_rtcmode1_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_SYNCRDY) >> RTC_MODE1_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode1_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode1_get_INTFLAG_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_OVF) >> RTC_MODE1_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode1_clear_INTFLAG_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_OVF;
+}
+
+static inline bool hri_rtcmode1_get_interrupt_CMP0_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP0) >> RTC_MODE1_INTFLAG_CMP0_Pos;
+}
+
+static inline void hri_rtcmode1_clear_interrupt_CMP0_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP0;
+}
+
+static inline bool hri_rtcmode1_get_interrupt_CMP1_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP1) >> RTC_MODE1_INTFLAG_CMP1_Pos;
+}
+
+static inline void hri_rtcmode1_clear_interrupt_CMP1_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP1;
+}
+
+static inline bool hri_rtcmode1_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_SYNCRDY) >> RTC_MODE1_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_rtcmode1_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_rtcmode1_get_interrupt_OVF_bit(const void *const hw)
+{
+	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_OVF) >> RTC_MODE1_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_rtcmode1_clear_interrupt_OVF_bit(const void *const hw)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_OVF;
+}
+
+static inline hri_rtcmode1_intflag_reg_t hri_rtcmode1_get_INTFLAG_reg(const void *const          hw,
+                                                                      hri_rtcmode1_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Rtc *)hw)->MODE1.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_rtcmode1_intflag_reg_t hri_rtcmode1_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Rtc *)hw)->MODE1.INTFLAG.reg;
+}
+
+static inline void hri_rtcmode1_clear_INTFLAG_reg(const void *const hw, hri_rtcmode1_intflag_reg_t mask)
+{
+	((Rtc *)hw)->MODE1.INTFLAG.reg = mask;
 }
 
 static inline void hri_rtcmode1_set_INTEN_CMP0_bit(const void *const hw)
@@ -4402,105 +4543,6 @@ static inline void hri_rtcmode1_write_INTEN_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode1_clear_INTEN_reg(const void *const hw, hri_rtcmode1_intenset_reg_t mask)
 {
 	((Rtc *)hw)->MODE1.INTENCLR.reg = mask;
-}
-
-static inline bool hri_rtcmode1_get_INTFLAG_CMP0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP0) >> RTC_MODE1_INTFLAG_CMP0_Pos;
-}
-
-static inline void hri_rtcmode1_clear_INTFLAG_CMP0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP0;
-}
-
-static inline bool hri_rtcmode1_get_INTFLAG_CMP1_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP1) >> RTC_MODE1_INTFLAG_CMP1_Pos;
-}
-
-static inline void hri_rtcmode1_clear_INTFLAG_CMP1_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP1;
-}
-
-static inline bool hri_rtcmode1_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_SYNCRDY) >> RTC_MODE1_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode1_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode1_get_INTFLAG_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_OVF) >> RTC_MODE1_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode1_clear_INTFLAG_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_OVF;
-}
-
-static inline bool hri_rtcmode1_get_interrupt_CMP0_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP0) >> RTC_MODE1_INTFLAG_CMP0_Pos;
-}
-
-static inline void hri_rtcmode1_clear_interrupt_CMP0_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP0;
-}
-
-static inline bool hri_rtcmode1_get_interrupt_CMP1_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_CMP1) >> RTC_MODE1_INTFLAG_CMP1_Pos;
-}
-
-static inline void hri_rtcmode1_clear_interrupt_CMP1_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_CMP1;
-}
-
-static inline bool hri_rtcmode1_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_SYNCRDY) >> RTC_MODE1_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_rtcmode1_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_rtcmode1_get_interrupt_OVF_bit(const void *const hw)
-{
-	return (((Rtc *)hw)->MODE1.INTFLAG.reg & RTC_MODE1_INTFLAG_OVF) >> RTC_MODE1_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_rtcmode1_clear_interrupt_OVF_bit(const void *const hw)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_OVF;
-}
-
-static inline hri_rtcmode1_intflag_reg_t hri_rtcmode1_get_INTFLAG_reg(const void *const          hw,
-                                                                      hri_rtcmode1_intflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Rtc *)hw)->MODE1.INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_rtcmode1_intflag_reg_t hri_rtcmode1_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Rtc *)hw)->MODE1.INTFLAG.reg;
-}
-
-static inline void hri_rtcmode1_clear_INTFLAG_reg(const void *const hw, hri_rtcmode1_intflag_reg_t mask)
-{
-	((Rtc *)hw)->MODE1.INTFLAG.reg = mask;
 }
 
 static inline void hri_rtcmode1_set_CTRL_SWRST_bit(const void *const hw)
@@ -4677,6 +4719,7 @@ static inline hri_rtcmode1_ctrl_reg_t hri_rtcmode1_read_CTRL_PRESCALER_bf(const 
 static inline void hri_rtcmode1_set_CTRL_reg(const void *const hw, hri_rtcmode1_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.CTRL.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4684,6 +4727,7 @@ static inline void hri_rtcmode1_set_CTRL_reg(const void *const hw, hri_rtcmode1_
 static inline hri_rtcmode1_ctrl_reg_t hri_rtcmode1_get_CTRL_reg(const void *const hw, hri_rtcmode1_ctrl_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode1_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE1.CTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -4692,6 +4736,7 @@ static inline hri_rtcmode1_ctrl_reg_t hri_rtcmode1_get_CTRL_reg(const void *cons
 static inline void hri_rtcmode1_write_CTRL_reg(const void *const hw, hri_rtcmode1_ctrl_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.CTRL.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4699,6 +4744,7 @@ static inline void hri_rtcmode1_write_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode1_clear_CTRL_reg(const void *const hw, hri_rtcmode1_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.CTRL.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -4706,12 +4752,14 @@ static inline void hri_rtcmode1_clear_CTRL_reg(const void *const hw, hri_rtcmode
 static inline void hri_rtcmode1_toggle_CTRL_reg(const void *const hw, hri_rtcmode1_ctrl_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.CTRL.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode1_ctrl_reg_t hri_rtcmode1_read_CTRL_reg(const void *const hw)
 {
+	hri_rtcmode1_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE1.CTRL.reg;
 }
 
@@ -5553,6 +5601,7 @@ static inline hri_rtcmode1_freqcorr_reg_t hri_rtcmode1_read_FREQCORR_VALUE_bf(co
 static inline void hri_rtcmode1_set_FREQCORR_reg(const void *const hw, hri_rtcmode1_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.FREQCORR.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5561,6 +5610,7 @@ static inline hri_rtcmode1_freqcorr_reg_t hri_rtcmode1_get_FREQCORR_reg(const vo
                                                                         hri_rtcmode1_freqcorr_reg_t mask)
 {
 	uint8_t tmp;
+	hri_rtcmode1_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE1.FREQCORR.reg;
 	tmp &= mask;
 	return tmp;
@@ -5569,6 +5619,7 @@ static inline hri_rtcmode1_freqcorr_reg_t hri_rtcmode1_get_FREQCORR_reg(const vo
 static inline void hri_rtcmode1_write_FREQCORR_reg(const void *const hw, hri_rtcmode1_freqcorr_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.FREQCORR.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5576,6 +5627,7 @@ static inline void hri_rtcmode1_write_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode1_clear_FREQCORR_reg(const void *const hw, hri_rtcmode1_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.FREQCORR.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5583,12 +5635,14 @@ static inline void hri_rtcmode1_clear_FREQCORR_reg(const void *const hw, hri_rtc
 static inline void hri_rtcmode1_toggle_FREQCORR_reg(const void *const hw, hri_rtcmode1_freqcorr_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.FREQCORR.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode1_freqcorr_reg_t hri_rtcmode1_read_FREQCORR_reg(const void *const hw)
 {
+	hri_rtcmode1_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE1.FREQCORR.reg;
 }
 
@@ -5650,6 +5704,7 @@ static inline hri_rtcmode1_count_reg_t hri_rtcmode1_read_COUNT_COUNT_bf(const vo
 static inline void hri_rtcmode1_set_COUNT_reg(const void *const hw, hri_rtcmode1_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COUNT.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5657,6 +5712,7 @@ static inline void hri_rtcmode1_set_COUNT_reg(const void *const hw, hri_rtcmode1
 static inline hri_rtcmode1_count_reg_t hri_rtcmode1_get_COUNT_reg(const void *const hw, hri_rtcmode1_count_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode1_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE1.COUNT.reg;
 	tmp &= mask;
 	return tmp;
@@ -5665,6 +5721,7 @@ static inline hri_rtcmode1_count_reg_t hri_rtcmode1_get_COUNT_reg(const void *co
 static inline void hri_rtcmode1_write_COUNT_reg(const void *const hw, hri_rtcmode1_count_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COUNT.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5672,6 +5729,7 @@ static inline void hri_rtcmode1_write_COUNT_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode1_clear_COUNT_reg(const void *const hw, hri_rtcmode1_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COUNT.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5679,12 +5737,14 @@ static inline void hri_rtcmode1_clear_COUNT_reg(const void *const hw, hri_rtcmod
 static inline void hri_rtcmode1_toggle_COUNT_reg(const void *const hw, hri_rtcmode1_count_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COUNT.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode1_count_reg_t hri_rtcmode1_read_COUNT_reg(const void *const hw)
 {
+	hri_rtcmode1_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE1.COUNT.reg;
 }
 
@@ -5745,6 +5805,7 @@ static inline hri_rtcmode1_per_reg_t hri_rtcmode1_read_PER_PER_bf(const void *co
 static inline void hri_rtcmode1_set_PER_reg(const void *const hw, hri_rtcmode1_per_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.PER.reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5752,6 +5813,7 @@ static inline void hri_rtcmode1_set_PER_reg(const void *const hw, hri_rtcmode1_p
 static inline hri_rtcmode1_per_reg_t hri_rtcmode1_get_PER_reg(const void *const hw, hri_rtcmode1_per_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode1_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE1.PER.reg;
 	tmp &= mask;
 	return tmp;
@@ -5760,6 +5822,7 @@ static inline hri_rtcmode1_per_reg_t hri_rtcmode1_get_PER_reg(const void *const 
 static inline void hri_rtcmode1_write_PER_reg(const void *const hw, hri_rtcmode1_per_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.PER.reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5767,6 +5830,7 @@ static inline void hri_rtcmode1_write_PER_reg(const void *const hw, hri_rtcmode1
 static inline void hri_rtcmode1_clear_PER_reg(const void *const hw, hri_rtcmode1_per_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.PER.reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5774,12 +5838,14 @@ static inline void hri_rtcmode1_clear_PER_reg(const void *const hw, hri_rtcmode1
 static inline void hri_rtcmode1_toggle_PER_reg(const void *const hw, hri_rtcmode1_per_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.PER.reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode1_per_reg_t hri_rtcmode1_read_PER_reg(const void *const hw)
 {
+	hri_rtcmode1_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE1.PER.reg;
 }
 
@@ -5841,6 +5907,7 @@ static inline hri_rtcmode1_comp_reg_t hri_rtcmode1_read_COMP_COMP_bf(const void 
 static inline void hri_rtcmode1_set_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode1_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COMP[index].reg |= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5849,6 +5916,7 @@ static inline hri_rtcmode1_comp_reg_t hri_rtcmode1_get_COMP_reg(const void *cons
                                                                 hri_rtcmode1_comp_reg_t mask)
 {
 	uint16_t tmp;
+	hri_rtcmode1_wait_for_sync(hw);
 	tmp = ((Rtc *)hw)->MODE1.COMP[index].reg;
 	tmp &= mask;
 	return tmp;
@@ -5857,6 +5925,7 @@ static inline hri_rtcmode1_comp_reg_t hri_rtcmode1_get_COMP_reg(const void *cons
 static inline void hri_rtcmode1_write_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode1_comp_reg_t data)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COMP[index].reg = data;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5864,6 +5933,7 @@ static inline void hri_rtcmode1_write_COMP_reg(const void *const hw, uint8_t ind
 static inline void hri_rtcmode1_clear_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode1_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COMP[index].reg &= ~mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
@@ -5871,12 +5941,14 @@ static inline void hri_rtcmode1_clear_COMP_reg(const void *const hw, uint8_t ind
 static inline void hri_rtcmode1_toggle_COMP_reg(const void *const hw, uint8_t index, hri_rtcmode1_comp_reg_t mask)
 {
 	RTC_CRITICAL_SECTION_ENTER();
+	hri_rtcmode1_wait_for_sync(hw);
 	((Rtc *)hw)->MODE1.COMP[index].reg ^= mask;
 	RTC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_rtcmode1_comp_reg_t hri_rtcmode1_read_COMP_reg(const void *const hw, uint8_t index)
 {
+	hri_rtcmode1_wait_for_sync(hw);
 	return ((Rtc *)hw)->MODE1.COMP[index].reg;
 }
 

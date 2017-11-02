@@ -3,7 +3,7 @@
  *
  * \brief SAM PM
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -73,6 +73,44 @@ typedef uint8_t  hri_pm_intflag_reg_t;
 typedef uint8_t  hri_pm_rcause_reg_t;
 typedef uint8_t  hri_pm_sleep_reg_t;
 
+static inline bool hri_pm_get_INTFLAG_CKRDY_bit(const void *const hw)
+{
+	return (((Pm *)hw)->INTFLAG.reg & PM_INTFLAG_CKRDY) >> PM_INTFLAG_CKRDY_Pos;
+}
+
+static inline void hri_pm_clear_INTFLAG_CKRDY_bit(const void *const hw)
+{
+	((Pm *)hw)->INTFLAG.reg = PM_INTFLAG_CKRDY;
+}
+
+static inline bool hri_pm_get_interrupt_CKRDY_bit(const void *const hw)
+{
+	return (((Pm *)hw)->INTFLAG.reg & PM_INTFLAG_CKRDY) >> PM_INTFLAG_CKRDY_Pos;
+}
+
+static inline void hri_pm_clear_interrupt_CKRDY_bit(const void *const hw)
+{
+	((Pm *)hw)->INTFLAG.reg = PM_INTFLAG_CKRDY;
+}
+
+static inline hri_pm_intflag_reg_t hri_pm_get_INTFLAG_reg(const void *const hw, hri_pm_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Pm *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_pm_intflag_reg_t hri_pm_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Pm *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_pm_clear_INTFLAG_reg(const void *const hw, hri_pm_intflag_reg_t mask)
+{
+	((Pm *)hw)->INTFLAG.reg = mask;
+}
+
 static inline void hri_pm_set_INTEN_CKRDY_bit(const void *const hw)
 {
 	((Pm *)hw)->INTENSET.reg = PM_INTENSET_CKRDY;
@@ -126,42 +164,47 @@ static inline void hri_pm_clear_INTEN_reg(const void *const hw, hri_pm_intenset_
 	((Pm *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_pm_get_INTFLAG_CKRDY_bit(const void *const hw)
+static inline bool hri_pm_get_RCAUSE_POR_bit(const void *const hw)
 {
-	return (((Pm *)hw)->INTFLAG.reg & PM_INTFLAG_CKRDY) >> PM_INTFLAG_CKRDY_Pos;
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_POR) >> PM_RCAUSE_POR_Pos;
 }
 
-static inline void hri_pm_clear_INTFLAG_CKRDY_bit(const void *const hw)
+static inline bool hri_pm_get_RCAUSE_BOD12_bit(const void *const hw)
 {
-	((Pm *)hw)->INTFLAG.reg = PM_INTFLAG_CKRDY;
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_BOD12) >> PM_RCAUSE_BOD12_Pos;
 }
 
-static inline bool hri_pm_get_interrupt_CKRDY_bit(const void *const hw)
+static inline bool hri_pm_get_RCAUSE_BOD33_bit(const void *const hw)
 {
-	return (((Pm *)hw)->INTFLAG.reg & PM_INTFLAG_CKRDY) >> PM_INTFLAG_CKRDY_Pos;
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_BOD33) >> PM_RCAUSE_BOD33_Pos;
 }
 
-static inline void hri_pm_clear_interrupt_CKRDY_bit(const void *const hw)
+static inline bool hri_pm_get_RCAUSE_EXT_bit(const void *const hw)
 {
-	((Pm *)hw)->INTFLAG.reg = PM_INTFLAG_CKRDY;
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_EXT) >> PM_RCAUSE_EXT_Pos;
 }
 
-static inline hri_pm_intflag_reg_t hri_pm_get_INTFLAG_reg(const void *const hw, hri_pm_intflag_reg_t mask)
+static inline bool hri_pm_get_RCAUSE_WDT_bit(const void *const hw)
+{
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_WDT) >> PM_RCAUSE_WDT_Pos;
+}
+
+static inline bool hri_pm_get_RCAUSE_SYST_bit(const void *const hw)
+{
+	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_SYST) >> PM_RCAUSE_SYST_Pos;
+}
+
+static inline hri_pm_rcause_reg_t hri_pm_get_RCAUSE_reg(const void *const hw, hri_pm_rcause_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Pm *)hw)->INTFLAG.reg;
+	tmp = ((Pm *)hw)->RCAUSE.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_pm_intflag_reg_t hri_pm_read_INTFLAG_reg(const void *const hw)
+static inline hri_pm_rcause_reg_t hri_pm_read_RCAUSE_reg(const void *const hw)
 {
-	return ((Pm *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_pm_clear_INTFLAG_reg(const void *const hw, hri_pm_intflag_reg_t mask)
-{
-	((Pm *)hw)->INTFLAG.reg = mask;
+	return ((Pm *)hw)->RCAUSE.reg;
 }
 
 static inline void hri_pm_set_CTRL_reg(const void *const hw, hri_pm_ctrl_reg_t mask)
@@ -2492,49 +2535,6 @@ static inline void hri_pm_toggle_APBCMASK_reg(const void *const hw, hri_pm_apbcm
 static inline hri_pm_apbcmask_reg_t hri_pm_read_APBCMASK_reg(const void *const hw)
 {
 	return ((Pm *)hw)->APBCMASK.reg;
-}
-
-static inline bool hri_pm_get_RCAUSE_POR_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_POR) >> PM_RCAUSE_POR_Pos;
-}
-
-static inline bool hri_pm_get_RCAUSE_BOD12_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_BOD12) >> PM_RCAUSE_BOD12_Pos;
-}
-
-static inline bool hri_pm_get_RCAUSE_BOD33_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_BOD33) >> PM_RCAUSE_BOD33_Pos;
-}
-
-static inline bool hri_pm_get_RCAUSE_EXT_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_EXT) >> PM_RCAUSE_EXT_Pos;
-}
-
-static inline bool hri_pm_get_RCAUSE_WDT_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_WDT) >> PM_RCAUSE_WDT_Pos;
-}
-
-static inline bool hri_pm_get_RCAUSE_SYST_bit(const void *const hw)
-{
-	return (((Pm *)hw)->RCAUSE.reg & PM_RCAUSE_SYST) >> PM_RCAUSE_SYST_Pos;
-}
-
-static inline hri_pm_rcause_reg_t hri_pm_get_RCAUSE_reg(const void *const hw, hri_pm_rcause_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Pm *)hw)->RCAUSE.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_pm_rcause_reg_t hri_pm_read_RCAUSE_reg(const void *const hw)
-{
-	return ((Pm *)hw)->RCAUSE.reg;
 }
 
 #ifdef __cplusplus

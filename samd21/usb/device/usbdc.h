@@ -3,7 +3,7 @@
  *
  * \brief USB Device Stack Core Layer Definition.
  *
- * Copyright (C) 2015-2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015-2017 Atmel Corporation. All rights reserved.
  *
  * \page License
  *
@@ -42,6 +42,7 @@
 #include "usb_includes.h"
 #include "usb_protocol.h"
 #include "hal_usb_device.h"
+#include "usbd_config.h"
 
 /** USB device states. */
 enum usbd_state {
@@ -202,7 +203,15 @@ int32_t usbdc_xfer(uint8_t ep, uint8_t *buf, uint32_t size, bool zlp);
 
 /**
  * \brief Start the USB device driver with specific descriptors set
- * \param[in] desces Pointer to usb device core descriptors
+ * \param[in] desces Pointer to usb device core descriptors (FS/LS),
+ *                   or pointer to array of core descriptors (HS), the
+ *                   very first one includes device descriptor, FS/LS
+ *                   configuration descriptor, string descriptor, and
+ *                   may include device qualifier and other speed
+ *                   configuration descriptor; the second one includes
+ *                   high speed used descriptors.
+ *                   Note that string descriptor should be included in
+ *                   first place.
  * \return Operation status.
  */
 int32_t usbdc_start(struct usbd_descriptors *desces);

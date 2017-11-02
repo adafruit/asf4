@@ -3,7 +3,7 @@
  *
  * \brief SAM NVMCTRL
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -67,6 +67,65 @@ typedef uint32_t hri_nvmctrl_ctrlb_reg_t;
 typedef uint32_t hri_nvmctrl_param_reg_t;
 typedef uint8_t  hri_nvmctrl_intenset_reg_t;
 typedef uint8_t  hri_nvmctrl_intflag_reg_t;
+
+static inline bool hri_nvmctrl_get_INTFLAG_READY_bit(const void *const hw)
+{
+	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_READY) >> NVMCTRL_INTFLAG_READY_Pos;
+}
+
+static inline void hri_nvmctrl_clear_INTFLAG_READY_bit(const void *const hw)
+{
+	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_READY;
+}
+
+static inline bool hri_nvmctrl_get_INTFLAG_ERROR_bit(const void *const hw)
+{
+	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_ERROR) >> NVMCTRL_INTFLAG_ERROR_Pos;
+}
+
+static inline void hri_nvmctrl_clear_INTFLAG_ERROR_bit(const void *const hw)
+{
+	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_ERROR;
+}
+
+static inline bool hri_nvmctrl_get_interrupt_READY_bit(const void *const hw)
+{
+	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_READY) >> NVMCTRL_INTFLAG_READY_Pos;
+}
+
+static inline void hri_nvmctrl_clear_interrupt_READY_bit(const void *const hw)
+{
+	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_READY;
+}
+
+static inline bool hri_nvmctrl_get_interrupt_ERROR_bit(const void *const hw)
+{
+	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_ERROR) >> NVMCTRL_INTFLAG_ERROR_Pos;
+}
+
+static inline void hri_nvmctrl_clear_interrupt_ERROR_bit(const void *const hw)
+{
+	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_ERROR;
+}
+
+static inline hri_nvmctrl_intflag_reg_t hri_nvmctrl_get_INTFLAG_reg(const void *const         hw,
+                                                                    hri_nvmctrl_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Nvmctrl *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_nvmctrl_intflag_reg_t hri_nvmctrl_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Nvmctrl *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_nvmctrl_clear_INTFLAG_reg(const void *const hw, hri_nvmctrl_intflag_reg_t mask)
+{
+	((Nvmctrl *)hw)->INTFLAG.reg = mask;
+}
 
 static inline void hri_nvmctrl_set_INTEN_READY_bit(const void *const hw)
 {
@@ -144,65 +203,6 @@ static inline void hri_nvmctrl_write_INTEN_reg(const void *const hw, hri_nvmctrl
 static inline void hri_nvmctrl_clear_INTEN_reg(const void *const hw, hri_nvmctrl_intenset_reg_t mask)
 {
 	((Nvmctrl *)hw)->INTENCLR.reg = mask;
-}
-
-static inline bool hri_nvmctrl_get_INTFLAG_READY_bit(const void *const hw)
-{
-	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_READY) >> NVMCTRL_INTFLAG_READY_Pos;
-}
-
-static inline void hri_nvmctrl_clear_INTFLAG_READY_bit(const void *const hw)
-{
-	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_READY;
-}
-
-static inline bool hri_nvmctrl_get_INTFLAG_ERROR_bit(const void *const hw)
-{
-	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_ERROR) >> NVMCTRL_INTFLAG_ERROR_Pos;
-}
-
-static inline void hri_nvmctrl_clear_INTFLAG_ERROR_bit(const void *const hw)
-{
-	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_ERROR;
-}
-
-static inline bool hri_nvmctrl_get_interrupt_READY_bit(const void *const hw)
-{
-	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_READY) >> NVMCTRL_INTFLAG_READY_Pos;
-}
-
-static inline void hri_nvmctrl_clear_interrupt_READY_bit(const void *const hw)
-{
-	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_READY;
-}
-
-static inline bool hri_nvmctrl_get_interrupt_ERROR_bit(const void *const hw)
-{
-	return (((Nvmctrl *)hw)->INTFLAG.reg & NVMCTRL_INTFLAG_ERROR) >> NVMCTRL_INTFLAG_ERROR_Pos;
-}
-
-static inline void hri_nvmctrl_clear_interrupt_ERROR_bit(const void *const hw)
-{
-	((Nvmctrl *)hw)->INTFLAG.reg = NVMCTRL_INTFLAG_ERROR;
-}
-
-static inline hri_nvmctrl_intflag_reg_t hri_nvmctrl_get_INTFLAG_reg(const void *const         hw,
-                                                                    hri_nvmctrl_intflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Nvmctrl *)hw)->INTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_nvmctrl_intflag_reg_t hri_nvmctrl_read_INTFLAG_reg(const void *const hw)
-{
-	return ((Nvmctrl *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_nvmctrl_clear_INTFLAG_reg(const void *const hw, hri_nvmctrl_intflag_reg_t mask)
-{
-	((Nvmctrl *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_nvmctrl_set_CTRLA_CMD_bf(const void *const hw, hri_nvmctrl_ctrla_reg_t mask)

@@ -3,7 +3,7 @@
  *
  * \brief USB Device Stack HID Keyboard Function Implementation.
  *
- * Copyright (C) 2015 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015 - 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -50,7 +50,9 @@
 
 /** USB Device HID Keyboard Function Specific Data */
 struct hiddf_keyboard_func_data {
-	/* HID Device Keyboard Report */
+	/** HID descriptor */
+	uint8_t *hid_desc;
+	/** HID Device Keyboard Report */
 	uint8_t kb_report[8];
 	/** HID Device Keyboard Interface information */
 	uint8_t func_iface;
@@ -58,6 +60,8 @@ struct hiddf_keyboard_func_data {
 	uint8_t func_ep_in;
 	/** HID Device Keyboard OUT Endpoint */
 	uint8_t func_ep_out;
+	/** HID Device Keyboard protocol */
+	uint8_t protocol;
 	/** HID Device Keyboard Enable Flag */
 	bool enabled;
 };
@@ -136,6 +140,9 @@ static int32_t hid_keyboard_enable(struct usbdf_driver *drv, struct usbd_descrip
 		return ERR_NOT_FOUND;
 	}
 
+	// Install HID descriptor
+	_hiddf_keyboard_funcd.hid_desc = usb_find_desc(usb_desc_next(desc->sod), desc->eod, USB_DT_HID);
+
 	// Install endpoints
 	for (i = 0; i < 2; i++) {
 		ep        = usb_find_ep_desc(usb_desc_next(desc->sod), desc->eod);
@@ -160,7 +167,8 @@ static int32_t hid_keyboard_enable(struct usbdf_driver *drv, struct usbd_descrip
 	}
 
 	// Installed
-	_hiddf_keyboard_funcd.enabled = true;
+	_hiddf_keyboard_funcd.protocol = 1;
+	_hiddf_keyboard_funcd.enabled  = true;
 	return ERR_NONE;
 }
 
@@ -234,6 +242,8 @@ static int32_t hid_keyboard_ctrl(struct usbdf_driver *drv, enum usbdf_control ct
 static int32_t hid_keyboard_get_desc(uint8_t ep, struct usb_req *req)
 {
 	switch (req->wValue >> 8) {
+	case USB_DT_HID:
+		return usbdc_xfer(ep, _hiddf_keyboard_funcd.hid_desc, _hiddf_keyboard_funcd.hid_desc[0], false);
 	case USB_DT_HID_REPORT:
 		return usbdc_xfer(ep, (uint8_t *)keyboard_report_desc, KEYBOARD_REPORT_DESC_LEN, false);
 	default:
@@ -256,10 +266,14 @@ static int32_t hid_keyboard_req(uint8_t ep, struct usb_req *req, enum usb_ctrl_s
 			return ERR_NOT_FOUND;
 		}
 		if (req->wIndex == _hiddf_keyboard_funcd.func_iface) {
-			if (req->bmRequestType & USB_EP_DIR_IN) {
+			switch (req->bRequest) {
+			case 0x03: /* Get Protocol */
+				return usbdc_xfer(ep, &_hiddf_keyboard_funcd.protocol, 1, 0);
+			case 0x0B: /* Set Protocol */
+				_hiddf_keyboard_funcd.protocol = req->wValue;
+				return usbdc_xfer(ep, NULL, 0, 0);
+			default:
 				return ERR_INVALID_ARG;
-			} else {
-				return usbdc_xfer(0, NULL, 0, 0);
 			}
 		} else {
 			return ERR_NOT_FOUND;

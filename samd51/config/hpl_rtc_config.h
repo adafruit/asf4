@@ -36,6 +36,7 @@
 // <id> rtc_arch_comp_val
 
 #ifndef CONF_RTC_COMP_VAL
+
 #define CONF_RTC_COMP_VAL 1
 
 #endif

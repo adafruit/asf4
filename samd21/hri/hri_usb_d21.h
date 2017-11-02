@@ -3,7 +3,7 @@
  *
  * \brief SAM USB
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -141,6 +141,158 @@ static inline void hri_usbhost_wait_for_sync(const void *const hw, hri_usbhost_s
 static inline bool hri_usbhost_is_syncing(const void *const hw, hri_usbhost_syncbusy_reg_t reg)
 {
 	return ((Usb *)hw)->HOST.SYNCBUSY.reg & reg;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
+	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
+	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
+	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
+	       >> USB_HOST_PINTFLAG_PERR_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
+	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
+}
+
+static inline bool hri_usbpipe_get_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
+	       >> USB_HOST_PINTFLAG_STALL_Pos;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
+}
+
+static inline bool hri_usbpipe_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
+	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbpipe_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
+	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbpipe_get_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
+	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
+}
+
+static inline bool hri_usbpipe_get_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
+	       >> USB_HOST_PINTFLAG_PERR_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
+}
+
+static inline bool hri_usbpipe_get_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
+	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
+}
+
+static inline bool hri_usbpipe_get_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
+	       >> USB_HOST_PINTFLAG_STALL_Pos;
+}
+
+static inline void hri_usbpipe_clear_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
+}
+
+static inline hri_usbpipe_pintflag_reg_t hri_usbpipe_get_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                                      hri_usbpipe_pintflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbpipe_pintflag_reg_t hri_usbpipe_read_PINTFLAG_reg(const void *const hw, uint8_t submodule_index)
+{
+	return ((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg;
+}
+
+static inline void hri_usbpipe_clear_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                  hri_usbpipe_pintflag_reg_t mask)
+{
+	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = mask;
 }
 
 static inline void hri_usbpipe_set_PSTATUS_DTGL_bit(const void *const hw, uint8_t submodule_index)
@@ -484,158 +636,6 @@ static inline void hri_usbpipe_clear_PINTEN_reg(const void *const hw, uint8_t su
 	((UsbHost *)hw)->HostPipe[submodule_index].PINTENCLR.reg = mask;
 }
 
-static inline bool hri_usbpipe_get_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
-	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbpipe_get_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
-	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbpipe_get_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
-	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
-}
-
-static inline bool hri_usbpipe_get_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
-	       >> USB_HOST_PINTFLAG_PERR_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
-}
-
-static inline bool hri_usbpipe_get_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
-	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
-}
-
-static inline bool hri_usbpipe_get_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
-	       >> USB_HOST_PINTFLAG_STALL_Pos;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
-}
-
-static inline bool hri_usbpipe_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
-	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbpipe_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
-	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbpipe_get_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
-	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
-}
-
-static inline bool hri_usbpipe_get_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
-	       >> USB_HOST_PINTFLAG_PERR_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
-}
-
-static inline bool hri_usbpipe_get_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
-	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
-}
-
-static inline bool hri_usbpipe_get_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
-	       >> USB_HOST_PINTFLAG_STALL_Pos;
-}
-
-static inline void hri_usbpipe_clear_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
-}
-
-static inline hri_usbpipe_pintflag_reg_t hri_usbpipe_get_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                                      hri_usbpipe_pintflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbpipe_pintflag_reg_t hri_usbpipe_read_PINTFLAG_reg(const void *const hw, uint8_t submodule_index)
-{
-	return ((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg;
-}
-
-static inline void hri_usbpipe_clear_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                  hri_usbpipe_pintflag_reg_t mask)
-{
-	((UsbHost *)hw)->HostPipe[submodule_index].PINTFLAG.reg = mask;
-}
-
 static inline void hri_usbpipe_set_PCFG_BK_bit(const void *const hw, uint8_t submodule_index)
 {
 	USB_CRITICAL_SECTION_ENTER();
@@ -926,6 +926,158 @@ static inline void hri_usbpipe_toggle_BINTERVAL_reg(const void *const hw, uint8_
 static inline hri_usbpipe_binterval_reg_t hri_usbpipe_read_BINTERVAL_reg(const void *const hw, uint8_t submodule_index)
 {
 	return ((UsbHost *)hw)->HostPipe[submodule_index].BINTERVAL.reg;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
+	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
+	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
+	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
+	       >> USB_HOST_PINTFLAG_PERR_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
+	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
+}
+
+static inline bool hri_usbhost_get_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
+	       >> USB_HOST_PINTFLAG_STALL_Pos;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
+}
+
+static inline bool hri_usbhost_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
+	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbhost_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
+	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbhost_get_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
+	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
+}
+
+static inline bool hri_usbhost_get_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
+	       >> USB_HOST_PINTFLAG_PERR_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
+}
+
+static inline bool hri_usbhost_get_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
+	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
+}
+
+static inline bool hri_usbhost_get_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
+	       >> USB_HOST_PINTFLAG_STALL_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
+}
+
+static inline hri_usbhost_pintflag_reg_t hri_usbhost_get_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                                      hri_usbhost_pintflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbhost_pintflag_reg_t hri_usbhost_read_PINTFLAG_reg(const void *const hw, uint8_t submodule_index)
+{
+	return ((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg;
+}
+
+static inline void hri_usbhost_clear_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                  hri_usbhost_pintflag_reg_t mask)
+{
+	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = mask;
 }
 
 static inline void hri_usbhost_set_PSTATUS_DTGL_bit(const void *const hw, uint8_t submodule_index)
@@ -1269,158 +1421,6 @@ static inline void hri_usbhost_clear_PINTEN_reg(const void *const hw, uint8_t su
 	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTENCLR.reg = mask;
 }
 
-static inline bool hri_usbhost_get_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
-	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbhost_get_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
-	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbhost_get_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
-	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
-}
-
-static inline bool hri_usbhost_get_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
-	       >> USB_HOST_PINTFLAG_PERR_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
-}
-
-static inline bool hri_usbhost_get_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
-	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
-}
-
-static inline bool hri_usbhost_get_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
-	       >> USB_HOST_PINTFLAG_STALL_Pos;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
-}
-
-static inline bool hri_usbhost_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT0)
-	       >> USB_HOST_PINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbhost_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRCPT1)
-	       >> USB_HOST_PINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbhost_get_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TRFAIL)
-	       >> USB_HOST_PINTFLAG_TRFAIL_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_TRFAIL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TRFAIL;
-}
-
-static inline bool hri_usbhost_get_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_PERR)
-	       >> USB_HOST_PINTFLAG_PERR_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_PERR_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_PERR;
-}
-
-static inline bool hri_usbhost_get_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_TXSTP)
-	       >> USB_HOST_PINTFLAG_TXSTP_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_TXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_TXSTP;
-}
-
-static inline bool hri_usbhost_get_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg & USB_HOST_PINTFLAG_STALL)
-	       >> USB_HOST_PINTFLAG_STALL_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_STALL_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = USB_HOST_PINTFLAG_STALL;
-}
-
-static inline hri_usbhost_pintflag_reg_t hri_usbhost_get_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                                      hri_usbhost_pintflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbhost_pintflag_reg_t hri_usbhost_read_PINTFLAG_reg(const void *const hw, uint8_t submodule_index)
-{
-	return ((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg;
-}
-
-static inline void hri_usbhost_clear_PINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                  hri_usbhost_pintflag_reg_t mask)
-{
-	((Usb *)hw)->HOST.HostPipe[submodule_index].PINTFLAG.reg = mask;
-}
-
 static inline void hri_usbhost_set_PCFG_BK_bit(const void *const hw, uint8_t submodule_index)
 {
 	USB_CRITICAL_SECTION_ENTER();
@@ -1713,6 +1713,185 @@ static inline hri_usbhost_binterval_reg_t hri_usbhost_read_BINTERVAL_reg(const v
 	return ((Usb *)hw)->HOST.HostPipe[submodule_index].BINTERVAL.reg;
 }
 
+static inline bool hri_usbhost_get_INTFLAG_HSOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_HSOF) >> USB_HOST_INTFLAG_HSOF_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_HSOF_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_HSOF;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_RST_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RST) >> USB_HOST_INTFLAG_RST_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_RST_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RST;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_WAKEUP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_WAKEUP) >> USB_HOST_INTFLAG_WAKEUP_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_WAKEUP_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_WAKEUP;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_DNRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DNRSM) >> USB_HOST_INTFLAG_DNRSM_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_DNRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DNRSM;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_UPRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_UPRSM) >> USB_HOST_INTFLAG_UPRSM_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_UPRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_UPRSM;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_RAMACER_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RAMACER) >> USB_HOST_INTFLAG_RAMACER_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_RAMACER_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RAMACER;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_DCONN_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DCONN) >> USB_HOST_INTFLAG_DCONN_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_DCONN_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DCONN;
+}
+
+static inline bool hri_usbhost_get_INTFLAG_DDISC_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DDISC) >> USB_HOST_INTFLAG_DDISC_Pos;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_DDISC_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DDISC;
+}
+
+static inline bool hri_usbhost_get_interrupt_HSOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_HSOF) >> USB_HOST_INTFLAG_HSOF_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_HSOF_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_HSOF;
+}
+
+static inline bool hri_usbhost_get_interrupt_RST_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RST) >> USB_HOST_INTFLAG_RST_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_RST_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RST;
+}
+
+static inline bool hri_usbhost_get_interrupt_WAKEUP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_WAKEUP) >> USB_HOST_INTFLAG_WAKEUP_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_WAKEUP_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_WAKEUP;
+}
+
+static inline bool hri_usbhost_get_interrupt_DNRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DNRSM) >> USB_HOST_INTFLAG_DNRSM_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_DNRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DNRSM;
+}
+
+static inline bool hri_usbhost_get_interrupt_UPRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_UPRSM) >> USB_HOST_INTFLAG_UPRSM_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_UPRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_UPRSM;
+}
+
+static inline bool hri_usbhost_get_interrupt_RAMACER_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RAMACER) >> USB_HOST_INTFLAG_RAMACER_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_RAMACER_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RAMACER;
+}
+
+static inline bool hri_usbhost_get_interrupt_DCONN_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DCONN) >> USB_HOST_INTFLAG_DCONN_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_DCONN_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DCONN;
+}
+
+static inline bool hri_usbhost_get_interrupt_DDISC_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DDISC) >> USB_HOST_INTFLAG_DDISC_Pos;
+}
+
+static inline void hri_usbhost_clear_interrupt_DDISC_bit(const void *const hw)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DDISC;
+}
+
+static inline hri_usbhost_intflag_reg_t hri_usbhost_get_INTFLAG_reg(const void *const         hw,
+                                                                    hri_usbhost_intflag_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Usb *)hw)->HOST.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbhost_intflag_reg_t hri_usbhost_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Usb *)hw)->HOST.INTFLAG.reg;
+}
+
+static inline void hri_usbhost_clear_INTFLAG_reg(const void *const hw, hri_usbhost_intflag_reg_t mask)
+{
+	((Usb *)hw)->HOST.INTFLAG.reg = mask;
+}
+
 static inline void hri_usbhost_set_INTEN_HSOF_bit(const void *const hw)
 {
 	((Usb *)hw)->HOST.INTENSET.reg = USB_HOST_INTENSET_HSOF;
@@ -1935,183 +2114,132 @@ static inline void hri_usbhost_clear_INTEN_reg(const void *const hw, hri_usbhost
 	((Usb *)hw)->HOST.INTENCLR.reg = mask;
 }
 
-static inline bool hri_usbhost_get_INTFLAG_HSOF_bit(const void *const hw)
+static inline bool hri_usbhost_get_SYNCBUSY_SWRST_bit(const void *const hw)
 {
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_HSOF) >> USB_HOST_INTFLAG_HSOF_Pos;
+	return (((Usb *)hw)->HOST.SYNCBUSY.reg & USB_SYNCBUSY_SWRST) >> USB_SYNCBUSY_SWRST_Pos;
 }
 
-static inline void hri_usbhost_clear_INTFLAG_HSOF_bit(const void *const hw)
+static inline bool hri_usbhost_get_SYNCBUSY_ENABLE_bit(const void *const hw)
 {
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_HSOF;
+	return (((Usb *)hw)->HOST.SYNCBUSY.reg & USB_SYNCBUSY_ENABLE) >> USB_SYNCBUSY_ENABLE_Pos;
 }
 
-static inline bool hri_usbhost_get_INTFLAG_RST_bit(const void *const hw)
+static inline hri_usbhost_syncbusy_reg_t hri_usbhost_get_SYNCBUSY_reg(const void *const          hw,
+                                                                      hri_usbhost_syncbusy_reg_t mask)
 {
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RST) >> USB_HOST_INTFLAG_RST_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_RST_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RST;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_WAKEUP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_WAKEUP) >> USB_HOST_INTFLAG_WAKEUP_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_WAKEUP_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_WAKEUP;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_DNRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DNRSM) >> USB_HOST_INTFLAG_DNRSM_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_DNRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DNRSM;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_UPRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_UPRSM) >> USB_HOST_INTFLAG_UPRSM_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_UPRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_UPRSM;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_RAMACER_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RAMACER) >> USB_HOST_INTFLAG_RAMACER_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_RAMACER_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RAMACER;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_DCONN_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DCONN) >> USB_HOST_INTFLAG_DCONN_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_DCONN_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DCONN;
-}
-
-static inline bool hri_usbhost_get_INTFLAG_DDISC_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DDISC) >> USB_HOST_INTFLAG_DDISC_Pos;
-}
-
-static inline void hri_usbhost_clear_INTFLAG_DDISC_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DDISC;
-}
-
-static inline bool hri_usbhost_get_interrupt_HSOF_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_HSOF) >> USB_HOST_INTFLAG_HSOF_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_HSOF_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_HSOF;
-}
-
-static inline bool hri_usbhost_get_interrupt_RST_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RST) >> USB_HOST_INTFLAG_RST_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_RST_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RST;
-}
-
-static inline bool hri_usbhost_get_interrupt_WAKEUP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_WAKEUP) >> USB_HOST_INTFLAG_WAKEUP_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_WAKEUP_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_WAKEUP;
-}
-
-static inline bool hri_usbhost_get_interrupt_DNRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DNRSM) >> USB_HOST_INTFLAG_DNRSM_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_DNRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DNRSM;
-}
-
-static inline bool hri_usbhost_get_interrupt_UPRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_UPRSM) >> USB_HOST_INTFLAG_UPRSM_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_UPRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_UPRSM;
-}
-
-static inline bool hri_usbhost_get_interrupt_RAMACER_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_RAMACER) >> USB_HOST_INTFLAG_RAMACER_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_RAMACER_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_RAMACER;
-}
-
-static inline bool hri_usbhost_get_interrupt_DCONN_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DCONN) >> USB_HOST_INTFLAG_DCONN_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_DCONN_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DCONN;
-}
-
-static inline bool hri_usbhost_get_interrupt_DDISC_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.INTFLAG.reg & USB_HOST_INTFLAG_DDISC) >> USB_HOST_INTFLAG_DDISC_Pos;
-}
-
-static inline void hri_usbhost_clear_interrupt_DDISC_bit(const void *const hw)
-{
-	((Usb *)hw)->HOST.INTFLAG.reg = USB_HOST_INTFLAG_DDISC;
-}
-
-static inline hri_usbhost_intflag_reg_t hri_usbhost_get_INTFLAG_reg(const void *const         hw,
-                                                                    hri_usbhost_intflag_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Usb *)hw)->HOST.INTFLAG.reg;
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->HOST.SYNCBUSY.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_usbhost_intflag_reg_t hri_usbhost_read_INTFLAG_reg(const void *const hw)
+static inline hri_usbhost_syncbusy_reg_t hri_usbhost_read_SYNCBUSY_reg(const void *const hw)
 {
-	return ((Usb *)hw)->HOST.INTFLAG.reg;
+	return ((Usb *)hw)->HOST.SYNCBUSY.reg;
 }
 
-static inline void hri_usbhost_clear_INTFLAG_reg(const void *const hw, hri_usbhost_intflag_reg_t mask)
+static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_get_FSMSTATUS_FSMSTATE_bf(const void *const           hw,
+                                                                                hri_usbhost_fsmstatus_reg_t mask)
 {
-	((Usb *)hw)->HOST.INTFLAG.reg = mask;
+	return (((Usb *)hw)->HOST.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE(mask)) >> USB_FSMSTATUS_FSMSTATE_Pos;
+}
+
+static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_read_FSMSTATUS_FSMSTATE_bf(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE_Msk) >> USB_FSMSTATUS_FSMSTATE_Pos;
+}
+
+static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_get_FSMSTATUS_reg(const void *const           hw,
+                                                                        hri_usbhost_fsmstatus_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->HOST.FSMSTATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_read_FSMSTATUS_reg(const void *const hw)
+{
+	return ((Usb *)hw)->HOST.FSMSTATUS.reg;
+}
+
+static inline hri_usbhost_flenhigh_reg_t hri_usbhost_get_FLENHIGH_FLENHIGH_bf(const void *const          hw,
+                                                                              hri_usbhost_flenhigh_reg_t mask)
+{
+	return (((Usb *)hw)->HOST.FLENHIGH.reg & USB_HOST_FLENHIGH_FLENHIGH(mask)) >> USB_HOST_FLENHIGH_FLENHIGH_Pos;
+}
+
+static inline hri_usbhost_flenhigh_reg_t hri_usbhost_read_FLENHIGH_FLENHIGH_bf(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.FLENHIGH.reg & USB_HOST_FLENHIGH_FLENHIGH_Msk) >> USB_HOST_FLENHIGH_FLENHIGH_Pos;
+}
+
+static inline hri_usbhost_flenhigh_reg_t hri_usbhost_get_FLENHIGH_reg(const void *const          hw,
+                                                                      hri_usbhost_flenhigh_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->HOST.FLENHIGH.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbhost_flenhigh_reg_t hri_usbhost_read_FLENHIGH_reg(const void *const hw)
+{
+	return ((Usb *)hw)->HOST.FLENHIGH.reg;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT0_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT0) >> USB_HOST_PINTSMRY_EPINT0_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT1_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT1) >> USB_HOST_PINTSMRY_EPINT1_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT2_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT2) >> USB_HOST_PINTSMRY_EPINT2_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT3_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT3) >> USB_HOST_PINTSMRY_EPINT3_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT4_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT4) >> USB_HOST_PINTSMRY_EPINT4_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT5_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT5) >> USB_HOST_PINTSMRY_EPINT5_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT6_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT6) >> USB_HOST_PINTSMRY_EPINT6_Pos;
+}
+
+static inline bool hri_usbhost_get_PINTSMRY_EPINT7_bit(const void *const hw)
+{
+	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT7) >> USB_HOST_PINTSMRY_EPINT7_Pos;
+}
+
+static inline hri_usbhost_pintsmry_reg_t hri_usbhost_get_PINTSMRY_reg(const void *const          hw,
+                                                                      hri_usbhost_pintsmry_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Usb *)hw)->HOST.PINTSMRY.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbhost_pintsmry_reg_t hri_usbhost_read_PINTSMRY_reg(const void *const hw)
+{
+	return ((Usb *)hw)->HOST.PINTSMRY.reg;
 }
 
 static inline void hri_usbhost_set_CTRLA_SWRST_bit(const void *const hw)
@@ -2267,6 +2395,7 @@ static inline void hri_usbhost_toggle_CTRLA_MODE_bit(const void *const hw)
 static inline void hri_usbhost_set_CTRLA_reg(const void *const hw, hri_usbhost_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->HOST.CTRLA.reg |= mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -2274,6 +2403,7 @@ static inline void hri_usbhost_set_CTRLA_reg(const void *const hw, hri_usbhost_c
 static inline hri_usbhost_ctrla_reg_t hri_usbhost_get_CTRLA_reg(const void *const hw, hri_usbhost_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	tmp = ((Usb *)hw)->HOST.CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -2282,6 +2412,7 @@ static inline hri_usbhost_ctrla_reg_t hri_usbhost_get_CTRLA_reg(const void *cons
 static inline void hri_usbhost_write_CTRLA_reg(const void *const hw, hri_usbhost_ctrla_reg_t data)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->HOST.CTRLA.reg = data;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -2289,6 +2420,7 @@ static inline void hri_usbhost_write_CTRLA_reg(const void *const hw, hri_usbhost
 static inline void hri_usbhost_clear_CTRLA_reg(const void *const hw, hri_usbhost_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->HOST.CTRLA.reg &= ~mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -2296,12 +2428,14 @@ static inline void hri_usbhost_clear_CTRLA_reg(const void *const hw, hri_usbhost
 static inline void hri_usbhost_toggle_CTRLA_reg(const void *const hw, hri_usbhost_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->HOST.CTRLA.reg ^= mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_usbhost_ctrla_reg_t hri_usbhost_read_CTRLA_reg(const void *const hw)
 {
+	hri_usbhost_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	return ((Usb *)hw)->HOST.CTRLA.reg;
 }
 
@@ -3358,134 +3492,6 @@ static inline void hri_usbhost_toggle_PADCAL_reg(const void *const hw, hri_usbho
 static inline hri_usbhost_padcal_reg_t hri_usbhost_read_PADCAL_reg(const void *const hw)
 {
 	return ((Usb *)hw)->HOST.PADCAL.reg;
-}
-
-static inline bool hri_usbhost_get_SYNCBUSY_SWRST_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.SYNCBUSY.reg & USB_SYNCBUSY_SWRST) >> USB_SYNCBUSY_SWRST_Pos;
-}
-
-static inline bool hri_usbhost_get_SYNCBUSY_ENABLE_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.SYNCBUSY.reg & USB_SYNCBUSY_ENABLE) >> USB_SYNCBUSY_ENABLE_Pos;
-}
-
-static inline hri_usbhost_syncbusy_reg_t hri_usbhost_get_SYNCBUSY_reg(const void *const          hw,
-                                                                      hri_usbhost_syncbusy_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->HOST.SYNCBUSY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbhost_syncbusy_reg_t hri_usbhost_read_SYNCBUSY_reg(const void *const hw)
-{
-	return ((Usb *)hw)->HOST.SYNCBUSY.reg;
-}
-
-static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_get_FSMSTATUS_FSMSTATE_bf(const void *const           hw,
-                                                                                hri_usbhost_fsmstatus_reg_t mask)
-{
-	return (((Usb *)hw)->HOST.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE(mask)) >> USB_FSMSTATUS_FSMSTATE_Pos;
-}
-
-static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_read_FSMSTATUS_FSMSTATE_bf(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE_Msk) >> USB_FSMSTATUS_FSMSTATE_Pos;
-}
-
-static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_get_FSMSTATUS_reg(const void *const           hw,
-                                                                        hri_usbhost_fsmstatus_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->HOST.FSMSTATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbhost_fsmstatus_reg_t hri_usbhost_read_FSMSTATUS_reg(const void *const hw)
-{
-	return ((Usb *)hw)->HOST.FSMSTATUS.reg;
-}
-
-static inline hri_usbhost_flenhigh_reg_t hri_usbhost_get_FLENHIGH_FLENHIGH_bf(const void *const          hw,
-                                                                              hri_usbhost_flenhigh_reg_t mask)
-{
-	return (((Usb *)hw)->HOST.FLENHIGH.reg & USB_HOST_FLENHIGH_FLENHIGH(mask)) >> USB_HOST_FLENHIGH_FLENHIGH_Pos;
-}
-
-static inline hri_usbhost_flenhigh_reg_t hri_usbhost_read_FLENHIGH_FLENHIGH_bf(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.FLENHIGH.reg & USB_HOST_FLENHIGH_FLENHIGH_Msk) >> USB_HOST_FLENHIGH_FLENHIGH_Pos;
-}
-
-static inline hri_usbhost_flenhigh_reg_t hri_usbhost_get_FLENHIGH_reg(const void *const          hw,
-                                                                      hri_usbhost_flenhigh_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->HOST.FLENHIGH.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbhost_flenhigh_reg_t hri_usbhost_read_FLENHIGH_reg(const void *const hw)
-{
-	return ((Usb *)hw)->HOST.FLENHIGH.reg;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT0_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT0) >> USB_HOST_PINTSMRY_EPINT0_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT1_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT1) >> USB_HOST_PINTSMRY_EPINT1_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT2_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT2) >> USB_HOST_PINTSMRY_EPINT2_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT3_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT3) >> USB_HOST_PINTSMRY_EPINT3_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT4_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT4) >> USB_HOST_PINTSMRY_EPINT4_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT5_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT5) >> USB_HOST_PINTSMRY_EPINT5_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT6_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT6) >> USB_HOST_PINTSMRY_EPINT6_Pos;
-}
-
-static inline bool hri_usbhost_get_PINTSMRY_EPINT7_bit(const void *const hw)
-{
-	return (((Usb *)hw)->HOST.PINTSMRY.reg & USB_HOST_PINTSMRY_EPINT7) >> USB_HOST_PINTSMRY_EPINT7_Pos;
-}
-
-static inline hri_usbhost_pintsmry_reg_t hri_usbhost_get_PINTSMRY_reg(const void *const          hw,
-                                                                      hri_usbhost_pintsmry_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Usb *)hw)->HOST.PINTSMRY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbhost_pintsmry_reg_t hri_usbhost_read_PINTSMRY_reg(const void *const hw)
-{
-	return ((Usb *)hw)->HOST.PINTSMRY.reg;
 }
 
 static inline hri_usbhost_status_reg_t hri_usbhost_get_STATUS_SPEED_bf(const void *const        hw,
@@ -4642,6 +4648,225 @@ hri_usbdevicedescriptor_read_STATUS_BK_reg(const void *const hw, uint8_t submodu
 	return ((UsbDeviceDescriptor *)hw)->DeviceDescBank[submodule_index].STATUS_BK.reg;
 }
 
+static inline bool hri_usbdevice_get_INTFLAG_SUSPEND_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SUSPEND) >> USB_DEVICE_INTFLAG_SUSPEND_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_SUSPEND_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SUSPEND;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_MSOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_MSOF) >> USB_DEVICE_INTFLAG_MSOF_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_MSOF_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_MSOF;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_SOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SOF) >> USB_DEVICE_INTFLAG_SOF_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_SOF_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SOF;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_EORST_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) >> USB_DEVICE_INTFLAG_EORST_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_EORST_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_WAKEUP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_WAKEUP) >> USB_DEVICE_INTFLAG_WAKEUP_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_WAKEUP_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_EORSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORSM) >> USB_DEVICE_INTFLAG_EORSM_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_EORSM_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORSM;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_UPRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_UPRSM) >> USB_DEVICE_INTFLAG_UPRSM_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_UPRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_UPRSM;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_RAMACER_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_RAMACER) >> USB_DEVICE_INTFLAG_RAMACER_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_RAMACER_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_RAMACER;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_LPMNYET_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMNYET) >> USB_DEVICE_INTFLAG_LPMNYET_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_LPMNYET_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMNYET;
+}
+
+static inline bool hri_usbdevice_get_INTFLAG_LPMSUSP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMSUSP) >> USB_DEVICE_INTFLAG_LPMSUSP_Pos;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_LPMSUSP_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMSUSP;
+}
+
+static inline bool hri_usbdevice_get_interrupt_SUSPEND_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SUSPEND) >> USB_DEVICE_INTFLAG_SUSPEND_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_SUSPEND_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SUSPEND;
+}
+
+static inline bool hri_usbdevice_get_interrupt_MSOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_MSOF) >> USB_DEVICE_INTFLAG_MSOF_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_MSOF_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_MSOF;
+}
+
+static inline bool hri_usbdevice_get_interrupt_SOF_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SOF) >> USB_DEVICE_INTFLAG_SOF_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_SOF_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SOF;
+}
+
+static inline bool hri_usbdevice_get_interrupt_EORST_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) >> USB_DEVICE_INTFLAG_EORST_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_EORST_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
+}
+
+static inline bool hri_usbdevice_get_interrupt_WAKEUP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_WAKEUP) >> USB_DEVICE_INTFLAG_WAKEUP_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_WAKEUP_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP;
+}
+
+static inline bool hri_usbdevice_get_interrupt_EORSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORSM) >> USB_DEVICE_INTFLAG_EORSM_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_EORSM_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORSM;
+}
+
+static inline bool hri_usbdevice_get_interrupt_UPRSM_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_UPRSM) >> USB_DEVICE_INTFLAG_UPRSM_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_UPRSM_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_UPRSM;
+}
+
+static inline bool hri_usbdevice_get_interrupt_RAMACER_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_RAMACER) >> USB_DEVICE_INTFLAG_RAMACER_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_RAMACER_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_RAMACER;
+}
+
+static inline bool hri_usbdevice_get_interrupt_LPMNYET_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMNYET) >> USB_DEVICE_INTFLAG_LPMNYET_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_LPMNYET_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMNYET;
+}
+
+static inline bool hri_usbdevice_get_interrupt_LPMSUSP_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMSUSP) >> USB_DEVICE_INTFLAG_LPMSUSP_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_LPMSUSP_bit(const void *const hw)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMSUSP;
+}
+
+static inline hri_usbdevice_intflag_reg_t hri_usbdevice_get_INTFLAG_reg(const void *const           hw,
+                                                                        hri_usbdevice_intflag_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_intflag_reg_t hri_usbdevice_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Usb *)hw)->DEVICE.INTFLAG.reg;
+}
+
+static inline void hri_usbdevice_clear_INTFLAG_reg(const void *const hw, hri_usbdevice_intflag_reg_t mask)
+{
+	((Usb *)hw)->DEVICE.INTFLAG.reg = mask;
+}
+
 static inline void hri_usbdevice_set_INTEN_SUSPEND_bit(const void *const hw)
 {
 	((Usb *)hw)->DEVICE.INTENSET.reg = USB_DEVICE_INTENSET_SUSPEND;
@@ -4912,223 +5137,183 @@ static inline void hri_usbdevice_clear_INTEN_reg(const void *const hw, hri_usbde
 	((Usb *)hw)->DEVICE.INTENCLR.reg = mask;
 }
 
-static inline bool hri_usbdevice_get_INTFLAG_SUSPEND_bit(const void *const hw)
+static inline bool hri_usbdevice_get_SYNCBUSY_SWRST_bit(const void *const hw)
 {
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SUSPEND) >> USB_DEVICE_INTFLAG_SUSPEND_Pos;
+	return (((Usb *)hw)->DEVICE.SYNCBUSY.reg & USB_SYNCBUSY_SWRST) >> USB_SYNCBUSY_SWRST_Pos;
 }
 
-static inline void hri_usbdevice_clear_INTFLAG_SUSPEND_bit(const void *const hw)
+static inline bool hri_usbdevice_get_SYNCBUSY_ENABLE_bit(const void *const hw)
 {
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SUSPEND;
+	return (((Usb *)hw)->DEVICE.SYNCBUSY.reg & USB_SYNCBUSY_ENABLE) >> USB_SYNCBUSY_ENABLE_Pos;
 }
 
-static inline bool hri_usbdevice_get_INTFLAG_MSOF_bit(const void *const hw)
+static inline hri_usbdevice_syncbusy_reg_t hri_usbdevice_get_SYNCBUSY_reg(const void *const            hw,
+                                                                          hri_usbdevice_syncbusy_reg_t mask)
 {
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_MSOF) >> USB_DEVICE_INTFLAG_MSOF_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_MSOF_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_MSOF;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_SOF_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SOF) >> USB_DEVICE_INTFLAG_SOF_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_SOF_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SOF;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_EORST_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) >> USB_DEVICE_INTFLAG_EORST_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_EORST_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_WAKEUP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_WAKEUP) >> USB_DEVICE_INTFLAG_WAKEUP_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_WAKEUP_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_EORSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORSM) >> USB_DEVICE_INTFLAG_EORSM_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_EORSM_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORSM;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_UPRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_UPRSM) >> USB_DEVICE_INTFLAG_UPRSM_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_UPRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_UPRSM;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_RAMACER_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_RAMACER) >> USB_DEVICE_INTFLAG_RAMACER_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_RAMACER_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_RAMACER;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_LPMNYET_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMNYET) >> USB_DEVICE_INTFLAG_LPMNYET_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_LPMNYET_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMNYET;
-}
-
-static inline bool hri_usbdevice_get_INTFLAG_LPMSUSP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMSUSP) >> USB_DEVICE_INTFLAG_LPMSUSP_Pos;
-}
-
-static inline void hri_usbdevice_clear_INTFLAG_LPMSUSP_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMSUSP;
-}
-
-static inline bool hri_usbdevice_get_interrupt_SUSPEND_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SUSPEND) >> USB_DEVICE_INTFLAG_SUSPEND_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_SUSPEND_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SUSPEND;
-}
-
-static inline bool hri_usbdevice_get_interrupt_MSOF_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_MSOF) >> USB_DEVICE_INTFLAG_MSOF_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_MSOF_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_MSOF;
-}
-
-static inline bool hri_usbdevice_get_interrupt_SOF_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_SOF) >> USB_DEVICE_INTFLAG_SOF_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_SOF_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_SOF;
-}
-
-static inline bool hri_usbdevice_get_interrupt_EORST_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORST) >> USB_DEVICE_INTFLAG_EORST_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_EORST_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORST;
-}
-
-static inline bool hri_usbdevice_get_interrupt_WAKEUP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_WAKEUP) >> USB_DEVICE_INTFLAG_WAKEUP_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_WAKEUP_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_WAKEUP;
-}
-
-static inline bool hri_usbdevice_get_interrupt_EORSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_EORSM) >> USB_DEVICE_INTFLAG_EORSM_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_EORSM_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_EORSM;
-}
-
-static inline bool hri_usbdevice_get_interrupt_UPRSM_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_UPRSM) >> USB_DEVICE_INTFLAG_UPRSM_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_UPRSM_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_UPRSM;
-}
-
-static inline bool hri_usbdevice_get_interrupt_RAMACER_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_RAMACER) >> USB_DEVICE_INTFLAG_RAMACER_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_RAMACER_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_RAMACER;
-}
-
-static inline bool hri_usbdevice_get_interrupt_LPMNYET_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMNYET) >> USB_DEVICE_INTFLAG_LPMNYET_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_LPMNYET_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMNYET;
-}
-
-static inline bool hri_usbdevice_get_interrupt_LPMSUSP_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.INTFLAG.reg & USB_DEVICE_INTFLAG_LPMSUSP) >> USB_DEVICE_INTFLAG_LPMSUSP_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_LPMSUSP_bit(const void *const hw)
-{
-	((Usb *)hw)->DEVICE.INTFLAG.reg = USB_DEVICE_INTFLAG_LPMSUSP;
-}
-
-static inline hri_usbdevice_intflag_reg_t hri_usbdevice_get_INTFLAG_reg(const void *const           hw,
-                                                                        hri_usbdevice_intflag_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.INTFLAG.reg;
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.SYNCBUSY.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_usbdevice_intflag_reg_t hri_usbdevice_read_INTFLAG_reg(const void *const hw)
+static inline hri_usbdevice_syncbusy_reg_t hri_usbdevice_read_SYNCBUSY_reg(const void *const hw)
 {
-	return ((Usb *)hw)->DEVICE.INTFLAG.reg;
+	return ((Usb *)hw)->DEVICE.SYNCBUSY.reg;
 }
 
-static inline void hri_usbdevice_clear_INTFLAG_reg(const void *const hw, hri_usbdevice_intflag_reg_t mask)
+static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_SPEED_bf(const void *const          hw,
+                                                                           hri_usbdevice_status_reg_t mask)
 {
-	((Usb *)hw)->DEVICE.INTFLAG.reg = mask;
+	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_SPEED(mask)) >> USB_DEVICE_STATUS_SPEED_Pos;
+}
+
+static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_SPEED_bf(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_SPEED_Msk) >> USB_DEVICE_STATUS_SPEED_Pos;
+}
+
+static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_LINESTATE_bf(const void *const          hw,
+                                                                               hri_usbdevice_status_reg_t mask)
+{
+	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_LINESTATE(mask)) >> USB_DEVICE_STATUS_LINESTATE_Pos;
+}
+
+static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_LINESTATE_bf(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_LINESTATE_Msk) >> USB_DEVICE_STATUS_LINESTATE_Pos;
+}
+
+static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_reg(const void *const          hw,
+                                                                      hri_usbdevice_status_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.STATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_reg(const void *const hw)
+{
+	return ((Usb *)hw)->DEVICE.STATUS.reg;
+}
+
+static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_get_FSMSTATUS_FSMSTATE_bf(const void *const             hw,
+                                                                                    hri_usbdevice_fsmstatus_reg_t mask)
+{
+	return (((Usb *)hw)->DEVICE.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE(mask)) >> USB_FSMSTATUS_FSMSTATE_Pos;
+}
+
+static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_read_FSMSTATUS_FSMSTATE_bf(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE_Msk) >> USB_FSMSTATUS_FSMSTATE_Pos;
+}
+
+static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_get_FSMSTATUS_reg(const void *const             hw,
+                                                                            hri_usbdevice_fsmstatus_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.FSMSTATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_read_FSMSTATUS_reg(const void *const hw)
+{
+	return ((Usb *)hw)->DEVICE.FSMSTATUS.reg;
+}
+
+static inline bool hri_usbdevice_get_FNUM_FNCERR_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNCERR) >> USB_DEVICE_FNUM_FNCERR_Pos;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_MFNUM_bf(const void *const        hw,
+                                                                       hri_usbdevice_fnum_reg_t mask)
+{
+	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_MFNUM(mask)) >> USB_DEVICE_FNUM_MFNUM_Pos;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_MFNUM_bf(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_MFNUM_Msk) >> USB_DEVICE_FNUM_MFNUM_Pos;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_FNUM_bf(const void *const        hw,
+                                                                      hri_usbdevice_fnum_reg_t mask)
+{
+	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNUM(mask)) >> USB_DEVICE_FNUM_FNUM_Pos;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_FNUM_bf(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNUM_Msk) >> USB_DEVICE_FNUM_FNUM_Pos;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_reg(const void *const hw, hri_usbdevice_fnum_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.FNUM.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_reg(const void *const hw)
+{
+	return ((Usb *)hw)->DEVICE.FNUM.reg;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT0_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT0) >> USB_DEVICE_EPINTSMRY_EPINT0_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT1_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT1) >> USB_DEVICE_EPINTSMRY_EPINT1_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT2_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT2) >> USB_DEVICE_EPINTSMRY_EPINT2_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT3_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT3) >> USB_DEVICE_EPINTSMRY_EPINT3_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT4_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT4) >> USB_DEVICE_EPINTSMRY_EPINT4_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT5_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT5) >> USB_DEVICE_EPINTSMRY_EPINT5_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT6_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT6) >> USB_DEVICE_EPINTSMRY_EPINT6_Pos;
+}
+
+static inline bool hri_usbdevice_get_EPINTSMRY_EPINT7_bit(const void *const hw)
+{
+	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT7) >> USB_DEVICE_EPINTSMRY_EPINT7_Pos;
+}
+
+static inline hri_usbdevice_epintsmry_reg_t hri_usbdevice_get_EPINTSMRY_reg(const void *const             hw,
+                                                                            hri_usbdevice_epintsmry_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.EPINTSMRY.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_epintsmry_reg_t hri_usbdevice_read_EPINTSMRY_reg(const void *const hw)
+{
+	return ((Usb *)hw)->DEVICE.EPINTSMRY.reg;
 }
 
 static inline void hri_usbdevice_set_CTRLA_SWRST_bit(const void *const hw)
@@ -5284,6 +5469,7 @@ static inline void hri_usbdevice_toggle_CTRLA_MODE_bit(const void *const hw)
 static inline void hri_usbdevice_set_CTRLA_reg(const void *const hw, hri_usbdevice_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->DEVICE.CTRLA.reg |= mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -5292,6 +5478,7 @@ static inline hri_usbdevice_ctrla_reg_t hri_usbdevice_get_CTRLA_reg(const void *
                                                                     hri_usbdevice_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	tmp = ((Usb *)hw)->DEVICE.CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -5300,6 +5487,7 @@ static inline hri_usbdevice_ctrla_reg_t hri_usbdevice_get_CTRLA_reg(const void *
 static inline void hri_usbdevice_write_CTRLA_reg(const void *const hw, hri_usbdevice_ctrla_reg_t data)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->DEVICE.CTRLA.reg = data;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -5307,6 +5495,7 @@ static inline void hri_usbdevice_write_CTRLA_reg(const void *const hw, hri_usbde
 static inline void hri_usbdevice_clear_CTRLA_reg(const void *const hw, hri_usbdevice_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->DEVICE.CTRLA.reg &= ~mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
@@ -5314,12 +5503,14 @@ static inline void hri_usbdevice_clear_CTRLA_reg(const void *const hw, hri_usbde
 static inline void hri_usbdevice_toggle_CTRLA_reg(const void *const hw, hri_usbdevice_ctrla_reg_t mask)
 {
 	USB_CRITICAL_SECTION_ENTER();
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	((Usb *)hw)->DEVICE.CTRLA.reg ^= mask;
 	USB_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_usbdevice_ctrla_reg_t hri_usbdevice_read_CTRLA_reg(const void *const hw)
 {
+	hri_usbdevice_wait_for_sync(hw, USB_SYNCBUSY_MASK);
 	return ((Usb *)hw)->DEVICE.CTRLA.reg;
 }
 
@@ -6333,183 +6524,179 @@ static inline hri_usbdevice_padcal_reg_t hri_usbdevice_read_PADCAL_reg(const voi
 	return ((Usb *)hw)->DEVICE.PADCAL.reg;
 }
 
-static inline bool hri_usbdevice_get_SYNCBUSY_SWRST_bit(const void *const hw)
+static inline bool hri_usbendpoint_get_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
 {
-	return (((Usb *)hw)->DEVICE.SYNCBUSY.reg & USB_SYNCBUSY_SWRST) >> USB_SYNCBUSY_SWRST_Pos;
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
 }
 
-static inline bool hri_usbdevice_get_SYNCBUSY_ENABLE_bit(const void *const hw)
+static inline void hri_usbendpoint_clear_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
 {
-	return (((Usb *)hw)->DEVICE.SYNCBUSY.reg & USB_SYNCBUSY_ENABLE) >> USB_SYNCBUSY_ENABLE_Pos;
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
 }
 
-static inline hri_usbdevice_syncbusy_reg_t hri_usbdevice_get_SYNCBUSY_reg(const void *const            hw,
-                                                                          hri_usbdevice_syncbusy_reg_t mask)
+static inline bool hri_usbendpoint_get_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbendpoint_get_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
+}
+
+static inline bool hri_usbendpoint_get_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
+}
+
+static inline bool hri_usbendpoint_get_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
+	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
+}
+
+static inline bool hri_usbendpoint_get_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
+	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
+}
+
+static inline bool hri_usbendpoint_get_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
+	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
+	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
+	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
+}
+
+static inline bool hri_usbendpoint_get_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
+	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
+}
+
+static inline void hri_usbendpoint_clear_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
+}
+
+static inline hri_usbendpoint_epintflag_reg_t
+hri_usbendpoint_get_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index, hri_usbendpoint_epintflag_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.SYNCBUSY.reg;
+	tmp = ((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_usbdevice_syncbusy_reg_t hri_usbdevice_read_SYNCBUSY_reg(const void *const hw)
+static inline hri_usbendpoint_epintflag_reg_t hri_usbendpoint_read_EPINTFLAG_reg(const void *const hw,
+                                                                                 uint8_t           submodule_index)
 {
-	return ((Usb *)hw)->DEVICE.SYNCBUSY.reg;
+	return ((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg;
 }
 
-static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_SPEED_bf(const void *const          hw,
-                                                                           hri_usbdevice_status_reg_t mask)
+static inline void hri_usbendpoint_clear_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                       hri_usbendpoint_epintflag_reg_t mask)
 {
-	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_SPEED(mask)) >> USB_DEVICE_STATUS_SPEED_Pos;
-}
-
-static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_SPEED_bf(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_SPEED_Msk) >> USB_DEVICE_STATUS_SPEED_Pos;
-}
-
-static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_LINESTATE_bf(const void *const          hw,
-                                                                               hri_usbdevice_status_reg_t mask)
-{
-	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_LINESTATE(mask)) >> USB_DEVICE_STATUS_LINESTATE_Pos;
-}
-
-static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_LINESTATE_bf(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.STATUS.reg & USB_DEVICE_STATUS_LINESTATE_Msk) >> USB_DEVICE_STATUS_LINESTATE_Pos;
-}
-
-static inline hri_usbdevice_status_reg_t hri_usbdevice_get_STATUS_reg(const void *const          hw,
-                                                                      hri_usbdevice_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbdevice_status_reg_t hri_usbdevice_read_STATUS_reg(const void *const hw)
-{
-	return ((Usb *)hw)->DEVICE.STATUS.reg;
-}
-
-static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_get_FSMSTATUS_FSMSTATE_bf(const void *const             hw,
-                                                                                    hri_usbdevice_fsmstatus_reg_t mask)
-{
-	return (((Usb *)hw)->DEVICE.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE(mask)) >> USB_FSMSTATUS_FSMSTATE_Pos;
-}
-
-static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_read_FSMSTATUS_FSMSTATE_bf(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.FSMSTATUS.reg & USB_FSMSTATUS_FSMSTATE_Msk) >> USB_FSMSTATUS_FSMSTATE_Pos;
-}
-
-static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_get_FSMSTATUS_reg(const void *const             hw,
-                                                                            hri_usbdevice_fsmstatus_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.FSMSTATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbdevice_fsmstatus_reg_t hri_usbdevice_read_FSMSTATUS_reg(const void *const hw)
-{
-	return ((Usb *)hw)->DEVICE.FSMSTATUS.reg;
-}
-
-static inline bool hri_usbdevice_get_FNUM_FNCERR_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNCERR) >> USB_DEVICE_FNUM_FNCERR_Pos;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_MFNUM_bf(const void *const        hw,
-                                                                       hri_usbdevice_fnum_reg_t mask)
-{
-	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_MFNUM(mask)) >> USB_DEVICE_FNUM_MFNUM_Pos;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_MFNUM_bf(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_MFNUM_Msk) >> USB_DEVICE_FNUM_MFNUM_Pos;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_FNUM_bf(const void *const        hw,
-                                                                      hri_usbdevice_fnum_reg_t mask)
-{
-	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNUM(mask)) >> USB_DEVICE_FNUM_FNUM_Pos;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_FNUM_bf(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.FNUM.reg & USB_DEVICE_FNUM_FNUM_Msk) >> USB_DEVICE_FNUM_FNUM_Pos;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_get_FNUM_reg(const void *const hw, hri_usbdevice_fnum_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.FNUM.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbdevice_fnum_reg_t hri_usbdevice_read_FNUM_reg(const void *const hw)
-{
-	return ((Usb *)hw)->DEVICE.FNUM.reg;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT0_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT0) >> USB_DEVICE_EPINTSMRY_EPINT0_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT1_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT1) >> USB_DEVICE_EPINTSMRY_EPINT1_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT2_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT2) >> USB_DEVICE_EPINTSMRY_EPINT2_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT3_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT3) >> USB_DEVICE_EPINTSMRY_EPINT3_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT4_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT4) >> USB_DEVICE_EPINTSMRY_EPINT4_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT5_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT5) >> USB_DEVICE_EPINTSMRY_EPINT5_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT6_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT6) >> USB_DEVICE_EPINTSMRY_EPINT6_Pos;
-}
-
-static inline bool hri_usbdevice_get_EPINTSMRY_EPINT7_bit(const void *const hw)
-{
-	return (((Usb *)hw)->DEVICE.EPINTSMRY.reg & USB_DEVICE_EPINTSMRY_EPINT7) >> USB_DEVICE_EPINTSMRY_EPINT7_Pos;
-}
-
-static inline hri_usbdevice_epintsmry_reg_t hri_usbdevice_get_EPINTSMRY_reg(const void *const             hw,
-                                                                            hri_usbdevice_epintsmry_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.EPINTSMRY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbdevice_epintsmry_reg_t hri_usbdevice_read_EPINTSMRY_reg(const void *const hw)
-{
-	return ((Usb *)hw)->DEVICE.EPINTSMRY.reg;
+	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = mask;
 }
 
 static inline void hri_usbendpoint_set_EPSTATUS_DTGLOUT_bit(const void *const hw, uint8_t submodule_index)
@@ -6932,181 +7119,6 @@ static inline void hri_usbendpoint_clear_EPINTEN_reg(const void *const hw, uint8
 	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTENCLR.reg = mask;
 }
 
-static inline bool hri_usbendpoint_get_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
-	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
-	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
-}
-
-static inline bool hri_usbendpoint_get_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
-	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
-	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
-	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
-}
-
-static inline bool hri_usbendpoint_get_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
-	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
-}
-
-static inline void hri_usbendpoint_clear_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
-}
-
-static inline hri_usbendpoint_epintflag_reg_t
-hri_usbendpoint_get_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index, hri_usbendpoint_epintflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbendpoint_epintflag_reg_t hri_usbendpoint_read_EPINTFLAG_reg(const void *const hw,
-                                                                                 uint8_t           submodule_index)
-{
-	return ((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg;
-}
-
-static inline void hri_usbendpoint_clear_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                       hri_usbendpoint_epintflag_reg_t mask)
-{
-	((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPINTFLAG.reg = mask;
-}
-
 static inline void hri_usbendpoint_set_EPCFG_NYETDIS_bit(const void *const hw, uint8_t submodule_index)
 {
 	USB_CRITICAL_SECTION_ENTER();
@@ -7299,6 +7311,181 @@ static inline void hri_usbendpoint_toggle_EPCFG_reg(const void *const hw, uint8_
 static inline hri_usbendpoint_epcfg_reg_t hri_usbendpoint_read_EPCFG_reg(const void *const hw, uint8_t submodule_index)
 {
 	return ((UsbDevice *)hw)->DeviceEndpoint[submodule_index].EPCFG.reg;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
+	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
+	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
+}
+
+static inline bool hri_usbdevice_get_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
+	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
+}
+
+static inline bool hri_usbdevice_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
+}
+
+static inline bool hri_usbdevice_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
+	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
+}
+
+static inline bool hri_usbdevice_get_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
+}
+
+static inline bool hri_usbdevice_get_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
+	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
+}
+
+static inline bool hri_usbdevice_get_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
+	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
+}
+
+static inline bool hri_usbdevice_get_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
+	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
+}
+
+static inline bool hri_usbdevice_get_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
+	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
+}
+
+static inline void hri_usbdevice_clear_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
+}
+
+static inline hri_usbdevice_epintflag_reg_t
+hri_usbdevice_get_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index, hri_usbdevice_epintflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_usbdevice_epintflag_reg_t hri_usbdevice_read_EPINTFLAG_reg(const void *const hw,
+                                                                             uint8_t           submodule_index)
+{
+	return ((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg;
+}
+
+static inline void hri_usbdevice_clear_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index,
+                                                     hri_usbdevice_epintflag_reg_t mask)
+{
+	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = mask;
 }
 
 static inline void hri_usbdevice_set_EPSTATUS_DTGLOUT_bit(const void *const hw, uint8_t submodule_index)
@@ -7717,181 +7904,6 @@ static inline void hri_usbdevice_clear_EPINTEN_reg(const void *const hw, uint8_t
                                                    hri_usbdevice_epintenset_reg_t mask)
 {
 	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTENCLR.reg = mask;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
-	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
-	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
-}
-
-static inline bool hri_usbdevice_get_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
-	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
-}
-
-static inline bool hri_usbdevice_get_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT0)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT0_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_TRCPT0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT0;
-}
-
-static inline bool hri_usbdevice_get_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRCPT1)
-	       >> USB_DEVICE_EPINTFLAG_TRCPT1_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_TRCPT1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRCPT1;
-}
-
-static inline bool hri_usbdevice_get_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL0)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL0_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_TRFAIL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL0;
-}
-
-static inline bool hri_usbdevice_get_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_TRFAIL1)
-	       >> USB_DEVICE_EPINTFLAG_TRFAIL1_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_TRFAIL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_TRFAIL1;
-}
-
-static inline bool hri_usbdevice_get_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_RXSTP)
-	       >> USB_DEVICE_EPINTFLAG_RXSTP_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_RXSTP_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_RXSTP;
-}
-
-static inline bool hri_usbdevice_get_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL0)
-	       >> USB_DEVICE_EPINTFLAG_STALL0_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_STALL0_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL0;
-}
-
-static inline bool hri_usbdevice_get_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	return (((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg & USB_DEVICE_EPINTFLAG_STALL1)
-	       >> USB_DEVICE_EPINTFLAG_STALL1_Pos;
-}
-
-static inline void hri_usbdevice_clear_interrupt_STALL1_bit(const void *const hw, uint8_t submodule_index)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = USB_DEVICE_EPINTFLAG_STALL1;
-}
-
-static inline hri_usbdevice_epintflag_reg_t
-hri_usbdevice_get_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index, hri_usbdevice_epintflag_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_usbdevice_epintflag_reg_t hri_usbdevice_read_EPINTFLAG_reg(const void *const hw,
-                                                                             uint8_t           submodule_index)
-{
-	return ((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg;
-}
-
-static inline void hri_usbdevice_clear_EPINTFLAG_reg(const void *const hw, uint8_t submodule_index,
-                                                     hri_usbdevice_epintflag_reg_t mask)
-{
-	((Usb *)hw)->DEVICE.DeviceEndpoint[submodule_index].EPINTFLAG.reg = mask;
 }
 
 static inline void hri_usbdevice_set_EPCFG_NYETDIS_bit(const void *const hw, uint8_t submodule_index)

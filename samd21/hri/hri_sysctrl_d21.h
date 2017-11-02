@@ -3,7 +3,7 @@
  *
  * \brief SAM SYSCTRL
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -78,6 +78,325 @@ typedef uint8_t  hri_sysctrl_dfllsync_reg_t;
 typedef uint8_t  hri_sysctrl_dpllctrla_reg_t;
 typedef uint8_t  hri_sysctrl_dpllstatus_reg_t;
 typedef uint8_t  hri_sysctrl_osculp32k_reg_t;
+
+static inline bool hri_sysctrl_get_INTFLAG_XOSCRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSCRDY) >> SYSCTRL_INTFLAG_XOSCRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_XOSCRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSCRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_XOSC32KRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSC32KRDY) >> SYSCTRL_INTFLAG_XOSC32KRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_XOSC32KRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSC32KRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_OSC32KRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC32KRDY) >> SYSCTRL_INTFLAG_OSC32KRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_OSC32KRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC32KRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_OSC8MRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC8MRDY) >> SYSCTRL_INTFLAG_OSC8MRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_OSC8MRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC8MRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DFLLRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRDY) >> SYSCTRL_INTFLAG_DFLLRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DFLLRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DFLLOOB_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLOOB) >> SYSCTRL_INTFLAG_DFLLOOB_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DFLLOOB_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLOOB;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DFLLLCKF_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKF) >> SYSCTRL_INTFLAG_DFLLLCKF_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DFLLLCKF_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKF;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DFLLLCKC_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKC) >> SYSCTRL_INTFLAG_DFLLLCKC_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DFLLLCKC_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKC;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DFLLRCS_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRCS) >> SYSCTRL_INTFLAG_DFLLRCS_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DFLLRCS_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRCS;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_BOD33RDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33RDY) >> SYSCTRL_INTFLAG_BOD33RDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_BOD33RDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_BOD33DET_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33DET) >> SYSCTRL_INTFLAG_BOD33DET_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_BOD33DET_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33DET;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_B33SRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_B33SRDY) >> SYSCTRL_INTFLAG_B33SRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_B33SRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_B33SRDY;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DPLLLCKR_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKR) >> SYSCTRL_INTFLAG_DPLLLCKR_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DPLLLCKR_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKR;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DPLLLCKF_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKF) >> SYSCTRL_INTFLAG_DPLLLCKF_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DPLLLCKF_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKF;
+}
+
+static inline bool hri_sysctrl_get_INTFLAG_DPLLLTO_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLTO) >> SYSCTRL_INTFLAG_DPLLLTO_Pos;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_DPLLLTO_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLTO;
+}
+
+static inline bool hri_sysctrl_get_interrupt_XOSCRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSCRDY) >> SYSCTRL_INTFLAG_XOSCRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_XOSCRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSCRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_XOSC32KRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSC32KRDY) >> SYSCTRL_INTFLAG_XOSC32KRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_XOSC32KRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSC32KRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_OSC32KRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC32KRDY) >> SYSCTRL_INTFLAG_OSC32KRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_OSC32KRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC32KRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_OSC8MRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC8MRDY) >> SYSCTRL_INTFLAG_OSC8MRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_OSC8MRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC8MRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DFLLRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRDY) >> SYSCTRL_INTFLAG_DFLLRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DFLLRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DFLLOOB_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLOOB) >> SYSCTRL_INTFLAG_DFLLOOB_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DFLLOOB_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLOOB;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DFLLLCKF_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKF) >> SYSCTRL_INTFLAG_DFLLLCKF_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DFLLLCKF_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKF;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DFLLLCKC_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKC) >> SYSCTRL_INTFLAG_DFLLLCKC_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DFLLLCKC_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKC;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DFLLRCS_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRCS) >> SYSCTRL_INTFLAG_DFLLRCS_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DFLLRCS_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRCS;
+}
+
+static inline bool hri_sysctrl_get_interrupt_BOD33RDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33RDY) >> SYSCTRL_INTFLAG_BOD33RDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_BOD33RDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_BOD33DET_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33DET) >> SYSCTRL_INTFLAG_BOD33DET_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_BOD33DET_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33DET;
+}
+
+static inline bool hri_sysctrl_get_interrupt_B33SRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_B33SRDY) >> SYSCTRL_INTFLAG_B33SRDY_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_B33SRDY_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_B33SRDY;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DPLLLCKR_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKR) >> SYSCTRL_INTFLAG_DPLLLCKR_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DPLLLCKR_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKR;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DPLLLCKF_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKF) >> SYSCTRL_INTFLAG_DPLLLCKF_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DPLLLCKF_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKF;
+}
+
+static inline bool hri_sysctrl_get_interrupt_DPLLLTO_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLTO) >> SYSCTRL_INTFLAG_DPLLLTO_Pos;
+}
+
+static inline void hri_sysctrl_clear_interrupt_DPLLLTO_bit(const void *const hw)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLTO;
+}
+
+static inline hri_sysctrl_intflag_reg_t hri_sysctrl_get_INTFLAG_reg(const void *const         hw,
+                                                                    hri_sysctrl_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Sysctrl *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_sysctrl_intflag_reg_t hri_sysctrl_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Sysctrl *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_sysctrl_clear_INTFLAG_reg(const void *const hw, hri_sysctrl_intflag_reg_t mask)
+{
+	((Sysctrl *)hw)->INTFLAG.reg = mask;
+}
 
 static inline void hri_sysctrl_set_INTEN_XOSCRDY_bit(const void *const hw)
 {
@@ -469,323 +788,126 @@ static inline void hri_sysctrl_clear_INTEN_reg(const void *const hw, hri_sysctrl
 	((Sysctrl *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_XOSCRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_XOSCRDY_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSCRDY) >> SYSCTRL_INTFLAG_XOSCRDY_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_XOSCRDY) >> SYSCTRL_PCLKSR_XOSCRDY_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_XOSCRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_XOSC32KRDY_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSCRDY;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_XOSC32KRDY) >> SYSCTRL_PCLKSR_XOSC32KRDY_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_XOSC32KRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_OSC32KRDY_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSC32KRDY) >> SYSCTRL_INTFLAG_XOSC32KRDY_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_OSC32KRDY) >> SYSCTRL_PCLKSR_OSC32KRDY_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_XOSC32KRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_OSC8MRDY_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSC32KRDY;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_OSC8MRDY) >> SYSCTRL_PCLKSR_OSC8MRDY_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_OSC32KRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DFLLRDY_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC32KRDY) >> SYSCTRL_INTFLAG_OSC32KRDY_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLRDY) >> SYSCTRL_PCLKSR_DFLLRDY_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_OSC32KRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DFLLOOB_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC32KRDY;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLOOB) >> SYSCTRL_PCLKSR_DFLLOOB_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_OSC8MRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DFLLLCKF_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC8MRDY) >> SYSCTRL_INTFLAG_OSC8MRDY_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLLCKF) >> SYSCTRL_PCLKSR_DFLLLCKF_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_OSC8MRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DFLLLCKC_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC8MRDY;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLLCKC) >> SYSCTRL_PCLKSR_DFLLLCKC_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_DFLLRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DFLLRCS_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRDY) >> SYSCTRL_INTFLAG_DFLLRDY_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLRCS) >> SYSCTRL_PCLKSR_DFLLRCS_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_DFLLRDY_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_BOD33RDY_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRDY;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_BOD33RDY) >> SYSCTRL_PCLKSR_BOD33RDY_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_DFLLOOB_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_BOD33DET_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLOOB) >> SYSCTRL_INTFLAG_DFLLOOB_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_BOD33DET) >> SYSCTRL_PCLKSR_BOD33DET_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_DFLLOOB_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_B33SRDY_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLOOB;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_B33SRDY) >> SYSCTRL_PCLKSR_B33SRDY_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_DFLLLCKF_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DPLLLCKR_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKF) >> SYSCTRL_INTFLAG_DFLLLCKF_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLCKR) >> SYSCTRL_PCLKSR_DPLLLCKR_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_DFLLLCKF_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DPLLLCKF_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKF;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLCKF) >> SYSCTRL_PCLKSR_DPLLLCKF_Pos;
 }
 
-static inline bool hri_sysctrl_get_INTFLAG_DFLLLCKC_bit(const void *const hw)
+static inline bool hri_sysctrl_get_PCLKSR_DPLLLTO_bit(const void *const hw)
 {
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKC) >> SYSCTRL_INTFLAG_DFLLLCKC_Pos;
+	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLTO) >> SYSCTRL_PCLKSR_DPLLLTO_Pos;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_DFLLLCKC_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKC;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_DFLLRCS_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRCS) >> SYSCTRL_INTFLAG_DFLLRCS_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_DFLLRCS_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRCS;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_BOD33RDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33RDY) >> SYSCTRL_INTFLAG_BOD33RDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_BOD33RDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_BOD33DET_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33DET) >> SYSCTRL_INTFLAG_BOD33DET_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_BOD33DET_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33DET;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_B33SRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_B33SRDY) >> SYSCTRL_INTFLAG_B33SRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_B33SRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_B33SRDY;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_DPLLLCKR_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKR) >> SYSCTRL_INTFLAG_DPLLLCKR_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_DPLLLCKR_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKR;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_DPLLLCKF_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKF) >> SYSCTRL_INTFLAG_DPLLLCKF_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_DPLLLCKF_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKF;
-}
-
-static inline bool hri_sysctrl_get_INTFLAG_DPLLLTO_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLTO) >> SYSCTRL_INTFLAG_DPLLLTO_Pos;
-}
-
-static inline void hri_sysctrl_clear_INTFLAG_DPLLLTO_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLTO;
-}
-
-static inline bool hri_sysctrl_get_interrupt_XOSCRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSCRDY) >> SYSCTRL_INTFLAG_XOSCRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_XOSCRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSCRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_XOSC32KRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_XOSC32KRDY) >> SYSCTRL_INTFLAG_XOSC32KRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_XOSC32KRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_XOSC32KRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_OSC32KRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC32KRDY) >> SYSCTRL_INTFLAG_OSC32KRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_OSC32KRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC32KRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_OSC8MRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_OSC8MRDY) >> SYSCTRL_INTFLAG_OSC8MRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_OSC8MRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_OSC8MRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DFLLRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRDY) >> SYSCTRL_INTFLAG_DFLLRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DFLLRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DFLLOOB_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLOOB) >> SYSCTRL_INTFLAG_DFLLOOB_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DFLLOOB_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLOOB;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DFLLLCKF_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKF) >> SYSCTRL_INTFLAG_DFLLLCKF_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DFLLLCKF_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKF;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DFLLLCKC_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLLCKC) >> SYSCTRL_INTFLAG_DFLLLCKC_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DFLLLCKC_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLLCKC;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DFLLRCS_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DFLLRCS) >> SYSCTRL_INTFLAG_DFLLRCS_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DFLLRCS_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DFLLRCS;
-}
-
-static inline bool hri_sysctrl_get_interrupt_BOD33RDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33RDY) >> SYSCTRL_INTFLAG_BOD33RDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_BOD33RDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_BOD33DET_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_BOD33DET) >> SYSCTRL_INTFLAG_BOD33DET_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_BOD33DET_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33DET;
-}
-
-static inline bool hri_sysctrl_get_interrupt_B33SRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_B33SRDY) >> SYSCTRL_INTFLAG_B33SRDY_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_B33SRDY_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_B33SRDY;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DPLLLCKR_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKR) >> SYSCTRL_INTFLAG_DPLLLCKR_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DPLLLCKR_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKR;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DPLLLCKF_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLCKF) >> SYSCTRL_INTFLAG_DPLLLCKF_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DPLLLCKF_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLCKF;
-}
-
-static inline bool hri_sysctrl_get_interrupt_DPLLLTO_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->INTFLAG.reg & SYSCTRL_INTFLAG_DPLLLTO) >> SYSCTRL_INTFLAG_DPLLLTO_Pos;
-}
-
-static inline void hri_sysctrl_clear_interrupt_DPLLLTO_bit(const void *const hw)
-{
-	((Sysctrl *)hw)->INTFLAG.reg = SYSCTRL_INTFLAG_DPLLLTO;
-}
-
-static inline hri_sysctrl_intflag_reg_t hri_sysctrl_get_INTFLAG_reg(const void *const         hw,
-                                                                    hri_sysctrl_intflag_reg_t mask)
+static inline hri_sysctrl_pclksr_reg_t hri_sysctrl_get_PCLKSR_reg(const void *const hw, hri_sysctrl_pclksr_reg_t mask)
 {
 	uint32_t tmp;
-	tmp = ((Sysctrl *)hw)->INTFLAG.reg;
+	tmp = ((Sysctrl *)hw)->PCLKSR.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_sysctrl_intflag_reg_t hri_sysctrl_read_INTFLAG_reg(const void *const hw)
+static inline hri_sysctrl_pclksr_reg_t hri_sysctrl_read_PCLKSR_reg(const void *const hw)
 {
-	return ((Sysctrl *)hw)->INTFLAG.reg;
+	return ((Sysctrl *)hw)->PCLKSR.reg;
 }
 
-static inline void hri_sysctrl_clear_INTFLAG_reg(const void *const hw, hri_sysctrl_intflag_reg_t mask)
+static inline bool hri_sysctrl_get_DPLLSTATUS_LOCK_bit(const void *const hw)
 {
-	((Sysctrl *)hw)->INTFLAG.reg = mask;
+	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_LOCK) >> SYSCTRL_DPLLSTATUS_LOCK_Pos;
+}
+
+static inline bool hri_sysctrl_get_DPLLSTATUS_CLKRDY_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_CLKRDY) >> SYSCTRL_DPLLSTATUS_CLKRDY_Pos;
+}
+
+static inline bool hri_sysctrl_get_DPLLSTATUS_ENABLE_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_ENABLE) >> SYSCTRL_DPLLSTATUS_ENABLE_Pos;
+}
+
+static inline bool hri_sysctrl_get_DPLLSTATUS_DIV_bit(const void *const hw)
+{
+	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_DIV) >> SYSCTRL_DPLLSTATUS_DIV_Pos;
+}
+
+static inline hri_sysctrl_dpllstatus_reg_t hri_sysctrl_get_DPLLSTATUS_reg(const void *const            hw,
+                                                                          hri_sysctrl_dpllstatus_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Sysctrl *)hw)->DPLLSTATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_sysctrl_dpllstatus_reg_t hri_sysctrl_read_DPLLSTATUS_reg(const void *const hw)
+{
+	return ((Sysctrl *)hw)->DPLLSTATUS.reg;
 }
 
 static inline void hri_sysctrl_set_XOSC_ENABLE_bit(const void *const hw)
@@ -4628,128 +4750,6 @@ static inline void hri_sysctrl_toggle_DPLLCTRLB_reg(const void *const hw, hri_sy
 static inline hri_sysctrl_dpllctrlb_reg_t hri_sysctrl_read_DPLLCTRLB_reg(const void *const hw)
 {
 	return ((Sysctrl *)hw)->DPLLCTRLB.reg;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_XOSCRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_XOSCRDY) >> SYSCTRL_PCLKSR_XOSCRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_XOSC32KRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_XOSC32KRDY) >> SYSCTRL_PCLKSR_XOSC32KRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_OSC32KRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_OSC32KRDY) >> SYSCTRL_PCLKSR_OSC32KRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_OSC8MRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_OSC8MRDY) >> SYSCTRL_PCLKSR_OSC8MRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DFLLRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLRDY) >> SYSCTRL_PCLKSR_DFLLRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DFLLOOB_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLOOB) >> SYSCTRL_PCLKSR_DFLLOOB_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DFLLLCKF_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLLCKF) >> SYSCTRL_PCLKSR_DFLLLCKF_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DFLLLCKC_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLLCKC) >> SYSCTRL_PCLKSR_DFLLLCKC_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DFLLRCS_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DFLLRCS) >> SYSCTRL_PCLKSR_DFLLRCS_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_BOD33RDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_BOD33RDY) >> SYSCTRL_PCLKSR_BOD33RDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_BOD33DET_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_BOD33DET) >> SYSCTRL_PCLKSR_BOD33DET_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_B33SRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_B33SRDY) >> SYSCTRL_PCLKSR_B33SRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DPLLLCKR_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLCKR) >> SYSCTRL_PCLKSR_DPLLLCKR_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DPLLLCKF_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLCKF) >> SYSCTRL_PCLKSR_DPLLLCKF_Pos;
-}
-
-static inline bool hri_sysctrl_get_PCLKSR_DPLLLTO_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->PCLKSR.reg & SYSCTRL_PCLKSR_DPLLLTO) >> SYSCTRL_PCLKSR_DPLLLTO_Pos;
-}
-
-static inline hri_sysctrl_pclksr_reg_t hri_sysctrl_get_PCLKSR_reg(const void *const hw, hri_sysctrl_pclksr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Sysctrl *)hw)->PCLKSR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_sysctrl_pclksr_reg_t hri_sysctrl_read_PCLKSR_reg(const void *const hw)
-{
-	return ((Sysctrl *)hw)->PCLKSR.reg;
-}
-
-static inline bool hri_sysctrl_get_DPLLSTATUS_LOCK_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_LOCK) >> SYSCTRL_DPLLSTATUS_LOCK_Pos;
-}
-
-static inline bool hri_sysctrl_get_DPLLSTATUS_CLKRDY_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_CLKRDY) >> SYSCTRL_DPLLSTATUS_CLKRDY_Pos;
-}
-
-static inline bool hri_sysctrl_get_DPLLSTATUS_ENABLE_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_ENABLE) >> SYSCTRL_DPLLSTATUS_ENABLE_Pos;
-}
-
-static inline bool hri_sysctrl_get_DPLLSTATUS_DIV_bit(const void *const hw)
-{
-	return (((Sysctrl *)hw)->DPLLSTATUS.reg & SYSCTRL_DPLLSTATUS_DIV) >> SYSCTRL_DPLLSTATUS_DIV_Pos;
-}
-
-static inline hri_sysctrl_dpllstatus_reg_t hri_sysctrl_get_DPLLSTATUS_reg(const void *const            hw,
-                                                                          hri_sysctrl_dpllstatus_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Sysctrl *)hw)->DPLLSTATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_sysctrl_dpllstatus_reg_t hri_sysctrl_read_DPLLSTATUS_reg(const void *const hw)
-{
-	return ((Sysctrl *)hw)->DPLLSTATUS.reg;
 }
 
 #ifdef __cplusplus

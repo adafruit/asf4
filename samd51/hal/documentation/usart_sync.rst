@@ -47,10 +47,10 @@ Limitations
 
 * The driver does not support 9-bit character size.
 * The "USART with ISO7816" mode can be only used in ISO7816 capable devices. 
-And the SCK pin can't be set directly. Application can use a GCLK output PIN 
-to generate SCK. For example to communicate with a SMARTCARD with ISO7816 
-(F = 372 ; D = 1), and baudrate=9600, the SCK pin output frequency should be 
-config as 372*9600=3571200Hz. More information can be refer to ISO7816 Specification.
+  And the SCK pin can't be set directly. Application can use a GCLK output PIN
+  to generate SCK. For example to communicate with a SMARTCARD with ISO7816
+  (F = 372 ; D = 1), and baudrate=9600, the SCK pin output frequency should be
+  config as 372*9600=3571200Hz. More information can be refer to ISO7816 Specification.
 
 Known issues and workarounds
 ----------------------------

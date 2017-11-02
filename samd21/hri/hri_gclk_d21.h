@@ -3,7 +3,7 @@
  *
  * \brief SAM GCLK
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -76,6 +76,24 @@ static inline bool hri_gclk_is_syncing(const void *const hw)
 	return ((const Gclk *)hw)->STATUS.bit.SYNCBUSY;
 }
 
+static inline bool hri_gclk_get_STATUS_SYNCBUSY_bit(const void *const hw)
+{
+	return (((Gclk *)hw)->STATUS.reg & GCLK_STATUS_SYNCBUSY) >> GCLK_STATUS_SYNCBUSY_Pos;
+}
+
+static inline hri_gclk_status_reg_t hri_gclk_get_STATUS_reg(const void *const hw, hri_gclk_status_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Gclk *)hw)->STATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_gclk_status_reg_t hri_gclk_read_STATUS_reg(const void *const hw)
+{
+	return ((Gclk *)hw)->STATUS.reg;
+}
+
 static inline void hri_gclk_set_CTRL_SWRST_bit(const void *const hw)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
@@ -96,6 +114,7 @@ static inline bool hri_gclk_get_CTRL_SWRST_bit(const void *const hw)
 static inline void hri_gclk_set_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->CTRL.reg |= mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -103,6 +122,7 @@ static inline void hri_gclk_set_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg
 static inline hri_gclk_ctrl_reg_t hri_gclk_get_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg_t mask)
 {
 	uint8_t tmp;
+	hri_gclk_wait_for_sync(hw);
 	tmp = ((Gclk *)hw)->CTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -111,6 +131,7 @@ static inline hri_gclk_ctrl_reg_t hri_gclk_get_CTRL_reg(const void *const hw, hr
 static inline void hri_gclk_write_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg_t data)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->CTRL.reg = data;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -118,6 +139,7 @@ static inline void hri_gclk_write_CTRL_reg(const void *const hw, hri_gclk_ctrl_r
 static inline void hri_gclk_clear_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->CTRL.reg &= ~mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -125,12 +147,14 @@ static inline void hri_gclk_clear_CTRL_reg(const void *const hw, hri_gclk_ctrl_r
 static inline void hri_gclk_toggle_CTRL_reg(const void *const hw, hri_gclk_ctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->CTRL.reg ^= mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_gclk_ctrl_reg_t hri_gclk_read_CTRL_reg(const void *const hw)
 {
+	hri_gclk_wait_for_sync(hw);
 	return ((Gclk *)hw)->CTRL.reg;
 }
 
@@ -732,6 +756,7 @@ static inline hri_gclk_genctrl_reg_t hri_gclk_read_GENCTRL_SRC_bf(const void *co
 static inline void hri_gclk_set_GENCTRL_reg(const void *const hw, hri_gclk_genctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->GENCTRL.reg |= mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -739,6 +764,7 @@ static inline void hri_gclk_set_GENCTRL_reg(const void *const hw, hri_gclk_genct
 static inline hri_gclk_genctrl_reg_t hri_gclk_get_GENCTRL_reg(const void *const hw, hri_gclk_genctrl_reg_t mask)
 {
 	uint32_t tmp;
+	hri_gclk_wait_for_sync(hw);
 	tmp = ((Gclk *)hw)->GENCTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -747,6 +773,7 @@ static inline hri_gclk_genctrl_reg_t hri_gclk_get_GENCTRL_reg(const void *const 
 static inline void hri_gclk_write_GENCTRL_reg(const void *const hw, hri_gclk_genctrl_reg_t data)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->GENCTRL.reg = data;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -754,6 +781,7 @@ static inline void hri_gclk_write_GENCTRL_reg(const void *const hw, hri_gclk_gen
 static inline void hri_gclk_clear_GENCTRL_reg(const void *const hw, hri_gclk_genctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->GENCTRL.reg &= ~mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
@@ -761,12 +789,14 @@ static inline void hri_gclk_clear_GENCTRL_reg(const void *const hw, hri_gclk_gen
 static inline void hri_gclk_toggle_GENCTRL_reg(const void *const hw, hri_gclk_genctrl_reg_t mask)
 {
 	GCLK_CRITICAL_SECTION_ENTER();
+	hri_gclk_wait_for_sync(hw);
 	((Gclk *)hw)->GENCTRL.reg ^= mask;
 	GCLK_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_gclk_genctrl_reg_t hri_gclk_read_GENCTRL_reg(const void *const hw)
 {
+	hri_gclk_wait_for_sync(hw);
 	return ((Gclk *)hw)->GENCTRL.reg;
 }
 
@@ -905,24 +935,6 @@ static inline void hri_gclk_toggle_GENDIV_reg(const void *const hw, hri_gclk_gen
 static inline hri_gclk_gendiv_reg_t hri_gclk_read_GENDIV_reg(const void *const hw)
 {
 	return ((Gclk *)hw)->GENDIV.reg;
-}
-
-static inline bool hri_gclk_get_STATUS_SYNCBUSY_bit(const void *const hw)
-{
-	return (((Gclk *)hw)->STATUS.reg & GCLK_STATUS_SYNCBUSY) >> GCLK_STATUS_SYNCBUSY_Pos;
-}
-
-static inline hri_gclk_status_reg_t hri_gclk_get_STATUS_reg(const void *const hw, hri_gclk_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Gclk *)hw)->STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_gclk_status_reg_t hri_gclk_read_STATUS_reg(const void *const hw)
-{
-	return ((Gclk *)hw)->STATUS.reg;
 }
 
 #ifdef __cplusplus

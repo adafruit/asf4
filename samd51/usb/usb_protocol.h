@@ -6,7 +6,7 @@
  * This file contains the USB definitions and data structures provided by the
  * USB 2.0 specification.
  *
- * Copyright (C) 2015 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2015-2017 Atmel Corporation. All rights reserved.
  *
  * \page License
  *
@@ -585,6 +585,13 @@ COMPILER_PACK_RESET()
 	    LE_BYTE0(idVendor), LE_BYTE1(idVendor), LE_BYTE0(idProduct), LE_BYTE1(idProduct), LE_BYTE0(bcdDevice),         \
 	    LE_BYTE1(bcdDevice), iManufacturer, iProduct, iSerialNumber, bNumConfigurations
 
+#define USB_DEV_QUAL_DESC_BYTES(                                                                                       \
+    bcdUSB, bDeviceClass, bDeviceSubClass, bDeviceProtocol, bMaxPacketSize0, bNumConfigurations)                       \
+	10,                          /* bLength */                                                                         \
+	    USB_DT_DEVICE_QUALIFIER, /* bDescriptorType: DEVICE_QUALIFIER */                                               \
+	    LE_BYTE0(bcdUSB), LE_BYTE1(bcdUSB), bDeviceClass, bDeviceSubClass, bDeviceProtocol, bMaxPacketSize0,           \
+	    bNumConfigurations, 0
+
 #define USB_DEV_DESC_LEN 18
 
 /** Build bytes for USB configuration descriptor. */
@@ -592,6 +599,13 @@ COMPILER_PACK_RESET()
     wTotalLength, bNumInterfaces, bConfigurationValue, iConfiguration, bmAttributes, bMaxPower)                        \
 	9,        /* bLength */                                                                                            \
 	    0x02, /* bDescriptorType: CONFIGURATION */                                                                     \
+	    LE_BYTE0(wTotalLength), LE_BYTE1(wTotalLength), bNumInterfaces, bConfigurationValue, iConfiguration,           \
+	    bmAttributes, bMaxPower
+
+#define USB_OTH_SPD_CFG_DESC_BYTES(                                                                                    \
+    wTotalLength, bNumInterfaces, bConfigurationValue, iConfiguration, bmAttributes, bMaxPower)                        \
+	9,                             /* bLength */                                                                       \
+	    USB_DT_OTHER_SPEED_CONFIG, /* bDescriptorType: OTH_SPD_CONFIGURATION */                                        \
 	    LE_BYTE0(wTotalLength), LE_BYTE1(wTotalLength), bNumInterfaces, bConfigurationValue, iConfiguration,           \
 	    bmAttributes, bMaxPower
 
@@ -746,6 +760,15 @@ uint8_t *usb_find_ep_desc(uint8_t *desc, uint8_t *eof);
  *  \retval NULL if not found
  */
 uint8_t *usb_find_cfg_desc(uint8_t *desc, uint8_t *eof, uint8_t cfg_value);
+
+/** Find other speed configuration descriptor by its configuration number
+ *  \param[in] desc Byte pointer to the descriptor start address
+ *  \param[in] eof  Byte pointer to the descriptor end address
+ *  \param[in] cfg_value The configure value expected
+ *  \return Pointer to the descriptor
+ *  \retval NULL if not found
+ */
+uint8_t *usb_find_othspdcfg_desc(uint8_t *desc, uint8_t *eof, uint8_t cfg_value);
 
 /** Find string descriptor by its index
  *  \param[in] desc Byte pointer to the descriptor start address

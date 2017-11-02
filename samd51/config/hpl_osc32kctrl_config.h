@@ -23,7 +23,9 @@
 // <q> Use 1 kHz output
 // <id> rtc_1khz_selection
 #ifndef CONF_RTCCTRL_1KHZ
+
 #define CONF_RTCCTRL_1KHZ 1
+
 #endif
 
 #if CONF_RTCCTRL_SRC == GCLK_GENCTRL_SRC_OSCULP32K

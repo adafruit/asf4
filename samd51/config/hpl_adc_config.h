@@ -239,7 +239,7 @@
 #define CONF_ADC_0_WINUT 0
 #endif
 
-// <o> Bitmask for positive input sequence <0-524288>
+// <o> Bitmask for positive input sequence <0-4294967295>
 // <i> Use this parameter to input the bitmask for positive input sequence control (refer to datasheet for the device).
 // <id> adc_arch_seqen
 #ifndef CONF_ADC_0_SEQEN

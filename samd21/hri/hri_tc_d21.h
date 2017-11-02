@@ -3,7 +3,7 @@
  *
  * \brief SAM TC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -443,6 +443,124 @@ static inline hri_tc_cc32_reg_t hri_tccount32_read_CC_reg(const void *const hw, 
 	return ((Tc *)hw)->COUNT32.CC[index].reg;
 }
 
+static inline bool hri_tc_get_INTFLAG_OVF_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_OVF) >> TC_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_tc_clear_INTFLAG_OVF_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+}
+
+static inline bool hri_tc_get_INTFLAG_ERR_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_ERR) >> TC_INTFLAG_ERR_Pos;
+}
+
+static inline void hri_tc_clear_INTFLAG_ERR_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_ERR;
+}
+
+static inline bool hri_tc_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_SYNCRDY) >> TC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_tc_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_tc_get_INTFLAG_MC0_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC0) >> TC_INTFLAG_MC0_Pos;
+}
+
+static inline void hri_tc_clear_INTFLAG_MC0_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC0;
+}
+
+static inline bool hri_tc_get_INTFLAG_MC1_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC1) >> TC_INTFLAG_MC1_Pos;
+}
+
+static inline void hri_tc_clear_INTFLAG_MC1_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC1;
+}
+
+static inline bool hri_tc_get_interrupt_OVF_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_OVF) >> TC_INTFLAG_OVF_Pos;
+}
+
+static inline void hri_tc_clear_interrupt_OVF_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+}
+
+static inline bool hri_tc_get_interrupt_ERR_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_ERR) >> TC_INTFLAG_ERR_Pos;
+}
+
+static inline void hri_tc_clear_interrupt_ERR_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_ERR;
+}
+
+static inline bool hri_tc_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_SYNCRDY) >> TC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_tc_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_tc_get_interrupt_MC0_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC0) >> TC_INTFLAG_MC0_Pos;
+}
+
+static inline void hri_tc_clear_interrupt_MC0_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC0;
+}
+
+static inline bool hri_tc_get_interrupt_MC1_bit(const void *const hw)
+{
+	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC1) >> TC_INTFLAG_MC1_Pos;
+}
+
+static inline void hri_tc_clear_interrupt_MC1_bit(const void *const hw)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC1;
+}
+
+static inline hri_tc_intflag_reg_t hri_tc_get_INTFLAG_reg(const void *const hw, hri_tc_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Tc *)hw)->COUNT8.INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_tc_intflag_reg_t hri_tc_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Tc *)hw)->COUNT8.INTFLAG.reg;
+}
+
+static inline void hri_tc_clear_INTFLAG_reg(const void *const hw, hri_tc_intflag_reg_t mask)
+{
+	((Tc *)hw)->COUNT8.INTFLAG.reg = mask;
+}
+
 static inline void hri_tc_set_CTRLB_DIR_bit(const void *const hw)
 {
 	((Tc *)hw)->COUNT8.CTRLBSET.reg = TC_CTRLBSET_DIR;
@@ -701,122 +819,32 @@ static inline void hri_tc_clear_INTEN_reg(const void *const hw, hri_tc_intenset_
 	((Tc *)hw)->COUNT8.INTENCLR.reg = mask;
 }
 
-static inline bool hri_tc_get_INTFLAG_OVF_bit(const void *const hw)
+static inline bool hri_tc_get_STATUS_STOP_bit(const void *const hw)
 {
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_OVF) >> TC_INTFLAG_OVF_Pos;
+	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_STOP) >> TC_STATUS_STOP_Pos;
 }
 
-static inline void hri_tc_clear_INTFLAG_OVF_bit(const void *const hw)
+static inline bool hri_tc_get_STATUS_SLAVE_bit(const void *const hw)
 {
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_SLAVE) >> TC_STATUS_SLAVE_Pos;
 }
 
-static inline bool hri_tc_get_INTFLAG_ERR_bit(const void *const hw)
+static inline bool hri_tc_get_STATUS_SYNCBUSY_bit(const void *const hw)
 {
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_ERR) >> TC_INTFLAG_ERR_Pos;
+	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_SYNCBUSY) >> TC_STATUS_SYNCBUSY_Pos;
 }
 
-static inline void hri_tc_clear_INTFLAG_ERR_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_ERR;
-}
-
-static inline bool hri_tc_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_SYNCRDY) >> TC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_tc_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_tc_get_INTFLAG_MC0_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC0) >> TC_INTFLAG_MC0_Pos;
-}
-
-static inline void hri_tc_clear_INTFLAG_MC0_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC0;
-}
-
-static inline bool hri_tc_get_INTFLAG_MC1_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC1) >> TC_INTFLAG_MC1_Pos;
-}
-
-static inline void hri_tc_clear_INTFLAG_MC1_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC1;
-}
-
-static inline bool hri_tc_get_interrupt_OVF_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_OVF) >> TC_INTFLAG_OVF_Pos;
-}
-
-static inline void hri_tc_clear_interrupt_OVF_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
-}
-
-static inline bool hri_tc_get_interrupt_ERR_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_ERR) >> TC_INTFLAG_ERR_Pos;
-}
-
-static inline void hri_tc_clear_interrupt_ERR_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_ERR;
-}
-
-static inline bool hri_tc_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_SYNCRDY) >> TC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_tc_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_tc_get_interrupt_MC0_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC0) >> TC_INTFLAG_MC0_Pos;
-}
-
-static inline void hri_tc_clear_interrupt_MC0_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC0;
-}
-
-static inline bool hri_tc_get_interrupt_MC1_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.INTFLAG.reg & TC_INTFLAG_MC1) >> TC_INTFLAG_MC1_Pos;
-}
-
-static inline void hri_tc_clear_interrupt_MC1_bit(const void *const hw)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = TC_INTFLAG_MC1;
-}
-
-static inline hri_tc_intflag_reg_t hri_tc_get_INTFLAG_reg(const void *const hw, hri_tc_intflag_reg_t mask)
+static inline hri_tc_status_reg_t hri_tc_get_STATUS_reg(const void *const hw, hri_tc_status_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Tc *)hw)->COUNT8.INTFLAG.reg;
+	tmp = ((Tc *)hw)->COUNT8.STATUS.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_tc_intflag_reg_t hri_tc_read_INTFLAG_reg(const void *const hw)
+static inline hri_tc_status_reg_t hri_tc_read_STATUS_reg(const void *const hw)
 {
-	return ((Tc *)hw)->COUNT8.INTFLAG.reg;
-}
-
-static inline void hri_tc_clear_INTFLAG_reg(const void *const hw, hri_tc_intflag_reg_t mask)
-{
-	((Tc *)hw)->COUNT8.INTFLAG.reg = mask;
+	return ((Tc *)hw)->COUNT8.STATUS.reg;
 }
 
 static inline void hri_tc_set_CTRLA_SWRST_bit(const void *const hw)
@@ -2152,34 +2180,6 @@ static inline void hri_tccount8_toggle_CC_reg(const void *const hw, uint8_t inde
 static inline hri_tc_cc8_reg_t hri_tccount8_read_CC_reg(const void *const hw, uint8_t index)
 {
 	return ((Tc *)hw)->COUNT8.CC[index].reg;
-}
-
-static inline bool hri_tc_get_STATUS_STOP_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_STOP) >> TC_STATUS_STOP_Pos;
-}
-
-static inline bool hri_tc_get_STATUS_SLAVE_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_SLAVE) >> TC_STATUS_SLAVE_Pos;
-}
-
-static inline bool hri_tc_get_STATUS_SYNCBUSY_bit(const void *const hw)
-{
-	return (((Tc *)hw)->COUNT8.STATUS.reg & TC_STATUS_SYNCBUSY) >> TC_STATUS_SYNCBUSY_Pos;
-}
-
-static inline hri_tc_status_reg_t hri_tc_get_STATUS_reg(const void *const hw, hri_tc_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Tc *)hw)->COUNT8.STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_tc_status_reg_t hri_tc_read_STATUS_reg(const void *const hw)
-{
-	return ((Tc *)hw)->COUNT8.STATUS.reg;
 }
 
 #ifdef __cplusplus

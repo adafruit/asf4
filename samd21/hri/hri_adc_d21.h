@@ -3,7 +3,7 @@
  *
  * \brief SAM ADC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -88,6 +88,104 @@ static inline void hri_adc_wait_for_sync(const void *const hw)
 static inline bool hri_adc_is_syncing(const void *const hw)
 {
 	return ((const Adc *)hw)->STATUS.bit.SYNCBUSY;
+}
+
+static inline bool hri_adc_get_INTFLAG_RESRDY_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_RESRDY) >> ADC_INTFLAG_RESRDY_Pos;
+}
+
+static inline void hri_adc_clear_INTFLAG_RESRDY_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_RESRDY;
+}
+
+static inline bool hri_adc_get_INTFLAG_OVERRUN_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_OVERRUN) >> ADC_INTFLAG_OVERRUN_Pos;
+}
+
+static inline void hri_adc_clear_INTFLAG_OVERRUN_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_OVERRUN;
+}
+
+static inline bool hri_adc_get_INTFLAG_WINMON_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_WINMON) >> ADC_INTFLAG_WINMON_Pos;
+}
+
+static inline void hri_adc_clear_INTFLAG_WINMON_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_WINMON;
+}
+
+static inline bool hri_adc_get_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_SYNCRDY) >> ADC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_adc_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_SYNCRDY;
+}
+
+static inline bool hri_adc_get_interrupt_RESRDY_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_RESRDY) >> ADC_INTFLAG_RESRDY_Pos;
+}
+
+static inline void hri_adc_clear_interrupt_RESRDY_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_RESRDY;
+}
+
+static inline bool hri_adc_get_interrupt_OVERRUN_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_OVERRUN) >> ADC_INTFLAG_OVERRUN_Pos;
+}
+
+static inline void hri_adc_clear_interrupt_OVERRUN_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_OVERRUN;
+}
+
+static inline bool hri_adc_get_interrupt_WINMON_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_WINMON) >> ADC_INTFLAG_WINMON_Pos;
+}
+
+static inline void hri_adc_clear_interrupt_WINMON_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_WINMON;
+}
+
+static inline bool hri_adc_get_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_SYNCRDY) >> ADC_INTFLAG_SYNCRDY_Pos;
+}
+
+static inline void hri_adc_clear_interrupt_SYNCRDY_bit(const void *const hw)
+{
+	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_SYNCRDY;
+}
+
+static inline hri_adc_intflag_reg_t hri_adc_get_INTFLAG_reg(const void *const hw, hri_adc_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Adc *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_adc_intflag_reg_t hri_adc_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Adc *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_adc_clear_INTFLAG_reg(const void *const hw, hri_adc_intflag_reg_t mask)
+{
+	((Adc *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_adc_set_INTEN_RESRDY_bit(const void *const hw)
@@ -215,102 +313,49 @@ static inline void hri_adc_clear_INTEN_reg(const void *const hw, hri_adc_intense
 	((Adc *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_adc_get_INTFLAG_RESRDY_bit(const void *const hw)
+static inline bool hri_adc_get_STATUS_SYNCBUSY_bit(const void *const hw)
 {
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_RESRDY) >> ADC_INTFLAG_RESRDY_Pos;
+	return (((Adc *)hw)->STATUS.reg & ADC_STATUS_SYNCBUSY) >> ADC_STATUS_SYNCBUSY_Pos;
 }
 
-static inline void hri_adc_clear_INTFLAG_RESRDY_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_RESRDY;
-}
-
-static inline bool hri_adc_get_INTFLAG_OVERRUN_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_OVERRUN) >> ADC_INTFLAG_OVERRUN_Pos;
-}
-
-static inline void hri_adc_clear_INTFLAG_OVERRUN_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_OVERRUN;
-}
-
-static inline bool hri_adc_get_INTFLAG_WINMON_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_WINMON) >> ADC_INTFLAG_WINMON_Pos;
-}
-
-static inline void hri_adc_clear_INTFLAG_WINMON_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_WINMON;
-}
-
-static inline bool hri_adc_get_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_SYNCRDY) >> ADC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_adc_clear_INTFLAG_SYNCRDY_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_SYNCRDY;
-}
-
-static inline bool hri_adc_get_interrupt_RESRDY_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_RESRDY) >> ADC_INTFLAG_RESRDY_Pos;
-}
-
-static inline void hri_adc_clear_interrupt_RESRDY_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_RESRDY;
-}
-
-static inline bool hri_adc_get_interrupt_OVERRUN_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_OVERRUN) >> ADC_INTFLAG_OVERRUN_Pos;
-}
-
-static inline void hri_adc_clear_interrupt_OVERRUN_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_OVERRUN;
-}
-
-static inline bool hri_adc_get_interrupt_WINMON_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_WINMON) >> ADC_INTFLAG_WINMON_Pos;
-}
-
-static inline void hri_adc_clear_interrupt_WINMON_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_WINMON;
-}
-
-static inline bool hri_adc_get_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	return (((Adc *)hw)->INTFLAG.reg & ADC_INTFLAG_SYNCRDY) >> ADC_INTFLAG_SYNCRDY_Pos;
-}
-
-static inline void hri_adc_clear_interrupt_SYNCRDY_bit(const void *const hw)
-{
-	((Adc *)hw)->INTFLAG.reg = ADC_INTFLAG_SYNCRDY;
-}
-
-static inline hri_adc_intflag_reg_t hri_adc_get_INTFLAG_reg(const void *const hw, hri_adc_intflag_reg_t mask)
+static inline hri_adc_status_reg_t hri_adc_get_STATUS_reg(const void *const hw, hri_adc_status_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Adc *)hw)->INTFLAG.reg;
+	tmp = ((Adc *)hw)->STATUS.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_adc_intflag_reg_t hri_adc_read_INTFLAG_reg(const void *const hw)
+static inline hri_adc_status_reg_t hri_adc_read_STATUS_reg(const void *const hw)
 {
-	return ((Adc *)hw)->INTFLAG.reg;
+	return ((Adc *)hw)->STATUS.reg;
 }
 
-static inline void hri_adc_clear_INTFLAG_reg(const void *const hw, hri_adc_intflag_reg_t mask)
+static inline hri_adc_result_reg_t hri_adc_get_RESULT_RESULT_bf(const void *const hw, hri_adc_result_reg_t mask)
 {
-	((Adc *)hw)->INTFLAG.reg = mask;
+	hri_adc_wait_for_sync(hw);
+	return (((Adc *)hw)->RESULT.reg & ADC_RESULT_RESULT(mask)) >> ADC_RESULT_RESULT_Pos;
+}
+
+static inline hri_adc_result_reg_t hri_adc_read_RESULT_RESULT_bf(const void *const hw)
+{
+	hri_adc_wait_for_sync(hw);
+	return (((Adc *)hw)->RESULT.reg & ADC_RESULT_RESULT_Msk) >> ADC_RESULT_RESULT_Pos;
+}
+
+static inline hri_adc_result_reg_t hri_adc_get_RESULT_reg(const void *const hw, hri_adc_result_reg_t mask)
+{
+	uint16_t tmp;
+	hri_adc_wait_for_sync(hw);
+	tmp = ((Adc *)hw)->RESULT.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_adc_result_reg_t hri_adc_read_RESULT_reg(const void *const hw)
+{
+	hri_adc_wait_for_sync(hw);
+	return ((Adc *)hw)->RESULT.reg;
 }
 
 static inline void hri_adc_set_CTRLA_SWRST_bit(const void *const hw)
@@ -1095,6 +1140,7 @@ static inline hri_adc_ctrlb_reg_t hri_adc_read_CTRLB_PRESCALER_bf(const void *co
 static inline void hri_adc_set_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->CTRLB.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1102,6 +1148,7 @@ static inline void hri_adc_set_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg
 static inline hri_adc_ctrlb_reg_t hri_adc_get_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg_t mask)
 {
 	uint16_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->CTRLB.reg;
 	tmp &= mask;
 	return tmp;
@@ -1110,6 +1157,7 @@ static inline hri_adc_ctrlb_reg_t hri_adc_get_CTRLB_reg(const void *const hw, hr
 static inline void hri_adc_write_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->CTRLB.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1117,6 +1165,7 @@ static inline void hri_adc_write_CTRLB_reg(const void *const hw, hri_adc_ctrlb_r
 static inline void hri_adc_clear_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->CTRLB.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1124,12 +1173,14 @@ static inline void hri_adc_clear_CTRLB_reg(const void *const hw, hri_adc_ctrlb_r
 static inline void hri_adc_toggle_CTRLB_reg(const void *const hw, hri_adc_ctrlb_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->CTRLB.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_ctrlb_reg_t hri_adc_read_CTRLB_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->CTRLB.reg;
 }
 
@@ -1190,6 +1241,7 @@ static inline hri_adc_winctrl_reg_t hri_adc_read_WINCTRL_WINMODE_bf(const void *
 static inline void hri_adc_set_WINCTRL_reg(const void *const hw, hri_adc_winctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINCTRL.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1197,6 +1249,7 @@ static inline void hri_adc_set_WINCTRL_reg(const void *const hw, hri_adc_winctrl
 static inline hri_adc_winctrl_reg_t hri_adc_get_WINCTRL_reg(const void *const hw, hri_adc_winctrl_reg_t mask)
 {
 	uint8_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->WINCTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -1205,6 +1258,7 @@ static inline hri_adc_winctrl_reg_t hri_adc_get_WINCTRL_reg(const void *const hw
 static inline void hri_adc_write_WINCTRL_reg(const void *const hw, hri_adc_winctrl_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINCTRL.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1212,6 +1266,7 @@ static inline void hri_adc_write_WINCTRL_reg(const void *const hw, hri_adc_winct
 static inline void hri_adc_clear_WINCTRL_reg(const void *const hw, hri_adc_winctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINCTRL.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1219,12 +1274,14 @@ static inline void hri_adc_clear_WINCTRL_reg(const void *const hw, hri_adc_winct
 static inline void hri_adc_toggle_WINCTRL_reg(const void *const hw, hri_adc_winctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINCTRL.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_winctrl_reg_t hri_adc_read_WINCTRL_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->WINCTRL.reg;
 }
 
@@ -1321,6 +1378,7 @@ static inline void hri_adc_toggle_SWTRIG_START_bit(const void *const hw)
 static inline void hri_adc_set_SWTRIG_reg(const void *const hw, hri_adc_swtrig_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->SWTRIG.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1328,6 +1386,7 @@ static inline void hri_adc_set_SWTRIG_reg(const void *const hw, hri_adc_swtrig_r
 static inline hri_adc_swtrig_reg_t hri_adc_get_SWTRIG_reg(const void *const hw, hri_adc_swtrig_reg_t mask)
 {
 	uint8_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->SWTRIG.reg;
 	tmp &= mask;
 	return tmp;
@@ -1336,6 +1395,7 @@ static inline hri_adc_swtrig_reg_t hri_adc_get_SWTRIG_reg(const void *const hw, 
 static inline void hri_adc_write_SWTRIG_reg(const void *const hw, hri_adc_swtrig_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->SWTRIG.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1343,6 +1403,7 @@ static inline void hri_adc_write_SWTRIG_reg(const void *const hw, hri_adc_swtrig
 static inline void hri_adc_clear_SWTRIG_reg(const void *const hw, hri_adc_swtrig_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->SWTRIG.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1350,12 +1411,14 @@ static inline void hri_adc_clear_SWTRIG_reg(const void *const hw, hri_adc_swtrig
 static inline void hri_adc_toggle_SWTRIG_reg(const void *const hw, hri_adc_swtrig_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->SWTRIG.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_swtrig_reg_t hri_adc_read_SWTRIG_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->SWTRIG.reg;
 }
 
@@ -1636,6 +1699,7 @@ static inline hri_adc_inputctrl_reg_t hri_adc_read_INPUTCTRL_GAIN_bf(const void 
 static inline void hri_adc_set_INPUTCTRL_reg(const void *const hw, hri_adc_inputctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->INPUTCTRL.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1643,6 +1707,7 @@ static inline void hri_adc_set_INPUTCTRL_reg(const void *const hw, hri_adc_input
 static inline hri_adc_inputctrl_reg_t hri_adc_get_INPUTCTRL_reg(const void *const hw, hri_adc_inputctrl_reg_t mask)
 {
 	uint32_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->INPUTCTRL.reg;
 	tmp &= mask;
 	return tmp;
@@ -1651,6 +1716,7 @@ static inline hri_adc_inputctrl_reg_t hri_adc_get_INPUTCTRL_reg(const void *cons
 static inline void hri_adc_write_INPUTCTRL_reg(const void *const hw, hri_adc_inputctrl_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->INPUTCTRL.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1658,6 +1724,7 @@ static inline void hri_adc_write_INPUTCTRL_reg(const void *const hw, hri_adc_inp
 static inline void hri_adc_clear_INPUTCTRL_reg(const void *const hw, hri_adc_inputctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->INPUTCTRL.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1665,12 +1732,14 @@ static inline void hri_adc_clear_INPUTCTRL_reg(const void *const hw, hri_adc_inp
 static inline void hri_adc_toggle_INPUTCTRL_reg(const void *const hw, hri_adc_inputctrl_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->INPUTCTRL.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_inputctrl_reg_t hri_adc_read_INPUTCTRL_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->INPUTCTRL.reg;
 }
 
@@ -1932,6 +2001,7 @@ static inline hri_adc_winlt_reg_t hri_adc_read_WINLT_WINLT_bf(const void *const 
 static inline void hri_adc_set_WINLT_reg(const void *const hw, hri_adc_winlt_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINLT.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1939,6 +2009,7 @@ static inline void hri_adc_set_WINLT_reg(const void *const hw, hri_adc_winlt_reg
 static inline hri_adc_winlt_reg_t hri_adc_get_WINLT_reg(const void *const hw, hri_adc_winlt_reg_t mask)
 {
 	uint16_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->WINLT.reg;
 	tmp &= mask;
 	return tmp;
@@ -1947,6 +2018,7 @@ static inline hri_adc_winlt_reg_t hri_adc_get_WINLT_reg(const void *const hw, hr
 static inline void hri_adc_write_WINLT_reg(const void *const hw, hri_adc_winlt_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINLT.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1954,6 +2026,7 @@ static inline void hri_adc_write_WINLT_reg(const void *const hw, hri_adc_winlt_r
 static inline void hri_adc_clear_WINLT_reg(const void *const hw, hri_adc_winlt_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINLT.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -1961,12 +2034,14 @@ static inline void hri_adc_clear_WINLT_reg(const void *const hw, hri_adc_winlt_r
 static inline void hri_adc_toggle_WINLT_reg(const void *const hw, hri_adc_winlt_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINLT.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_winlt_reg_t hri_adc_read_WINLT_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->WINLT.reg;
 }
 
@@ -2027,6 +2102,7 @@ static inline hri_adc_winut_reg_t hri_adc_read_WINUT_WINUT_bf(const void *const 
 static inline void hri_adc_set_WINUT_reg(const void *const hw, hri_adc_winut_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINUT.reg |= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -2034,6 +2110,7 @@ static inline void hri_adc_set_WINUT_reg(const void *const hw, hri_adc_winut_reg
 static inline hri_adc_winut_reg_t hri_adc_get_WINUT_reg(const void *const hw, hri_adc_winut_reg_t mask)
 {
 	uint16_t tmp;
+	hri_adc_wait_for_sync(hw);
 	tmp = ((Adc *)hw)->WINUT.reg;
 	tmp &= mask;
 	return tmp;
@@ -2042,6 +2119,7 @@ static inline hri_adc_winut_reg_t hri_adc_get_WINUT_reg(const void *const hw, hr
 static inline void hri_adc_write_WINUT_reg(const void *const hw, hri_adc_winut_reg_t data)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINUT.reg = data;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -2049,6 +2127,7 @@ static inline void hri_adc_write_WINUT_reg(const void *const hw, hri_adc_winut_r
 static inline void hri_adc_clear_WINUT_reg(const void *const hw, hri_adc_winut_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINUT.reg &= ~mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
@@ -2056,12 +2135,14 @@ static inline void hri_adc_clear_WINUT_reg(const void *const hw, hri_adc_winut_r
 static inline void hri_adc_toggle_WINUT_reg(const void *const hw, hri_adc_winut_reg_t mask)
 {
 	ADC_CRITICAL_SECTION_ENTER();
+	hri_adc_wait_for_sync(hw);
 	((Adc *)hw)->WINUT.reg ^= mask;
 	ADC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_adc_winut_reg_t hri_adc_read_WINUT_reg(const void *const hw)
 {
+	hri_adc_wait_for_sync(hw);
 	return ((Adc *)hw)->WINUT.reg;
 }
 
@@ -2460,49 +2541,6 @@ static inline void hri_adc_toggle_DBGCTRL_reg(const void *const hw, hri_adc_dbgc
 static inline hri_adc_dbgctrl_reg_t hri_adc_read_DBGCTRL_reg(const void *const hw)
 {
 	return ((Adc *)hw)->DBGCTRL.reg;
-}
-
-static inline bool hri_adc_get_STATUS_SYNCBUSY_bit(const void *const hw)
-{
-	return (((Adc *)hw)->STATUS.reg & ADC_STATUS_SYNCBUSY) >> ADC_STATUS_SYNCBUSY_Pos;
-}
-
-static inline hri_adc_status_reg_t hri_adc_get_STATUS_reg(const void *const hw, hri_adc_status_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Adc *)hw)->STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_adc_status_reg_t hri_adc_read_STATUS_reg(const void *const hw)
-{
-	return ((Adc *)hw)->STATUS.reg;
-}
-
-static inline hri_adc_result_reg_t hri_adc_get_RESULT_RESULT_bf(const void *const hw, hri_adc_result_reg_t mask)
-{
-	hri_adc_wait_for_sync(hw);
-	return (((Adc *)hw)->RESULT.reg & ADC_RESULT_RESULT(mask)) >> ADC_RESULT_RESULT_Pos;
-}
-
-static inline hri_adc_result_reg_t hri_adc_read_RESULT_RESULT_bf(const void *const hw)
-{
-	hri_adc_wait_for_sync(hw);
-	return (((Adc *)hw)->RESULT.reg & ADC_RESULT_RESULT_Msk) >> ADC_RESULT_RESULT_Pos;
-}
-
-static inline hri_adc_result_reg_t hri_adc_get_RESULT_reg(const void *const hw, hri_adc_result_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Adc *)hw)->RESULT.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_adc_result_reg_t hri_adc_read_RESULT_reg(const void *const hw)
-{
-	return ((Adc *)hw)->RESULT.reg;
 }
 
 #ifdef __cplusplus

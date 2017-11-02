@@ -92,12 +92,18 @@ middlewares:
       usb_composite_hid_mouse_intin_epaddr: EndpointAddress = 0x83
       usb_composite_hid_mouse_intin_maxpksz: 8 bytes
       usb_composite_hid_mouse_support: false
-      usb_composite_iconfig: 0
+      usb_composite_iconfig_en: false
+      usb_composite_iconfig_str: ''
       usb_composite_idproduct: 9249
       usb_composite_idvender: 1003
-      usb_composite_imanufact: 0
-      usb_composite_iproduct: 0
-      usb_composite_iserialnum: 0
+      usb_composite_imanufact_en: false
+      usb_composite_imanufact_str: Atmel
+      usb_composite_iproduct_en: false
+      usb_composite_iproduct_str: Composite Demo
+      usb_composite_iserialnum_en: false
+      usb_composite_iserialnum_str: 123456789ABCDEF
+      usb_composite_langid: '0x0409'
+      usb_composite_str_en: false
     definition: Atmel:USB:0.0.1::USB_Device_Composite
     functionality: USB_Device_COMPOSITE
     api: USB:Device:COMPOSITE

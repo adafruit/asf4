@@ -3,7 +3,7 @@
  *
  * \brief Critical sections related functionality declaration.
  *
- * Copyright (C) 2014 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2014 - 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -86,13 +86,6 @@ typedef uint32_t hal_atomic_t;
  * This macro is recommended to be used instead of a direct call
  * hal_leaveCritical() function to leave critical
  * sections. No semicolon is required after the macro.
- *
- * \section atomic_usage Usage Example
- * \code
- * CRITICAL_SECTION_ENTER()
- * Some critical code
- * CRITICAL_SECTION_LEAVE()
- * \endcode
  */
 #define CRITICAL_SECTION_LEAVE()                                                                                       \
 	atomic_leave_critical(&__atomic);                                                                                  \

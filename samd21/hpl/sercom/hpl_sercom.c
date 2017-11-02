@@ -2131,7 +2131,6 @@ static int32_t _spi_async_enable(void *const hw)
 {
 	_spi_sync_enable(hw);
 	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
