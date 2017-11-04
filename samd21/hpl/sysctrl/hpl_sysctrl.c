@@ -114,7 +114,7 @@ void _sysctrl_init_sources(void)
 
 #if CONF_OSCULP32K_CONFIG == 1
 	hri_sysctrl_write_OSCULP32K_reg(hw,
-#if OSC32K_OVERWRITE_CALIBRATION == 1
+#if CONF_OSC32K_OVERWRITE_CALIBRATION == 1
 	                                SYSCTRL_OSCULP32K_CALIB(CONF_OSCULP32K_CALIB) |
 #else
 	                                SYSCTRL_OSCULP32K_CALIB(calib) |

@@ -236,7 +236,10 @@ static void timer_add_timer_task(struct list_descriptor *list, struct timer_task
  */
 static void timer_process_counted(struct _timer_device *device)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct timer_descriptor *timer = CONTAINER_OF(device, struct timer_descriptor, device);
+	#pragma GCC diagnostic pop
 	struct timer_task *      it    = (struct timer_task *)list_get_head(&timer->tasks);
 	uint32_t                 time  = ++timer->time;
 

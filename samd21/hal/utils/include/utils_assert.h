@@ -72,7 +72,7 @@ extern "C" {
 	if (!(condition))                                                                                                  \
 		__asm("BKPT #0");
 #else
-#define ASSERT_IMPL(condition, file, line) assert((condition), file, line)
+#define ASSERT_IMPL(condition, file, line) asf_assert((condition), file, line)
 #endif
 
 #else /* DEBUG */
@@ -95,7 +95,7 @@ extern "C" {
  * \param[in] file File name
  * \param[in] line Line number
  */
-void assert(const bool condition, const char *const file, const int line);
+void asf_assert(const bool condition, const char *const file, const int line);
 
 #ifdef __cplusplus
 }

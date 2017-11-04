@@ -54,7 +54,11 @@
  */
 static int32_t i2c_m_sync_read(struct io_descriptor *io, uint8_t *buf, const uint16_t n)
 {
+    
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct i2c_m_sync_desc *i2c = CONTAINER_OF(io, struct i2c_m_sync_desc, io);
+        #pragma GCC diagnostic pop
 	struct _i2c_m_msg       msg;
 	int32_t                 ret;
 
@@ -77,7 +81,10 @@ static int32_t i2c_m_sync_read(struct io_descriptor *io, uint8_t *buf, const uin
  */
 static int32_t i2c_m_sync_write(struct io_descriptor *io, const uint8_t *buf, const uint16_t n)
 {
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct i2c_m_sync_desc *i2c = CONTAINER_OF(io, struct i2c_m_sync_desc, io);
+        #pragma GCC diagnostic pop
 	struct _i2c_m_msg       msg;
 	int32_t                 ret;
 

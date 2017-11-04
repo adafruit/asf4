@@ -1347,7 +1347,7 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __STLEX(uint32_t value, 
   @{
 */
 
-#if (__ARM_FEATURE_DSP == 1)                             /* ToDo ARMCLANG: This should be ARCH >= ARMv7-M + SIMD */
+#if (defined (__ARM_FEATURE_DSP) && (__ARM_FEATURE_DSP == 1))                             /* ToDo ARMCLANG: This should be ARCH >= ARMv7-M + SIMD */
 
 __attribute__((always_inline)) __STATIC_INLINE uint32_t __SADD8(uint32_t op1, uint32_t op2)
 {
@@ -1890,7 +1890,7 @@ __attribute__((always_inline)) __STATIC_INLINE int32_t __SMMLA (int32_t op1, int
  return(result);
 }
 
-#endif /* (__ARM_FEATURE_DSP == 1) */
+#endif /* (defined (__ARM_FEATURE_DSP) && (__ARM_FEATURE_DSP == 1)) */
 /*@} end of group CMSIS_SIMD_intrinsics */
 
 
