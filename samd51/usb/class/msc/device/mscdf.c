@@ -285,6 +285,11 @@ static bool mscdf_cb_ep_bulk_in(const uint8_t ep, const enum usb_xfer_code rc, c
 		}
 	}
 
+	if (rc == USB_XFER_RESET || rc == USB_XFER_ERROR) {
+		_mscdf_funcd.xfer_stage = MSCDF_CMD_STAGE;
+		_mscdf_funcd.xfer_busy  = false;
+	}
+
 	if (_mscdf_funcd.xfer_stage == MSCDF_DATA_STAGE) {
 		if (pcbw->CDB[0] == SBC_READ10) {
 			return mscdf_read_write(count);
