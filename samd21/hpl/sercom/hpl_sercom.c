@@ -1083,13 +1083,18 @@ int32_t _i2c_m_async_set_baudrate(struct _i2c_m_async_device *const i2c_dev, uin
 		tmp = (uint32_t)((clkrate - 10 * baudrate - baudrate * clkrate * (i2c_dev->service.trise * 0.000000001))
 		                 / (2 * baudrate));
 		hri_sercomi2cm_write_BAUD_BAUD_bf(hw, tmp);
+		hri_sercomi2cm_write_BAUD_BAUDLOW_bf(hw, 0); // zero means same as BAUD.
 	} else if (i2c_dev->service.mode == I2C_FASTMODE) {
 		tmp = (uint32_t)((clkrate - 10 * baudrate - baudrate * clkrate * (i2c_dev->service.trise * 0.000000001))
 		                 / (2 * baudrate));
 		hri_sercomi2cm_write_BAUD_BAUD_bf(hw, tmp);
+		hri_sercomi2cm_write_BAUD_BAUDLOW_bf(hw, 0); // zero means same as BAUD.
 	} else if (i2c_dev->service.mode == I2C_HIGHSPEED_MODE) {
 		tmp = (clkrate - 2 * baudrate) / (2 * baudrate);
-		hri_sercomi2cm_write_BAUD_HSBAUD_bf(hw, tmp);
+                // not tested
+                // 1:2 high:low ratio 
+		hri_sercomi2cm_write_BAUD_HSBAUD_bf(hw, tmp / 3);
+		hri_sercomi2cm_write_BAUD_HSBAUDLOW_bf(hw, tmp*2 / 3);
 	} else {
 		/* error baudrate */
 		return ERR_INVALID_ARG;
@@ -1369,13 +1374,18 @@ int32_t _i2c_m_sync_set_baudrate(struct _i2c_m_sync_device *const i2c_dev, uint3
 		tmp = (uint32_t)((clkrate - 10 * baudrate - baudrate * clkrate * (i2c_dev->service.trise * 0.000000001))
 		                 / (2 * baudrate));
 		hri_sercomi2cm_write_BAUD_BAUD_bf(hw, tmp);
+		hri_sercomi2cm_write_BAUD_BAUDLOW_bf(hw, 0); // zero means same as BAUD.
 	} else if (i2c_dev->service.mode == I2C_FASTMODE) {
 		tmp = (uint32_t)((clkrate - 10 * baudrate - baudrate * clkrate * (i2c_dev->service.trise * 0.000000001))
 		                 / (2 * baudrate));
 		hri_sercomi2cm_write_BAUD_BAUD_bf(hw, tmp);
+		hri_sercomi2cm_write_BAUD_BAUDLOW_bf(hw, 0); // zero means same as BAUD.
 	} else if (i2c_dev->service.mode == I2C_HIGHSPEED_MODE) {
 		tmp = (clkrate - 2 * baudrate) / (2 * baudrate);
-		hri_sercomi2cm_write_BAUD_HSBAUD_bf(hw, tmp);
+                // not tested
+                // 1:2 high:low ratio 
+		hri_sercomi2cm_write_BAUD_HSBAUD_bf(hw, tmp / 3);
+		hri_sercomi2cm_write_BAUD_HSBAUDLOW_bf(hw, tmp*2 / 3);
 	} else {
 		/* error baudrate */
 		return ERR_INVALID_ARG;
