@@ -144,7 +144,10 @@ static int32_t _spi_m_sync_io_read(struct io_descriptor *io, uint8_t *buf, const
 {
 	ASSERT(io);
 
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct spi_m_sync_descriptor *spi = CONTAINER_OF(io, struct spi_m_sync_descriptor, io);
+        #pragma GCC diagnostic pop
 	struct spi_xfer               xfer;
 
 	xfer.rxbuf = buf;
@@ -172,7 +175,10 @@ static int32_t _spi_m_sync_io_write(struct io_descriptor *const io, const uint8_
 {
 	ASSERT(io);
 
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct spi_m_sync_descriptor *spi = CONTAINER_OF(io, struct spi_m_sync_descriptor, io);
+        #pragma GCC diagnostic pop
 	struct spi_xfer               xfer;
 
 	xfer.rxbuf = 0;
