@@ -55,6 +55,18 @@
 #include <utils.h>
 #include <utils_assert.h>
 
+// Use SERCOM settings as prototypes to set
+// the default settings. The asf4_conf/hpl_sercom_config.h file
+// defines these bindings, and chooses a SERCOM (listed as x here).
+// 
+// #define PROTOTYPE_SERCOM_SPI_M_SYNC SERCOMx
+// #define PROTOTYPE_SERCOM_I2CM_SYNC SERCOMx
+// #define PROTOTYPE_SERCOM_USART_SYNC SERCOMx
+
+// Use these to choose the right settings from the _spis, _i2cms, and _usarts tables.
+// Look up the prototype instance by using the prototype SERCOM addresses,
+// not the SERCOMnumber.
+
 #ifndef CONF_SERCOM_0_USART_ENABLE
 #define CONF_SERCOM_0_USART_ENABLE 0
 #endif
@@ -604,7 +616,9 @@ static void _sercom_init_irq_param(const void *const hw, void *dev)
  */
 static int32_t _usart_init(void *const hw)
 {
-	uint8_t i = _get_sercom_index(hw);
+ 
+	// Use a prototypical instance to get settings, not the given SERCOM (hw).
+        uint8_t i = _get_sercom_index(PROTOTYPE_SERCOM_USART_SYNC);
 
 	hri_sercomusart_wait_for_sync(hw, SERCOM_USART_SYNCBUSY_SWRST);
 	if (hri_sercomusart_get_CTRLA_ENABLE_bit(hw)) {
@@ -1568,7 +1582,8 @@ static inline void _i2c_m_enable_implementation(void *const hw)
 
 static int32_t _i2c_m_sync_init_impl(struct _i2c_m_service *const service, void *const hw)
 {
-	uint8_t i = _get_i2cm_index(hw);
+	// Use a prototypical instance to get settings, not the given SERCOM (hw).
+	uint8_t i = _get_i2cm_index(PROTOTYPE_SERCOM_I2CM_SYNC);
 
 	hri_sercomi2cm_wait_for_sync(hw, SERCOM_I2CM_SYNCBUSY_SWRST);
 	/* Check if module is enabled. */
@@ -2352,7 +2367,8 @@ static inline const struct sercomspi_regs_cfg *_spi_get_regs(const uint32_t hw_a
 
 int32_t _spi_m_sync_init(struct _spi_m_sync_dev *dev, void *const hw)
 {
-	const struct sercomspi_regs_cfg *regs = _spi_get_regs((uint32_t)hw);
+	// Use a prototypical instance to get settings, not the given SERCOM (hw).
+	const struct sercomspi_regs_cfg *regs = _spi_get_regs((uint32_t) PROTOTYPE_SERCOM_SPI_M_SYNC);
 
 	ASSERT(dev && hw);
 
