@@ -410,7 +410,7 @@
 // <i> Indicates whether configuration for DFLL is enabled or not
 // <id> enable_dfll48m
 #ifndef CONF_DFLL_CONFIG
-#define CONF_DFLL_CONFIG 0
+#define CONF_DFLL_CONFIG 1
 #endif
 
 // <y> Reference Clock Source
@@ -433,7 +433,7 @@
 // <i> Indicates whether DFLL is enabled or not
 // <id> dfll48m_arch_enable
 #ifndef CONF_DFLL_ENABLE
-#define CONF_DFLL_ENABLE 0
+#define CONF_DFLL_ENABLE 1
 #endif
 
 // <q> Wait Lock
@@ -461,7 +461,7 @@
 // <i> Chill Cycle Disable
 // <id> dfll48m_arch_ccdis
 #ifndef CONF_DFLL_CCDIS
-#define CONF_DFLL_CCDIS 0
+#define CONF_DFLL_CCDIS 1
 #endif
 
 // <q> On Demand
@@ -540,7 +540,7 @@
 //  <i> Default: 0
 //  <id> dfll48m_mul
 #ifndef CONF_DFLL_MUL
-#define CONF_DFLL_MUL 0
+#define CONF_DFLL_MUL 48000
 #endif
 
 // <e> DFLL Calibration Overwrite

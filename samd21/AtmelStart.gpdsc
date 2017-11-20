@@ -47,6 +47,7 @@
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/flash.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/i2c_master_sync.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/pwm.rst"/>
+        <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/spi_master_dma.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/spi_master_sync.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/timer.rst"/>
         <file category="doc" condition="ARMCC, GCC, IAR" name="hal/documentation/usart_sync.rst"/>
@@ -60,6 +61,7 @@
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_init.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_io.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_sleep.h"/>
+        <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_spi_m_dma.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_spi_m_sync.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hal_usb_device.h"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/include/hpl_adc_dma.h"/>
@@ -99,6 +101,7 @@
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_init.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_io.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_sleep.c"/>
+        <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_spi_m_dma.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_spi_m_sync.c"/>
         <file category="source" condition="ARMCC, GCC, IAR" name="hal/src/hal_usb_device.c"/>
         <file category="header" condition="ARMCC, GCC, IAR" name="hal/utils/include/compiler.h"/>
