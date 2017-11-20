@@ -267,7 +267,7 @@
 
 // <id> usb_composite_cdc_acm_data_builin_maxpksz_hs
 #ifndef CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ_HS
-#define CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ_HS 0x0200
+#define CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ_HS 0x200
 #endif
 
 // <o> CDC ACM Data BULK OUT Endpoint Address
@@ -308,7 +308,7 @@
 
 // <id> usb_composite_cdc_acm_data_buckout_maxpksz_hs
 #ifndef CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_MAXPKSZ_HS
-#define CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_MAXPKSZ_HS 0x0200
+#define CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKOUT_MAXPKSZ_HS 0x200
 #endif
 
 // <q> CDC ACM Echo Demo generation
@@ -531,7 +531,7 @@
 
 // <id> usb_composite_msc_bulk_maxpksz
 #ifndef CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ
-#define CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ 0x0040
+#define CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ 0x40
 #endif
 
 // <o> MSC BULK Endpoints wMaxPacketSize for High Speed
@@ -545,7 +545,7 @@
 
 // <id> usb_composite_msc_bulk_maxpksz_hs
 #ifndef CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS
-#define CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS 0x0200
+#define CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS 0x200
 #endif
 
 // <o> MSC BULK IN Endpoint Address
@@ -577,7 +577,7 @@
 
 // <id> usb_composite_msc_bulkout_epaddr
 #ifndef CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR
-#define CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR 0x04
+#define CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR 0x4
 #endif
 
 // <e> Enable Demo code for Disk LUN handling
@@ -605,7 +605,7 @@
 // <q> The disk is removable
 // <id> conf_usb_msc_lun0_rmb
 #ifndef CONF_USB_MSC_LUN0_RMB
-#define CONF_USB_MSC_LUN0_RMB 0x01
+#define CONF_USB_MSC_LUN0_RMB 0x1
 #endif
 
 #ifndef CONF_USB_MSC_LUN0_ISO
@@ -672,7 +672,7 @@
 // <i> SD/MMC insert/eject not supported by this simple demo
 // <id> conf_usb_msc_lun1_rmb
 #ifndef CONF_USB_MSC_LUN1_RMB
-#define CONF_USB_MSC_LUN1_RMB 0x01
+#define CONF_USB_MSC_LUN1_RMB 0x1
 #endif
 
 #ifndef CONF_USB_MSC_LUN1_ISO
@@ -731,7 +731,7 @@
 // <q> The disk is removable
 // <id> conf_usb_msc_lun2_rmb
 #ifndef CONF_USB_MSC_LUN2_RMB
-#define CONF_USB_MSC_LUN2_RMB 0x01
+#define CONF_USB_MSC_LUN2_RMB 0x1
 #endif
 
 #ifndef CONF_USB_MSC_LUN2_ISO
@@ -793,7 +793,7 @@
 // <q> The disk is removable
 // <id> conf_usb_msc_lun3_rmb
 #ifndef CONF_USB_MSC_LUN3_RMB
-#define CONF_USB_MSC_LUN3_RMB 0x01
+#define CONF_USB_MSC_LUN3_RMB 0x1
 #endif
 
 #ifndef CONF_USB_MSC_LUN3_ISO

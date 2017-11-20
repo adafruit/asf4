@@ -61,6 +61,7 @@ OBJS +=  \
 hal/src/hal_io.o \
 hpl/systick/hpl_systick.o \
 usb/usb_protocol.o \
+hal/src/hal_spi_m_dma.o \
 usb/class/hid/device/hiddf_generic.o \
 hpl/evsys/hpl_evsys.o \
 hpl/core/hpl_core_m4.o \
@@ -117,6 +118,7 @@ OBJS_AS_ARGS +=  \
 "hal/src/hal_io.o" \
 "hpl/systick/hpl_systick.o" \
 "usb/usb_protocol.o" \
+"hal/src/hal_spi_m_dma.o" \
 "usb/class/hid/device/hiddf_generic.o" \
 "hpl/evsys/hpl_evsys.o" \
 "hpl/core/hpl_core_m4.o" \
@@ -182,7 +184,7 @@ DEPS_AS_ARGS +=  \
 "hpl/evsys/hpl_evsys.d" \
 "hal/utils/src/utils_syscalls.d" \
 "usb/class/cdc/device/cdcdf_acm.d" \
-"gcc/gcc/startup_samd51.d" \
+"hal/src/hal_spi_m_dma.d" \
 "hal/src/hal_i2c_m_sync.d" \
 "hpl/usb/hpl_usb.d" \
 "hal/src/hal_evsys.d" \
@@ -212,6 +214,7 @@ DEPS_AS_ARGS +=  \
 "driver_init.d" \
 "hal/src/hal_adc_sync.d" \
 "hpl/osc32kctrl/hpl_osc32kctrl.d" \
+"gcc/gcc/startup_samd51.d" \
 "main.d" \
 "examples/driver_examples.d" \
 "hpl/rtc/hpl_rtc.d" \

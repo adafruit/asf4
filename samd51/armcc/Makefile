@@ -59,6 +59,7 @@ OBJS +=  \
 hal/src/hal_io.o \
 hpl/systick/hpl_systick.o \
 usb/usb_protocol.o \
+hal/src/hal_spi_m_dma.o \
 usb/class/hid/device/hiddf_generic.o \
 hpl/evsys/hpl_evsys.o \
 hpl/core/hpl_core_m4.o \
@@ -112,6 +113,7 @@ OBJS_AS_ARGS +=  \
 "hal/src/hal_io.o" \
 "hpl/systick/hpl_systick.o" \
 "usb/usb_protocol.o" \
+"hal/src/hal_spi_m_dma.o" \
 "usb/class/hid/device/hiddf_generic.o" \
 "hpl/evsys/hpl_evsys.o" \
 "hpl/core/hpl_core_m4.o" \
@@ -173,6 +175,7 @@ DEPS_AS_ARGS +=  \
 "hpl/core/hpl_core_m4.d" \
 "hpl/evsys/hpl_evsys.d" \
 "usb/class/cdc/device/cdcdf_acm.d" \
+"hal/src/hal_spi_m_dma.d" \
 "hal/src/hal_i2c_m_sync.d" \
 "hpl/usb/hpl_usb.d" \
 "hal/src/hal_evsys.d" \
