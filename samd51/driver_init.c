@@ -26,6 +26,8 @@ struct usart_sync_descriptor USART_0;
 
 struct i2c_m_sync_desc I2C_0;
 
+struct spi_m_dma_descriptor SPI_1;
+
 struct pwm_descriptor PWM_0;
 
 struct rand_sync_desc RAND_0;
@@ -213,6 +215,62 @@ void I2C_0_init(void)
 	I2C_0_PORT_init();
 }
 
+void SPI_1_PORT_init(void)
+{
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA17, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_level(PA17,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	gpio_set_pin_function(PA17, PINMUX_PA17D_SERCOM3_PAD0);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA16, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_level(PA16,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	gpio_set_pin_function(PA16, PINMUX_PA16D_SERCOM3_PAD1);
+
+	// Set pin direction to input
+	gpio_set_pin_direction(PA18, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(PA18,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_OFF);
+
+	gpio_set_pin_function(PA18, PINMUX_PA18D_SERCOM3_PAD2);
+}
+
+void SPI_1_CLOCK_init(void)
+{
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_CORE, CONF_GCLK_SERCOM3_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM3_GCLK_ID_SLOW, CONF_GCLK_SERCOM3_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+
+	hri_mclk_set_APBBMASK_SERCOM3_bit(MCLK);
+}
+
+void SPI_1_init(void)
+{
+	SPI_1_CLOCK_init();
+	spi_m_dma_init(&SPI_1, SERCOM3);
+	SPI_1_PORT_init();
+}
+
 void delay_driver_init(void)
 {
 	delay_init(SysTick);
@@ -380,6 +438,8 @@ void system_init(void)
 	USART_0_init();
 
 	I2C_0_init();
+
+	SPI_1_init();
 
 	delay_driver_init();
 
