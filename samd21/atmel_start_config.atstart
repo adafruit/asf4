@@ -55,7 +55,8 @@ middlewares:
       USB Chapter 9: USB_CHAPTER_9
   USB_DEVICE_STACK_CORE_INSTANCE:
     user_label: USB_DEVICE_STACK_CORE_INSTANCE
-    configuration: {}
+    configuration:
+      usbd_hs_sp: false
     definition: Atmel:USB:0.0.1::USB_Device_Core
     functionality: USB_Device_Core
     api: USB:Device:Core
@@ -65,6 +66,21 @@ middlewares:
   USB_DEVICE_COMPOSITE_0:
     user_label: USB_DEVICE_COMPOSITE_0
     configuration:
+      conf_usb_composite_cdc_echo_demo: false
+      conf_usb_composite_hid_keyboard_demo: false
+      conf_usb_composite_hid_mouse_demo: false
+      conf_usb_msc_lun0_capacity: 22
+      conf_usb_msc_lun0_enable: true
+      conf_usb_msc_lun0_rmb: true
+      conf_usb_msc_lun1_enable: false
+      conf_usb_msc_lun1_rmb: true
+      conf_usb_msc_lun2_capacity: 22
+      conf_usb_msc_lun2_enable: false
+      conf_usb_msc_lun2_rmb: true
+      conf_usb_msc_lun3_capacity: 22
+      conf_usb_msc_lun3_enable: false
+      conf_usb_msc_lun3_rmb: true
+      conf_usb_msc_lun_buf_sectors: 4
       usb_composite_bcddevice: 256
       usb_composite_bcdusb: USB 2.0 version
       usb_composite_bconfigval: 1
@@ -74,7 +90,9 @@ middlewares:
       usb_composite_bnumconfig: 1
       usb_composite_cdc_acm_comm_int_maxpksz: 64 bytes
       usb_composite_cdc_acm_data_buckout_maxpksz: 64 bytes
+      usb_composite_cdc_acm_data_buckout_maxpksz_hs: 512 bytes
       usb_composite_cdc_acm_data_builin_maxpksz: 64 bytes
+      usb_composite_cdc_acm_data_builin_maxpksz_hs: 512 bytes
       usb_composite_cdc_acm_data_bulkin_epaddr: EndpointAddress = 0x81
       usb_composite_cdc_acm_data_bulkout_epaddr: EndpointAddress = 0x01
       usb_composite_cdc_acm_epaddr: EndpointAddress = 0x82
@@ -103,6 +121,12 @@ middlewares:
       usb_composite_iserialnum_en: false
       usb_composite_iserialnum_str: 123456789ABCDEF
       usb_composite_langid: '0x0409'
+      usb_composite_msc_bulk_maxpksz: 64 bytes
+      usb_composite_msc_bulk_maxpksz_hs: 512 bytes
+      usb_composite_msc_bulkin_epaddr: EndpointAddress = 0x86
+      usb_composite_msc_bulkout_epaddr: EndpointAddress = 0x04
+      usb_composite_msc_demo_en: true
+      usb_composite_msc_support: false
       usb_composite_str_en: false
     definition: Atmel:USB:0.0.1::USB_Device_Composite
     functionality: USB_Device_COMPOSITE
@@ -166,7 +190,7 @@ drivers:
     api: HAL:HPL:GCLK
     configuration:
       enable_gclk_gen_0: true
-      enable_gclk_gen_1: false
+      enable_gclk_gen_1: true
       enable_gclk_gen_2: false
       enable_gclk_gen_3: false
       enable_gclk_gen_4: false
@@ -179,7 +203,7 @@ drivers:
       gclk_arch_gen_0_oe: false
       gclk_arch_gen_0_oov: false
       gclk_arch_gen_1_RUNSTDBY: false
-      gclk_arch_gen_1_enable: false
+      gclk_arch_gen_1_enable: true
       gclk_arch_gen_1_idc: false
       gclk_arch_gen_1_oe: false
       gclk_arch_gen_1_oov: false
@@ -215,7 +239,7 @@ drivers:
       gclk_arch_gen_7_oov: false
       gclk_gen_0_div: 1
       gclk_gen_0_div_sel: false
-      gclk_gen_0_oscillator: 8MHz Internal Oscillator (OSC8M)
+      gclk_gen_0_oscillator: Digital Frequency Locked Loop (DFLL48M)
       gclk_gen_1_div: 1
       gclk_gen_1_div_sel: false
       gclk_gen_1_oscillator: External Crystal Oscillator 0.4-32MHz (XOSC)
@@ -227,7 +251,7 @@ drivers:
       gclk_gen_3_oscillator: External Crystal Oscillator 0.4-32MHz (XOSC)
       gclk_gen_4_div: 1
       gclk_gen_4_div_sel: false
-      gclk_gen_4_oscillator: External Crystal Oscillator 0.4-32MHz (XOSC)
+      gclk_gen_4_oscillator: 32kHz Ultra Low Power Internal Oscillator (OSCULP32K)
       gclk_gen_5_div: 1
       gclk_gen_5_div_sel: false
       gclk_gen_5_oscillator: External Crystal Oscillator 0.4-32MHz (XOSC)
@@ -385,6 +409,49 @@ drivers:
       - name: SERCOM2/PAD/1
         pad: PA09
         label: RX
+    clocks:
+      domain_group:
+        nodes:
+        - name: Core
+          input: Generic clock generator 0
+        - name: Slow
+          input: Generic clock generator 3
+        configuration:
+          core_gclk_selection: Generic clock generator 0
+          slow_gclk_selection: Generic clock generator 3
+  SPI_1:
+    user_label: SPI_1
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM4::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.DMA
+    functionality: SPI
+    api: HAL:Driver:SPI_Master_DMA
+    configuration:
+      spi_master_advanced: false
+      spi_master_arch_cpha: Sample input on leading edge
+      spi_master_arch_cpol: SCK is low when idle
+      spi_master_arch_dbgstop: Keep running
+      spi_master_arch_dord: MSB first
+      spi_master_arch_ibon: In data stream
+      spi_master_arch_runstdby: false
+      spi_master_baud_rate: 50000
+      spi_master_character_size: 8 bits
+      spi_master_dma_rx_channel: 1
+      spi_master_dma_tx_channel: 0
+      spi_master_dummybyte: 511
+      spi_master_rx_channel: false
+      spi_master_rx_enable: true
+    optional_signals: []
+    variant:
+      specification: TXPO=1, RXPO=0
+      required_signals:
+      - name: SERCOM4/PAD/0
+        pad: PA12
+        label: MISO
+      - name: SERCOM4/PAD/2
+        pad: PB10
+        label: MOSI
+      - name: SERCOM4/PAD/3
+        pad: PB11
+        label: SCK
     clocks:
       domain_group:
         nodes:
@@ -777,9 +844,9 @@ drivers:
     configuration:
       dfll48m_arch_bplckc: false
       dfll48m_arch_calibration: true
-      dfll48m_arch_ccdis: false
+      dfll48m_arch_ccdis: true
       dfll48m_arch_coarse: 10
-      dfll48m_arch_enable: false
+      dfll48m_arch_enable: true
       dfll48m_arch_fine: 512
       dfll48m_arch_llaw: false
       dfll48m_arch_ondemand: true
@@ -789,11 +856,11 @@ drivers:
       dfll48m_arch_usbcrm: true
       dfll48m_arch_waitlock: false
       dfll48m_mode: Closed Loop Mode
-      dfll48m_mul: 0
+      dfll48m_mul: 48000
       dfll48m_ref_clock: Generic clock generator 4
       dfll_arch_cstep: 1
       dfll_arch_fstep: 1
-      enable_dfll48m: false
+      enable_dfll48m: true
       enable_fdpll96m: false
       enable_osc32k: false
       enable_osc8m: true
@@ -976,13 +1043,13 @@ pads:
   PB10:
     name: PB10
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB10
-    mode: Digital input
+    mode: Digital output
     user_label: PB10
     configuration: null
   PB11:
     name: PB11
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB11
-    mode: Digital input
+    mode: Digital output
     user_label: PB11
     configuration: null
   PA12:

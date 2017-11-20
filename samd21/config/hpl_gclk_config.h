@@ -67,7 +67,7 @@
 // <i> This defines the clock source for generic clock generator 0
 // <id> gclk_gen_0_oscillator
 #ifndef CONF_GCLK_GEN_0_SRC
-#define CONF_GCLK_GEN_0_SRC GCLK_GENCTRL_SRC_OSC8M
+#define CONF_GCLK_GEN_0_SRC GCLK_GENCTRL_SRC_DFLL48M
 #endif
 // </h>
 
@@ -84,7 +84,7 @@
 // <i> Indicates whether generic clock 1 configuration is enabled or not
 // <id> enable_gclk_gen_1
 #ifndef CONF_GCLK_GENERATOR_1_CONFIG
-#define CONF_GCLK_GENERATOR_1_CONFIG 0
+#define CONF_GCLK_GENERATOR_1_CONFIG 1
 #endif
 
 // <h> Generic Clock Generator Control
@@ -127,7 +127,7 @@
 // <i> Indicates whether Generic Clock Generator Enable is enabled or not
 // <id> gclk_arch_gen_1_enable
 #ifndef CONF_GCLK_GEN_1_GENEN
-#define CONF_GCLK_GEN_1_GENEN 0
+#define CONF_GCLK_GEN_1_GENEN 1
 #endif
 
 // <y> Generic clock generator 1 source
@@ -370,7 +370,7 @@
 // <i> This defines the clock source for generic clock generator 4
 // <id> gclk_gen_4_oscillator
 #ifndef CONF_GCLK_GEN_4_SRC
-#define CONF_GCLK_GEN_4_SRC GCLK_GENCTRL_SRC_XOSC
+#define CONF_GCLK_GEN_4_SRC GCLK_GENCTRL_SRC_OSCULP32K
 #endif
 // </h>
 
