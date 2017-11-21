@@ -56,6 +56,7 @@ OBJS +=  \
 hal/src/hal_io.o \
 hpl/systick/hpl_systick.o \
 usb/usb_protocol.o \
+hal/src/hal_spi_m_dma.o \
 usb/class/hid/device/hiddf_generic.o \
 usb/class/cdc/device/cdcdf_acm.o \
 hpl/nvmctrl/hpl_nvmctrl.o \
@@ -104,6 +105,7 @@ OBJS_AS_ARGS +=  \
 "hal/src/hal_io.o" \
 "hpl/systick/hpl_systick.o" \
 "usb/usb_protocol.o" \
+"hal/src/hal_spi_m_dma.o" \
 "usb/class/hid/device/hiddf_generic.o" \
 "usb/class/cdc/device/cdcdf_acm.o" \
 "hpl/nvmctrl/hpl_nvmctrl.o" \
@@ -154,12 +156,13 @@ DEPS := $(OBJS:%.o=%.d)
 DEPS_AS_ARGS +=  \
 "usb/usb_protocol.d" \
 "hal/utils/src/utils_event.d" \
+"samd21a/armcc/Device/SAMD21/Source/ARM/startup_SAMD21.d" \
 "hal/src/hal_io.d" \
 "hpl/systick/hpl_systick.d" \
 "usb/class/hid/device/hiddf_generic.d" \
 "usb/class/cdc/device/cdcdf_acm.d" \
 "usb/class/hid/device/hiddf_mouse.d" \
-"samd21a/armcc/Device/SAMD21/Source/ARM/startup_SAMD21.d" \
+"hal/src/hal_spi_m_dma.d" \
 "hal/src/hal_i2c_m_sync.d" \
 "hpl/usb/hpl_usb.d" \
 "samd21a/armcc/Device/SAMD21/Source/system_samd21.d" \
