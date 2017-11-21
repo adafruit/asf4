@@ -26,6 +26,8 @@ struct i2c_m_sync_desc I2C_0;
 
 struct usart_sync_descriptor USART_0;
 
+struct spi_m_dma_descriptor SPI_1;
+
 struct pwm_descriptor PWM_0;
 
 struct dac_sync_descriptor DAC_0;
@@ -170,6 +172,60 @@ void USART_0_init(void)
 	USART_0_CLOCK_init();
 	usart_sync_init(&USART_0, SERCOM2, (void *)NULL);
 	USART_0_PORT_init();
+}
+
+void SPI_1_PORT_init(void)
+{
+
+	// Set pin direction to input
+	gpio_set_pin_direction(PA12, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(PA12,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_OFF);
+
+	gpio_set_pin_function(PA12, PINMUX_PA12D_SERCOM4_PAD0);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PB10, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_level(PB10,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	gpio_set_pin_function(PB10, PINMUX_PB10D_SERCOM4_PAD2);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PB11, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_level(PB11,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   false);
+
+	gpio_set_pin_function(PB11, PINMUX_PB11D_SERCOM4_PAD3);
+}
+
+void SPI_1_CLOCK_init(void)
+{
+	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM4);
+	_gclk_enable_channel(SERCOM4_GCLK_ID_CORE, CONF_GCLK_SERCOM4_CORE_SRC);
+}
+
+void SPI_1_init(void)
+{
+	SPI_1_CLOCK_init();
+	spi_m_dma_init(&SPI_1, SERCOM4);
+	SPI_1_PORT_init();
 }
 
 void delay_driver_init(void)
@@ -436,21 +492,6 @@ void system_init(void)
 
 	gpio_set_pin_function(PA11, GPIO_PIN_FUNCTION_OFF);
 
-	// GPIO on PA12
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA12, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA12,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA12, GPIO_PIN_FUNCTION_OFF);
-
 	// GPIO on PA13
 
 	// Set pin direction to input
@@ -706,36 +747,6 @@ void system_init(void)
 
 	gpio_set_pin_function(PB09, GPIO_PIN_FUNCTION_OFF);
 
-	// GPIO on PB10
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PB10, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PB10,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PB10, GPIO_PIN_FUNCTION_OFF);
-
-	// GPIO on PB11
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PB11, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PB11,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PB11, GPIO_PIN_FUNCTION_OFF);
-
 	// GPIO on PB22
 
 	// Set pin direction to input
@@ -775,6 +786,8 @@ void system_init(void)
 	I2C_0_init();
 
 	USART_0_init();
+
+	SPI_1_init();
 
 	delay_driver_init();
 

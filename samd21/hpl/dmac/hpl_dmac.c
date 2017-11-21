@@ -48,8 +48,6 @@
 #include <utils_assert.h>
 #include <utils_repeat_macro.h>
 
-#if CONF_DMAC_ENABLE
-
 /* Section containing first descriptors for all DMAC channels */
 COMPILER_ALIGNED(16)
 static DmacDescriptor _descriptor_section[DMAC_CH_NUM] SECTION_DMAC_DESCRIPTOR;
@@ -230,5 +228,3 @@ void DMAC_Handler(void)
 {
 	_dmac_handler();
 }
-
-#endif /* CONF_DMAC_ENABLE */
