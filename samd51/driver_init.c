@@ -13,8 +13,14 @@
 #include <hpl_adc_base.h>
 #include <hpl_rtc_base.h>
 
-struct timer_descriptor      TIMER_0;
-struct spi_m_sync_descriptor SPI_0;
+/*! The buffer size for USART */
+#define USART_1_BUFFER_SIZE 16
+
+struct timer_descriptor       TIMER_0;
+struct spi_m_sync_descriptor  SPI_0;
+struct usart_async_descriptor USART_1;
+
+static uint8_t USART_1_buffer[USART_1_BUFFER_SIZE];
 
 struct adc_sync_descriptor ADC_0;
 
@@ -271,6 +277,45 @@ void SPI_1_init(void)
 	SPI_1_PORT_init();
 }
 
+/**
+ * \brief USART Clock initialization function
+ *
+ * Enables register interface and peripheral clock
+ */
+void USART_1_CLOCK_init()
+{
+
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM4_GCLK_ID_CORE, CONF_GCLK_SERCOM4_CORE_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+	hri_gclk_write_PCHCTRL_reg(GCLK, SERCOM4_GCLK_ID_SLOW, CONF_GCLK_SERCOM4_SLOW_SRC | (1 << GCLK_PCHCTRL_CHEN_Pos));
+
+	hri_mclk_set_APBDMASK_SERCOM4_bit(MCLK);
+}
+
+/**
+ * \brief USART pinmux initialization function
+ *
+ * Set each required pin to USART functionality
+ */
+void USART_1_PORT_init()
+{
+
+	gpio_set_pin_function(PB08, PINMUX_PB08D_SERCOM4_PAD0);
+
+	gpio_set_pin_function(PB09, PINMUX_PB09D_SERCOM4_PAD1);
+}
+
+/**
+ * \brief USART initialization function
+ *
+ * Enables USART peripheral, clocks and initializes USART driver
+ */
+void USART_1_init(void)
+{
+	USART_1_CLOCK_init();
+	usart_async_init(&USART_1, SERCOM4, USART_1_buffer, USART_1_BUFFER_SIZE, (void *)NULL);
+	USART_1_PORT_init();
+}
+
 void delay_driver_init(void)
 {
 	delay_init(SysTick);
@@ -440,6 +485,7 @@ void system_init(void)
 	I2C_0_init();
 
 	SPI_1_init();
+	USART_1_init();
 
 	delay_driver_init();
 
