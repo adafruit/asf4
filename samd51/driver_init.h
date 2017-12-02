@@ -37,6 +37,7 @@ extern "C" {
 #include <hal_i2c_m_sync.h>
 
 #include <hal_spi_m_dma.h>
+#include <hal_usart_async.h>
 
 #include <hal_delay.h>
 #include <hal_pwm.h>
@@ -58,7 +59,8 @@ extern struct usart_sync_descriptor USART_0;
 
 extern struct i2c_m_sync_desc I2C_0;
 
-extern struct spi_m_dma_descriptor SPI_1;
+extern struct spi_m_dma_descriptor   SPI_1;
+extern struct usart_async_descriptor USART_1;
 
 extern struct pwm_descriptor PWM_0;
 
@@ -90,6 +92,10 @@ void I2C_0_PORT_init(void);
 void SPI_1_PORT_init(void);
 void SPI_1_CLOCK_init(void);
 void SPI_1_init(void);
+
+void USART_1_PORT_init(void);
+void USART_1_CLOCK_init(void);
+void USART_1_init(void);
 
 void delay_driver_init(void);
 

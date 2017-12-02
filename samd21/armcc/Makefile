@@ -87,9 +87,11 @@ hpl/rtc/hpl_rtc.o \
 examples/driver_examples.o \
 driver_init.o \
 samd21a/armcc/Device/SAMD21/Source/system_samd21.o \
+hal/src/hal_usart_async.o \
 hal/src/hal_adc_sync.o \
 hal/src/hal_dac_sync.o \
 hpl/sercom/hpl_sercom.o \
+hal/utils/src/utils_ringbuffer.o \
 hal/src/hal_gpio.o \
 usb/class/hid/device/hiddf_mouse.o \
 hal/utils/src/utils_event.o \
@@ -136,9 +138,11 @@ OBJS_AS_ARGS +=  \
 "examples/driver_examples.o" \
 "driver_init.o" \
 "samd21a/armcc/Device/SAMD21/Source/system_samd21.o" \
+"hal/src/hal_usart_async.o" \
 "hal/src/hal_adc_sync.o" \
 "hal/src/hal_dac_sync.o" \
 "hpl/sercom/hpl_sercom.o" \
+"hal/utils/src/utils_ringbuffer.o" \
 "hal/src/hal_gpio.o" \
 "usb/class/hid/device/hiddf_mouse.o" \
 "hal/utils/src/utils_event.o" \
@@ -188,10 +192,12 @@ DEPS_AS_ARGS +=  \
 "hpl/dac/hpl_dac.d" \
 "driver_init.d" \
 "hal/src/hal_adc_sync.d" \
+"hal/src/hal_usart_async.d" \
 "main.d" \
 "examples/driver_examples.d" \
 "hpl/rtc/hpl_rtc.d" \
 "hal/src/hal_sleep.d" \
+"hal/utils/src/utils_ringbuffer.d" \
 "hpl/sercom/hpl_sercom.d" \
 "hal/src/hal_dac_sync.d" \
 "hal/src/hal_gpio.d" \
