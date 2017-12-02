@@ -180,6 +180,8 @@ static struct usart_configuration _usarts[] = {
 };
 #endif
 
+static struct _usart_async_device *_sercom1_dev = NULL;
+
 static uint8_t _get_sercom_index(const void *const hw);
 static uint8_t _sercom_get_irq_num(const void *const hw);
 static void _sercom_init_irq_param(const void *const hw, void *dev);
@@ -573,6 +575,41 @@ void _usart_async_set_irq_state(struct _usart_async_device *const device, const 
 }
 
 /**
+ * \internal Sercom interrupt handler
+ *
+ * \param[in] p The pointer to interrupt parameter
+ */
+static void _sercom_usart_interrupt_handler(struct _usart_async_device *device)
+{
+	void *hw = device->hw;
+
+	if (hri_sercomusart_get_interrupt_DRE_bit(hw) && hri_sercomusart_get_INTEN_DRE_bit(hw)) {
+		hri_sercomusart_clear_INTEN_DRE_bit(hw);
+		device->usart_cb.tx_byte_sent(device);
+	} else if (hri_sercomusart_get_interrupt_TXC_bit(hw) && hri_sercomusart_get_INTEN_TXC_bit(hw)) {
+		hri_sercomusart_clear_INTEN_TXC_bit(hw);
+		device->usart_cb.tx_done_cb(device);
+	} else if (hri_sercomusart_get_interrupt_RXC_bit(hw)) {
+		if (hri_sercomusart_read_STATUS_reg(hw)
+		    & (SERCOM_USART_STATUS_PERR | SERCOM_USART_STATUS_FERR | SERCOM_USART_STATUS_BUFOVF
+		       | SERCOM_USART_STATUS_ISF
+		       | SERCOM_USART_STATUS_COLL)) {
+			hri_sercomusart_clear_STATUS_reg(hw, SERCOM_USART_STATUS_MASK);
+			return;
+		}
+
+		device->usart_cb.rx_done_cb(device, hri_sercomusart_read_DATA_reg(hw));
+	} else if (hri_sercomusart_get_interrupt_ERROR_bit(hw)) {
+		uint32_t status;
+
+		hri_sercomusart_clear_interrupt_ERROR_bit(hw);
+		device->usart_cb.error_cb(device);
+		status = hri_sercomusart_read_STATUS_reg(hw);
+		hri_sercomusart_clear_STATUS_reg(hw, status);
+	}
+}
+
+/**
  * \internal Retrieve ordinal number of the given sercom hardware instance
  *
  * \param[in] hw The pointer to hardware instance
@@ -599,6 +636,10 @@ static uint8_t _get_sercom_index(const void *const hw)
  */
 static void _sercom_init_irq_param(const void *const hw, void *dev)
 {
+
+	if (hw == SERCOM1) {
+		_sercom1_dev = (struct _usart_async_device *)dev;
+	}
 }
 
 /**
@@ -2342,6 +2383,11 @@ static inline const struct sercomspi_regs_cfg *_spi_get_regs(const uint32_t hw_a
 	}
 
 	return NULL;
+}
+
+void SERCOM1_Handler(void)
+{
+	_sercom_usart_interrupt_handler(_sercom1_dev);
 }
 
 int32_t _spi_m_sync_init(struct _spi_m_sync_dev *dev, void *const hw)

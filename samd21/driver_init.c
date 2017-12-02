@@ -15,16 +15,22 @@
 #include <hpl_adc_base.h>
 #include <hpl_rtc_base.h>
 
-struct spi_m_sync_descriptor SPI_0;
-struct timer_descriptor      TIMER_0;
+/*! The buffer size for USART */
+#define USART_1_BUFFER_SIZE 16
+
+struct spi_m_sync_descriptor  SPI_0;
+struct usart_async_descriptor USART_1;
+struct timer_descriptor       TIMER_0;
+
+static uint8_t USART_1_buffer[USART_1_BUFFER_SIZE];
 
 struct adc_sync_descriptor ADC_0;
 
 struct flash_descriptor FLASH_0;
 
-struct i2c_m_sync_desc I2C_0;
-
 struct usart_sync_descriptor USART_0;
+
+struct i2c_m_sync_desc I2C_0;
 
 struct spi_m_dma_descriptor SPI_1;
 
@@ -115,42 +121,41 @@ void SPI_0_init(void)
 	SPI_0_PORT_init();
 }
 
-void I2C_0_PORT_init(void)
+/**
+ * \brief USART Clock initialization function
+ *
+ * Enables register interface and peripheral clock
+ */
+void USART_1_CLOCK_init()
 {
 
-	gpio_set_pin_pull_mode(PA16,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA16, PINMUX_PA16C_SERCOM1_PAD0);
-
-	gpio_set_pin_pull_mode(PA17,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA17, PINMUX_PA17C_SERCOM1_PAD1);
-}
-
-void I2C_0_CLOCK_init(void)
-{
 	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM1);
 	_gclk_enable_channel(SERCOM1_GCLK_ID_CORE, CONF_GCLK_SERCOM1_CORE_SRC);
-	_gclk_enable_channel(SERCOM1_GCLK_ID_SLOW, CONF_GCLK_SERCOM1_SLOW_SRC);
 }
 
-void I2C_0_init(void)
+/**
+ * \brief USART pinmux initialization function
+ *
+ * Set each required pin to USART functionality
+ */
+void USART_1_PORT_init()
 {
-	I2C_0_CLOCK_init();
-	i2c_m_sync_init(&I2C_0, SERCOM1);
-	I2C_0_PORT_init();
+
+	gpio_set_pin_function(PA00, PINMUX_PA00D_SERCOM1_PAD0);
+
+	gpio_set_pin_function(PA01, PINMUX_PA01D_SERCOM1_PAD1);
+}
+
+/**
+ * \brief USART initialization function
+ *
+ * Enables USART peripheral, clocks and initializes USART driver
+ */
+void USART_1_init(void)
+{
+	USART_1_CLOCK_init();
+	usart_async_init(&USART_1, SERCOM1, USART_1_buffer, USART_1_BUFFER_SIZE, (void *)NULL);
+	USART_1_PORT_init();
 }
 
 void USART_0_PORT_init(void)
@@ -172,6 +177,44 @@ void USART_0_init(void)
 	USART_0_CLOCK_init();
 	usart_sync_init(&USART_0, SERCOM2, (void *)NULL);
 	USART_0_PORT_init();
+}
+
+void I2C_0_PORT_init(void)
+{
+
+	gpio_set_pin_pull_mode(PA16,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_OFF);
+
+	gpio_set_pin_function(PA16, PINMUX_PA16D_SERCOM3_PAD0);
+
+	gpio_set_pin_pull_mode(PA17,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_OFF);
+
+	gpio_set_pin_function(PA17, PINMUX_PA17D_SERCOM3_PAD1);
+}
+
+void I2C_0_CLOCK_init(void)
+{
+	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM3);
+	_gclk_enable_channel(SERCOM3_GCLK_ID_CORE, CONF_GCLK_SERCOM3_CORE_SRC);
+	_gclk_enable_channel(SERCOM3_GCLK_ID_SLOW, CONF_GCLK_SERCOM3_SLOW_SRC);
+}
+
+void I2C_0_init(void)
+{
+	I2C_0_CLOCK_init();
+	i2c_m_sync_init(&I2C_0, SERCOM3);
+	I2C_0_PORT_init();
 }
 
 void SPI_1_PORT_init(void)
@@ -386,36 +429,6 @@ void USB_0_init(void)
 void system_init(void)
 {
 	init_mcu();
-
-	// GPIO on PA00
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA00, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA00,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA00, GPIO_PIN_FUNCTION_OFF);
-
-	// GPIO on PA01
-
-	// Set pin direction to input
-	gpio_set_pin_direction(PA01, GPIO_DIRECTION_IN);
-
-	gpio_set_pin_pull_mode(PA01,
-	                       // <y> Pull configuration
-	                       // <id> pad_pull_config
-	                       // <GPIO_PULL_OFF"> Off
-	                       // <GPIO_PULL_UP"> Pull-up
-	                       // <GPIO_PULL_DOWN"> Pull-down
-	                       GPIO_PULL_OFF);
-
-	gpio_set_pin_function(PA01, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PA02
 
@@ -782,10 +795,11 @@ void system_init(void)
 	FLASH_0_init();
 
 	SPI_0_init();
-
-	I2C_0_init();
+	USART_1_init();
 
 	USART_0_init();
+
+	I2C_0_init();
 
 	SPI_1_init();
 
