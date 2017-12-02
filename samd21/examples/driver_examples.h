@@ -16,9 +16,11 @@ void ADC_0_example(void);
 
 void FLASH_0_example(void);
 
-void I2C_0_example(void);
+void USART_1_example(void);
 
 void USART_0_example(void);
+
+void I2C_0_example(void);
 
 void SPI_1_example(void);
 

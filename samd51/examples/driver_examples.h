@@ -24,6 +24,8 @@ void I2C_0_example(void);
 
 void SPI_1_example(void);
 
+void USART_1_example(void);
+
 void delay_example(void);
 
 void PWM_0_example(void);
