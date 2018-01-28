@@ -81,6 +81,13 @@ static inline void _gclk_enable_channel(const uint8_t channel, const uint8_t sou
 	hri_gclk_write_PCHCTRL_reg(GCLK, channel, source | GCLK_PCHCTRL_CHEN);
 }
 
+/**
+ * \brief Initialize GCLK generators by function references
+ * \param[in] bm Bit mapping for referenced generators,
+ *               a bit 1 in position triggers generator initialization.
+ */
+void _gclk_init_generators_by_fref(uint32_t bm);
+
 //@}
 /**@}*/
 #ifdef __cplusplus

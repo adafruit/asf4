@@ -26,11 +26,9 @@ extern "C" {
 #include <hal_flash.h>
 
 #include <hal_spi_m_sync.h>
-#include <hal_usart_async.h>
-
-#include <hal_usart_sync.h>
 
 #include <hal_i2c_m_sync.h>
+#include <hal_usart_async.h>
 
 #include <hal_spi_m_dma.h>
 
@@ -45,15 +43,13 @@ extern "C" {
 
 extern struct adc_sync_descriptor ADC_0;
 
-extern struct flash_descriptor       FLASH_0;
-extern struct spi_m_sync_descriptor  SPI_0;
-extern struct usart_async_descriptor USART_1;
+extern struct flash_descriptor      FLASH_0;
+extern struct spi_m_sync_descriptor SPI_M_SERCOM0;
 
-extern struct usart_sync_descriptor USART_0;
+extern struct i2c_m_sync_desc        I2C_M_SYNC_SERCOM1;
+extern struct usart_async_descriptor USART_ASYNC_SERCOM2;
 
-extern struct i2c_m_sync_desc I2C_0;
-
-extern struct spi_m_dma_descriptor SPI_1;
+extern struct spi_m_dma_descriptor SPI_M_DMA_SERCOM3;
 
 extern struct timer_descriptor TIMER_0;
 
@@ -68,25 +64,21 @@ void ADC_0_init(void);
 void FLASH_0_init(void);
 void FLASH_0_CLOCK_init(void);
 
-void SPI_0_PORT_init(void);
-void SPI_0_CLOCK_init(void);
-void SPI_0_init(void);
+void SPI_M_SERCOM0_PORT_init(void);
+void SPI_M_SERCOM0_CLOCK_init(void);
+void SPI_M_SERCOM0_init(void);
 
-void USART_1_PORT_init(void);
-void USART_1_CLOCK_init(void);
-void USART_1_init(void);
+void I2C_M_SYNC_SERCOM1_CLOCK_init(void);
+void I2C_M_SYNC_SERCOM1_init(void);
+void I2C_M_SYNC_SERCOM1_PORT_init(void);
 
-void USART_0_PORT_init(void);
-void USART_0_CLOCK_init(void);
-void USART_0_init(void);
+void USART_ASYNC_SERCOM2_PORT_init(void);
+void USART_ASYNC_SERCOM2_CLOCK_init(void);
+void USART_ASYNC_SERCOM2_init(void);
 
-void I2C_0_CLOCK_init(void);
-void I2C_0_init(void);
-void I2C_0_PORT_init(void);
-
-void SPI_1_PORT_init(void);
-void SPI_1_CLOCK_init(void);
-void SPI_1_init(void);
+void SPI_M_DMA_SERCOM3_PORT_init(void);
+void SPI_M_DMA_SERCOM3_CLOCK_init(void);
+void SPI_M_DMA_SERCOM3_init(void);
 
 void delay_driver_init(void);
 

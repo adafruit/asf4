@@ -82,6 +82,13 @@ static inline void _gclk_enable_channel(const uint8_t channel, const uint8_t sou
 	                           GCLK_CLKCTRL_ID(channel) | GCLK_CLKCTRL_GEN(source) | (1 << GCLK_CLKCTRL_CLKEN_Pos));
 }
 
+/**
+ * \brief Initialize GCLK generators by function references
+ * \param[in] bm Bit mapping for referenced generators,
+ *               a bit 1 in position triggers generator initialization.
+ */
+void _gclk_init_generators_by_fref(uint32_t bm);
+
 //@}
 /**@}*/
 #ifdef __cplusplus

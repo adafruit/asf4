@@ -18,13 +18,11 @@ void DAC_0_example(void);
 
 void FLASH_0_example(void);
 
-void USART_0_example(void);
+void I2C_M_SERCOM1_example(void);
 
-void I2C_0_example(void);
+void USART_ASYNC_SERCOM2_example(void);
 
-void SPI_1_example(void);
-
-void USART_1_example(void);
+void SPI_M_DMA_SERCOM3_example(void);
 
 void delay_example(void);
 

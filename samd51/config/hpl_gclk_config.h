@@ -12,7 +12,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 0 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 0 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -87,7 +88,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 1 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 1 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_OSCULP32K"> 32kHz Ultra Low Power Internal Oscillator (OSCULP32K)
@@ -161,7 +163,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 2 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 2 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -236,7 +239,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 3 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 3 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -311,7 +315,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 4 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 4 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -386,7 +391,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 5 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 5 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -461,7 +467,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 6 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 6 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -536,7 +543,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 7 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 7 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -611,7 +619,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 8 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 8 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -686,7 +695,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 9 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 9 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -761,7 +771,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 10 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 10 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1
@@ -836,7 +847,8 @@
 #endif
 
 // <h> Generic Clock Generator Control
-// <y> Generic clock generator 11 source// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
+// <y> Generic clock generator 11 source
+// <GCLK_GENCTRL_SRC_XOSC0"> External Crystal Oscillator 8-48MHz (XOSC0)
 // <GCLK_GENCTRL_SRC_XOSC1"> External Crystal Oscillator 8-48MHz (XOSC1)
 // <GCLK_GENCTRL_SRC_GCLKIN"> Generic clock generator input pad
 // <GCLK_GENCTRL_SRC_GCLKGEN1"> Generic clock generator 1

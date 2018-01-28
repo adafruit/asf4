@@ -540,10 +540,24 @@ static bool usbdc_set_interface(uint16_t alt_set, uint16_t ifc_id)
 {
 	struct usbd_descriptors desc;
 	struct usbdf_driver *   func;
-	uint8_t *               ifc;
+	uint8_t *               ifc = NULL;
 
-	desc.sod = usbdc.desces.ls_fs->sod;
-	desc.eod = usbdc.desces.ls_fs->eod;
+#if CONF_USBD_HS_SP
+	if (usb_d_get_speed() == USB_SPEED_HS && usbdc.desces.hs) {
+		ifc = usb_find_cfg_desc(usbdc.desces.hs->sod, usbdc.desces.hs->eod, usbdc.cfg_value);
+	} else {
+		/* Obtain descriptor from FS descriptors */
+	}
+#endif
+	if (!ifc) {
+		ifc = usb_find_cfg_desc(usbdc.desces.ls_fs->sod, usbdc.desces.ls_fs->eod, usbdc.cfg_value);
+	}
+	if (NULL == ifc) {
+		return false;
+	}
+	desc.sod = ifc;
+	desc.eod = ifc + usb_cfg_desc_total_len(ifc);
+
 	if (NULL == (ifc = usb_find_desc(desc.sod, desc.eod, USB_DT_INTERFACE))) {
 		return false;
 	}
