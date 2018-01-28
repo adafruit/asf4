@@ -55,7 +55,6 @@ usb/class/msc/device
 OBJS +=  \
 hal/src/hal_io.o \
 hpl/systick/hpl_systick.o \
-usb/usb_protocol.o \
 hal/src/hal_spi_m_dma.o \
 usb/class/hid/device/hiddf_generic.o \
 usb/class/cdc/device/cdcdf_acm.o \
@@ -75,7 +74,7 @@ hal/utils/src/utils_assert.o \
 hpl/dmac/hpl_dmac.o \
 hpl/pm/hpl_pm.o \
 usb/class/hid/device/hiddf_keyboard.o \
-hal/src/hal_usart_sync.o \
+usb/usb_protocol.o \
 hpl/dac/hpl_dac.o \
 hpl/gclk/hpl_gclk.o \
 hal/src/hal_flash.o \
@@ -106,7 +105,6 @@ hpl/adc/hpl_adc.o
 OBJS_AS_ARGS +=  \
 "hal/src/hal_io.o" \
 "hpl/systick/hpl_systick.o" \
-"usb/usb_protocol.o" \
 "hal/src/hal_spi_m_dma.o" \
 "usb/class/hid/device/hiddf_generic.o" \
 "usb/class/cdc/device/cdcdf_acm.o" \
@@ -126,7 +124,7 @@ OBJS_AS_ARGS +=  \
 "hpl/dmac/hpl_dmac.o" \
 "hpl/pm/hpl_pm.o" \
 "usb/class/hid/device/hiddf_keyboard.o" \
-"hal/src/hal_usart_sync.o" \
+"usb/usb_protocol.o" \
 "hpl/dac/hpl_dac.o" \
 "hpl/gclk/hpl_gclk.o" \
 "hal/src/hal_flash.o" \
@@ -187,7 +185,6 @@ DEPS_AS_ARGS +=  \
 "hal/src/hal_usb_device.d" \
 "usb_start.d" \
 "hal/src/hal_init.d" \
-"hal/src/hal_usart_sync.d" \
 "usb/class/hid/device/hiddf_keyboard.d" \
 "hpl/dac/hpl_dac.d" \
 "driver_init.d" \
