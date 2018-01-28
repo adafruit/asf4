@@ -299,8 +299,8 @@ drivers:
         - name: CPU
           input: CPU
         configuration: {}
-  SPI_0:
-    user_label: SPI_0
+  SPI_M_SERCOM0:
+    user_label: SPI_M_SERCOM0
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM0::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.Sync
     functionality: SPI
     api: HAL:Driver:SPI_Master_Sync
@@ -339,40 +339,32 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
-  USART_1:
-    user_label: USART_1
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM1::driver_config_definition::UART::HAL:Driver:USART.Async
-    functionality: USART
-    api: HAL:Driver:USART_Async
+  I2C_M_SYNC_SERCOM1:
+    user_label: I2C_M_SYNC_SERCOM1
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM1::driver_config_definition::I2C.Master.Standard~2FFast-mode::HAL:Driver:I2C.Master.Sync
+    functionality: I2C
+    api: HAL:Driver:I2C_Master_Sync
     configuration:
-      usart_advanced: false
-      usart_arch_clock_mode: USART with internal clock
-      usart_arch_cloden: false
-      usart_arch_dbgstop: Keep running
-      usart_arch_dord: LSB is transmitted first
-      usart_arch_enc: No encoding
-      usart_arch_fractional: 0
-      usart_arch_ibon: false
-      usart_arch_runstdby: false
-      usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
-      usart_arch_sampr: 16x arithmetic
-      usart_arch_sfde: false
-      usart_baud_rate: 9600
-      usart_character_size: 8 bits
-      usart_parity: No parity
-      usart_rx_enable: true
-      usart_stop_bit: One stop bit
-      usart_tx_enable: true
+      i2c_master_advanced: false
+      i2c_master_arch_dbgstop: Keep running
+      i2c_master_arch_inactout: Disabled
+      i2c_master_arch_lowtout: false
+      i2c_master_arch_mexttoen: false
+      i2c_master_arch_runstdby: false
+      i2c_master_arch_sdahold: 300-600ns hold time
+      i2c_master_arch_sexttoen: false
+      i2c_master_arch_trise: 215
+      i2c_master_baud_rate: 100000
     optional_signals: []
     variant:
-      specification: TXPO=0, RXPO=1, CMODE=0
+      specification: SDA=0, SCL=1
       required_signals:
       - name: SERCOM1/PAD/0
-        pad: PA00
-        label: TX
+        pad: PA16
+        label: SDA
       - name: SERCOM1/PAD/1
-        pad: PA01
-        label: RX
+        pad: PA17
+        label: SCL
     clocks:
       domain_group:
         nodes:
@@ -383,11 +375,11 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
-  USART_0:
-    user_label: USART_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM2::driver_config_definition::UART::HAL:Driver:USART.Sync
+  USART_ASYNC_SERCOM2:
+    user_label: USART_ASYNC_SERCOM2
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM2::driver_config_definition::UART::HAL:Driver:USART.Async
     functionality: USART
-    api: HAL:Driver:USART_Sync
+    api: HAL:Driver:USART_Async
     configuration:
       usart_advanced: false
       usart_arch_clock_mode: USART with internal clock
@@ -427,45 +419,9 @@ drivers:
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
-  I2C_0:
-    user_label: I2C_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM3::driver_config_definition::I2C.Master.Standard~2FFast-mode::HAL:Driver:I2C.Master.Sync
-    functionality: I2C
-    api: HAL:Driver:I2C_Master_Sync
-    configuration:
-      i2c_master_advanced: false
-      i2c_master_arch_dbgstop: Keep running
-      i2c_master_arch_inactout: Disabled
-      i2c_master_arch_lowtout: false
-      i2c_master_arch_mexttoen: false
-      i2c_master_arch_runstdby: false
-      i2c_master_arch_sdahold: 300-600ns hold time
-      i2c_master_arch_sexttoen: false
-      i2c_master_arch_trise: 215
-      i2c_master_baud_rate: 100000
-    optional_signals: []
-    variant:
-      specification: SDA=0, SCL=1
-      required_signals:
-      - name: SERCOM3/PAD/0
-        pad: PA16
-        label: SDA
-      - name: SERCOM3/PAD/1
-        pad: PA17
-        label: SCL
-    clocks:
-      domain_group:
-        nodes:
-        - name: Core
-          input: Generic clock generator 0
-        - name: Slow
-          input: Generic clock generator 3
-        configuration:
-          core_gclk_selection: Generic clock generator 0
-          slow_gclk_selection: Generic clock generator 3
-  SPI_1:
-    user_label: SPI_1
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM4::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.DMA
+  SPI_M_DMA_SERCOM3:
+    user_label: SPI_M_DMA_SERCOM3
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM3::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.DMA
     functionality: SPI
     api: HAL:Driver:SPI_Master_DMA
     configuration:
@@ -481,20 +437,20 @@ drivers:
       spi_master_dma_rx_channel: 1
       spi_master_dma_tx_channel: 0
       spi_master_dummybyte: 511
-      spi_master_rx_channel: false
+      spi_master_rx_channel: true
       spi_master_rx_enable: true
     optional_signals: []
     variant:
       specification: TXPO=1, RXPO=0
       required_signals:
-      - name: SERCOM4/PAD/0
-        pad: PA12
+      - name: SERCOM3/PAD/0
+        pad: PA22
         label: MISO
-      - name: SERCOM4/PAD/2
-        pad: PB10
+      - name: SERCOM3/PAD/2
+        pad: PA20
         label: MOSI
-      - name: SERCOM4/PAD/3
-        pad: PB11
+      - name: SERCOM3/PAD/3
+        pad: PA19
         label: SCK
     clocks:
       domain_group:
@@ -524,6 +480,7 @@ drivers:
     api: HAL:Driver:Timer
     configuration:
       rtc_arch_comp_val: 1024
+      rtc_arch_init_reset: true
       rtc_arch_prescaler: Peripheral clock divided by 1
       rtc_cmpeo0: false
       rtc_event_control: false
@@ -1000,18 +957,6 @@ drivers:
         configuration:
           usb_gclk_selection: Generic clock generator 0
 pads:
-  PA00:
-    name: PA00
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA00
-    mode: Peripheral IO
-    user_label: PA00
-    configuration: null
-  PA01:
-    name: PA01
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA01
-    mode: Peripheral IO
-    user_label: PA01
-    configuration: null
   PA02:
     name: PA02
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA02
@@ -1084,24 +1029,6 @@ pads:
     mode: Digital input
     user_label: PA11
     configuration: null
-  PB10:
-    name: PB10
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB10
-    mode: Digital output
-    user_label: PB10
-    configuration: null
-  PB11:
-    name: PB11
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB11
-    mode: Digital output
-    user_label: PB11
-    configuration: null
-  PA12:
-    name: PA12
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA12
-    mode: Digital input
-    user_label: PA12
-    configuration: null
   PA13:
     name: PA13
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA13
@@ -1141,20 +1068,14 @@ pads:
   PA19:
     name: PA19
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA19
-    mode: Digital input
+    mode: Digital output
     user_label: PA19
     configuration: null
   PA20:
     name: PA20
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA20
-    mode: Digital input
+    mode: Digital output
     user_label: PA20
-    configuration: null
-  PA21:
-    name: PA21
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA21
-    mode: Digital input
-    user_label: PA21
     configuration: null
   PA22:
     name: PA22

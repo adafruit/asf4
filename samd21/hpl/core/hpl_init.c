@@ -43,11 +43,20 @@
 
 #include <hpl_gpio.h>
 #include <hpl_init.h>
+#include <hpl_gclk_base.h>
 #include <hpl_pm_config.h>
 #include <hpl_pm_base.h>
 
 #include <hpl_dma.h>
 #include <hpl_dmac_config.h>
+
+/* Referenced GCLKs, should be initialized firstly
+* - GCLK3 for DPLL
+*/
+#define _GCLK_INIT_1ST 0x00000008
+
+/* Not referenced GCLKs, initialized last */
+#define _GCLK_INIT_LAST 0xFFFFFFF7
 
 /**
  * \brief Initialize the hardware abstraction layer
@@ -58,8 +67,11 @@ void _init_chip(void)
 
 	_pm_init();
 	_sysctrl_init_sources();
-	_gclk_init_generators();
+#if _GCLK_INIT_1ST
+	_gclk_init_generators_by_fref(_GCLK_INIT_1ST);
+#endif
 	_sysctrl_init_referenced_generators();
+	_gclk_init_generators_by_fref(_GCLK_INIT_LAST);
 
 #if CONF_DMAC_ENABLE
 	_pm_enable_bus_clock(PM_BUS_AHB, DMAC);

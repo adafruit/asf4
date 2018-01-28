@@ -168,7 +168,7 @@ static struct usart_configuration _usarts[] = {
 };
 #endif
 
-static struct _usart_async_device *_sercom1_dev = NULL;
+static struct _usart_async_device *_sercom2_dev = NULL;
 
 static uint8_t _get_sercom_index(const void *const hw);
 static uint8_t _sercom_get_irq_num(const void *const hw);
@@ -625,8 +625,8 @@ static uint8_t _get_sercom_index(const void *const hw)
 static void _sercom_init_irq_param(const void *const hw, void *dev)
 {
 
-	if (hw == SERCOM1) {
-		_sercom1_dev = (struct _usart_async_device *)dev;
+	if (hw == SERCOM2) {
+		_sercom2_dev = (struct _usart_async_device *)dev;
 	}
 }
 
@@ -2360,9 +2360,9 @@ static inline const struct sercomspi_regs_cfg *_spi_get_regs(const uint32_t hw_a
 	return NULL;
 }
 
-void SERCOM1_Handler(void)
+void SERCOM2_Handler(void)
 {
-	_sercom_usart_interrupt_handler(_sercom1_dev);
+	_sercom_usart_interrupt_handler(_sercom2_dev);
 }
 
 int32_t _spi_m_sync_init(struct _spi_m_sync_dev *dev, void *const hw)
