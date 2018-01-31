@@ -49,7 +49,7 @@
 #define ERR_RPT_ZLP 0 /* Uses ZLP on IN error case */
 
 /** MSC Class Transfer Stage Type */
-enum mscdf_xfer_stage_type { MSCDF_CMD_STAGE, MSCDF_DATA_STAGE, MSCDF_STATUS_STAGE };
+enum mscdf_xfer_stage_type { MSCDF_CMD_STAGE, MSCDF_DATA_STAGE, MSCDF_STATUS_STAGE, MSCDF_ERROR_STAGE };
 
 /** USB Device MSC Function Specific Data */
 struct mscdf_func_data {
@@ -92,7 +92,11 @@ static mscdf_test_disk_ready_t   mscdf_test_disk_ready   = NULL;
 static mscdf_xfer_blocks_done_t  mscdf_xfer_blocks_done  = NULL;
 
 COMPILER_ALIGNED(4)
-static struct usb_msc_cbw mscdf_cbw;
+static union {
+	uint32_t           u32[32 / 4];
+	struct usb_msc_cbw cbw;
+} _mscdf_cbw;
+#define mscdf_cbw _mscdf_cbw.cbw
 
 COMPILER_ALIGNED(4)
 static struct usb_msc_csw mscdf_csw = {USB_CSW_SIGNATURE, 0, 0, 0};
@@ -110,7 +114,7 @@ static struct scsi_mode_sense6_data mscdf_sense6_data = {0, 0, false, 0, 0};
 static bool mscdf_wait_cbw(void)
 {
 	_mscdf_funcd.xfer_stage = MSCDF_CMD_STAGE;
-	return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_out, (uint8_t *)&mscdf_cbw, 31, false);
+	return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_out, (uint8_t *)&mscdf_cbw, 32, false);
 }
 
 /**
@@ -166,6 +170,11 @@ static void mscdf_request_sense(int32_t err_codes)
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_WRITE_PROTECTED);
 		break;
 
+	case ERR_BAD_ADDRESS:
+		mscdf_sense_data.sense_flag_key = SCSI_SK_ILLEGAL_REQUEST;
+		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_LBA_OUT_OF_RANGE);
+		break;
+
 	default:
 		mscdf_sense_data.sense_flag_key = SCSI_SK_ILLEGAL_REQUEST;
 		mscdf_sense_data.AddSense       = BE16(SCSI_ASC_INVALID_COMMAND_OPERATION_CODE);
@@ -176,20 +185,40 @@ static void mscdf_request_sense(int32_t err_codes)
 /**
  * \brief USB MSC Stack invalid command process
  */
-static bool mscdf_invalid_cmd(void)
+static bool mscdf_invalid_cmd(int32_t rc)
 {
 	struct usb_msc_cbw *pcbw = &mscdf_cbw;
 	struct usb_msc_csw *pcsw = &mscdf_csw;
 
 	pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
-
-	mscdf_request_sense(ERR_UNSUPPORTED_OP);
-
-	if ((pcbw->bmCBWFlags & USB_EP_DIR_IN) && pcsw->dCSWDataResidue) {
-		return mscdf_terminate_in();
+	mscdf_request_sense(rc);
+	if (pcbw->bmCBWFlags & 0x80) {
+		if (pcsw->dCSWDataResidue) {
+			_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
+			return mscdf_terminate_in();
+		} else {
+			return mscdf_send_csw();
+		}
+	} else if (pcsw->dCSWDataResidue) {
+		_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
+		usb_d_ep_halt(_mscdf_funcd.func_ep_out, USB_EP_HALT_SET);
 	} else {
 		return mscdf_send_csw();
 	}
+	return true;
+}
+
+/**
+ * \brief Return true if length and direction expectation error
+ */
+static bool mscdf_cmd_error(bool dir_expect, uint32_t len_expect)
+{
+	struct usb_msc_cbw *pcbw = &mscdf_cbw;
+	bool                dir  = pcbw->bmCBWFlags & 0x80;
+	if (dir == dir_expect && pcbw->dCBWDataTransferLength == len_expect) {
+		return false;
+	}
+	return mscdf_invalid_cmd(ERR_INVALID_ARG);
 }
 
 /**
@@ -209,6 +238,9 @@ static bool mscdf_read_write(uint32_t count)
 		address = (uint32_t)(pcbw->CDB[2] << 24) + (uint32_t)(pcbw->CDB[3] << 16) + (uint32_t)(pcbw->CDB[4] << 8)
 		          + pcbw->CDB[5];
 		nblocks = (uint32_t)(pcbw->CDB[7] << 8) + pcbw->CDB[8];
+		if (mscdf_cmd_error(pcbw->CDB[0] == SBC_READ10, nblocks << 9)) {
+			return true;
+		}
 		if (pcbw->CDB[0] == SBC_READ10) {
 			if (NULL != mscdf_read_disk) {
 				ret = mscdf_read_disk(pcbw->bCBWLUN, address, nblocks);
@@ -226,10 +258,7 @@ static bool mscdf_read_write(uint32_t count)
 			_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
 			return false;
 		}
-		pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
-		mscdf_request_sense(ret);
-		return mscdf_terminate_in();
-
+		return mscdf_invalid_cmd(ret);
 	} else if (_mscdf_funcd.xfer_stage == MSCDF_DATA_STAGE) {
 		if (count == 0) {
 			return mscdf_send_csw();
@@ -279,13 +308,18 @@ static bool mscdf_cb_ep_bulk_in(const uint8_t ep, const enum usb_xfer_code rc, c
 	(void)ep;
 	(void)rc;
 
-	if (rc == USB_XFER_UNHALT) {
-		if (_mscdf_funcd.xfer_stage != MSCDF_CMD_STAGE) {
+	if (rc == USB_XFER_RESET) {
+		return true;
+	} else if (rc == USB_XFER_UNHALT) {
+		if (_mscdf_funcd.xfer_stage == MSCDF_ERROR_STAGE) {
+			usb_d_ep_halt(ep, USB_EP_HALT_SET);
+			return true;
+		} else if (_mscdf_funcd.xfer_stage != MSCDF_CMD_STAGE) {
 			return mscdf_send_csw();
 		}
 	}
 
-	if (rc == USB_XFER_RESET || rc == USB_XFER_ERROR) {
+	if (rc == USB_XFER_ERROR) {
 		_mscdf_funcd.xfer_stage = MSCDF_CMD_STAGE;
 		_mscdf_funcd.xfer_busy  = false;
 	}
@@ -318,35 +352,52 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 	int32_t             ret;
 
 	(void)ep;
-	if (rc == USB_XFER_UNHALT) {
-		return mscdf_wait_cbw();
+	if (rc == USB_XFER_RESET) {
+		return true;
+	} else if (rc == USB_XFER_UNHALT) {
+		if (_mscdf_funcd.xfer_stage == MSCDF_ERROR_STAGE) {
+			usb_d_ep_halt(ep, USB_EP_HALT_SET);
+			return true;
+		} else if (_mscdf_funcd.xfer_stage == MSCDF_CMD_STAGE) {
+			return mscdf_wait_cbw();
+		} else {
+			return mscdf_send_csw();
+		}
 	}
 
 	// This PDF by Seagate is a great reference:
 	// https://www.seagate.com/files/staticfiles/support/docs/manual/Interface%20manuals/100293068j.pdf
 
 	if (_mscdf_funcd.xfer_stage == MSCDF_CMD_STAGE) {
-		if (pcbw->dCBWSignature == USB_CBW_SIGNATURE) {
+		if (count == 31 && pcbw->dCBWSignature == USB_CBW_SIGNATURE) {
 			pcsw->dCSWTag         = pcbw->dCBWTag;
 			pcsw->dCSWDataResidue = pcbw->dCBWDataTransferLength;
 
 			switch (pcbw->CDB[0]) {
 			case SPC_INQUIRY:
+				if (!(pcbw->bmCBWFlags & 0x80)) {
+					return mscdf_invalid_cmd(ERR_INVALID_ARG);
+				}
 				if (NULL != mscdf_inquiry_disk) {
 					pbuf = mscdf_inquiry_disk(pcbw->bCBWLUN);
 				}
-				if (pbuf == NULL) {
+				if (NULL == pbuf) {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
 					mscdf_request_sense(ERR_NOT_FOUND);
 					return mscdf_terminate_in();
 				} else {
 					_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
 					pcsw->bCSWStatus        = USB_CSW_STATUS_PASS;
-					pcsw->dCSWDataResidue   = 0;
-					return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 36, false);
+				if (pcbw->dCBWDataTransferLength > 36) {
+					pcbw->dCBWDataTransferLength = 36;
 				}
+				pcsw->dCSWDataResidue -= pcbw->dCBWDataTransferLength;
+				return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, pcbw->dCBWDataTransferLength, false);
 
 			case SBC_READ_CAPACITY10:
+				if (mscdf_cmd_error(true, 8)) {
+					return true;
+				}
 				if (NULL != mscdf_get_disk_capacity) {
 					pbuf = mscdf_get_disk_capacity(pcbw->bCBWLUN);
 				}
@@ -356,7 +407,7 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 					    = (uint32_t)(pbuf[4] << 24) + (uint32_t)(pbuf[5] << 16) + (uint32_t)(pbuf[6] << 8) + pbuf[7];
 					pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
 					pcsw->dCSWDataResidue = 0;
-					return usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false) == ERR_NONE;
+					return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false) == ERR_NONE;
 				} else {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
 					mscdf_request_sense(ERR_NOT_FOUND);
@@ -368,6 +419,9 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				return mscdf_read_write(count);
 
 			case SPC_PREVENT_ALLOW_MEDIUM_REMOVAL:
+				if (mscdf_cmd_error(false, 0)) {
+					return true;
+				}
 				if (0x00 == pcbw->CDB[4]) {
 					pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
 					pcsw->dCSWDataResidue = 0;
@@ -376,6 +430,9 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				break;
 
 			case SBC_START_STOP_UNIT:
+				if (mscdf_cmd_error(false, 0)) {
+					return true;
+				}
 				if (0x02 == pcbw->CDB[4]) {
 					if (NULL != mscdf_eject_disk) {
 						ret = mscdf_eject_disk(pcbw->bCBWLUN);
@@ -397,13 +454,17 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				break;
 
 			case SPC_REQUEST_SENSE:
+				if (!(pcbw->bmCBWFlags & 0x80)) {
+					return mscdf_invalid_cmd(ERR_INVALID_ARG);
+				}
 				_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
 				pcsw->bCSWStatus        = USB_CSW_STATUS_PASS;
-				pcsw->dCSWDataResidue   = 0;
-				return usbdc_xfer(_mscdf_funcd.func_ep_in,
-				                  (uint8_t *)&mscdf_sense_data,
-				                  sizeof(struct scsi_request_sense_data),
-				                  false);
+				if (pcbw->dCBWDataTransferLength > sizeof(struct scsi_request_sense_data)) {
+					pcbw->dCBWDataTransferLength = sizeof(struct scsi_request_sense_data);
+				}
+				pcsw->dCSWDataResidue -= pcbw->dCBWDataTransferLength;
+				return ERR_NONE == usbdc_xfer(
+				    _mscdf_funcd.func_ep_in, (uint8_t *)&mscdf_sense_data, pcbw->dCBWDataTransferLength, false);
 
 			case SPC_MODE_SENSE6:
 				ret = ERR_NONE;
@@ -421,12 +482,15 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 					return mscdf_terminate_in();
 				}
 				_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
-				return usbdc_xfer(_mscdf_funcd.func_ep_in,
+				return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in,
 					              (uint8_t *)&mscdf_sense6_data,
 					              sizeof(struct scsi_mode_sense6_data),
 					              false);
 
 			case SPC_TEST_UNIT_READY:
+				if (mscdf_cmd_error(false, 0)) {
+					return true;
+				}
 				if (NULL != mscdf_test_disk_ready) {
 					ret = mscdf_test_disk_ready(pcbw->bCBWLUN);
 					if (ERR_NONE == ret) {
@@ -445,8 +509,13 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 			default:
 				break;
 			}
-			return mscdf_invalid_cmd();
+			return mscdf_invalid_cmd(ERR_UNSUPPORTED_OP);
 		} else {
+			_mscdf_funcd.xfer_stage = MSCDF_ERROR_STAGE;
+			pcsw->bCSWStatus        = USB_CSW_STATUS_FAIL;
+			mscdf_request_sense(ERR_INVALID_ARG);
+			usb_d_ep_halt(_mscdf_funcd.func_ep_in, USB_EP_HALT_SET);
+			usb_d_ep_halt(_mscdf_funcd.func_ep_out, USB_EP_HALT_SET);
 			return true;
 		}
 	} else if (_mscdf_funcd.xfer_stage == MSCDF_DATA_STAGE) {

@@ -49,21 +49,31 @@ void FLASH_0_example(void)
 }
 
 /**
- * Example of using SPI_0 to write "Hello World" using the IO abstraction.
+ * Example of using SPI_M_SERCOM0 to write "Hello World" using the IO abstraction.
  */
-static uint8_t example_SPI_0[12] = "Hello World!";
+static uint8_t example_SPI_M_SERCOM0[12] = "Hello World!";
 
-void SPI_0_example(void)
+void SPI_M_SERCOM0_example(void)
 {
 	struct io_descriptor *io;
-	spi_m_sync_get_io_descriptor(&SPI_0, &io);
+	spi_m_sync_get_io_descriptor(&SPI_M_SERCOM0, &io);
 
-	spi_m_sync_enable(&SPI_0);
-	io_write(io, example_SPI_0, 12);
+	spi_m_sync_enable(&SPI_M_SERCOM0);
+	io_write(io, example_SPI_M_SERCOM0, 12);
+}
+
+void I2C_M_SYNC_SERCOM1_example(void)
+{
+	struct io_descriptor *I2C_M_SYNC_SERCOM1_io;
+
+	i2c_m_sync_get_io_descriptor(&I2C_M_SYNC_SERCOM1, &I2C_M_SYNC_SERCOM1_io);
+	i2c_m_sync_enable(&I2C_M_SYNC_SERCOM1);
+	i2c_m_sync_set_slaveaddr(&I2C_M_SYNC_SERCOM1, 0x12, I2C_M_SEVEN);
+	io_write(I2C_M_SYNC_SERCOM1_io, (uint8_t *)"Hello World!", 12);
 }
 
 /**
- * Example of using USART_1 to write "Hello World" using the IO abstraction.
+ * Example of using USART_ASYNC_SERCOM2 to write "Hello World" using the IO abstraction.
  *
  * Since the driver is asynchronous we need to use statically allocated memory for string
  * because driver initiates transfer and then returns before the transmission is completed.
@@ -71,50 +81,28 @@ void SPI_0_example(void)
  * Once transfer has been completed the tx_cb function will be called.
  */
 
-static uint8_t example_USART_1[12] = "Hello World!";
+static uint8_t example_USART_ASYNC_SERCOM2[12] = "Hello World!";
 
-static void tx_cb_USART_1(const struct usart_async_descriptor *const io_descr)
+static void tx_cb_USART_ASYNC_SERCOM2(const struct usart_async_descriptor *const io_descr)
 {
 	/* Transfer completed */
 }
 
-void USART_1_example(void)
+void USART_ASYNC_SERCOM2_example(void)
 {
 	struct io_descriptor *io;
 
-	usart_async_register_callback(&USART_1, USART_ASYNC_TXC_CB, tx_cb_USART_1);
-	/*usart_async_register_callback(&USART_1, USART_ASYNC_RXC_CB, rx_cb);
-	usart_async_register_callback(&USART_1, USART_ASYNC_ERROR_CB, err_cb);*/
-	usart_async_get_io_descriptor(&USART_1, &io);
-	usart_async_enable(&USART_1);
+	usart_async_register_callback(&USART_ASYNC_SERCOM2, USART_ASYNC_TXC_CB, tx_cb_USART_ASYNC_SERCOM2);
+	/*usart_async_register_callback(&USART_ASYNC_SERCOM2, USART_ASYNC_RXC_CB, rx_cb);
+	usart_async_register_callback(&USART_ASYNC_SERCOM2, USART_ASYNC_ERROR_CB, err_cb);*/
+	usart_async_get_io_descriptor(&USART_ASYNC_SERCOM2, &io);
+	usart_async_enable(&USART_ASYNC_SERCOM2);
 
-	io_write(io, example_USART_1, 12);
+	io_write(io, example_USART_ASYNC_SERCOM2, 12);
 }
 
 /**
- * Example of using USART_0 to write "Hello World" using the IO abstraction.
- */
-void USART_0_example(void)
-{
-	struct io_descriptor *io;
-	usart_sync_get_io_descriptor(&USART_0, &io);
-	usart_sync_enable(&USART_0);
-
-	io_write(io, (uint8_t *)"Hello World!", 12);
-}
-
-void I2C_0_example(void)
-{
-	struct io_descriptor *I2C_0_io;
-
-	i2c_m_sync_get_io_descriptor(&I2C_0, &I2C_0_io);
-	i2c_m_sync_enable(&I2C_0);
-	i2c_m_sync_set_slaveaddr(&I2C_0, 0x12, I2C_M_SEVEN);
-	io_write(I2C_0_io, (uint8_t *)"Hello World!", 12);
-}
-
-/**
- * Example of using SPI_1 to write "Hello World" using the IO abstraction.
+ * Example of using SPI_M_DMA_SERCOM3 to write "Hello World" using the IO abstraction.
  *
  * Since the driver is asynchronous we need to use statically allocated memory for string
  * because driver initiates transfer and then returns before the transmission is completed.
@@ -122,21 +110,21 @@ void I2C_0_example(void)
  * Once transfer has been completed the tx_cb function will be called.
  */
 
-static uint8_t example_SPI_1[12] = "Hello World!";
+static uint8_t example_SPI_M_DMA_SERCOM3[12] = "Hello World!";
 
-static void tx_complete_cb_SPI_1(struct _dma_resource *resource)
+static void tx_complete_cb_SPI_M_DMA_SERCOM3(struct _dma_resource *resource)
 {
 	/* Transfer completed */
 }
 
-void SPI_1_example(void)
+void SPI_M_DMA_SERCOM3_example(void)
 {
 	struct io_descriptor *io;
-	spi_m_dma_get_io_descriptor(&SPI_1, &io);
+	spi_m_dma_get_io_descriptor(&SPI_M_DMA_SERCOM3, &io);
 
-	spi_m_dma_register_callback(&SPI_1, SPI_M_DMA_CB_TX_DONE, tx_complete_cb_SPI_1);
-	spi_m_dma_enable(&SPI_1);
-	io_write(io, example_SPI_1, 12);
+	spi_m_dma_register_callback(&SPI_M_DMA_SERCOM3, SPI_M_DMA_CB_TX_DONE, tx_complete_cb_SPI_M_DMA_SERCOM3);
+	spi_m_dma_enable(&SPI_M_DMA_SERCOM3);
+	io_write(io, example_SPI_M_DMA_SERCOM3, 12);
 }
 
 void delay_example(void)
