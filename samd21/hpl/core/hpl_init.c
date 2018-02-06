@@ -44,6 +44,7 @@
 #include <hpl_gpio.h>
 #include <hpl_init.h>
 #include <hpl_gclk_base.h>
+#include <hpl_gclk_config.h>
 #include <hpl_pm_config.h>
 #include <hpl_pm_base.h>
 
@@ -51,12 +52,20 @@
 #include <hpl_dmac_config.h>
 
 /* Referenced GCLKs, should be initialized firstly
-* - GCLK3 for DPLL
 */
-#define _GCLK_INIT_1ST 0x00000008
+#ifdef CIRCUITPY_GCLK_INIT_1ST
+#define _GCLK_INIT_1ST CIRCUITPY_GCLK_INIT_1ST
+#else
+#warning No CIRCUITPY_GCLK_INIT_1ST defined!
+#define _GCLK_INIT_1ST 0x0000
+#endif
 
 /* Not referenced GCLKs, initialized last */
-#define _GCLK_INIT_LAST 0xFFFFFFF7
+#ifdef CIRCUITPY_GCLK_INIT_1ST
+#define _GCLK_INIT_LAST CIRCUITPY_GCLK_INIT_LAST
+#else
+#define _GCLK_INIT_LAST (~_GCLK_INIT_1ST)
+#endif
 
 /**
  * \brief Initialize the hardware abstraction layer

@@ -274,7 +274,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(7));
 	}
 #endif
-#if CONF_GCLK_GEN_8_GENEN == 1
+#if defined(CONF_GCLK_GEN_8_GENEN) && CONF_GCLK_GEN_8_GENEN == 1
 	if (bm & (1ul << 8)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_8_DIV) | GCLK_GENDIV_ID(8));
 		hri_gclk_write_GENCTRL_reg(GCLK,

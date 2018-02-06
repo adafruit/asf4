@@ -388,6 +388,7 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 				} else {
 					_mscdf_funcd.xfer_stage = MSCDF_DATA_STAGE;
 					pcsw->bCSWStatus        = USB_CSW_STATUS_PASS;
+                                }
 				if (pcbw->dCBWDataTransferLength > 36) {
 					pcbw->dCBWDataTransferLength = 36;
 				}
@@ -407,7 +408,7 @@ static bool mscdf_cb_ep_bulk_out(const uint8_t ep, const enum usb_xfer_code rc, 
 					    = (uint32_t)(pbuf[4] << 24) + (uint32_t)(pbuf[5] << 16) + (uint32_t)(pbuf[6] << 8) + pbuf[7];
 					pcsw->bCSWStatus      = USB_CSW_STATUS_PASS;
 					pcsw->dCSWDataResidue = 0;
-					return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false) == ERR_NONE;
+					return ERR_NONE == usbdc_xfer(_mscdf_funcd.func_ep_in, pbuf, 8, false);
 				} else {
 					pcsw->bCSWStatus = USB_CSW_STATUS_FAIL;
 					mscdf_request_sense(ERR_NOT_FOUND);

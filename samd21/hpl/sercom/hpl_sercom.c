@@ -62,7 +62,7 @@
 // 
 // #define PROTOTYPE_SERCOM_SPI_M_SYNC SERCOMx
 // #define PROTOTYPE_SERCOM_I2CM_SYNC SERCOMx
-// #define PROTOTYPE_SERCOM_USART_SYNC SERCOMx
+// #define PROTOTYPE_SERCOM_USART_ASYNC SERCOMx
 
 // Use these to choose the right settings from the _spis, _i2cms, and _usarts tables.
 // Look up the prototype instance by using the prototype SERCOM addresses,
@@ -653,7 +653,7 @@ static int32_t _usart_init(void *const hw)
 {
  
 	// Use a prototypical instance to get settings, not the given SERCOM (hw).
-        uint8_t i = _get_sercom_index(PROTOTYPE_SERCOM_USART_SYNC);
+        uint8_t i = _get_sercom_index(PROTOTYPE_SERCOM_USART_ASYNC);
 
 	hri_sercomusart_wait_for_sync(hw, SERCOM_USART_SYNCBUSY_SWRST);
 	if (hri_sercomusart_get_CTRLA_ENABLE_bit(hw)) {

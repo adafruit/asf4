@@ -935,7 +935,7 @@ int32_t usbdc_validate_desces(struct usbd_descriptors *desces)
  */
 int32_t usbdc_check_desces(struct usbdc_descriptors *desces)
 {
-#ifdef CONF_USBD_HS_SP
+#if CONF_USBD_HS_SP
 	int32_t rc;
 	if (desces->hs == NULL && desces->ls_fs == NULL) {
 		return ERR_NOT_FOUND;

@@ -149,7 +149,10 @@ uint32_t pwm_get_version(void)
  */
 static void pwm_period_expired(struct _pwm_device *device)
 {
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct pwm_descriptor *const descr = CONTAINER_OF(device, struct pwm_descriptor, device);
+        #pragma GCC diagnostic pop
 
 	if (descr->pwm_cb.period) {
 		descr->pwm_cb.period(descr);
@@ -161,7 +164,10 @@ static void pwm_period_expired(struct _pwm_device *device)
  */
 static void pwm_detect_fault(struct _pwm_device *device)
 {
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct pwm_descriptor *const descr = CONTAINER_OF(device, struct pwm_descriptor, device);
+        #pragma GCC diagnostic pop
 
 	if (descr->pwm_cb.error) {
 		descr->pwm_cb.error(descr);
