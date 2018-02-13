@@ -320,7 +320,10 @@ uint32_t usart_async_get_version(void)
  */
 static int32_t usart_async_write(struct io_descriptor *const io_descr, const uint8_t *const buf, const uint16_t length)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(io_descr, struct usart_async_descriptor, io);
+	#pragma GCC diagnostic pop
 
 	ASSERT(descr && buf && length);
 
@@ -349,7 +352,10 @@ static int32_t usart_async_read(struct io_descriptor *const io_descr, uint8_t *c
 {
 	uint16_t                       was_read = 0;
 	uint32_t                       num;
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(io_descr, struct usart_async_descriptor, io);
+	#pragma GCC diagnostic pop
 
 	ASSERT(descr && buf && length);
 
@@ -371,7 +377,10 @@ static int32_t usart_async_read(struct io_descriptor *const io_descr, uint8_t *c
  */
 static void usart_process_byte_sent(struct _usart_async_device *device)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(device, struct usart_async_descriptor, device);
+	#pragma GCC diagnostic pop
 	if (descr->tx_por != descr->tx_buffer_length) {
 		_usart_async_write_byte(&descr->device, descr->tx_buffer[descr->tx_por++]);
 		_usart_async_enable_byte_sent_irq(&descr->device);
@@ -387,7 +396,10 @@ static void usart_process_byte_sent(struct _usart_async_device *device)
  */
 static void usart_transmission_complete(struct _usart_async_device *device)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(device, struct usart_async_descriptor, device);
+	#pragma GCC diagnostic pop
 
 	descr->stat = 0;
 	if (descr->usart_cb.tx_done) {
@@ -403,7 +415,10 @@ static void usart_transmission_complete(struct _usart_async_device *device)
  */
 static void usart_fill_rx_buffer(struct _usart_async_device *device, uint8_t data)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(device, struct usart_async_descriptor, device);
+	#pragma GCC diagnostic pop
 
 	ringbuffer_put(&descr->rx, data);
 
@@ -419,7 +434,10 @@ static void usart_fill_rx_buffer(struct _usart_async_device *device, uint8_t dat
  */
 static void usart_error(struct _usart_async_device *device)
 {
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wcast-align"
 	struct usart_async_descriptor *descr = CONTAINER_OF(device, struct usart_async_descriptor, device);
+	#pragma GCC diagnostic pop
 
 	descr->stat = 0;
 	if (descr->usart_cb.error) {

@@ -3,7 +3,7 @@
  *
  * \brief Generic Clock Controller v210 related functionality.
  *
- * Copyright (C) 2014 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2014 - 2017 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -47,7 +47,6 @@
 
 /**
  * \brief Initializes generators
-
  */
 void _gclk_init_generators(void)
 {
@@ -158,5 +157,135 @@ void _gclk_init_generators(void)
 	                               | (CONF_GCLK_GEN_8_GENEN << GCLK_GENCTRL_GENEN_Pos)
 	                               | CONF_GCLK_GEN_8_SRC
 	                               | GCLK_GENCTRL_ID(8));
+#endif
+}
+
+void _gclk_init_generators_by_fref(uint32_t bm)
+{
+#if CONF_GCLK_GEN_0_GENEN == 1
+	if (bm & (1ul << 0)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_0_DIV) | GCLK_GENDIV_ID(0));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_0_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_0_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_0_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_0_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_0_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_0_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_0_SRC
+		                               | GCLK_GENCTRL_ID(0));
+	}
+#endif
+#if CONF_GCLK_GEN_1_GENEN == 1
+	if (bm & (1ul << 1)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_1_DIV) | GCLK_GENDIV_ID(1));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_1_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_1_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_1_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_1_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_1_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_1_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_1_SRC
+		                               | GCLK_GENCTRL_ID(1));
+	}
+#endif
+#if CONF_GCLK_GEN_2_GENEN == 1
+	if (bm & (1ul << 2)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_2_DIV) | GCLK_GENDIV_ID(2));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_2_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_2_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_2_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_2_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_2_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_2_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_2_SRC
+		                               | GCLK_GENCTRL_ID(2));
+	}
+#endif
+#if CONF_GCLK_GEN_3_GENEN == 1
+	if (bm & (1ul << 3)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_3_DIV) | GCLK_GENDIV_ID(3));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_3_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_3_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_3_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_3_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_3_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_3_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_3_SRC
+		                               | GCLK_GENCTRL_ID(3));
+	}
+#endif
+#if CONF_GCLK_GEN_4_GENEN == 1
+	if (bm & (1ul << 4)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_4_DIV) | GCLK_GENDIV_ID(4));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_4_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_4_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_4_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_4_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_4_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_4_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_4_SRC
+		                               | GCLK_GENCTRL_ID(4));
+	}
+#endif
+#if CONF_GCLK_GEN_5_GENEN == 1
+	if (bm & (1ul << 5)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_5_DIV) | GCLK_GENDIV_ID(5));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_5_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_5_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_5_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_5_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_5_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_5_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_5_SRC
+		                               | GCLK_GENCTRL_ID(5));
+	}
+#endif
+#if CONF_GCLK_GEN_6_GENEN == 1
+	if (bm & (1ul << 6)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_6_DIV) | GCLK_GENDIV_ID(6));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_6_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_6_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_6_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_6_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_6_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_6_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_6_SRC
+		                               | GCLK_GENCTRL_ID(6));
+	}
+#endif
+#if CONF_GCLK_GEN_7_GENEN == 1
+	if (bm & (1ul << 7)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_7_DIV) | GCLK_GENDIV_ID(7));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_7_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_7_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_7_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_7_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_7_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_7_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_7_SRC
+		                               | GCLK_GENCTRL_ID(7));
+	}
+#endif
+#if defined(CONF_GCLK_GEN_8_GENEN) && CONF_GCLK_GEN_8_GENEN == 1
+	if (bm & (1ul << 8)) {
+		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_8_DIV) | GCLK_GENDIV_ID(8));
+		hri_gclk_write_GENCTRL_reg(GCLK,
+		                           (CONF_GCLK_GEN_8_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
+		                               | (CONF_GCLK_GEN_8_DIVSEL << GCLK_GENCTRL_DIVSEL_Pos)
+		                               | (CONF_GCLK_GEN_8_OE << GCLK_GENCTRL_OE_Pos)
+		                               | (CONF_GCLK_GEN_8_OOV << GCLK_GENCTRL_OOV_Pos)
+		                               | (CONF_GCLK_GEN_8_IDC << GCLK_GENCTRL_IDC_Pos)
+		                               | (CONF_GCLK_GEN_8_GENEN << GCLK_GENCTRL_GENEN_Pos)
+		                               | CONF_GCLK_GEN_8_SRC
+		                               | GCLK_GENCTRL_ID(8));
+	}
 #endif
 }

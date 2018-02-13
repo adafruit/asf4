@@ -43,10 +43,33 @@
 
 #include <hpl_gpio.h>
 #include <hpl_init.h>
+#include <hpl_gclk_base.h>
+#include <hpl_gclk_config.h>
 #include <hpl_mclk_config.h>
 
 #include <hpl_dma.h>
 #include <hpl_dmac_config.h>
+
+// do GCLK 1, 5, 0, 3 first.
+// See hpl_gclk_config.h and hpl_oscctrl_config.h.
+// TODO: Perhaps this value should be defined in one of
+// those include files.
+
+/* Referenced GCLKs, should be initialized firstly
+*/
+#ifdef CIRCUITPY_GCLK_INIT_1ST
+#define _GCLK_INIT_1ST CIRCUITPY_GCLK_INIT_1ST
+#else
+#warning No CIRCUITPY_GCLK_INIT_1ST defined!
+#define _GCLK_INIT_1ST 0x0000
+#endif
+
+/* Not referenced GCLKs, initialized last */
+#ifdef CIRCUITPY_GCLK_INIT_1ST
+#define _GCLK_INIT_LAST CIRCUITPY_GCLK_INIT_LAST
+#else
+#define _GCLK_INIT_LAST (~_GCLK_INIT_1ST)
+#endif
 
 /**
  * \brief Initialize the hardware abstraction layer
@@ -59,8 +82,11 @@ void _init_chip(void)
 	_osc32kctrl_init_sources();
 	_oscctrl_init_sources();
 	_mclk_init();
-	_gclk_init_generators();
+#if _GCLK_INIT_1ST
+	_gclk_init_generators_by_fref(_GCLK_INIT_1ST);
+#endif
 	_oscctrl_init_referenced_generators();
+	_gclk_init_generators_by_fref(_GCLK_INIT_LAST);
 
 #if CONF_DMAC_ENABLE
 	hri_mclk_set_AHBMASK_DMAC_bit(MCLK);

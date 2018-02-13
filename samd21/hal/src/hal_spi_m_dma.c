@@ -137,7 +137,10 @@ static int32_t _spi_m_dma_io_read(struct io_descriptor *io, uint8_t *const buf, 
 {
 	ASSERT(io);
 
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct spi_m_dma_descriptor *spi = CONTAINER_OF(io, struct spi_m_dma_descriptor, io);
+        #pragma GCC diagnostic pop
 
 	return _spi_m_dma_transfer(&spi->dev, NULL, buf, length);
 }
@@ -161,7 +164,10 @@ static int32_t _spi_m_dma_io_write(struct io_descriptor *io, const uint8_t *cons
 {
 	ASSERT(io);
 
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wcast-align"
 	struct spi_m_dma_descriptor *spi = CONTAINER_OF(io, struct spi_m_dma_descriptor, io);
+        #pragma GCC diagnostic pop
 
 	return _spi_m_dma_transfer(&spi->dev, buf, NULL, length);
 }
