@@ -1,4 +1,3 @@
-
 /**
  * \file
  *
@@ -56,6 +55,7 @@
 #include <utils.h>
 #include <utils_assert.h>
 
+// CircuitPython:
 // Use SERCOM settings as prototypes to set
 // the default settings. The asf4_conf/hpl_sercom_config.h file
 // defines these bindings, and chooses a SERCOM (listed as x here).
@@ -63,10 +63,10 @@
 // #define PROTOTYPE_SERCOM_SPI_M_SYNC SERCOMx
 // #define PROTOTYPE_SERCOM_I2CM_SYNC SERCOMx
 // #define PROTOTYPE_SERCOM_USART_ASYNC SERCOMx
-
+//
 // Use these to choose the right settings from the _spis, _i2cms, and _usarts tables.
 // Look up the prototype instance by using the prototype SERCOM addresses,
-// not the SERCOMnumber.
+// not the SERCOM number.
 
 #ifndef CONF_SERCOM_0_USART_ENABLE
 #define CONF_SERCOM_0_USART_ENABLE 0
@@ -187,7 +187,53 @@ static struct usart_configuration _usarts[] = {
 };
 #endif
 
+static struct _usart_async_device *_sercom0_dev = NULL;
+static struct _usart_async_device *_sercom1_dev = NULL;
 static struct _usart_async_device *_sercom2_dev = NULL;
+static struct _usart_async_device *_sercom3_dev = NULL;
+#ifdef SERCOM4
+static struct _usart_async_device *_sercom4_dev = NULL;
+#endif
+#ifdef SERCOM5
+static struct _usart_async_device *_sercom5_dev = NULL;
+#endif
+#ifdef SERCOM6
+static struct _usart_async_device *_sercom6_dev = NULL;
+#endif
+#ifdef SERCOM7
+static struct _usart_async_device *_sercom7_dev = NULL;
+#endif
+
+static struct {
+    Sercom *sercom;
+    struct _usart_async_device **sercom_dev;
+} sercom_to_sercom_dev[] = {
+    {SERCOM0, &_sercom0_dev},
+    {SERCOM1, &_sercom1_dev},
+    {SERCOM2, &_sercom2_dev},
+    {SERCOM3, &_sercom3_dev},
+#ifdef SERCOM4
+    {SERCOM4, &_sercom4_dev},
+#endif
+#ifdef SERCOM5
+    {SERCOM5, &_sercom5_dev},
+#endif
+#ifdef SERCOM6
+    {SERCOM6, &_sercom6_dev},
+#endif
+#ifdef SERCOM7
+    {SERCOM7, &_sercom7_dev},
+#endif
+};
+
+static struct _usart_async_device** get_dev_for_sercom(Sercom *sercom) {
+    for (size_t i = 0; i < (sizeof(sercom_to_sercom_dev) / sizeof(sercom_to_sercom_dev[0])); i++) {
+        if (sercom_to_sercom_dev[i].sercom == sercom) {
+            return sercom_to_sercom_dev[i].sercom_dev;
+        }
+    }
+    return NULL;
+}
 
 static uint8_t _get_sercom_index(const void *const hw);
 static uint8_t _sercom_get_irq_num(const void *const hw);
@@ -258,6 +304,9 @@ void _usart_async_deinit(struct _usart_async_device *const device)
 {
 	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(device->hw));
 	_usart_deinit(device->hw);
+        
+        // Break association between device handler and given sercom.
+        *(get_dev_for_sercom(device->hw)) = NULL;
 }
 
 /**
@@ -643,10 +692,8 @@ static uint8_t _get_sercom_index(const void *const hw)
  */
 static void _sercom_init_irq_param(const void *const hw, void *dev)
 {
-
-	if (hw == SERCOM2) {
-		_sercom2_dev = (struct _usart_async_device *)dev;
-	}
+    // Remember the hpl object that does with the sercom, for use by the interrupt handlers.
+    *(get_dev_for_sercom((Sercom *) hw)) = (struct _usart_async_device *)dev;
 }
 
 /**
@@ -1140,7 +1187,7 @@ int32_t _i2c_m_async_set_baudrate(struct _i2c_m_async_device *const i2c_dev, uin
 		return ERR_DENIED;
 	}
 
-	tmp     = _get_i2cm_index(hw);
+	tmp     = _get_i2cm_index(PROTOTYPE_SERCOM_I2CM_SYNC);
 	clkrate = _i2cms[tmp].clk / 1000;
 
 	if (i2c_dev->service.mode == I2C_STANDARD_MODE) {
@@ -1435,7 +1482,7 @@ int32_t _i2c_m_sync_set_baudrate(struct _i2c_m_sync_device *const i2c_dev, uint3
 		return ERR_DENIED;
 	}
 
-	tmp     = _get_i2cm_index(hw);
+	tmp     = _get_i2cm_index(PROTOTYPE_SERCOM_I2CM_SYNC);
 	clkrate = _i2cms[tmp].clk / 1000;
 
 	if (i2c_dev->service.mode == I2C_STANDARD_MODE) {
@@ -2407,34 +2454,146 @@ static inline const struct sercomspi_regs_cfg *_spi_get_regs(const uint32_t hw_a
 	return NULL;
 }
 
-/**
- * \internal Sercom interrupt handler
- */
-void SERCOM2_0_Handler(void)
-{
+void SERCOM0_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom0_dev);
+}
+
+void SERCOM0_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom0_dev);
+}
+
+void SERCOM0_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom0_dev);
+}
+
+void SERCOM0_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom0_dev);
+}
+
+
+void SERCOM1_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom1_dev);
+}
+
+void SERCOM1_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom1_dev);
+}
+
+void SERCOM1_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom1_dev);
+}
+
+void SERCOM1_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom1_dev);
+}
+
+
+void SERCOM2_0_Handler(void) {
 	_sercom_usart_interrupt_handler(_sercom2_dev);
 }
-/**
- * \internal Sercom interrupt handler
- */
-void SERCOM2_1_Handler(void)
-{
+
+void SERCOM2_1_Handler(void) {
 	_sercom_usart_interrupt_handler(_sercom2_dev);
 }
-/**
- * \internal Sercom interrupt handler
- */
-void SERCOM2_2_Handler(void)
-{
+
+void SERCOM2_2_Handler(void) {
 	_sercom_usart_interrupt_handler(_sercom2_dev);
 }
-/**
- * \internal Sercom interrupt handler
- */
-void SERCOM2_3_Handler(void)
-{
+
+void SERCOM2_3_Handler(void) {
 	_sercom_usart_interrupt_handler(_sercom2_dev);
 }
+
+
+void SERCOM3_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom3_dev);
+}
+
+void SERCOM3_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom3_dev);
+}
+
+void SERCOM3_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom3_dev);
+}
+
+void SERCOM3_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom3_dev);
+}
+
+
+#ifdef SERCOM4
+void SERCOM4_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom4_dev);
+}
+
+void SERCOM4_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom4_dev);
+}
+
+void SERCOM4_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom4_dev);
+}
+
+void SERCOM4_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom4_dev);
+}
+#endif
+
+#ifdef SERCOM5
+void SERCOM5_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom5_dev);
+}
+
+void SERCOM5_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom5_dev);
+}
+
+void SERCOM5_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom5_dev);
+}
+
+void SERCOM5_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom5_dev);
+}
+#endif
+
+#ifdef SERCOM6
+void SERCOM6_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom6_dev);
+}
+
+void SERCOM6_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom6_dev);
+}
+
+void SERCOM6_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom6_dev);
+}
+
+void SERCOM6_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom6_dev);
+}
+#endif
+
+#ifdef SERCOM7
+void SERCOM7_0_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom7_dev);
+}
+
+void SERCOM7_1_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom7_dev);
+}
+
+void SERCOM7_2_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom7_dev);
+}
+
+void SERCOM7_3_Handler(void) {
+	_sercom_usart_interrupt_handler(_sercom7_dev);
+}
+#endif
+
 
 int32_t _spi_m_sync_init(struct _spi_m_sync_dev *dev, void *const hw)
 {
@@ -3377,3 +3536,5 @@ int32_t _spi_m_dma_transfer(struct _spi_m_dma_dev *dev, uint8_t const *txbuf, ui
 
 	return ERR_NONE;
 }
+
+
