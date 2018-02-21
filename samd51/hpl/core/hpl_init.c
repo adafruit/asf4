@@ -50,13 +50,10 @@
 #include <hpl_dma.h>
 #include <hpl_dmac_config.h>
 
-// do GCLK 1, 5, 0, 3 first.
-// See hpl_gclk_config.h and hpl_oscctrl_config.h.
-// TODO: Perhaps this value should be defined in one of
-// those include files.
-
 /* Referenced GCLKs, should be initialized firstly
 */
+// CircuitPython: CIRCUITPY_GCLK_INIT_1ST is defined in asf4_conf/hpl_gclk_config.h
+// to specify which clocks to initialize first.
 #ifdef CIRCUITPY_GCLK_INIT_1ST
 #define _GCLK_INIT_1ST CIRCUITPY_GCLK_INIT_1ST
 #else
@@ -65,7 +62,7 @@
 #endif
 
 /* Not referenced GCLKs, initialized last */
-#ifdef CIRCUITPY_GCLK_INIT_1ST
+#ifdef CIRCUITPY_GCLK_INIT_LAST
 #define _GCLK_INIT_LAST CIRCUITPY_GCLK_INIT_LAST
 #else
 #define _GCLK_INIT_LAST (~_GCLK_INIT_1ST)
