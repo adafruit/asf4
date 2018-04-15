@@ -3,7 +3,7 @@
  *
  * \brief RTC Driver (Calendar Mode)
  *
- * Copyright (C) 2014-2017 Atmel Corporation. All rights reserved.
+ * Copyright (C) 2014-2018 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -42,25 +42,102 @@
  */
 
 #include "hpl_calendar.h"
-#include "hpl_timer.h"
 #include <hpl_rtc_config.h>
 #include <utils_assert.h>
 
 /*!< Pointer to hpl device */
 
-static struct _timer_device *_rtc_dev = NULL;
+static struct calendar_dev *_rtc_dev = NULL;
 
 /**
- * \brief Initialize Timer
+ * \brief Registers callback for the specified callback type
  */
-int32_t _timer_init(struct _timer_device *const dev, void *const hw)
+int32_t _calendar_register_callback(struct calendar_dev *const dev, calendar_drv_cb_alarm_t callback)
 {
-	ASSERT(dev);
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
 
+	/* Check callback */
+	if (callback != NULL) {
+		/* register the callback */
+		dev->callback = callback;
+
+		/* enable RTC_IRQn */
+		NVIC_ClearPendingIRQ(RTC_IRQn);
+		NVIC_EnableIRQ(RTC_IRQn);
+
+		/* enable cmp */
+		hri_rtcmode0_set_INTEN_CMP0_bit(dev->hw);
+	} else {
+		/* disable cmp */
+		hri_rtcmode0_clear_INTEN_CMP0_bit(dev->hw);
+
+		/* disable RTC_IRQn */
+		NVIC_DisableIRQ(RTC_IRQn);
+	}
+
+	return ERR_NONE;
+}
+
+/**
+ * \brief RTC interrupt handler
+ *
+ * \param[in] dev The pointer to calendar device struct
+ */
+static void _rtc_interrupt_handler(struct calendar_dev *dev)
+{
+	/* Read and mask interrupt flag register */
+	uint16_t interrupt_status = hri_rtcmode0_read_INTFLAG_reg(dev->hw);
+
+	if (interrupt_status & RTC_MODE0_INTFLAG_CMP0) {
+		dev->callback(dev);
+
+		/* Clear interrupt flag */
+		hri_rtcmode0_clear_interrupt_CMP0_bit(dev->hw);
+	}
+}
+
+/**
+ * \brief Deinit the RTC module
+ */
+int32_t _calendar_deinit(struct calendar_dev *const dev)
+{
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Disable RTC interrupt. */
+	NVIC_DisableIRQ(RTC_IRQn);
+	dev->callback = NULL;
+
+	/* Disable module before reset. */
+	hri_rtcmode0_clear_CTRL_ENABLE_bit(dev->hw);
+	hri_rtcmode0_set_CTRL_SWRST_bit(dev->hw);
+
+	return ERR_NONE;
+}
+
+/**
+ * \brief Initializes the RTC module with given configurations.
+ */
+int32_t _calendar_init(struct calendar_dev *const dev)
+{
 	uint16_t register_value;
-	dev->hw = hw;
 
-	hri_rtcmode0_write_CTRL_reg(dev->hw, RTC_MODE0_CTRL_SWRST);
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	_rtc_dev = dev;
+
+	hri_rtcmode0_wait_for_sync(dev->hw);
+	if (hri_rtcmode0_get_CTRL_ENABLE_bit(dev->hw)) {
+#if !CONF_RTC_INIT_RESET
+		return ERR_DENIED;
+#else
+		hri_rtcmode0_clear_CTRL_ENABLE_bit(dev->hw);
+		hri_rtcmode0_wait_for_sync(dev->hw);
+#endif
+	}
+	hri_rtcmode0_set_CTRL_SWRST_bit(dev->hw);
 	hri_rtcmode0_wait_for_sync(dev->hw);
 
 	/* Set mode 0 */
@@ -69,13 +146,13 @@ int32_t _timer_init(struct _timer_device *const dev, void *const hw)
 	/* Set prescaler */
 	register_value |= RTC_MODE0_CTRL_PRESCALER(CONF_RTC_PRESCALER);
 
-	/* clear counter on compare/timer match */
-	register_value |= RTC_MODE0_CTRL_MATCHCLR;
+	/* not clear counter on compare/alarm match */
+	register_value &= (~RTC_MODE0_CTRL_MATCHCLR);
 
 	hri_rtcmode0_write_CTRL_reg(dev->hw, register_value);
 
-	hri_rtcmode0_write_COMP_COMP_bf(dev->hw, 0, CONF_RTC_COMP_VAL);
-	hri_rtcmode0_set_INTEN_CMP0_bit(dev->hw);
+	/* set continuously clock read update mode */
+	hri_rtcmode0_set_READREQ_RCONT_bit(dev->hw);
 
 /* set event control */
 #if CONF_RTC_EVENT_CONTROL_ENABLE == 1
@@ -92,104 +169,104 @@ int32_t _timer_init(struct _timer_device *const dev, void *const hw)
 	                                  | (CONF_RTC_OVFEO << RTC_MODE0_EVCTRL_OVFEO_Pos));
 #endif
 
-	_rtc_dev = dev;
+	return ERR_NONE;
+}
+
+/**
+ * \brief Enable the RTC module
+ */
+int32_t _calendar_enable(struct calendar_dev *const dev)
+{
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Enable rtc */
+	hri_rtcmode0_set_CTRL_ENABLE_bit(dev->hw);
 
 	return ERR_NONE;
 }
 
 /**
- * \brief De-initialize Timer
+ * \brief Disable the RTC module
  */
-void _timer_deinit(struct _timer_device *const dev)
+int32_t _calendar_disable(struct calendar_dev *const dev)
 {
+	/* Sanity check arguments */
 	ASSERT(dev && dev->hw);
 
-	NVIC_DisableIRQ(RTC_IRQn);
-
-	hri_rtcmode0_write_CTRL_reg(dev->hw, RTC_MODE0_CTRL_SWRST);
-}
-
-/**
- * \brief Start hardware timer
- */
-void _timer_start(struct _timer_device *const dev)
-{
-	ASSERT(dev && dev->hw);
-
-	NVIC_EnableIRQ(RTC_IRQn);
-	hri_rtcmode0_write_COUNT_COUNT_bf(dev->hw, 0);
-	hri_rtcmode0_wait_for_sync(dev->hw);
-	hri_rtcmode0_set_CTRL_ENABLE_bit(dev->hw);
-}
-
-/**
- * \brief Stop hardware timer
- */
-void _timer_stop(struct _timer_device *const dev)
-{
-	ASSERT(dev && dev->hw);
-
+	/* Disable rtc. */
 	hri_rtcmode0_clear_CTRL_ENABLE_bit(dev->hw);
+
+	return ERR_NONE;
 }
 
 /**
- * \brief Set timer period
+ * \brief Set the current calendar time to desired time.
  */
-void _timer_set_period(struct _timer_device *const dev, const uint32_t clock_cycles)
+int32_t _calendar_set_counter(struct calendar_dev *const dev, const uint32_t counter)
 {
-	hri_rtcmode0_write_COMP_COMP_bf(dev->hw, 0, clock_cycles);
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Set current counter. */
+	hri_rtcmode0_write_COUNT_COUNT_bf(dev->hw, counter);
+
+	return ERR_NONE;
 }
 
 /**
- * \brief Retrieve timer period
+ * \brief Get current counter
  */
-uint32_t _timer_get_period(const struct _timer_device *const dev)
+uint32_t _calendar_get_counter(struct calendar_dev *const dev)
 {
-	return hri_rtcmode0_read_COMP_COMP_bf(dev->hw, 0);
+	uint32_t tmp;
+
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Get counter. */
+	tmp = hri_rtcmode0_read_COUNT_COUNT_bf(dev->hw);
+
+	return tmp;
 }
 
 /**
- * \brief Check if timer is running
+ * \brief Set the compare for the specified value.
  */
-bool _timer_is_started(const struct _timer_device *const dev)
+int32_t _calendar_set_comp(struct calendar_dev *const dev, const uint32_t comp)
 {
-	return hri_rtcmode0_get_CTRL_ENABLE_bit(dev->hw);
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Set value into alarm register. */
+	hri_rtcmode0_write_COMP_COMP_bf(dev->hw, 0, comp);
+
+	return ERR_NONE;
 }
 
 /**
- * \brief Set timer IRQ
+ * \brief Get the compare value
  */
-void _timer_set_irq(struct _timer_device *const dev)
+uint32_t _calendar_get_comp(struct calendar_dev *const dev)
+{
+	uint32_t tmp;
+
+	/* Sanity check arguments */
+	ASSERT(dev && dev->hw);
+
+	/* Get value. */
+	tmp = hri_rtcmode0_read_COMP_COMP_bf(dev->hw, 0);
+
+	return tmp;
+}
+
+/**
+ * \brief Set calendar IRQ
+ */
+void _calendar_set_irq(struct calendar_dev *const dev)
 {
 	(void)dev;
-}
-
-/**
- * \brief RTC Timer interrupt handler
- *
- * \param[in] p The pointer to calendar device struct
- */
-static void _rtc_timer_interrupt_handler(struct _timer_device *dev)
-{
-	/* Read and mask interrupt flag register */
-	uint16_t flag = hri_rtcmode0_read_INTFLAG_reg(dev->hw);
-
-	if (flag & RTC_MODE0_INTFLAG_CMP0) {
-		if (dev->timer_cb.period_expired) {
-			dev->timer_cb.period_expired(dev);
-		}
-
-		/* Clear interrupt flag */
-		hri_rtcmode0_clear_interrupt_CMP0_bit(dev->hw);
-	}
-}
-
-/**
- * \brief Retrieve timer helper functions
- */
-struct _timer_hpl_interface *_rtc_get_timer(void)
-{
-	return NULL;
+	NVIC_SetPendingIRQ(RTC_IRQn);
 }
 
 /**
@@ -197,5 +274,5 @@ struct _timer_hpl_interface *_rtc_get_timer(void)
  */
 void RTC_Handler(void)
 {
-	_rtc_timer_interrupt_handler(_rtc_dev);
+	_rtc_interrupt_handler(_rtc_dev);
 }

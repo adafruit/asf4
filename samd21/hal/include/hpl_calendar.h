@@ -188,45 +188,42 @@ int32_t _calendar_enable(struct calendar_dev *const dev);
  */
 int32_t _calendar_disable(struct calendar_dev *const dev);
 /**
- * \brief Set time for calendar
+ * \brief Set counter for calendar
  *
  * \param[in] dev The pointer to calendar device struct
- * \param[in] p_calendar_time Pointer to the time configuration
+ * \param[in] counter The counter for set
  *
  * \return ERR_NONE on success, or an error code on failure.
  */
-int32_t _calendar_set_time(struct calendar_dev *const dev, struct calendar_time *const p_calendar_time);
+int32_t _calendar_set_counter(struct calendar_dev *const dev, const uint32_t counter);
 
 /**
- * \brief Set date for calendar
+ * \brief Get counter for calendar
  *
  * \param[in] dev The pointer to calendar device struct
- * \param[in] p_calendar_date Pointer to the date configuration
  *
- * \return ERR_NONE on success, or an error code on failure.
+ * \return return current counter value
  */
-int32_t _calendar_set_date(struct calendar_dev *const dev, struct calendar_date *const p_calendar_date);
-
-/**
- * \brief Get the time for calendar HAL instance and hardware
- *  Retrieve the time from calendar instance.
- *
- * \param[in] dev The pointer to calendar device struct
- * \param[in] date_time Pointer to value that will be filled with current time
- *
- * \return Return current counter value
- */
-uint32_t _calendar_get_date_time(struct calendar_dev *const dev, struct calendar_date_time *const date_time);
+uint32_t _calendar_get_counter(struct calendar_dev *const dev);
 
 /**
  * \brief Set compare value for calendar
  *
  * \param[in] dev The pointer to calendar device struct
- * \param[in] alarm Pointer to the configuration
+ * \param[in] comp The compare value for set
  *
  * \return ERR_NONE on success, or an error code on failure.
  */
-int32_t _calendar_set_alarm(struct calendar_dev *const dev, struct _calendar_alarm *const alarm);
+int32_t _calendar_set_comp(struct calendar_dev *const dev, const uint32_t comp);
+
+/**
+ * \brief Get compare value for calendar
+ *
+ * \param[in] dev The pointer to calendar device struct
+ *
+ * \return return current compare value
+ */
+uint32_t _calendar_get_comp(struct calendar_dev *const dev);
 
 /**
  * \brief Register callback for calendar alarm
