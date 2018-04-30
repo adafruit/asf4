@@ -1452,7 +1452,7 @@ void _i2c_m_async_set_irq_state(struct _i2c_m_async_device *const device, const 
  */
 inline static int32_t _sercom_i2c_sync_wait_bus(struct _i2c_m_sync_device *const i2c_dev, uint32_t *flags)
 {
-	uint32_t timeout = 65535;
+	uint32_t timeout = 4194303;
 	void *   hw      = i2c_dev->hw;
 
 	do {
