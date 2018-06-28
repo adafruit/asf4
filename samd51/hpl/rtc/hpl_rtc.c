@@ -139,7 +139,7 @@ int32_t _calendar_set_counter(struct calendar_dev *const dev, const uint32_t cou
 {
 	ASSERT(dev && dev->hw);
 
-	hri_rtcmode0_write_COUNT_reg(dev->hw, counter);
+	hri_rtcmode0_write_COUNT_COUNT_bf(dev->hw, counter);
 
 	return ERR_NONE;
 }
@@ -151,7 +151,7 @@ uint32_t _calendar_get_counter(struct calendar_dev *const dev)
 {
 	ASSERT(dev && dev->hw);
 
-	return hri_rtcmode0_read_COUNT_reg(dev->hw);
+	return hri_rtcmode0_read_COUNT_COUNT_bf(dev->hw);
 }
 
 /**
