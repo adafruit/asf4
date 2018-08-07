@@ -27,7 +27,9 @@
  *
  */
 
-#include "samd21.h"
+#include <stdint.h>
+
+#include "sam.h"
 
 /* Initialize segments */
 extern uint32_t _sfixed;
@@ -190,7 +192,11 @@ __attribute__((section(".vectors"), used)) const DeviceVectors exception_table =
 #else
     .pvReserved26 = (void *)(0UL), /* 26 Reserved */
 #endif
+#ifdef ID_I2S
     .pfnI2S_Handler = (void *)I2S_Handler, /* 27 Inter-IC Sound Interface */
+#else
+    .pvReserved27 = (void *)(0UL), /* 27 Reserved */
+#endif
     .pvReserved28   = (void *)(0UL)        /* 28 Reserved */
 };
 
