@@ -56,6 +56,20 @@
 #include "samd21j17a.h"
 #elif defined(__SAMD21J18A__) || defined(__ATSAMD21J18A__)
 #include "samd21j18a.h"
+#elif defined(__SAMR21E16A__) || defined(__ATSAMR21E16A__)
+#include "samr21e16a.h"
+#elif defined(__SAMR21E17A__) || defined(__ATSAMR21E17A__)
+#include "samr21e17a.h"
+#elif defined(__SAMR21E18A__) || defined(__ATSAMR21E18A__)
+#include "samr21e18a.h"
+#elif defined(__SAMR21E19A__) || defined(__ATSAMR21E19A__)
+#include "samr21e19a.h"
+#elif defined(__SAMR21G16A__) || defined(__ATSAMR21G16A__)
+#include "samr21g16a.h"
+#elif defined(__SAMR21G17A__) || defined(__ATSAMR21G17A__)
+#include "samr21g17a.h"
+#elif defined(__SAMR21G18A__) || defined(__ATSAMR21G18A__)
+#include "samr21g18a.h"
 #else
 #error Library does not support the specified device
 #endif
