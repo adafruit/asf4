@@ -44,20 +44,20 @@
 #define _HRI_D21_H_INCLUDED_
 
 #include <sam.h>
-#include <hri_ac_d21.h>
+// #include <hri_ac_d21.h>
 #include <hri_adc_d21.h>
 #include <hri_dac_d21.h>
 #include <hri_dmac_d21.h>
 #include <hri_dsu_d21.h>
-#include <hri_eic_d21.h>
-#include <hri_evsys_d21.h>
+// #include <hri_eic_d21.h>
+// #include <hri_evsys_d21.h>
 #include <hri_gclk_d21.h>
 #include <hri_hmatrixb_d21.h>
-#include <hri_i2s_d21.h>
-#include <hri_mtb_d21.h>
-#include <hri_nvic_d21.h>
+// #include <hri_i2s_d21.h>
+// #include <hri_mtb_d21.h>
+// #include <hri_nvic_d21.h>
 #include <hri_nvmctrl_d21.h>
-#include <hri_pac_d21.h>
+// #include <hri_pac_d21.h>
 #include <hri_pm_d21.h>
 #include <hri_port_d21.h>
 #include <hri_rtc_d21.h>
@@ -65,9 +65,9 @@
 #include <hri_sysctrl_d21.h>
 #include <hri_systemcontrol_d21.h>
 #include <hri_systick_d21.h>
-#include <hri_tc_d21.h>
-#include <hri_tcc_d21.h>
-#include <hri_usb_d21.h>
+// #include <hri_tc_d21.h>
+// #include <hri_tcc_d21.h>
+// #include <hri_usb_d21.h>
 #include <hri_wdt_d21.h>
 
 #endif /* _HRI_D21_H_INCLUDED_ */

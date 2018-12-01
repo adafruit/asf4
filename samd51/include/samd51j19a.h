@@ -14,9 +14,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License.
  * You may obtain a copy of the Licence at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -555,39 +555,39 @@ void SDHC0_Handler               ( void );
 /* ************************************************************************** */
 /** \defgroup SAMD51J19A_api Peripheral Software API */
 /*@{*/
-
-#include "component/ac.h"
+// These are commented out to speed up the build.
+// #include "component/ac.h"
 #include "component/adc.h"
-#include "component/aes.h"
-#include "component/ccl.h"
+// #include "component/aes.h"
+// #include "component/ccl.h"
 #include "component/cmcc.h"
 #include "component/dac.h"
 #include "component/dmac.h"
 #include "component/dsu.h"
 #include "component/eic.h"
 #include "component/evsys.h"
-#include "component/freqm.h"
+// #include "component/freqm.h"
 #include "component/gclk.h"
-#include "component/hmatrixb.h"
-#include "component/icm.h"
+// #include "component/hmatrixb.h"
+// #include "component/icm.h"
 #include "component/i2s.h"
 #include "component/mclk.h"
 #include "component/nvmctrl.h"
 #include "component/oscctrl.h"
 #include "component/osc32kctrl.h"
 #include "component/pac.h"
-#include "component/pcc.h"
-#include "component/pdec.h"
+// #include "component/pcc.h"
+// #include "component/pdec.h"
 #include "component/pm.h"
 #include "component/port.h"
 #include "component/qspi.h"
-#include "component/ramecc.h"
+// #include "component/ramecc.h"
 #include "component/rstc.h"
 #include "component/rtc.h"
-#include "component/sdhc.h"
+// #include "component/sdhc.h"
 #include "component/sercom.h"
 #include "component/supc.h"
-#include "component/tal.h"
+// #include "component/tal.h"
 #include "component/tc.h"
 #include "component/tcc.h"
 #include "component/trng.h"
@@ -601,11 +601,11 @@ void SDHC0_Handler               ( void );
 /** \defgroup SAMD51J19A_reg Registers Access Definitions */
 /*@{*/
 
-#include "instance/ac.h"
+// #include "instance/ac.h"
 #include "instance/adc0.h"
 #include "instance/adc1.h"
-#include "instance/aes.h"
-#include "instance/ccl.h"
+// #include "instance/aes.h"
+// #include "instance/ccl.h"
 #include "instance/cmcc.h"
 #include "instance/dac.h"
 #include "instance/dmac.h"
@@ -614,7 +614,7 @@ void SDHC0_Handler               ( void );
 #include "instance/evsys.h"
 #include "instance/freqm.h"
 #include "instance/gclk.h"
-#include "instance/hmatrix.h"
+// #include "instance/hmatrix.h"
 #include "instance/icm.h"
 #include "instance/i2s.h"
 #include "instance/mclk.h"
@@ -622,15 +622,15 @@ void SDHC0_Handler               ( void );
 #include "instance/oscctrl.h"
 #include "instance/osc32kctrl.h"
 #include "instance/pac.h"
-#include "instance/pcc.h"
-#include "instance/pdec.h"
+// #include "instance/pcc.h"
+// #include "instance/pdec.h"
 #include "instance/pm.h"
 #include "instance/port.h"
 #include "instance/qspi.h"
-#include "instance/ramecc.h"
+// #include "instance/ramecc.h"
 #include "instance/rstc.h"
 #include "instance/rtc.h"
-#include "instance/sdhc0.h"
+// #include "instance/sdhc0.h"
 #include "instance/sercom0.h"
 #include "instance/sercom1.h"
 #include "instance/sercom2.h"
@@ -638,7 +638,7 @@ void SDHC0_Handler               ( void );
 #include "instance/sercom4.h"
 #include "instance/sercom5.h"
 #include "instance/supc.h"
-#include "instance/tal.h"
+// #include "instance/tal.h"
 #include "instance/tc0.h"
 #include "instance/tc1.h"
 #include "instance/tc2.h"
