@@ -90,6 +90,7 @@ void DAC_0_PORT_init(void);
 void DAC_0_CLOCK_init(void);
 void DAC_0_init(void);
 
+void USB_0_PORT_init(void);
 void USB_0_CLOCK_init(void);
 void USB_0_init(void);
 

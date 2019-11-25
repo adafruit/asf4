@@ -57,7 +57,7 @@ extern "C" {
 /**
  * \brief Retrieve pointer to parent structure
  */
-#define CONTAINER_OF(ptr, type, field_name) ((type *)(((uint8_t *)ptr) - offsetof(type, field_name)))
+#define CONTAINER_OF(ptr, type, field_name) ((type *)(void*)((((uint8_t *)ptr) - offsetof(type, field_name))))
 
 /**
  * \brief Retrieve array size

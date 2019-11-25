@@ -113,6 +113,13 @@ int32_t io_write(struct io_descriptor *const io_descr, const uint8_t *const buf,
  */
 int32_t io_read(struct io_descriptor *const io_descr, uint8_t *const buf, const uint16_t length);
 
+/**
+ * \brief Retrieve the current driver version
+ *
+ * \return Current driver version.
+ */
+uint32_t io_get_version(void);
+
 #ifdef __cplusplus
 }
 #endif

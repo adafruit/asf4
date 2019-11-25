@@ -80,10 +80,10 @@ extern "C" {
  */
 int32_t _set_sleep_mode(const uint8_t mode);
 
-/**
- * \brief Reset MCU
- */
-void _reset_mcu(void);
+///**
+// * \brief Reset MCU
+// */
+//void _reset_mcu(void);
 
 /**
  * \brief Put MCU to sleep

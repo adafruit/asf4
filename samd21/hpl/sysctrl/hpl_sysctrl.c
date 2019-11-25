@@ -55,7 +55,7 @@ void _sysctrl_init_sources(void)
 	void *   hw = (void *)SYSCTRL;
 	uint16_t calib;
 
-#if CONF_XOSC32K_CONFIG == 1
+#if defined(CONF_XOSC32K_CONFIG) && CONF_XOSC32K_CONFIG == 1
 	hri_sysctrl_write_XOSC32K_reg(hw,
 	                              (CONF_XOSC32K_WRTLOCK << SYSCTRL_XOSC32K_WRTLOCK_Pos)
 	                                  | SYSCTRL_XOSC32K_STARTUP(CONF_XOSC32K_STARTUP)
@@ -67,7 +67,7 @@ void _sysctrl_init_sources(void)
 	                                  | (CONF_XOSC32K_ENABLE << SYSCTRL_XOSC32K_ENABLE_Pos));
 #endif
 
-#if CONF_XOSC_CONFIG == 1
+#if defined(CONF_XOSC_CONFIG) && CONF_XOSC_CONFIG == 1
 	hri_sysctrl_write_XOSC_reg(hw,
 	                           SYSCTRL_XOSC_STARTUP(CONF_XOSC_STARTUP) | (CONF_XOSC_AMPGC << SYSCTRL_XOSC_AMPGC_Pos)
 	                               | SYSCTRL_XOSC_GAIN(CONF_XOSC_GAIN)
@@ -76,12 +76,12 @@ void _sysctrl_init_sources(void)
 	                               | (CONF_XOSC_ENABLE << SYSCTRL_XOSC_ENABLE_Pos));
 #endif
 
-#if CONF_OSC8M_CONFIG == 1
+#if defined(CONF_OSC8M_CONFIG) && CONF_OSC8M_CONFIG == 1
 	calib = hri_sysctrl_read_OSC8M_CALIB_bf(hw);
 
 	hri_sysctrl_write_OSC8M_reg(hw,
 	                            SYSCTRL_OSC8M_FRANGE(hri_sysctrl_read_OSC8M_FRANGE_bf(hw)) |
-#if CONF_OSC8M_OVERWRITE_CALIBRATION == 1
+#if defined(CONF_OSC8M_OVERWRITE_CALIBRATION) && CONF_OSC8M_OVERWRITE_CALIBRATION == 1
 	                                SYSCTRL_OSC8M_CALIB(CONF_OSC8M_CALIB) |
 #else
 	                                SYSCTRL_OSC8M_CALIB(calib) |
@@ -91,7 +91,7 @@ void _sysctrl_init_sources(void)
 	                                | (CONF_OSC8M_ENABLE << SYSCTRL_OSC8M_ENABLE_Pos));
 #endif
 
-#if CONF_OSC32K_CONFIG == 1
+#if defined(CONF_OSC32K_CONFIG) && CONF_OSC32K_CONFIG == 1
 	/* OSC32K calibration value at bit 44:38 of memory 0x00806020 */
 	calib = (*((uint32_t *)0x00806024) & 0x0001FC0) >> 6;
 
@@ -112,9 +112,9 @@ void _sysctrl_init_sources(void)
 	hri_sysctrl_set_OSC32K_ENABLE_bit(hw);
 #endif
 
-#if CONF_OSCULP32K_CONFIG == 1
+#if defined(CONF_OSCULP32K_CONFIG) && CONF_OSCULP32K_CONFIG == 1
 	hri_sysctrl_write_OSCULP32K_reg(hw,
-#if OSC32K_OVERWRITE_CALIBRATION == 1
+#if defined(OSC32K_OVERWRITE_CALIBRATION) && OSC32K_OVERWRITE_CALIBRATION == 1
 	                                SYSCTRL_OSCULP32K_CALIB(CONF_OSCULP32K_CALIB) |
 #else
 	                                SYSCTRL_OSCULP32K_CALIB(calib) |

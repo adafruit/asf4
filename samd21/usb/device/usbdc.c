@@ -107,6 +107,11 @@ struct usbdc_driver {
  */
 static struct usbdc_driver usbdc;
 
+
+// Prototypes (TODO: maybe must be moved to an .h ?)
+void usbdc_reset(void);
+int32_t usbdc_check_desces(struct usbdc_descriptors *desces);
+
 /**
  * \brief Process the GetDeviceDescriptor request
  * \param[in] ep Endpoint address.

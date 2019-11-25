@@ -44,6 +44,7 @@
 #include "hpl_calendar.h"
 #include "hpl_timer.h"
 #include <hpl_rtc_config.h>
+#include <hpl/rtc/hpl_rtc_base.h>
 #include <utils_assert.h>
 
 /*!< Pointer to hpl device */

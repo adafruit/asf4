@@ -145,6 +145,7 @@ void _irq_register(const uint8_t n, struct _irq_descriptor *const irq)
 /**
  * \brief Default interrupt handler for unused IRQs.
  */
+void Default_Handler(void); // inhibit missing prototype warning
 void Default_Handler(void)
 {
 	while (1) {

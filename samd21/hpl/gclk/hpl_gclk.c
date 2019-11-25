@@ -42,6 +42,7 @@
  */
 
 #include <hpl_gclk_config.h>
+#include <hpl_gclk_base.h>
 #include <hpl_init.h>
 #include <utils_assert.h>
 
@@ -50,7 +51,7 @@
  */
 void _gclk_init_generators(void)
 {
-#if CONF_GCLK_GEN_0_GENEN == 1
+#if defined(CONF_GCLK_GEN_0_GENEN) && CONF_GCLK_GEN_0_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_0_DIV) | GCLK_GENDIV_ID(0));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_0_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -62,7 +63,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_0_SRC
 	                               | GCLK_GENCTRL_ID(0));
 #endif
-#if CONF_GCLK_GEN_1_GENEN == 1
+#if defined(CONF_GCLK_GEN_1_GENEN) && CONF_GCLK_GEN_1_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_1_DIV) | GCLK_GENDIV_ID(1));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_1_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -74,7 +75,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_1_SRC
 	                               | GCLK_GENCTRL_ID(1));
 #endif
-#if CONF_GCLK_GEN_2_GENEN == 1
+#if defined(CONF_GCLK_GEN_2_GENEN) && CONF_GCLK_GEN_2_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_2_DIV) | GCLK_GENDIV_ID(2));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_2_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -86,7 +87,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_2_SRC
 	                               | GCLK_GENCTRL_ID(2));
 #endif
-#if CONF_GCLK_GEN_3_GENEN == 1
+#if defined(CONF_GCLK_GEN_3_GENEN) && CONF_GCLK_GEN_3_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_3_DIV) | GCLK_GENDIV_ID(3));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_3_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -98,7 +99,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_3_SRC
 	                               | GCLK_GENCTRL_ID(3));
 #endif
-#if CONF_GCLK_GEN_4_GENEN == 1
+#if defined(CONF_GCLK_GEN_4_GENEN) && CONF_GCLK_GEN_4_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_4_DIV) | GCLK_GENDIV_ID(4));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_4_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -110,7 +111,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_4_SRC
 	                               | GCLK_GENCTRL_ID(4));
 #endif
-#if CONF_GCLK_GEN_5_GENEN == 1
+#if defined(CONF_GCLK_GEN_5_GENEN) && CONF_GCLK_GEN_5_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_5_DIV) | GCLK_GENDIV_ID(5));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_5_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -122,7 +123,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_5_SRC
 	                               | GCLK_GENCTRL_ID(5));
 #endif
-#if CONF_GCLK_GEN_6_GENEN == 1
+#if defined(CONF_GCLK_GEN_6_GENEN) && CONF_GCLK_GEN_6_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_6_DIV) | GCLK_GENDIV_ID(6));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_6_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -134,7 +135,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_6_SRC
 	                               | GCLK_GENCTRL_ID(6));
 #endif
-#if CONF_GCLK_GEN_7_GENEN == 1
+#if defined(CONF_GCLK_GEN_7_GENEN) && CONF_GCLK_GEN_7_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_7_DIV) | GCLK_GENDIV_ID(7));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_7_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -146,7 +147,7 @@ void _gclk_init_generators(void)
 	                               | CONF_GCLK_GEN_7_SRC
 	                               | GCLK_GENCTRL_ID(7));
 #endif
-#if CONF_GCLK_GEN_8_GENEN == 1
+#if defined(CONF_GCLK_GEN_8_GENEN) && CONF_GCLK_GEN_8_GENEN == 1
 	hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_8_DIV) | GCLK_GENDIV_ID(8));
 	hri_gclk_write_GENCTRL_reg(GCLK,
 	                           (CONF_GCLK_GEN_8_RUNSTDBY << GCLK_GENCTRL_RUNSTDBY_Pos)
@@ -162,7 +163,7 @@ void _gclk_init_generators(void)
 
 void _gclk_init_generators_by_fref(uint32_t bm)
 {
-#if CONF_GCLK_GEN_0_GENEN == 1
+#if defined(CONF_GCLK_GEN_0_GENEN) && CONF_GCLK_GEN_0_GENEN == 1
 	if (bm & (1ul << 0)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_0_DIV) | GCLK_GENDIV_ID(0));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -176,7 +177,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(0));
 	}
 #endif
-#if CONF_GCLK_GEN_1_GENEN == 1
+#if defined(CONF_GCLK_GEN_1_GENEN) && CONF_GCLK_GEN_1_GENEN == 1
 	if (bm & (1ul << 1)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_1_DIV) | GCLK_GENDIV_ID(1));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -190,7 +191,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(1));
 	}
 #endif
-#if CONF_GCLK_GEN_2_GENEN == 1
+#if defined(CONF_GCLK_GEN_2_GENEN) && CONF_GCLK_GEN_2_GENEN == 1
 	if (bm & (1ul << 2)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_2_DIV) | GCLK_GENDIV_ID(2));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -204,7 +205,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(2));
 	}
 #endif
-#if CONF_GCLK_GEN_3_GENEN == 1
+#if defined(CONF_GCLK_GEN_3_GENEN) && CONF_GCLK_GEN_3_GENEN == 1
 	if (bm & (1ul << 3)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_3_DIV) | GCLK_GENDIV_ID(3));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -218,7 +219,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(3));
 	}
 #endif
-#if CONF_GCLK_GEN_4_GENEN == 1
+#if defined(CONF_GCLK_GEN_4_GENEN) && CONF_GCLK_GEN_4_GENEN == 1
 	if (bm & (1ul << 4)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_4_DIV) | GCLK_GENDIV_ID(4));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -232,7 +233,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(4));
 	}
 #endif
-#if CONF_GCLK_GEN_5_GENEN == 1
+#if defined(CONF_GCLK_GEN_5_GENEN) && CONF_GCLK_GEN_5_GENEN == 1
 	if (bm & (1ul << 5)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_5_DIV) | GCLK_GENDIV_ID(5));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -246,7 +247,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(5));
 	}
 #endif
-#if CONF_GCLK_GEN_6_GENEN == 1
+#if defined(CONF_GCLK_GEN_6_GENEN) && CONF_GCLK_GEN_6_GENEN == 1
 	if (bm & (1ul << 6)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_6_DIV) | GCLK_GENDIV_ID(6));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -260,7 +261,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(6));
 	}
 #endif
-#if CONF_GCLK_GEN_7_GENEN == 1
+#if defined(CONF_GCLK_GEN_7_GENEN) && CONF_GCLK_GEN_7_GENEN == 1
 	if (bm & (1ul << 7)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_7_DIV) | GCLK_GENDIV_ID(7));
 		hri_gclk_write_GENCTRL_reg(GCLK,
@@ -274,7 +275,7 @@ void _gclk_init_generators_by_fref(uint32_t bm)
 		                               | GCLK_GENCTRL_ID(7));
 	}
 #endif
-#if CONF_GCLK_GEN_8_GENEN == 1
+#if defined(CONF_GCLK_GEN_8_GENEN) && CONF_GCLK_GEN_8_GENEN == 1
 	if (bm & (1ul << 8)) {
 		hri_gclk_write_GENDIV_reg(GCLK, GCLK_GENDIV_DIV(CONF_GCLK_GEN_8_DIV) | GCLK_GENDIV_ID(8));
 		hri_gclk_write_GENCTRL_reg(GCLK,

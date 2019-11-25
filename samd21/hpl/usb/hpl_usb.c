@@ -1569,7 +1569,8 @@ void _usb_d_dev_send_remotewakeup(void)
 
 enum usb_speed _usb_d_dev_get_speed(void)
 {
-	uint8_t              sp       = (enum usb_speed)hri_usbdevice_read_STATUS_SPEED_bf(USB);
+    enum usb_speed sp = hri_usbdevice_read_STATUS_SPEED_bf(USB);
+//	uint8_t              sp       = (enum usb_speed)
 	const enum usb_speed speed[2] = {USB_SPEED_FS, USB_SPEED_LS};
 
 	return speed[sp];

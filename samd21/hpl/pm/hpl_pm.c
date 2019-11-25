@@ -45,6 +45,7 @@
 #include <hpl_pm_config.h>
 #include <hpl_reset.h>
 #include <hpl_sleep.h>
+#include <hpl_init.h>
 #include <utils_assert.h>
 
 /**
@@ -52,7 +53,7 @@
  */
 enum reset_reason _get_reset_reason(void)
 {
-	return (enum reset_reason)hri_pm_read_RCAUSE_reg(PM);
+    return hri_pm_read_RCAUSE_reg(PM);
 }
 
 /**

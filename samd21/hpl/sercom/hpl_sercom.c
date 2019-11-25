@@ -213,9 +213,9 @@ int32_t _usart_async_init(struct _usart_async_device *const device, void *const 
 	}
 	device->hw = hw;
 	_sercom_init_irq_param(hw, (void *)device);
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(hw));
+    NVIC_EnableIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -233,7 +233,7 @@ void _usart_sync_deinit(struct _usart_sync_device *const device)
  */
 void _usart_async_deinit(struct _usart_async_device *const device)
 {
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(device->hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(device->hw));
 	_usart_deinit(device->hw);
 }
 
@@ -1096,7 +1096,7 @@ int32_t _i2c_m_async_disable(struct _i2c_m_async_device *const i2c_dev)
 	ASSERT(i2c_dev);
 	ASSERT(i2c_dev->hw);
 
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
 	hri_sercomi2cm_clear_CTRLA_ENABLE_bit(hw);
 
 	return ERR_NONE;
@@ -1167,9 +1167,9 @@ int32_t _i2c_m_async_init(struct _i2c_m_async_device *const i2c_dev, void *const
 	}
 
 	_sercom_init_irq_param(hw, (void *)i2c_dev);
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(hw));
+    NVIC_EnableIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -1749,9 +1749,9 @@ int32_t _i2c_s_async_init(struct _i2c_s_async_device *const device, void *const 
 
 	device->hw = hw;
 	_sercom_init_irq_param(hw, (void *)device);
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(hw));
+    NVIC_EnableIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -1771,7 +1771,7 @@ int32_t _i2c_s_sync_deinit(struct _i2c_s_sync_device *const device)
  */
 int32_t _i2c_s_async_deinit(struct _i2c_s_async_device *const device)
 {
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(device->hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(device->hw));
 	_i2c_s_deinit(device->hw);
 
 	return ERR_NONE;
@@ -2172,7 +2172,7 @@ static int32_t _spi_sync_enable(void *const hw)
 static int32_t _spi_async_enable(void *const hw)
 {
 	_spi_sync_enable(hw);
-	NVIC_EnableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_EnableIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -2204,7 +2204,7 @@ static int32_t _spi_async_disable(void *const hw)
 	_spi_sync_disable(hw);
 	hri_sercomspi_clear_INTEN_reg(
 	    hw, SERCOM_SPI_INTFLAG_ERROR | SERCOM_SPI_INTFLAG_RXC | SERCOM_SPI_INTFLAG_TXC | SERCOM_SPI_INTFLAG_DRE);
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -2417,8 +2417,8 @@ int32_t _spi_m_async_init(struct _spi_async_dev *dev, void *const hw)
 	spid->callbacks.complete = NULL;
 	spid->callbacks.rx       = NULL;
 	spid->callbacks.tx       = NULL;
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(hw));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(hw));
+    NVIC_DisableIRQ(_sercom_get_irq_num(hw));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(hw));
 
 	return ERR_NONE;
 }
@@ -2430,16 +2430,16 @@ int32_t _spi_s_async_init(struct _spi_s_async_dev *dev, void *const hw)
 
 int32_t _spi_m_async_deinit(struct _spi_async_dev *dev)
 {
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(dev->prvt));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(dev->prvt));
+    NVIC_DisableIRQ(_sercom_get_irq_num(dev->prvt));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(dev->prvt));
 
 	return _spi_deinit(dev->prvt);
 }
 
 int32_t _spi_s_async_deinit(struct _spi_s_async_dev *dev)
 {
-	NVIC_DisableIRQ((IRQn_Type)_sercom_get_irq_num(dev->prvt));
-	NVIC_ClearPendingIRQ((IRQn_Type)_sercom_get_irq_num(dev->prvt));
+    NVIC_DisableIRQ(_sercom_get_irq_num(dev->prvt));
+    NVIC_ClearPendingIRQ(_sercom_get_irq_num(dev->prvt));
 
 	return _spi_deinit(dev->prvt);
 }
@@ -3278,7 +3278,8 @@ int32_t _spi_m_dma_transfer(struct _spi_m_dma_dev *dev, uint8_t const *txbuf, ui
 	if (rxbuf) {
 		/* Enable spi rx */
 		_spi_m_dma_rx_enable(dev);
-		_dma_set_source_address(rx_ch, (void *)_spi_m_get_source_for_dma(dev->prvt));
+        uint32_t ptr = _spi_m_get_source_for_dma(dev->prvt);
+        _dma_set_source_address(rx_ch, (void *)ptr);
 		_dma_set_destination_address(rx_ch, rxbuf);
 		_dma_set_data_amount(rx_ch, length);
 		_dma_enable_transaction(rx_ch, false);
@@ -3288,12 +3289,14 @@ int32_t _spi_m_dma_transfer(struct _spi_m_dma_dev *dev, uint8_t const *txbuf, ui
 		/* Enable spi tx */
 		_spi_m_dma_rx_disable(dev);
 		_dma_set_source_address(tx_ch, txbuf);
-		_dma_set_destination_address(tx_ch, (void *)_spi_m_get_destination_for_dma(dev->prvt));
+        uint32_t ptr = _spi_m_get_destination_for_dma(dev->prvt);
+        _dma_set_destination_address(tx_ch, (void *)ptr);
 		_dma_srcinc_enable(tx_ch, true);
 		_dma_set_data_amount(tx_ch, length);
 	} else {
 		_dma_set_source_address(tx_ch, &regs->dummy_byte);
-		_dma_set_destination_address(tx_ch, (void *)_spi_m_get_destination_for_dma(dev->prvt));
+        uint32_t ptr = _spi_m_get_destination_for_dma(dev->prvt);
+        _dma_set_destination_address(tx_ch, (void *)ptr);
 		_dma_srcinc_enable(tx_ch, false);
 		_dma_set_data_amount(tx_ch, length);
 	}
