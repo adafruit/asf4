@@ -1,46 +1,36 @@
 
 /**
-* \file
-*
-* \brief Non-Volatile Memory Controller
-*
-* Copyright (C) 2015-2017 Atmel Corporation. All rights reserved.
-*
-* \asf_license_start
-*
-* \page License
-*
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the following conditions are met:
-*
-* 1. Redistributions of source code must retain the above copyright notice,
-*    this list of conditions and the following disclaimer.
-*
-* 2. Redistributions in binary form must reproduce the above copyright notice,
-*    this list of conditions and the following disclaimer in the documentation
-*    and/or other materials provided with the distribution.
-*
-* 3. The name of Atmel may not be used to endorse or promote products derived
-*    from this software without specific prior written permission.
-*
-* 4. This software may only be redistributed and used in connection with an
-*    Atmel microcontroller product.
-*
-* THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
-* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
-* EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
-* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-* DAMAGES (INCLUDING, BUT NOT LIMIT ED TO, PROCUREMENT OF SUBSTITUTE GOODS
-* OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-* STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-* ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-* POSSIBILITY OF SUCH DAMAGE.
-*
-* \asf_license_stop
-*
-*/
+ * \file
+ *
+ * \brief Non-Volatile Memory Controller
+ *
+ * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
+ *
+ * \asf_license_start
+ *
+ * \page License
+ *
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
+ *
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+ *
+ * \asf_license_stop
+ *
+ */
 
 #include <hpl_flash.h>
 #include <hpl_user_area.h>
@@ -68,8 +58,9 @@ static struct nvm_configuration _nvm
 /*!< Pointer to hpl device */
 static struct _flash_device *_nvm_dev = NULL;
 
-static void _flash_erase_row(void *const hw, const uint32_t dst_addr);
-static void _flash_program(void *const hw, const uint32_t dst_addr, const uint8_t *buffer, const uint16_t size);
+static void _flash_erase_row(void *const hw, const uint32_t dst_addr, uint32_t nvmctrl_cmd);
+static void _flash_program(void *const hw, const uint32_t dst_addr, const uint8_t *buffer, const uint16_t size,
+                           uint32_t nvmctrl_cmd);
 
 /**
  * \brief Initialize NVM
@@ -206,11 +197,15 @@ void _flash_write(struct _flash_device *const device, const uint32_t dst_addr, u
 		}
 
 		/* erase row before write */
-		_flash_erase_row(device->hw, row_start_addr);
+		_flash_erase_row(device->hw, row_start_addr, NVMCTRL_CTRLA_CMD_ER);
 
 		/* write buffer to flash */
 		for (i = 0; i < NVMCTRL_ROW_PAGES; i++) {
-			_flash_program(device->hw, row_start_addr + i * NVMCTRL_PAGE_SIZE, tmp_buffer[i], NVMCTRL_PAGE_SIZE);
+			_flash_program(device->hw,
+			               row_start_addr + i * NVMCTRL_PAGE_SIZE,
+			               tmp_buffer[i],
+			               NVMCTRL_PAGE_SIZE,
+			               NVMCTRL_CTRLA_CMD_WP);
 		}
 
 	} while (row_end_addr < (wr_start_addr + length - 1));
@@ -228,14 +223,14 @@ void _flash_append(struct _flash_device *const device, const uint32_t dst_addr, 
 	if (dst_addr != page_start_addr) {
 		/* Need to write some data to the end of a page */
 		size = min(length, NVMCTRL_PAGE_SIZE - (dst_addr - page_start_addr));
-		_flash_program(device->hw, dst_addr, buffer, size);
+		_flash_program(device->hw, dst_addr, buffer, size, NVMCTRL_CTRLA_CMD_WP);
 		page_start_addr += NVMCTRL_PAGE_SIZE;
 		offset += size;
 	}
 
 	while (offset < length) {
 		size = min(length - offset, NVMCTRL_PAGE_SIZE);
-		_flash_program(device->hw, page_start_addr, buffer + offset, size);
+		_flash_program(device->hw, page_start_addr, buffer + offset, size, NVMCTRL_CTRLA_CMD_WP);
 		page_start_addr += NVMCTRL_PAGE_SIZE;
 		offset += size;
 	}
@@ -270,7 +265,7 @@ void _flash_erase(struct _flash_device *const device, uint32_t dst_addr, uint32_
 	}
 
 	while (page_nums >= NVMCTRL_ROW_PAGES) {
-		_flash_erase_row(device->hw, row_start_addr);
+		_flash_erase_row(device->hw, row_start_addr, NVMCTRL_CTRLA_CMD_ER);
 		row_start_addr += NVMCTRL_ROW_PAGES * NVMCTRL_PAGE_SIZE;
 		page_nums -= NVMCTRL_ROW_PAGES;
 	}
@@ -371,7 +366,7 @@ void _flash_set_irq_state(struct _flash_device *const device, const enum _flash_
  * \param[in]  hw            The pointer to hardware instance
  * \param[in]  dst_addr      Destination page address to erase
  */
-static void _flash_erase_row(void *const hw, const uint32_t dst_addr)
+static void _flash_erase_row(void *const hw, const uint32_t dst_addr, uint32_t nvmctrl_cmd)
 {
 	while (!hri_nvmctrl_get_interrupt_READY_bit(hw)) {
 		/* Wait until this module isn't busy */
@@ -382,7 +377,7 @@ static void _flash_erase_row(void *const hw, const uint32_t dst_addr)
 
 	/* Set address and command */
 	hri_nvmctrl_write_ADDR_reg(hw, dst_addr / 2);
-	hri_nvmctrl_write_CTRLA_reg(hw, NVMCTRL_CTRLA_CMD_ER | NVMCTRL_CTRLA_CMDEX_KEY);
+	hri_nvmctrl_write_CTRLA_reg(hw, nvmctrl_cmd | NVMCTRL_CTRLA_CMDEX_KEY);
 }
 
 /**
@@ -393,7 +388,8 @@ static void _flash_erase_row(void *const hw, const uint32_t dst_addr)
  *                           write is stored
  * \param[in] size           The size of data to write to a page
  */
-static void _flash_program(void *const hw, const uint32_t dst_addr, const uint8_t *buffer, const uint16_t size)
+static void _flash_program(void *const hw, const uint32_t dst_addr, const uint8_t *buffer, const uint16_t size,
+                           uint32_t nvmctrl_cmd)
 {
 	ASSERT(!(dst_addr % 2));
 
@@ -426,7 +422,7 @@ static void _flash_program(void *const hw, const uint32_t dst_addr, const uint8_
 	}
 
 	hri_nvmctrl_write_ADDR_reg(hw, dst_addr / 2);
-	hri_nvmctrl_write_CTRLA_reg(hw, NVMCTRL_CTRLA_CMD_WP | NVMCTRL_CTRLA_CMDEX_KEY);
+	hri_nvmctrl_write_CTRLA_reg(hw, nvmctrl_cmd | NVMCTRL_CTRLA_CMDEX_KEY);
 }
 
 /**
@@ -587,7 +583,7 @@ static int32_t _user_row_write_exec(const uint32_t *_row)
 	hri_nvmctrl_set_CTRLB_MANW_bit(hw);
 
 	/* - Erase AUX row. */
-	hri_nvmctrl_write_ADDR_reg(hw, (hri_nvmctrl_addr_reg_t)_NVM_USER_ROW_BASE);
+	hri_nvmctrl_write_ADDR_reg(hw, (hri_nvmctrl_addr_reg_t)(_NVM_USER_ROW_BASE / 2));
 	hri_nvmctrl_write_CTRLA_reg(hw, NVMCTRL_CTRLA_CMD_EAR | NVMCTRL_CTRLA_CMDEX_KEY);
 	while (!hri_nvmctrl_get_INTFLAG_reg(hw, NVMCTRL_INTFLAG_READY)) {
 		/* Wait until this module isn't busy */
@@ -602,7 +598,7 @@ static int32_t _user_row_write_exec(const uint32_t *_row)
 	*(((uint32_t *)NVMCTRL_AUX0_ADDRESS) + 1) = _row[1];
 
 	/* - Write AUX row. */
-	hri_nvmctrl_write_ADDR_reg(hw, (hri_nvmctrl_addr_reg_t)_NVM_USER_ROW_BASE);
+	hri_nvmctrl_write_ADDR_reg(hw, (hri_nvmctrl_addr_reg_t)(_NVM_USER_ROW_BASE / 2));
 	hri_nvmctrl_write_CTRLA_reg(hw, NVMCTRL_CTRLA_CMD_WAP | NVMCTRL_CTRLA_CMDEX_KEY);
 	while (!hri_nvmctrl_get_INTFLAG_reg(hw, NVMCTRL_INTFLAG_READY)) {
 		/* Wait until this module isn't busy */

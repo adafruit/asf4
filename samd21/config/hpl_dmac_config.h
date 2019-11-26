@@ -109,7 +109,7 @@
 // <e> Channel 0 settings
 // <id> dmac_channel_0_settings
 #ifndef CONF_DMAC_CHANNEL_0_SETTINGS
-#define CONF_DMAC_CHANNEL_0_SETTINGS 0
+#define CONF_DMAC_CHANNEL_0_SETTINGS 1
 #endif
 
 // <q> Channel Enable
@@ -175,6 +175,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_0
 #ifndef CONF_DMAC_TRIGSRC_0
@@ -359,6 +360,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_1
 #ifndef CONF_DMAC_TRIGSRC_1
@@ -543,6 +545,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_2
 #ifndef CONF_DMAC_TRIGSRC_2
@@ -727,6 +730,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_3
 #ifndef CONF_DMAC_TRIGSRC_3
@@ -911,6 +915,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_4
 #ifndef CONF_DMAC_TRIGSRC_4
@@ -1095,6 +1100,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_5
 #ifndef CONF_DMAC_TRIGSRC_5
@@ -1279,6 +1285,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_6
 #ifndef CONF_DMAC_TRIGSRC_6
@@ -1463,6 +1470,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_7
 #ifndef CONF_DMAC_TRIGSRC_7
@@ -1647,6 +1655,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_8
 #ifndef CONF_DMAC_TRIGSRC_8
@@ -1831,6 +1840,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_9
 #ifndef CONF_DMAC_TRIGSRC_9
@@ -2015,6 +2025,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_10
 #ifndef CONF_DMAC_TRIGSRC_10
@@ -2199,6 +2210,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_11
 #ifndef CONF_DMAC_TRIGSRC_11
@@ -2383,6 +2395,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_12
 #ifndef CONF_DMAC_TRIGSRC_12
@@ -2567,6 +2580,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_13
 #ifndef CONF_DMAC_TRIGSRC_13
@@ -2751,6 +2765,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_14
 #ifndef CONF_DMAC_TRIGSRC_14
@@ -2935,6 +2950,7 @@
 // <0x2A=> I2S Rx 1 Trigger
 // <0x2B=> I2S Tx 0 Trigger
 // <0x2C=> I2S Tx 1 Trigger
+
 // <i> Defines the peripheral trigger which is source of the transfer
 // <id> dmac_trifsrc_15
 #ifndef CONF_DMAC_TRIGSRC_15

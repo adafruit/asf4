@@ -3,39 +3,29 @@
  *
  * \brief I/O SPI DMA related functionality implementation.
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
  *
@@ -54,14 +44,22 @@
 static int32_t _spi_m_dma_io_write(struct io_descriptor *const io, const uint8_t *const buf, const uint16_t length);
 static int32_t _spi_m_dma_io_read(struct io_descriptor *const io, uint8_t *const buf, const uint16_t length);
 
+/**
+ *  \brief Initialize the SPI HAL instance function pointer for HPL APIs.
+ */
+void spi_m_dma_set_func_ptr(struct spi_m_dma_descriptor *spi, void *const func)
+{
+	ASSERT(spi);
+	spi->func = (struct _spi_m_dma_hpl_interface *)func;
+}
+
 int32_t spi_m_dma_init(struct spi_m_dma_descriptor *spi, void *const hw)
 {
 	int32_t rc = 0;
-
 	ASSERT(spi && hw);
 	spi->dev.prvt = (void *)hw;
+	rc            = _spi_m_dma_init(&spi->dev, hw);
 
-	rc = _spi_m_dma_init(&spi->dev, hw);
 	if (rc) {
 		return rc;
 	}
@@ -75,49 +73,42 @@ int32_t spi_m_dma_init(struct spi_m_dma_descriptor *spi, void *const hw)
 void spi_m_dma_deinit(struct spi_m_dma_descriptor *spi)
 {
 	ASSERT(spi);
-
 	_spi_m_dma_deinit(&spi->dev);
 }
 
 void spi_m_dma_enable(struct spi_m_dma_descriptor *spi)
 {
 	ASSERT(spi);
-
 	_spi_m_dma_enable(&spi->dev);
 }
 
 void spi_m_dma_disable(struct spi_m_dma_descriptor *spi)
 {
 	ASSERT(spi);
-
 	_spi_m_dma_disable(&spi->dev);
 }
 
 int32_t spi_m_dma_set_baudrate(struct spi_m_dma_descriptor *spi, const uint32_t baud_val)
 {
 	ASSERT(spi);
-
 	return _spi_m_dma_set_baudrate(&spi->dev, baud_val);
 }
 
 int32_t spi_m_dma_set_mode(struct spi_m_dma_descriptor *spi, const enum spi_transfer_mode mode)
 {
 	ASSERT(spi);
-
 	return _spi_m_dma_set_mode(&spi->dev, mode);
 }
 
 int32_t spi_m_dma_set_char_size(struct spi_m_dma_descriptor *spi, const enum spi_char_size char_size)
 {
 	ASSERT(spi);
-
 	return _spi_m_dma_set_char_size(&spi->dev, char_size);
 }
 
 int32_t spi_m_dma_set_data_order(struct spi_m_dma_descriptor *spi, const enum spi_data_order dord)
 {
 	ASSERT(spi);
-
 	return _spi_m_dma_set_data_order(&spi->dev, dord);
 }
 
@@ -138,7 +129,6 @@ static int32_t _spi_m_dma_io_read(struct io_descriptor *io, uint8_t *const buf, 
 	ASSERT(io);
 
 	struct spi_m_dma_descriptor *spi = CONTAINER_OF(io, struct spi_m_dma_descriptor, io);
-
 	return _spi_m_dma_transfer(&spi->dev, NULL, buf, length);
 }
 
@@ -162,7 +152,6 @@ static int32_t _spi_m_dma_io_write(struct io_descriptor *io, const uint8_t *cons
 	ASSERT(io);
 
 	struct spi_m_dma_descriptor *spi = CONTAINER_OF(io, struct spi_m_dma_descriptor, io);
-
 	return _spi_m_dma_transfer(&spi->dev, buf, NULL, length);
 }
 
@@ -170,7 +159,6 @@ int32_t spi_m_dma_transfer(struct spi_m_dma_descriptor *spi, uint8_t const *txbu
                            const uint16_t length)
 {
 	ASSERT(spi);
-
 	return _spi_m_dma_transfer(&spi->dev, txbuf, rxbuf, length);
 }
 
@@ -178,7 +166,6 @@ void spi_m_dma_register_callback(struct spi_m_dma_descriptor *spi, const enum sp
                                  spi_m_dma_cb_t func)
 {
 	ASSERT(spi);
-
 	_spi_m_dma_register_callback(&spi->dev, (enum _spi_dma_dev_cb_type)type, func);
 }
 

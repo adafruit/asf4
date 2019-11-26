@@ -3,37 +3,31 @@
  *
  * \brief USB Device Stack Composite Class Descriptor Setting.
  *
- * Copyright (C) 2015 - 2017 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
+ *
+ * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- * from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- * Atmel AVR product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.
+ * \asf_license_stop
  */
 
 #ifndef USBDF_COMPOSITE_DESC_H_
@@ -49,8 +43,7 @@
 #define CONF_USB_COMPOSITE_CDC_ACM_DATA_BIFCNUM 1
 #define CONF_CDC_ACM_IFC_DESC                                                                                          \
 	USB_IAD_DESC_BYTES(                                                                                                \
-	    CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x02, CDC_CLASS_DEVICE, CDC_SUBCLASS_ACM, CDC_PROTOCOL_V25TER, 0x00)  \
-	,                                                                                                                  \
+	    CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x02, CDC_CLASS_DEVICE, CDC_SUBCLASS_ACM, CDC_PROTOCOL_V25TER, 0x00), \
 	    USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM,                                                  \
 	                         0x00,                                                                                     \
 	                         0x01,                                                                                     \
@@ -69,8 +62,7 @@
 	        CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_EPADDR, 2, CONF_USB_COMPOSITE_CDC_ACM_DATA_BULKIN_MAXPKSZ, 0x00),
 #define CONF_CDC_ACM_IFC_DESC_HS                                                                                       \
 	USB_IAD_DESC_BYTES(                                                                                                \
-	    CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x02, CDC_CLASS_DEVICE, CDC_SUBCLASS_ACM, CDC_PROTOCOL_V25TER, 0x00)  \
-	,                                                                                                                  \
+	    CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM, 0x02, CDC_CLASS_DEVICE, CDC_SUBCLASS_ACM, CDC_PROTOCOL_V25TER, 0x00), \
 	    USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_CDC_ACM_COMM_BIFCNUM,                                                  \
 	                         0x00,                                                                                     \
 	                         0x01,                                                                                     \
@@ -105,8 +97,8 @@
 #define CONF_HID_MOUSE_IFC_NUM 1
 #define CONF_USB_COMPOSITE_HID_MOUSE_BIFCNUM (CONF_USB_COMPOSITE_CDC_ACM_DATA_BIFCNUM + 1)
 #define CONF_HID_MOUSE_IFC_DESC                                                                                        \
-	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_MOUSE_BIFCNUM, 0x00, 0x01, 0x03, 0x01, 0x02, 0x00)                     \
-	, USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, 0x34),                                                                \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_MOUSE_BIFCNUM, 0x00, 0x01, 0x03, 0x01, 0x02, 0x00),                    \
+	    USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, 0x34),                                                              \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
 	        CONF_USB_COMPOSITE_HID_MOUSE_INTIN_EPADDR, 0x03, CONF_USB_COMPOSITE_HID_MOUSE_INTIN_MAXPKSZ, 10),
 #else
@@ -121,8 +113,8 @@
 #define CONF_HID_KEYBOARD_IFC_NUM 1
 #define CONF_USB_COMPOSITE_HID_KEYBOARD_BIFCNUM (CONF_USB_COMPOSITE_HID_MOUSE_BIFCNUM + 1)
 #define CONF_HID_KEYBOARD_IFC_DESC                                                                                     \
-	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_KEYBOARD_BIFCNUM, 0x00, 0x02, 0x03, 0x01, 0x01, 0x00)                  \
-	, USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, 59),                                                                  \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_KEYBOARD_BIFCNUM, 0x00, 0x02, 0x03, 0x01, 0x01, 0x00),                 \
+	    USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, 59),                                                                \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
 	        CONF_USB_COMPOSITE_HID_KEYBOARD_INTIN_EPADDR, 0x03, CONF_USB_COMPOSITE_HID_KEYBOARD_INTIN_MAXPKSZ, 10),    \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
@@ -139,8 +131,8 @@
 #define CONF_HID_GENERIC_IFC_NUM 1
 #define CONF_USB_COMPOSITE_HID_GENERIC_BIFCNUM (CONF_USB_COMPOSITE_HID_KEYBOARD_BIFCNUM + 1)
 #define CONF_HID_GENERIC_IFC_DESC                                                                                      \
-	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_GENERIC_BIFCNUM, 0x00, 0x02, 0x03, 0x00, 0x00, 0x00)                   \
-	, USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, CONF_USB_COMPOSITE_HID_GENERIC_REPORT_LEN),                           \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_HID_GENERIC_BIFCNUM, 0x00, 0x02, 0x03, 0x00, 0x00, 0x00),                  \
+	    USB_HID_DESC_BYTES(0x09, 0x21, 0x01, 0x22, CONF_USB_COMPOSITE_HID_GENERIC_REPORT_LEN),                         \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
 	        CONF_USB_COMPOSITE_HID_GENERIC_INTIN_EPADDR, 0x03, CONF_USB_COMPOSITE_HID_GENERIC_INTIN_MAXPKSZ, 10),      \
 	    USB_ENDP_DESC_BYTES(                                                                                           \
@@ -157,12 +149,12 @@
 #define CONF_MSC_IFC_NUM 1
 #define CONF_USB_COMPOSITE_MSC_BIFCNUM (CONF_USB_COMPOSITE_HID_GENERIC_BIFCNUM + 1)
 #define CONF_MSC_IFC_DESC                                                                                              \
-	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00)                           \
-	, USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ, 0),         \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00),                          \
+	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ, 0),       \
 	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ, 0),
 #define CONF_MSC_IFC_DESC_HS                                                                                           \
-	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00)                           \
-	, USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS, 0),      \
+	USB_IFACE_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BIFCNUM, 0x00, 0x02, 0x08, 0x06, 0x50, 0x00),                          \
+	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKIN_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS, 0),    \
 	    USB_ENDP_DESC_BYTES(CONF_USB_COMPOSITE_MSC_BULKOUT_EPADDR, 0x02, CONF_USB_COMPOSITE_MSC_BULK_MAXPKSZ_HS, 0),
 #else
 #define CONF_MSC_IFC_LEN 0
@@ -174,8 +166,7 @@
 
 #define CONF_USB_COMPOSITE_TOTAL_LEN                                                                                   \
 	(USB_CONFIG_DESC_LEN + CONF_CDC_ACM_IFC_LEN + CONF_HID_MOUSE_IFC_LEN + CONF_HID_KEYBOARD_IFC_LEN                   \
-	 + CONF_HID_GENERIC_IFC_LEN                                                                                        \
-	 + CONF_MSC_IFC_LEN)
+	 + CONF_HID_GENERIC_IFC_LEN + CONF_MSC_IFC_LEN)
 
 #define CONF_USB_COMPOSITE_IFC_NUM                                                                                     \
 	(CONF_CDC_ACM_IFC_NUM + CONF_HID_MOUSE_IFC_NUM + CONF_HID_KEYBOARD_IFC_NUM + CONF_HID_GENERIC_IFC_NUM              \

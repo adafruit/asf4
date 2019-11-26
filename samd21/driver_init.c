@@ -12,6 +12,7 @@
 #include <hal_init.h>
 #include <hpl_gclk_base.h>
 #include <hpl_pm_base.h>
+
 #include <hpl_adc_base.h>
 #include <hpl_rtc_base.h>
 
@@ -68,9 +69,6 @@ void FLASH_0_init(void)
 void SPI_M_SERCOM0_PORT_init(void)
 {
 
-	// Set pin direction to output
-	gpio_set_pin_direction(PA04, GPIO_DIRECTION_OUT);
-
 	gpio_set_pin_level(PA04,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
@@ -78,10 +76,10 @@ void SPI_M_SERCOM0_PORT_init(void)
 	                   // <true"> High
 	                   false);
 
-	gpio_set_pin_function(PA04, PINMUX_PA04D_SERCOM0_PAD0);
-
 	// Set pin direction to output
-	gpio_set_pin_direction(PA05, GPIO_DIRECTION_OUT);
+	gpio_set_pin_direction(PA04, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(PA04, PINMUX_PA04D_SERCOM0_PAD0);
 
 	gpio_set_pin_level(PA05,
 	                   // <y> Initial level
@@ -89,6 +87,9 @@ void SPI_M_SERCOM0_PORT_init(void)
 	                   // <false"> Low
 	                   // <true"> High
 	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA05, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(PA05, PINMUX_PA05D_SERCOM0_PAD1);
 
@@ -211,9 +212,6 @@ void SPI_M_DMA_SERCOM3_PORT_init(void)
 
 	gpio_set_pin_function(PA22, PINMUX_PA22C_SERCOM3_PAD0);
 
-	// Set pin direction to output
-	gpio_set_pin_direction(PA20, GPIO_DIRECTION_OUT);
-
 	gpio_set_pin_level(PA20,
 	                   // <y> Initial level
 	                   // <id> pad_initial_level
@@ -221,10 +219,10 @@ void SPI_M_DMA_SERCOM3_PORT_init(void)
 	                   // <true"> High
 	                   false);
 
-	gpio_set_pin_function(PA20, PINMUX_PA20D_SERCOM3_PAD2);
-
 	// Set pin direction to output
-	gpio_set_pin_direction(PA19, GPIO_DIRECTION_OUT);
+	gpio_set_pin_direction(PA20, GPIO_DIRECTION_OUT);
+
+	gpio_set_pin_function(PA20, PINMUX_PA20D_SERCOM3_PAD2);
 
 	gpio_set_pin_level(PA19,
 	                   // <y> Initial level
@@ -232,6 +230,9 @@ void SPI_M_DMA_SERCOM3_PORT_init(void)
 	                   // <false"> Low
 	                   // <true"> High
 	                   false);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(PA19, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(PA19, PINMUX_PA19D_SERCOM3_PAD3);
 }

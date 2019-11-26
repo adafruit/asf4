@@ -27,11 +27,6 @@
 #define CONF_TC3_PRESCALER TC_CTRLA_PRESCALER_DIV8_Val
 #endif
 
-//<o> Period Value <0x00000000-0xFFFFFFFF>
-// <id> tc_per
-#ifndef CONF_TC3_PER
-#define CONF_TC3_PER 0x32
-#endif
 // </h>
 
 // <h> PWM Waveform Output settings
@@ -79,9 +74,12 @@
 #ifndef CONF_TC3_MODE
 #define CONF_TC3_MODE TC_CTRLA_MODE_COUNT16_Val
 #endif
-// </h>
 
-// <h> Advanced settings
+/*  Unused in 16/32 bit PWM mode */
+#ifndef CONF_TC3_PER
+#define CONF_TC3_PER 0x32
+#endif
+
 /* Commented intentionally. Timer uses fixed value. May be used by other abstractions based on TC. */
 //#define CONF_TC3_WAVEGEN   TC_CTRLA_WAVEGEN_MFRQ_Val
 

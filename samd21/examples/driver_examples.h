@@ -24,6 +24,8 @@ void SPI_M_DMA_SERCOM3_example(void);
 
 void delay_example(void);
 
+void TIMER_0_example(void);
+
 void PWM_0_example(void);
 
 void DAC_0_example(void);

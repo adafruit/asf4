@@ -39,7 +39,7 @@ void composite_device_init(void)
 	/* usb stack init */
 	usbdc_init(ctrl_buffer);
 
-/* usbdc_register_funcion inside */
+	/* usbdc_register_funcion inside */
 #if CONF_USB_COMPOSITE_CDC_ACM_EN
 	cdcdf_acm_init();
 #endif

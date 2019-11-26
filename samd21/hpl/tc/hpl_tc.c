@@ -3,39 +3,29 @@
  *
  * \brief SAM TC
  *
- * Copyright (C) 2015 - 2017 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
  *
@@ -87,26 +77,28 @@
  */
 #define TC_CONFIGURATION(n)                                                                                            \
 	{                                                                                                                  \
-		(n), TC_CTRLA_MODE(CONF_TC##n##_MODE) | TC_CTRLA_WAVEGEN(TC_CTRLA_WAVEGEN_MPWM_Val)                            \
-		         | TC_CTRLA_PRESCALER(CONF_TC##n##_PRESCALER) | (CONF_TC##n##_RUNSTDBY << TC_CTRLA_RUNSTDBY_Pos)       \
-		         | TC_CTRLA_PRESCSYNC(CONF_TC##n##_PRESCSYNC),                                                         \
+		(n),                                                                                                           \
+		    TC_CTRLA_MODE(CONF_TC##n##_MODE) | TC_CTRLA_WAVEGEN(TC_CTRLA_WAVEGEN_MPWM_Val)                             \
+		        | TC_CTRLA_PRESCALER(CONF_TC##n##_PRESCALER) | (CONF_TC##n##_RUNSTDBY << TC_CTRLA_RUNSTDBY_Pos)        \
+		        | TC_CTRLA_PRESCSYNC(CONF_TC##n##_PRESCSYNC),                                                          \
 		    (CONF_TC##n##_DBGRUN << TC_DBGCTRL_DBGRUN_Pos),                                                            \
 		    (CONF_TC##n##_OVFEO << TC_EVCTRL_OVFEO_Pos) | (CONF_TC##n##_TCEI << TC_EVCTRL_TCEI_Pos)                    \
 		        | (CONF_TC##n##_TCINV << TC_EVCTRL_TCINV_Pos) | (CONF_TC##n##_EVACT << TC_EVCTRL_EVACT_Pos)            \
 		        | (CONF_TC##n##_MCEO0 << TC_EVCTRL_MCEO0_Pos) | (CONF_TC##n##_MCEO1 << TC_EVCTRL_MCEO1_Pos),           \
 		    CONF_TC##n##_PER, CONF_TC##n##_CC0, CONF_TC##n##_CC1                                                       \
 	}
+
 /**
  * \brief TC configuration type
  */
 struct tc_configuration {
-	uint8_t              number;
-	hri_tc_ctrla_reg_t   ctrl_a;
-	hri_tc_dbgctrl_reg_t dbg_ctrl;
-	hri_tc_evctrl_reg_t  event_ctrl;
-	hri_tc_per_reg_t     per;
-	hri_tc_cc32_reg_t    cc0;
-	hri_tc_cc32_reg_t    cc1;
+	uint8_t                number;
+	hri_tc_ctrla_reg_t     ctrl_a;
+	hri_tc_dbgctrl_reg_t   dbg_ctrl;
+	hri_tc_evctrl_reg_t    event_ctrl;
+	hri_tccount8_per_reg_t per;
+	hri_tccount32_cc_reg_t cc0;
+	hri_tccount32_cc_reg_t cc1;
 };
 
 /**
@@ -132,9 +124,9 @@ static struct tc_configuration _tcs[] = {
 
 static struct _pwm_device *_tc3_dev = NULL;
 
-static int8_t get_tc_index(const void *const hw);
-static uint8_t tc_get_hardware_index(const void *const hw);
-static void _tc_init_irq_param(const void *const hw, void *dev);
+static int8_t         get_tc_index(const void *const hw);
+static uint8_t        tc_get_hardware_index(const void *const hw);
+static void           _tc_init_irq_param(const void *const hw, void *dev);
 static inline uint8_t _get_hardware_offset(const void *const hw);
 /**
  * \brief Initialize TC for PWM mode
@@ -145,10 +137,11 @@ int32_t _pwm_init(struct _pwm_device *const device, void *const hw)
 	device->hw = hw;
 
 	hri_tc_wait_for_sync(hw);
-	if (hri_tc_get_CTRLA_ENABLE_bit(hw)) {
-		return ERR_DENIED;
+	if (hri_tc_get_CTRLA_reg(hw, TC_CTRLA_ENABLE)) {
+		hri_tc_write_CTRLA_reg(hw, 0);
+		hri_tc_wait_for_sync(hw);
 	}
-	hri_tc_set_CTRLA_SWRST_bit(hw);
+	hri_tc_write_CTRLA_reg(hw, TC_CTRLA_SWRST);
 	hri_tc_wait_for_sync(hw);
 
 	hri_tc_write_CTRLA_reg(hw, _tcs[i].ctrl_a);
@@ -159,8 +152,8 @@ int32_t _pwm_init(struct _pwm_device *const device, void *const hw)
 		hri_tccount32_write_CC_reg(hw, 0, _tcs[i].cc0);
 		hri_tccount32_write_CC_reg(hw, 1, _tcs[i].cc1);
 	} else if ((_tcs[i].ctrl_a & TC_CTRLA_MODE_Msk) == TC_CTRLA_MODE_COUNT16) {
-		hri_tccount16_write_CC_reg(hw, 0, (hri_tc_count16_reg_t)_tcs[i].cc0);
-		hri_tccount16_write_CC_reg(hw, 1, (hri_tc_count16_reg_t)_tcs[i].cc1);
+		hri_tccount16_write_CC_reg(hw, 0, (hri_tccount16_cc_reg_t)_tcs[i].cc0);
+		hri_tccount16_write_CC_reg(hw, 1, (hri_tccount16_cc_reg_t)_tcs[i].cc1);
 	} else {
 		/* 8-bit resolution is not accepted by duty cycle control */
 		return ERR_INVALID_DATA;
@@ -310,8 +303,8 @@ static void tc_pwm_interrupt_handler(struct _pwm_device *device)
 }
 
 /**
-* \brief TC interrupt handler
-*/
+ * \brief TC interrupt handler
+ */
 void TC3_Handler(void)
 {
 	tc_pwm_interrupt_handler(_tc3_dev);

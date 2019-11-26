@@ -3,7 +3,7 @@
  *
  * \brief Instance description for PORT
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2018 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -70,8 +70,8 @@
 #define REG_PORT_IN0               (*(RoReg  *)0x41004420UL) /**< \brief (PORT) Data Input Value 0 */
 #define REG_PORT_CTRL0             (*(RwReg  *)0x41004424UL) /**< \brief (PORT) Control 0 */
 #define REG_PORT_WRCONFIG0         (*(WoReg  *)0x41004428UL) /**< \brief (PORT) Write Configuration 0 */
-#define REG_PORT_PMUX0             (*(RwReg  *)0x41004430UL) /**< \brief (PORT) Peripheral Multiplexing 0 */
-#define REG_PORT_PINCFG0           (*(RwReg  *)0x41004440UL) /**< \brief (PORT) Pin Configuration 0 */
+#define REG_PORT_PMUX0             (*(RwReg8 *)0x41004430UL) /**< \brief (PORT) Peripheral Multiplexing 0 */
+#define REG_PORT_PINCFG0           (*(RwReg8 *)0x41004440UL) /**< \brief (PORT) Pin Configuration 0 */
 #define REG_PORT_DIR1              (*(RwReg  *)0x41004480UL) /**< \brief (PORT) Data Direction 1 */
 #define REG_PORT_DIRCLR1           (*(RwReg  *)0x41004484UL) /**< \brief (PORT) Data Direction Clear 1 */
 #define REG_PORT_DIRSET1           (*(RwReg  *)0x41004488UL) /**< \brief (PORT) Data Direction Set 1 */
@@ -83,8 +83,8 @@
 #define REG_PORT_IN1               (*(RoReg  *)0x410044A0UL) /**< \brief (PORT) Data Input Value 1 */
 #define REG_PORT_CTRL1             (*(RwReg  *)0x410044A4UL) /**< \brief (PORT) Control 1 */
 #define REG_PORT_WRCONFIG1         (*(WoReg  *)0x410044A8UL) /**< \brief (PORT) Write Configuration 1 */
-#define REG_PORT_PMUX1             (*(RwReg  *)0x410044B0UL) /**< \brief (PORT) Peripheral Multiplexing 1 */
-#define REG_PORT_PINCFG1           (*(RwReg  *)0x410044C0UL) /**< \brief (PORT) Pin Configuration 1 */
+#define REG_PORT_PMUX1             (*(RwReg8 *)0x410044B0UL) /**< \brief (PORT) Peripheral Multiplexing 1 */
+#define REG_PORT_PINCFG1           (*(RwReg8 *)0x410044C0UL) /**< \brief (PORT) Pin Configuration 1 */
 #endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 /* ========== Instance parameters for PORT peripheral ========== */

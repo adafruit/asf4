@@ -1,5 +1,13 @@
 format_version: '2'
 name: My Project
+versions:
+  api: '1.0'
+  backend: 1.6.148
+  commit: 605f106ab95776472e3febf2fac2471441fb1816
+  content: 1.0.1635
+  content_pack_name: acme-packs-all
+  format: '2'
+  frontend: 1.6.1884
 board:
   identifier: CustomBoard
   device: SAMD21G18A-MF
@@ -181,6 +189,8 @@ drivers:
         nodes:
         - name: ADC
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         configuration:
           adc_gclk_selection: Generic clock generator 0
   GCLK:
@@ -298,6 +308,8 @@ drivers:
         nodes:
         - name: CPU
           input: CPU
+          external: false
+          external_frequency: 0
         configuration: {}
   SPI_M_SERCOM0:
     user_label: SPI_M_SERCOM0
@@ -305,7 +317,7 @@ drivers:
     functionality: SPI
     api: HAL:Driver:SPI_Master_Sync
     configuration:
-      spi_master_advanced: false
+      spi_master_advanced: true
       spi_master_arch_cpha: Sample input on leading edge
       spi_master_arch_cpol: SCK is low when idle
       spi_master_arch_dbgstop: Keep running
@@ -334,8 +346,12 @@ drivers:
         nodes:
         - name: Core
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         - name: Slow
           input: Generic clock generator 3
+          external: false
+          external_frequency: 0
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
@@ -370,8 +386,12 @@ drivers:
         nodes:
         - name: Core
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         - name: Slow
           input: Generic clock generator 3
+          external: false
+          external_frequency: 0
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
@@ -389,6 +409,7 @@ drivers:
       usart_arch_enc: No encoding
       usart_arch_fractional: 0
       usart_arch_ibon: false
+      usart_arch_lin_slave_enable: Disable
       usart_arch_runstdby: false
       usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
       usart_arch_sampr: 16x arithmetic
@@ -414,8 +435,12 @@ drivers:
         nodes:
         - name: Core
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         - name: Slow
           input: Generic clock generator 3
+          external: false
+          external_frequency: 0
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
@@ -457,8 +482,12 @@ drivers:
         nodes:
         - name: Core
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         - name: Slow
           input: Generic clock generator 3
+          external: false
+          external_frequency: 0
         configuration:
           core_gclk_selection: Generic clock generator 0
           slow_gclk_selection: Generic clock generator 3
@@ -500,6 +529,8 @@ drivers:
         nodes:
         - name: RTC
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         configuration:
           rtc_clk_selection: Generic clock generator 0
   PWM_0:
@@ -520,7 +551,6 @@ drivers:
       tc_arch_tceinv: false
       tc_arch_wave_duty_val: 500
       tc_arch_wave_per_val: 1000
-      tc_per: 50
       tc_prescaler: Divide by 8
       timer_event_control: false
     optional_signals: []
@@ -530,6 +560,8 @@ drivers:
         nodes:
         - name: TC
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         configuration:
           tc_gclk_selection: Generic clock generator 0
   DAC_0:
@@ -555,6 +587,8 @@ drivers:
         nodes:
         - name: DAC
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         configuration:
           dac_gclk_selection: Generic clock generator 0
   DMAC:
@@ -611,7 +645,7 @@ drivers:
         the transaction
       dmac_blockact_9: Channel will be disabled if it is the last block transfer in
         the transaction
-      dmac_channel_0_settings: false
+      dmac_channel_0_settings: true
       dmac_channel_10_settings: false
       dmac_channel_11_settings: false
       dmac_channel_12_settings: false
@@ -954,6 +988,8 @@ drivers:
         nodes:
         - name: USB
           input: Generic clock generator 0
+          external: false
+          external_frequency: 0
         configuration:
           usb_gclk_selection: Generic clock generator 0
 pads:

@@ -3,7 +3,7 @@
  *
  * \brief Component description for NVMCTRL
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2018 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -337,17 +337,11 @@ typedef struct {
 #endif /* !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 #define SECTION_NVMCTRL_CAL
-
 #define SECTION_NVMCTRL_LOCKBIT
-
 #define SECTION_NVMCTRL_OTP1
-
 #define SECTION_NVMCTRL_OTP2
-
 #define SECTION_NVMCTRL_OTP4
-
 #define SECTION_NVMCTRL_TEMP_LOG
-
 #define SECTION_NVMCTRL_USER
 
 /*@}*/

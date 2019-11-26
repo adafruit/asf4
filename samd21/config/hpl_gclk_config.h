@@ -63,7 +63,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 0
 // <id> gclk_gen_0_oscillator
 #ifndef CONF_GCLK_GEN_0_SRC
@@ -138,7 +138,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 1
 // <id> gclk_gen_1_oscillator
 #ifndef CONF_GCLK_GEN_1_SRC
@@ -214,7 +214,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 2
 // <id> gclk_gen_2_oscillator
 #ifndef CONF_GCLK_GEN_2_SRC
@@ -290,7 +290,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 3
 // <id> gclk_gen_3_oscillator
 #ifndef CONF_GCLK_GEN_3_SRC
@@ -366,7 +366,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 4
 // <id> gclk_gen_4_oscillator
 #ifndef CONF_GCLK_GEN_4_SRC
@@ -442,7 +442,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 5
 // <id> gclk_gen_5_oscillator
 #ifndef CONF_GCLK_GEN_5_SRC
@@ -518,7 +518,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 6
 // <id> gclk_gen_6_oscillator
 #ifndef CONF_GCLK_GEN_6_SRC
@@ -594,7 +594,7 @@
 // <GCLK_GENCTRL_SRC_XOSC32K"> 32kHz External Crystal Oscillator (XOSC32K)
 // <GCLK_GENCTRL_SRC_OSC8M"> 8MHz Internal Oscillator (OSC8M)
 // <GCLK_GENCTRL_SRC_DFLL48M"> Digital Frequency Locked Loop (DFLL48M)
-// <GCLK_GENCTRL_SRC_FDPLL"> Fractional Digital Phase Locked Loop (FDPLL96M)
+// <GCLK_GENCTRL_SRC_DPLL96M"> Fractional Digital Phase Locked Loop (FDPLL96M)
 // <i> This defines the clock source for generic clock generator 7
 // <id> gclk_gen_7_oscillator
 #ifndef CONF_GCLK_GEN_7_SRC
