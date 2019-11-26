@@ -3,39 +3,29 @@
  *
  * \brief SAM System Controller.
  *
- * Copyright (C) 2015 - 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2015-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
  *
@@ -56,24 +46,21 @@ void _sysctrl_init_sources(void)
 	uint16_t calib;
 
 #if CONF_XOSC32K_CONFIG == 1
-	hri_sysctrl_write_XOSC32K_reg(hw,
-	                              (CONF_XOSC32K_WRTLOCK << SYSCTRL_XOSC32K_WRTLOCK_Pos)
-	                                  | SYSCTRL_XOSC32K_STARTUP(CONF_XOSC32K_STARTUP)
-	                                  | (CONF_XOSC32K_RUNSTDBY << SYSCTRL_XOSC32K_RUNSTDBY_Pos)
-	                                  | (CONF_XOSC32K_AAMPEN << SYSCTRL_XOSC32K_AAMPEN_Pos)
-	                                  | (CONF_XOSC32K_EN1K << SYSCTRL_XOSC32K_EN1K_Pos)
-	                                  | (CONF_XOSC32K_EN32K << SYSCTRL_XOSC32K_EN32K_Pos)
-	                                  | (CONF_XOSC32K_XTALEN << SYSCTRL_XOSC32K_XTALEN_Pos)
-	                                  | (CONF_XOSC32K_ENABLE << SYSCTRL_XOSC32K_ENABLE_Pos));
+	hri_sysctrl_write_XOSC32K_reg(
+	    hw,
+	    (CONF_XOSC32K_WRTLOCK << SYSCTRL_XOSC32K_WRTLOCK_Pos) | SYSCTRL_XOSC32K_STARTUP(CONF_XOSC32K_STARTUP)
+	        | (CONF_XOSC32K_RUNSTDBY << SYSCTRL_XOSC32K_RUNSTDBY_Pos)
+	        | (CONF_XOSC32K_AAMPEN << SYSCTRL_XOSC32K_AAMPEN_Pos) | (CONF_XOSC32K_EN1K << SYSCTRL_XOSC32K_EN1K_Pos)
+	        | (CONF_XOSC32K_EN32K << SYSCTRL_XOSC32K_EN32K_Pos) | (CONF_XOSC32K_XTALEN << SYSCTRL_XOSC32K_XTALEN_Pos)
+	        | (CONF_XOSC32K_ENABLE << SYSCTRL_XOSC32K_ENABLE_Pos));
 #endif
 
 #if CONF_XOSC_CONFIG == 1
-	hri_sysctrl_write_XOSC_reg(hw,
-	                           SYSCTRL_XOSC_STARTUP(CONF_XOSC_STARTUP) | (CONF_XOSC_AMPGC << SYSCTRL_XOSC_AMPGC_Pos)
-	                               | SYSCTRL_XOSC_GAIN(CONF_XOSC_GAIN)
-	                               | (CONF_XOSC_RUNSTDBY << SYSCTRL_XOSC_RUNSTDBY_Pos)
-	                               | (CONF_XOSC_XTALEN << SYSCTRL_XOSC_XTALEN_Pos)
-	                               | (CONF_XOSC_ENABLE << SYSCTRL_XOSC_ENABLE_Pos));
+	hri_sysctrl_write_XOSC_reg(
+	    hw,
+	    SYSCTRL_XOSC_STARTUP(CONF_XOSC_STARTUP) | (0 << SYSCTRL_XOSC_AMPGC_Pos) | SYSCTRL_XOSC_GAIN(CONF_XOSC_GAIN)
+	        | (CONF_XOSC_RUNSTDBY << SYSCTRL_XOSC_RUNSTDBY_Pos) | (CONF_XOSC_XTALEN << SYSCTRL_XOSC_XTALEN_Pos)
+	        | (CONF_XOSC_ENABLE << SYSCTRL_XOSC_ENABLE_Pos));
 #endif
 
 #if CONF_OSC8M_CONFIG == 1
@@ -92,27 +79,26 @@ void _sysctrl_init_sources(void)
 #endif
 
 #if CONF_OSC32K_CONFIG == 1
-	/* OSC32K calibration value at bit 44:38 of memory 0x00806020 */
-	calib = (*((uint32_t *)0x00806024) & 0x0001FC0) >> 6;
+	calib = hri_sysctrl_read_OSC32K_CALIB_bf(hw);
 
-	hri_sysctrl_write_OSC32K_reg(hw,
+	hri_sysctrl_write_OSC32K_reg(
+	    hw,
 #if CONF_OSC32K_OVERWRITE_CALIBRATION == 1
-	                             SYSCTRL_OSC32K_CALIB(CONF_OSC32K_CALIB) |
+	    SYSCTRL_OSC32K_CALIB(CONF_OSC32K_CALIB) |
 #else
-	                             SYSCTRL_OSC32K_CALIB(calib) |
+	    SYSCTRL_OSC32K_CALIB(calib) |
 #endif
-	                                 (CONF_OSC32K_WRTLOCK << SYSCTRL_OSC32K_WRTLOCK_Pos)
-	                                 | SYSCTRL_OSC32K_STARTUP(CONF_OSC32K_STARTUP)
-	                                 | (CONF_OSC32K_RUNSTDBY << SYSCTRL_OSC32K_RUNSTDBY_Pos)
-	                                 | (CONF_OSC32K_EN1K << SYSCTRL_OSC32K_EN1K_Pos)
-	                                 | (CONF_OSC32K_EN32K << SYSCTRL_OSC32K_EN32K_Pos)
-	                                 | (1 << SYSCTRL_OSC32K_ENABLE_Pos));
+	        (CONF_OSC32K_WRTLOCK << SYSCTRL_OSC32K_WRTLOCK_Pos) | SYSCTRL_OSC32K_STARTUP(CONF_OSC32K_STARTUP)
+	        | (CONF_OSC32K_RUNSTDBY << SYSCTRL_OSC32K_RUNSTDBY_Pos) | (CONF_OSC32K_EN1K << SYSCTRL_OSC32K_EN1K_Pos)
+	        | (CONF_OSC32K_EN32K << SYSCTRL_OSC32K_EN32K_Pos) | (1 << SYSCTRL_OSC32K_ENABLE_Pos));
 #else
 	/* Enable OSC32K anyway since GCLK configuration may need it to sync */
 	hri_sysctrl_set_OSC32K_ENABLE_bit(hw);
 #endif
 
 #if CONF_OSCULP32K_CONFIG == 1
+	calib = hri_sysctrl_read_OSCULP32K_CALIB_bf(hw);
+
 	hri_sysctrl_write_OSCULP32K_reg(hw,
 #if OSC32K_OVERWRITE_CALIBRATION == 1
 	                                SYSCTRL_OSCULP32K_CALIB(CONF_OSCULP32K_CALIB) |
@@ -136,6 +122,9 @@ void _sysctrl_init_sources(void)
 #if CONF_XOSC_ENABLE == 1
 	while (!hri_sysctrl_get_PCLKSR_XOSCRDY_bit(hw))
 		;
+#endif
+#if CONF_XOSC_AMPGC == 1
+	hri_sysctrl_set_XOSC_AMPGC_bit(hw);
 #endif
 #if CONF_XOSC_ONDEMAND == 1
 	hri_sysctrl_set_XOSC_ONDEMAND_bit(hw);
@@ -207,14 +196,12 @@ void _sysctrl_init_referenced_generators(void)
 	                                    | (CONF_DPLL_ENABLE << SYSCTRL_DPLLCTRLA_ENABLE_Pos));
 	hri_sysctrl_write_DPLLRATIO_reg(
 	    hw, SYSCTRL_DPLLRATIO_LDRFRAC(CONF_DPLL_LDRFRAC) | SYSCTRL_DPLLRATIO_LDR(CONF_DPLL_LDR));
-	hri_sysctrl_write_DPLLCTRLB_reg(hw,
-	                                SYSCTRL_DPLLCTRLB_DIV(CONF_DPLL_DIV)
-	                                    | (CONF_DPLL_LBYPASS << SYSCTRL_DPLLCTRLB_LBYPASS_Pos)
-	                                    | SYSCTRL_DPLLCTRLB_LTIME(CONF_DPLL_LTIME)
-	                                    | SYSCTRL_DPLLCTRLB_REFCLK(CONF_DPLL_REFCLK)
-	                                    | (CONF_DPLL_WUF << SYSCTRL_DPLLCTRLB_WUF_Pos)
-	                                    | (CONF_DPLL_LPEN << SYSCTRL_DPLLCTRLB_LPEN_Pos)
-	                                    | SYSCTRL_DPLLCTRLB_FILTER(CONF_DPLL_FILTER));
+	hri_sysctrl_write_DPLLCTRLB_reg(
+	    hw,
+	    SYSCTRL_DPLLCTRLB_DIV(CONF_DPLL_DIV) | (CONF_DPLL_LBYPASS << SYSCTRL_DPLLCTRLB_LBYPASS_Pos)
+	        | SYSCTRL_DPLLCTRLB_LTIME(CONF_DPLL_LTIME) | SYSCTRL_DPLLCTRLB_REFCLK(CONF_DPLL_REFCLK)
+	        | (CONF_DPLL_WUF << SYSCTRL_DPLLCTRLB_WUF_Pos) | (CONF_DPLL_LPEN << SYSCTRL_DPLLCTRLB_LPEN_Pos)
+	        | SYSCTRL_DPLLCTRLB_FILTER(CONF_DPLL_FILTER));
 #endif
 
 #if CONF_DFLL_CONFIG == 1

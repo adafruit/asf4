@@ -3,7 +3,7 @@
  *
  * \brief Low-level initialization functions called upon chip startup
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2018 Microchip Technology Inc.
  *
  * \asf_license_start
  *

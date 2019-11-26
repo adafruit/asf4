@@ -3,7 +3,7 @@
  *
  * \brief Header file for SAMD21E15A
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2018 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -90,13 +90,13 @@ typedef volatile       uint8_t  RwReg8;  /**< Read-Write  8-bit register (volati
 /** Interrupt Number Definition */
 typedef enum IRQn
 {
-  /******  Cortex-M0+ Processor Exceptions Numbers ******************************/
-  NonMaskableInt_IRQn      = -14,/**<  2 Non Maskable Interrupt                 */
-  HardFault_IRQn           = -13,/**<  3 Cortex-M0+ Hard Fault Interrupt        */
-  SVCall_IRQn              = -5, /**< 11 Cortex-M0+ SV Call Interrupt           */
-  PendSV_IRQn              = -2, /**< 14 Cortex-M0+ Pend SV Interrupt           */
-  SysTick_IRQn             = -1, /**< 15 Cortex-M0+ System Tick Interrupt       */
-  /******  SAMD21E15A-specific Interrupt Numbers ***********************/
+  /******  Cortex-M0+ Processor Exceptions Numbers *******************/
+  NonMaskableInt_IRQn      = -14,/**<  2 Non Maskable Interrupt      */
+  HardFault_IRQn           = -13,/**<  3 Hard Fault Interrupt        */
+  SVCall_IRQn              = -5, /**< 11 SV Call Interrupt           */
+  PendSV_IRQn              = -2, /**< 14 Pend SV Interrupt           */
+  SysTick_IRQn             = -1, /**< 15 System Tick Interrupt       */
+  /******  SAMD21E15A-specific Interrupt Numbers *********************/
   PM_IRQn                  =  0, /**<  0 SAMD21E15A Power Manager (PM) */
   SYSCTRL_IRQn             =  1, /**<  1 SAMD21E15A System Control (SYSCTRL) */
   WDT_IRQn                 =  2, /**<  2 SAMD21E15A Watchdog Timer (WDT) */
@@ -132,7 +132,7 @@ typedef struct _DeviceVectors
 
   /* Cortex-M handlers */
   void* pfnReset_Handler;
-  void* pfnNMI_Handler;
+  void* pfnNonMaskableInt_Handler;
   void* pfnHardFault_Handler;
   void* pvReservedM12;
   void* pvReservedM11;
@@ -141,7 +141,7 @@ typedef struct _DeviceVectors
   void* pvReservedM8;
   void* pvReservedM7;
   void* pvReservedM6;
-  void* pfnSVC_Handler;
+  void* pfnSVCall_Handler;
   void* pvReservedM4;
   void* pvReservedM3;
   void* pfnPendSV_Handler;
@@ -181,9 +181,9 @@ typedef struct _DeviceVectors
 
 /* Cortex-M0+ processor handlers */
 void Reset_Handler               ( void );
-void NMI_Handler                 ( void );
+void NonMaskableInt_Handler      ( void );
 void HardFault_Handler           ( void );
-void SVC_Handler                 ( void );
+void SVCall_Handler              ( void );
 void PendSV_Handler              ( void );
 void SysTick_Handler             ( void );
 
@@ -217,7 +217,6 @@ void I2S_Handler                 ( void );
  * \brief Configuration of the Cortex-M0+ Processor and Core Peripherals
  */
 
-#define LITTLE_ENDIAN          1        
 #define __CM0PLUS_REV          1         /*!< Core revision r0p1 */
 #define __MPU_PRESENT          0         /*!< MPU present or not */
 #define __NVIC_PRIO_BITS       2         /*!< Number of bits used for Priority Levels */
@@ -288,6 +287,7 @@ void I2S_Handler                 ( void );
 #include "instance/pac2.h"
 #include "instance/pm.h"
 #include "instance/port.h"
+#include "instance/ptc.h"
 #include "instance/rtc.h"
 #include "instance/sercom0.h"
 #include "instance/sercom1.h"

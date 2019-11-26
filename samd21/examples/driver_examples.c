@@ -27,7 +27,7 @@ void ADC_0_example(void)
 static uint8_t src_data[128];
 static uint8_t chk_data[128];
 /**
- * Example of using FLASH_0 to read and write buffer.
+ * Example of using FLASH_0 to read and write Flash main array.
  */
 void FLASH_0_example(void)
 {

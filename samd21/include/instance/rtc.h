@@ -3,7 +3,7 @@
  *
  * \brief Instance description for RTC
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2018 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -88,7 +88,7 @@
 #define REG_RTC_MODE2_INTFLAG      (*(RwReg8 *)0x40001408UL) /**< \brief (RTC) MODE2 Interrupt Flag Status and Clear */
 #define REG_RTC_MODE2_CLOCK        (*(RwReg  *)0x40001410UL) /**< \brief (RTC) MODE2 Clock Value */
 #define REG_RTC_MODE2_ALARM_ALARM0 (*(RwReg  *)0x40001418UL) /**< \brief (RTC) MODE2_ALARM Alarm 0 Value */
-#define REG_RTC_MODE2_ALARM_MASK0  (*(RwReg  *)0x4000141CUL) /**< \brief (RTC) MODE2_ALARM Alarm 0 Mask */
+#define REG_RTC_MODE2_ALARM_MASK0  (*(RwReg8 *)0x4000141CUL) /**< \brief (RTC) MODE2_ALARM Alarm 0 Mask */
 #endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 /* ========== Instance parameters for RTC peripheral ========== */

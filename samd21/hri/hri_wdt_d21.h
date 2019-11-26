@@ -3,41 +3,32 @@
  *
  * \brief SAM WDT
  *
- * Copyright (C) 2017 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2017-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAMD21_WDT_COMPONENT_
@@ -190,8 +181,8 @@ static inline hri_wdt_status_reg_t hri_wdt_read_STATUS_reg(const void *const hw)
 static inline void hri_wdt_set_CTRL_ENABLE_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg |= WDT_CTRL_ENABLE;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -208,35 +199,35 @@ static inline void hri_wdt_write_CTRL_ENABLE_bit(const void *const hw, bool valu
 {
 	uint8_t tmp;
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	tmp = ((Wdt *)hw)->CTRL.reg;
 	tmp &= ~WDT_CTRL_ENABLE;
 	tmp |= value << WDT_CTRL_ENABLE_Pos;
 	((Wdt *)hw)->CTRL.reg = tmp;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CTRL_ENABLE_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg &= ~WDT_CTRL_ENABLE;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CTRL_ENABLE_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg ^= WDT_CTRL_ENABLE;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_set_CTRL_WEN_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg |= WDT_CTRL_WEN;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -253,35 +244,35 @@ static inline void hri_wdt_write_CTRL_WEN_bit(const void *const hw, bool value)
 {
 	uint8_t tmp;
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	tmp = ((Wdt *)hw)->CTRL.reg;
 	tmp &= ~WDT_CTRL_WEN;
 	tmp |= value << WDT_CTRL_WEN_Pos;
 	((Wdt *)hw)->CTRL.reg = tmp;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CTRL_WEN_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg &= ~WDT_CTRL_WEN;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CTRL_WEN_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg ^= WDT_CTRL_WEN;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_set_CTRL_ALWAYSON_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg |= WDT_CTRL_ALWAYSON;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -298,35 +289,35 @@ static inline void hri_wdt_write_CTRL_ALWAYSON_bit(const void *const hw, bool va
 {
 	uint8_t tmp;
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	tmp = ((Wdt *)hw)->CTRL.reg;
 	tmp &= ~WDT_CTRL_ALWAYSON;
 	tmp |= value << WDT_CTRL_ALWAYSON_Pos;
 	((Wdt *)hw)->CTRL.reg = tmp;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CTRL_ALWAYSON_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg &= ~WDT_CTRL_ALWAYSON;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CTRL_ALWAYSON_bit(const void *const hw)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg ^= WDT_CTRL_ALWAYSON;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_set_CTRL_reg(const void *const hw, hri_wdt_ctrl_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg |= mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -342,24 +333,24 @@ static inline hri_wdt_ctrl_reg_t hri_wdt_get_CTRL_reg(const void *const hw, hri_
 static inline void hri_wdt_write_CTRL_reg(const void *const hw, hri_wdt_ctrl_reg_t data)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg = data;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CTRL_reg(const void *const hw, hri_wdt_ctrl_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg &= ~mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CTRL_reg(const void *const hw, hri_wdt_ctrl_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CTRL.reg ^= mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -372,8 +363,8 @@ static inline hri_wdt_ctrl_reg_t hri_wdt_read_CTRL_reg(const void *const hw)
 static inline void hri_wdt_set_CONFIG_PER_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg |= WDT_CONFIG_PER(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -390,27 +381,27 @@ static inline void hri_wdt_write_CONFIG_PER_bf(const void *const hw, hri_wdt_con
 {
 	uint8_t tmp;
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	tmp = ((Wdt *)hw)->CONFIG.reg;
 	tmp &= ~WDT_CONFIG_PER_Msk;
 	tmp |= WDT_CONFIG_PER(data);
 	((Wdt *)hw)->CONFIG.reg = tmp;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CONFIG_PER_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg &= ~WDT_CONFIG_PER(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CONFIG_PER_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg ^= WDT_CONFIG_PER(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -426,8 +417,8 @@ static inline hri_wdt_config_reg_t hri_wdt_read_CONFIG_PER_bf(const void *const 
 static inline void hri_wdt_set_CONFIG_WINDOW_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg |= WDT_CONFIG_WINDOW(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -444,27 +435,27 @@ static inline void hri_wdt_write_CONFIG_WINDOW_bf(const void *const hw, hri_wdt_
 {
 	uint8_t tmp;
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	tmp = ((Wdt *)hw)->CONFIG.reg;
 	tmp &= ~WDT_CONFIG_WINDOW_Msk;
 	tmp |= WDT_CONFIG_WINDOW(data);
 	((Wdt *)hw)->CONFIG.reg = tmp;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CONFIG_WINDOW_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg &= ~WDT_CONFIG_WINDOW(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CONFIG_WINDOW_bf(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg ^= WDT_CONFIG_WINDOW(mask);
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -480,8 +471,8 @@ static inline hri_wdt_config_reg_t hri_wdt_read_CONFIG_WINDOW_bf(const void *con
 static inline void hri_wdt_set_CONFIG_reg(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg |= mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -497,24 +488,24 @@ static inline hri_wdt_config_reg_t hri_wdt_get_CONFIG_reg(const void *const hw, 
 static inline void hri_wdt_write_CONFIG_reg(const void *const hw, hri_wdt_config_reg_t data)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg = data;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_clear_CONFIG_reg(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg &= ~mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_wdt_toggle_CONFIG_reg(const void *const hw, hri_wdt_config_reg_t mask)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CONFIG.reg ^= mask;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
@@ -616,8 +607,8 @@ static inline hri_wdt_ewctrl_reg_t hri_wdt_read_EWCTRL_reg(const void *const hw)
 static inline void hri_wdt_write_CLEAR_reg(const void *const hw, hri_wdt_clear_reg_t data)
 {
 	WDT_CRITICAL_SECTION_ENTER();
-	hri_wdt_wait_for_sync(hw);
 	((Wdt *)hw)->CLEAR.reg = data;
+	hri_wdt_wait_for_sync(hw);
 	WDT_CRITICAL_SECTION_LEAVE();
 }
 
