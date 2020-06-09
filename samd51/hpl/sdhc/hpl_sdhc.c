@@ -34,6 +34,7 @@
 #include <utils_assert.h>
 #include "hpl_mci_sync.h"
 #include <hpl_sdhc_config.h>
+#include "hri_sdhc_d51.h"
 
 #define HSMCI_SLOT_0_SIZE 4
 
