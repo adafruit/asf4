@@ -108,6 +108,7 @@ int32_t adc_sync_read_channel(struct adc_sync_descriptor *const descr, const uin
                               const uint16_t length)
 {
 	uint8_t  data_size;
+	uint16_t  loop_ctr = 0;
 	uint16_t offset = 0;
 
 	ASSERT(descr && buffer && length);
@@ -118,8 +119,13 @@ int32_t adc_sync_read_channel(struct adc_sync_descriptor *const descr, const uin
 		uint16_t result;
 		_adc_sync_convert(&descr->device);
 
-		while (!_adc_sync_is_channel_conversion_done(&descr->device, channel))
-			;
+		while (!_adc_sync_is_channel_conversion_done(&descr->device, channel)) 
+		{
+                        loop_ctr++;
+                        if (loop_ctr > 255) {
+                           return 0;
+                        }
+		}
 
 		result         = _adc_sync_read_channel_data(&descr->device, channel);
 		buffer[offset] = result;
