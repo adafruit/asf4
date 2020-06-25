@@ -28,32 +28,14 @@
 #ifndef _SAM_
 #define _SAM_
 
-#if defined(__SAMD51G18A__) || defined(__ATSAMD51G18A__)
-#include "samd51g18a.h"
-#elif defined(__SAMD51G19A__) || defined(__ATSAMD51G19A__)
-#include "samd51g19a.h"
-#elif defined(__SAMD51J18A__) || defined(__ATSAMD51J18A__)
-#include "samd51j18a.h"
-#elif defined(__SAMD51J19A__) || defined(__ATSAMD51J19A__)
-#include "samd51j19a.h"
-#elif defined(__SAMD51J20A__) || defined(__ATSAMD51J20A__)
-#include "samd51j20a.h"
-#elif defined(__SAMD51N19A__) || defined(__ATSAMD51N19A__)
-#include "samd51n19a.h"
-#elif defined(__SAMD51N20A__) || defined(__ATSAMD51N20A__)
-#include "samd51n20a.h"
-#elif defined(__SAMD51P19A__) || defined(__ATSAMD51P19A__)
-#include "samd51p19a.h"
-#elif defined(__SAMD51P20A__) || defined(__ATSAMD51P20A__)
-#include "samd51p20a.h"
-#elif defined(__SAME54N19A__) || defined(__ATSAME54N19A__)
-  #include "same54n19a.h"
+#if defined(__SAME54N19A__) || defined(__ATSAME54N19A__)
+#include "same54n19a.h"
 #elif defined(__SAME54N20A__) || defined(__ATSAME54N20A__)
-  #include "same54n20a.h"
+#include "same54n20a.h"
 #elif defined(__SAME54P19A__) || defined(__ATSAME54P19A__)
-  #include "same54p19a.h"
+#include "same54p19a.h"
 #elif defined(__SAME54P20A__) || defined(__ATSAME54P20A__)
-  #include "same54p20a.h"
+#include "same54p20a.h"
 #else
 #error Library does not support the specified device
 #endif
